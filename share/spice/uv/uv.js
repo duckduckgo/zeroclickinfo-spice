@@ -18,7 +18,7 @@
             protection = "Take all precautions: Wear sunglasses and use SPF 30+ sunscreen, "
                         +"cover the body with a long-sleeve shirt and trousers, wear a very broad hat, "
                         +"and avoid the sun from three hours before until three hours after solar noon.";
-        
+
         //uv index risks and descriptions taken from http://en.wikipedia.org/wiki/Ultraviolet_index#How_to_use_the_index
         if(uvIndex < 3){
             risk = "low";
@@ -55,6 +55,7 @@
                 riskTitle: riskTitle,
                 protection: protection
             },
+            signal: 'high',
             meta: {
                 sourceName: "EPA",
                 sourceUrl: 'http://www.epa.gov/enviro/facts/uv/uv_descriptions.html'

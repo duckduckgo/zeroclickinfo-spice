@@ -4,22 +4,19 @@ package DDG::Spice::Flights::Route;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "Jetblue Boston to Los Angeles", "Jetblue BOS to LAX";
-secondary_example_queries "Newark to Paris United";
-description "Flight information using source and destination cities";
-name "Flight Info";
-source "flightstats";
-icon_url "/ip2/www.flightstats.com.ico";
-topics "economy_and_finance", "travel", "everyday";
-category "time_sensitive";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/lib/DDG/Spice/Flights/Route.pm";
-attribution github => ["https://github.com/tommytommytommy", 'tommytommytommy'];
-
 # cache responses for 5 minutes
 spice proxy_cache_valid => "200 304 5m";
 
 spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
 spice to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/route/status/$4/$5/arr/$6/$7/$8?hourOfDay=$9&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
+
+spice alt_to => {
+	route_helper => {
+		proxy_cache_valid => '200 304 5m',
+		to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/route/status/$1/$2/$3/$4/$5/$6/?hourOfDay=$7&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}',
+		from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)'
+	}
+};
 
 my @triggers = ('airport', 'international', 'national', 'intl', 'regional');
 
@@ -105,7 +102,7 @@ triggers startend => @triggers;
 sub identifyCodes {
 
     my ($query, $leftQuery, $otherCity) = @_;
-
+    
     # split query into individual words
     # at least two words are required (1 for the airline and 1 for the city)
     my @query = split(/\s+/, $query);
@@ -135,7 +132,7 @@ sub identifyCodes {
                 and index($airlineName, $groupB) == 0
                 and (exists $citiesByName{$groupA} or exists $citiesByCode{$groupA});
         }
-
+        
         # [airline][city][to][city]
         return (join(",", @airlineCodes), $citiesByName{$groupB}, $citiesByName{$otherCity}, $groupB, $otherCity)
             if @airlineCodes and $leftQuery and exists $citiesByName{$groupB} and exists $citiesByName{$otherCity};
@@ -176,15 +173,18 @@ handle query_lc => sub {
 
     # clean up input; strip periods and common words,
     # replace all other non-letters with a space, strip trailing spaces
-    s/\b(airport|national|international|intl|regional)\b//g;
+    s/\b(airport|national|international|intl|regional)\b//g;    
     s/\.//g;
-    s/[^a-z]+/ /g;
-    s/\s+$//g;
+    s/\b[^a-z]+\b/ /g;
+    s/\s+$//g;    
 
     # query must be in the form [airline][city][to][city] or [city][to][city][airline]
     my @query = split(/\s+to\s+/, $_);
     return if scalar(@query) != 2;
 
+    # strip 'fligh(s) from' to allow more flexible queries
+    $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
+    
     # get the current time, minus six hours
     my ($second, $minute, $hour, $dayOfMonth,
         $month, $year, $dayOfWeek, $dayOfYear, $daylightSavings) = gmtime(time - 21600);

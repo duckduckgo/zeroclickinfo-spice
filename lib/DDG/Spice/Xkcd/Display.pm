@@ -4,23 +4,18 @@ package DDG::Spice::Xkcd::Display;
 use strict;
 use DDG::Spice;
 
-name "xkcd";
-description "Get the latest xkcd comic";
-source "xkcd";
-primary_example_queries "xkcd";
-secondary_example_queries "xkcd 102";
-category "special";
-topics "entertainment", "geek", "special_interest";
-icon_url "/i/xkcd.com.ico";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Xkcd/Display.pm";
-attribution github => ["https://github.com/sdball", "Stephen Ball"],
-            twitter => ["https://twitter.com/StephenBallNC", "Stephen Ball"],
-            github => ["https://github.com/andrey-p", "Andrey Pissantchev"];
-
 triggers startend => "xkcd";
 
 spice to => 'http://xkcd.com/$1/info.0.json';
+spice proxy_cache_valid => '200 1h';
 spice wrap_jsonp_callback => 1;
+
+spice alt_to => {
+	latest => {
+        	to => 'http://xkcd.com/info.0.json',
+        	proxy_cache_valid => '200 1h'
+	}
+};
 
 handle remainder => sub {
 

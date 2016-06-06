@@ -5,22 +5,11 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "watch boyhood";
-secondary_example_queries "incredible hulk on demand";
-name "GoWatchIt Search";
-source "GoWatchIt.com";
-description "Find out where to watch your favorite movies and shows!";
-category "entertainment";
-topics "entertainment";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GoWatchIt.pm";
-attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
-            web     => ['http://gowatchit.com'],
-            twitter => ['gowatchit', 'GoWatchIt.com'];
-
 my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie','movie');
-my @killwords = ('movie', 'show', 'tv', 'online', 'stream');
+my @ignorewords = ('movie', 'show', 'tv', 'online', 'stream');
+my @stopwords = ('apple watch', 'pocket watch', 'night watch', 'watch tower', "stop watch");
 
-my $killwords = join '|', @killwords;
+my $ignorewords = join '|', @ignorewords;
 
 triggers startend => @triggers;
 
@@ -30,9 +19,11 @@ spice wrap_jsonp_callback => 1;
 handle remainder_lc => sub {
 
   return unless $_; # Guard against "no answer"
-  $_ =~ s/$killwords//g; # remove killwords
-  return trim($_); # trim spaces and return
+  return if grep {$req->query_lc eq $_} @stopwords;
 
+
+  $_ =~ s/\b$ignorewords\b//g; # remove ignorewords
+  return trim($_); # trim spaces and return
 };
 
 1;

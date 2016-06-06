@@ -77,6 +77,31 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
+    'eth to usd' => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    'etherium to jpy' => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-jpy/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    'ethereum to ltc' => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-ltc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    'ethereum coin to ltc' => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-ltc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    'etherium to ltc' => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-ltc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
     # Plural names of coins
     'What is nxt in litecoins?' => test_spice(
         '/js/spice/cryptocurrency/ticker/nxt-ltc/1',
@@ -88,7 +113,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
-    
+
     # Edge cases
     '66 666coin to 66coin?' => test_spice(
         '/js/spice/cryptocurrency/ticker/666-66/66',
@@ -105,7 +130,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
-    
+
     # Malformed queries
     'ltc to ltc' => undef,
     'ltc to' => undef,
@@ -128,11 +153,10 @@ ddg_spice_test(
     # Things that should probably work but it doesn't at the moment.
     'ppc ftc 400' => undef,
     '499 nmc = ? usd' => undef,
-    
     'convert religion' => undef,
     'what is a cow' => undef,
     'usda loans' => undef,
-    
+
     # Handled by the Currency Spice.
     'usd to aud' => undef,
     'btc' => undef,
@@ -142,12 +166,28 @@ ddg_spice_test(
     '499 us dollar to btc' => undef,
     '25 php to gbp' => undef,
     'convert 1021 gbp to cny'  => undef,
-    
+
     # We don't want to trigger on date-looking things.
     '2016 feathercoin' => undef,
     # Doesn't trigger with ficticious currencies
     '200 bitcoin waffles to litecoin' => undef,
     'what is 1 euro in crypto donuts' => undef,
+
+    # Handling the query '1 <cryptocurrency>'. Doesn't trigger unless cryptocurrency is in the top 10 currencies or the cryptocurrency has 'coin' in the name.
+    # Should trigger because PPC is in the top 10
+    '1 ppc' => test_spice(
+        '/js/spice/cryptocurrency/secondaries/1peercoin/ppc',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    # Should not trigger because diode is not in the top 10 and name does not include coin
+    '1 diode' => undef,
+    # Triggers because 'coin' is included in the name
+    '1 apex coin' => test_spice(
+        '/js/spice/cryptocurrency/secondaries/1apex%20coin/apex',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
 );
 
 done_testing;

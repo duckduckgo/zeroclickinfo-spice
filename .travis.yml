@@ -1,5 +1,13 @@
 ---
 sudo: false
+env:
+  - PERL_LWP_SSL_VERIFY_HOSTNAME=0
+cache:
+  directories:
+    - $HOME/.cpanm
+    - $HOME/.nvm
+    - $HOME/perl5/perlbrew/perls/5.16/lib
+    - /var/tmp
 before_install:
   - export HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
   - git config --global user.name "Dist Zilla Plugin TravisCI"
@@ -11,6 +19,6 @@ install:
   - dzil listdeps | grep -ve '^\W' | cpanm --notest --quiet --mirror http://www.cpan.org/ --mirror http://duckpan.org
 language: perl
 perl:
-  - '5.16'
+  - 5.16
 script:
-  - dzil smoke --release --author
+  - prove -lr -j1 t

@@ -3,21 +3,11 @@ package DDG::Spice::Quixey;
 
 use strict;
 use DDG::Spice;
-use JSON;
+use JSON::MaybeXS;
 use Text::Trim;
 use List::Uniq ':all';
 
-primary_example_queries "flight tracking app", "quixey angry birds";
-secondary_example_queries "free calculator app", "tiny piano for iphone";
-description "Search for mobile apps";
-name "Quixey App Search";
-source "Quixey";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Quixey.pm";
-icon_url "/i/www.quixey.com.ico";
-category "entertainment";
-topics "everyday", "special_interest";
-attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
-            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
+spice wrap_jsonp_callback => 1;
 
 # Variable Definitions
 my %custom_ids = (2005 => 75675980, 2004 => 78989893);
@@ -51,7 +41,7 @@ triggers any => @triggers;
 
 spice from => '([^/]+)/([^/]+)/?([^/]+)?/?([^/]+)?';
 
-spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&max_cents=$3&custom_id=$4&limit=50&skip=0&format=json&callback={{callback}}';
+spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&max_cents=$3&custom_id=$4&limit=50&skip=0&format=json';
 
 spice proxy_ssl_session_reuse => "off";
 

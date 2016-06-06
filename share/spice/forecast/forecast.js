@@ -56,7 +56,7 @@
 
     // Build the current conditions
     var build_currently = function(f) {
-      var now = new Date().getTime() / 1000,
+      var now = moment().unix(),
           hourly = f.hourly.data,
           current_summary = f.currently.summary,
           speed_units = unit_labels[units].speed,
@@ -120,11 +120,7 @@
 
     var build_daily = function(f) {
       var dailyObj = [],
-          day_strs = [],
-          today = new Date(),
-          today_i = today.getDay(),
-          month_i = today.getMonth(),
-          date_i = today.getDate(),
+          today = moment(),
           days = f.daily.data,
           num_days = Math.max(6, days.length),
           day,
@@ -132,12 +128,6 @@
           max_temp_height = 65,
           high_temp = -Infinity,
           low_temp = Infinity;
-
-          if (!is_mobile) {
-              day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-          } else {
-              day_strs = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-          }
 
       // find weekly high and low temps
       for(var i = 0; i < num_days; i++) {
@@ -158,10 +148,8 @@
         dailyObj[i] = days[i];
         day = days[i];
 
-        tmp_date = new Date();
-        tmp_date.setDate(date_i+i);
-        dailyObj[i].date = tmp_date.toDateString().substr(4,6);
-        dailyObj[i].day = i == 0 ? 'Today' : day_strs[(today_i+i)%7];
+        tmp_date = moment(today).add(i, 'days');
+        dailyObj[i].date = tmp_date.format("MMM D");        
         dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
         dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
         dailyObj[i].icon = getIcon(getIconType(days[i].icon));
@@ -169,6 +157,14 @@
           height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
           top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
         };
+        
+        if (i == 0) { 
+            dailyObj[i].day = 'Today';
+        } else if (is_mobile) {
+            dailyObj[i].day = tmp_date.format("ddd").toUpperCase();
+        } else {
+            dailyObj[i].day = tmp_date.format("dddd");
+        }
 
       })(i);
 
@@ -197,56 +193,57 @@
       }
     }
 
-    // Go!
-    weatherData.current = build_currently(api_result);
-    weatherData.alerts = build_alerts(api_result);
-    weatherData.daily = build_daily(api_result);
-    weatherData.activeUnit = unit_labels[units].temperature;
-    weatherData.city = api_result.flags['ddg-location'];
+    DDG.require('moment.js', function(){
+      // Go!
+      weatherData.current = build_currently(api_result);
+      weatherData.alerts = build_alerts(api_result);
+      weatherData.daily = build_daily(api_result);
+      weatherData.activeUnit = unit_labels[units].temperature;
+      weatherData.city = api_result.flags['ddg-location'];
 
-    // build the header text:
-    weatherData.header = weatherData.city ? 'Weather for ' + weatherData.city : 'Weather';
+      // build the header text:
+      weatherData.header = weatherData.city ? 'Weather for ' + weatherData.city : 'Weather';
 
-    // if there's alerts add them to the end:
-    if (weatherData.alerts) {
-        weatherData.header += ' ' + weatherData.alerts;
-    }
+      // if there's alerts add them to the end:
+      if (weatherData.alerts) {
+          weatherData.header += ' ' + weatherData.alerts;
+      }
 
-    // structure the data differently for mobile and desktop views
-    if (is_mobile) {
-      spiceData = weatherData;
-    } else {
-      spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
-    }
+      // structure the data differently for mobile and desktop views
+      if (is_mobile) {
+        spiceData = weatherData;
+      } else {
+        spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
+      }
 
-    var uom = unit_labels[units].temperature === 'F' ? 'F' : 'C',
-        altMeta = '<a id="fe_temp_switch" class="tx-clr--dk2"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
+      var uom = unit_labels[units].temperature === 'F' ? 'F' : 'C',
+          altMeta = '<a id="fe_temp_switch" class="tx-clr--dk2"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
 
-    // Render/Display
-    Spice.registerHelper("forecast_icon", function(obj, options) {
-      obj.size = options && options.hash && options.hash.size || "40px";
-      return DDG.exec_template(Spice.forecast.forecast_icons,obj);
-    });
+      // Render/Display
+      Spice.registerHelper("forecast_icon", function(obj, options) {
+        obj.size = options && options.hash && options.hash.size || "40px";
+        return DDG.exec_template(Spice.forecast.forecast_icons,obj);
+      });
 
-    Spice.add({
-        id: 'forecast',
-        name: 'Weather',
-        data: spiceData,
-        signal: "high",
-        meta: {
-            sourceUrl: 'http://forecast.io/#/f/'+api_result.latitude+','+api_result.longitude,
-            sourceName: 'Forecast.io',
-            primaryText: weatherData.header,
-            secondaryText: altMeta,
+      Spice.add({
+          id: 'forecast',
+          name: 'Weather',
+          data: spiceData,
+          signal: "high",
+          meta: {
+              sourceUrl: 'http://forecast.io/#/f/'+api_result.latitude+','+api_result.longitude,
+              sourceName: 'Forecast.io',
+              primaryText: weatherData.header,
+              secondaryText: altMeta,
 
-            itemsWidthVaries: true
-        },
+              itemsWidthVaries: true
+          },
 
-        templates: {
-            item_custom: Spice.forecast.forecast_item,
-            detail_mobile: Spice.forecast.forecast_detail_mobile
-        }
-    });
+          templates: {
+              item: Spice.forecast.forecast_item,
+              detail_mobile: Spice.forecast.forecast_detail_mobile
+          }
+      });
 
     //convert temperature to specified unit
     var convertTemp = function(unit, d){
@@ -352,6 +349,7 @@
         // update the setting so we remember this choice going forward:
         DDG.settings.set('kaj', uom === 'C' ? 'm' : 'u', { saveToCloud: true });
     });
+  });
   };
 
 }(this));

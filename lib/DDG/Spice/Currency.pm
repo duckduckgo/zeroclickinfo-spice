@@ -7,19 +7,6 @@ with 'DDG::SpiceRole::NumberStyler';
 use Text::Trim;
 use YAML::XS qw(LoadFile);
 
-primary_example_queries "convert 499 usd to cad";
-secondary_example_queries "cad to usd", "cny?";
-description "Currency Convertor provided by XE.com";
-name "Currency";
-source "XE.com";
-icon_url "/i/xe.com.ico";
-code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
-category "finance";
-topics "economy_and_finance", "geography", "travel", "everyday";
-attribution web => ['http://www.xe.com', 'xe.com'],
-            github => ['https://github.com/laouji','Crimson Thompson'],
-            twitter => ['https://twitter.com/laouji','Crimson Thompson'];
-
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;
@@ -41,9 +28,10 @@ my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
-my $cardinal_re = join('|', qw(hundred thousand k million m billion b trillion));
+my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)).' ';
 
-my $guard = qr/^$question_prefix(\p{Currency_Symbol})?($number_re*)(\p{Currency_Symbol})?\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
+
+my $guard = qr/^$question_prefix(\p{Currency_Symbol})?\s?($number_re*)\s?(\p{Currency_Symbol})?\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\/|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
 
@@ -137,15 +125,18 @@ handle query_lc => sub {
 
         my $styler = number_style_for($amount);
         return unless $styler;
-
-        if ($cardinal ne '') {
+        
+        # only convert $amount if exists
+        if ($cardinal ne '' && $amount ne '') { 
             $amount = $styler->for_computation($amount);
 
-            if ($cardinal eq 'hundred')  { $amount *= 100 }
-            elsif ($cardinal =~ /(thousand|k)/i) { $amount *= 1000 }
-            elsif ($cardinal =~ /(million|m)/i)  { $amount *= 1000000 }
-            elsif ($cardinal =~ /(billion|b)/i)  { $amount *= 1000000000 }
-            elsif ($cardinal =~ /(trillion|t)/i) { $amount *= 1000000000000 }
+            if ($cardinal =~ /(hundred )/i)  { $amount *= 100 }
+            elsif ($cardinal =~ /(thousand |k )/i) { $amount *= 1_000 }
+            elsif ($cardinal =~ /(million |m )/i)  { $amount *= 1_000_000 }
+            elsif ($cardinal =~ /(billion |b )/i)  { $amount *= 1_000_000_000 }
+            elsif ($cardinal =~ /(trillion |t )/i) { $amount *= 1_000_000_000_000 }
+        } elsif($cardinal && $amount eq '') {
+            return; # if cardinal provided but no amount return
         }
 
         # If two amounts are available, exit early. It's ambiguous.

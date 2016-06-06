@@ -4,16 +4,6 @@ package DDG::Spice::Npm;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "npm underscore";
-description "Shows an NPM package";
-name "NPM";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Npm.pm";
-icon_url "/i/npmjs.org.ico";
-topics "sysadmin", "programming";
-category "programming";
-attribution github  => ['https://github.com/remixz', 'zachbruggeman'],
-            twitter => ['https://twitter.com/zachbruggeman', 'zachbruggeman'];
-
 triggers startend => 'npm', 'nodejs';
 triggers start => 'npm install';
 

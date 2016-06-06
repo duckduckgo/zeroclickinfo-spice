@@ -3,21 +3,7 @@ package DDG::Spice::Transit::SEPTA;
 
 use strict;
 use DDG::Spice;
-use YAML 'LoadFile';
-
-primary_example_queries "next train from Villanova to Paoli";
-secondary_example_queries "train times to paoli from Villanova";
-description "Lookup the next SEPTA train going your way";
-name "SEPTA";
-source "SEPTA";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Transit/SEPTA.pm";
-topics "everyday";
-category "time_sensitive";
-attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
-            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'],
-            github => ['https://github.com/mattr555', 'mattr555'],
-            twitter => ['https://twitter.com/mattr555', 'mattr555'];
+use YAML::XS 'LoadFile';
 
 spice to => 'http://www3.septa.org/hackathon/NextToArrive/$1/$2/5/';
 spice from => '(.*)/(.*)';

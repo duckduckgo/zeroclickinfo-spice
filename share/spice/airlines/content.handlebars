@@ -1,27 +1,55 @@
-<div class="tile__heading">
-  <div class="tile__date">
-    <div class="tile__week">{{departing.weekday}}</div>
-    <div class="tile__day">{{departing.day}}</div>
+<div class="tile__heading {{#if has_landed}}tile__landed{{/if}} {{#if is_cancelled}}tile__cancelled{{/if}}">
+  <div class="tile__date text--secondary tx--13">
+    <div class="tile__week">{{airlineName}} {{flightNumber}}</div>
+    <div class="tile__day">{{departing.departureDateF}}</div>
   </div>
-  <h5 class="tile__flightID">
-    {{airlineName}} {{flightNumber}}
-  </h5>
-  <div class="tile__airports">
-    {{departing.airport}} to {{arriving.airport}}
+  <div class="tile__flightID text--primary tx--16">
+    {{departing.airport.fs}} to {{arriving.airport.fs}}
   </div>
-  <div>
-    <span class="tile__status">
-      {{{airline_status flight departureDate arrivalDate scheduledDepartureDate scheduledArrivalDate}}}
-    </span>
+  <div class="tx-clr--dk2 tx--13">
+    <span class="tile__status tx-{{statusColor}}">
+      {{status}}
+    </span> {{#unless is_cancelled}}&ndash; {{status_text}} {{datetime}}{{#if delay_time}} (+{{delay_time}}){{/if}}{{/unless}}
   </div>
 </div>
-<div class="half">
-  <div class="tile__schedule">Scheduled Departure: {{airline_time departing.isDeparted scheduledArrivalDate scheduledDepartureDate}}</div>
-  <div class="tile__time">{{airline_time departing.isDeparted arrivalDate departureDate}}</div>
-  <div>Gate {{{departing.gate}}} - Terminal {{{departing.terminal}}}</div>
+
+<div class="progress__bar bg-clr--platinum-light">
+	<div class="progress__complete bg-{{statusColor}}" style="width: {{scheduled_progress_percent}}%;"></div>
+    {{#if has_arrived}}
+        <!-- progress dot not displayed -->
+    {{else}}
+	    <div class="dot bg-{{statusColor}} tx-clr--white" style="left: {{progress_percent}}%;"></div>
+    {{/if}}
 </div>
-<div class="half">
-  <div class="tile__schedule">Scheduled Arrival: {{airline_time arriving.isDeparted scheduledArrivalDate scheduledDepartureDate}}</div>
-  <div class="tile__time">{{airline_time arriving.isDeparted arrivalDate departureDate}}</div>
-  <div>Gate {{{arriving.gate}}} - Terminal {{{arriving.terminal}}}</div>
+
+<div class="tile__departure">
+	<table class="whole">
+    	<tr class="tx-clr--lt">
+    		<td>DEPARTURE</td>
+    		<td>SCHEDULED</td>
+    		<td>GATE</td>
+    		<td>TERMINAL</td>
+    	</tr>
+    	<tr class="text--primary tx--16">
+    		<td>{{departing.location}}</td>
+    		<td {{#if delay_time}}class="tx--clr-red"{{/if}}>{{scheduled_depart}}</td>
+    		<td>{{departing.gate}}</td>
+    		<td>{{departing.terminal}}</td>
+    	</tr>
+    	<tr>
+    		<td colspan="4"><hr class="divider bg-clr--platinum-light"></td>
+    	</tr>
+    	<tr class="tx-clr--lt">
+    		<td>ARRIVAL</td>
+    		<td>SCHEDULED</td>
+    		<td>GATE</td>
+    		<td>TERMINAL</td>
+    	</tr>
+    	<tr class="text--primary tx--16">
+    		<td>{{arriving.location}}</td>
+    		<td {{#if delay_time}}class="tx--clr-red"{{/if}}>{{scheduled_arrival}}</td>
+    		<td>{{arriving.gate}}</td>
+    		<td>{{arriving.terminal}}</td>
+    	</tr>
+	</table>
 </div>

@@ -17,7 +17,7 @@
             name: "Social",
             data: api_response.data,
             meta: {
-                itemType: api_response.data.display_name + " (SubReddit)",
+                itemType: 'Posts',
                 sourceUrl: 'http://www.reddit.com' + api_response.data.url,
                 sourceName: 'Reddit'
             },
@@ -45,24 +45,8 @@
 
 Handlebars.registerHelper("redditSub_unescape", function(escaped, options) {
     "use strict";
-
-    var unescape = {
-        "&amp": "&",
-        "&lt": "<",
-        "&gt": ">",
-        "&quot": '"',
-        "&#x27": "'",
-        "&#x2F": '/'
-    };
-
-    var html = escaped.replace(/(&[^;]+);/g, function(a, b) {
-        var r = unescape[b];
-        return (typeof(r) === "string") ? r : a;
-    });
-
-    // Remove all the tags.
     options.hash.maxlen = "150";
-    return Handlebars.helpers.condense(DDG.strip_html(html), options);
+    return Handlebars.helpers.condense(DDG.unescape(DDG.strip_html(escaped), options));
 });
 
 Handlebars.registerHelper("redditSub_formatSubscribers", function(subscribers) {

@@ -1,65 +1,49 @@
 (function (env) {
     "use strict";
     
-    var Games,
-        OPS = {
-            sequenceType: "inning",
-            counter: "number",
-            name: "innings",
-            min: 9
-        };
-
     env.ddg_spice_sports_mlb_games = function(apiResult) {
 
         if (!apiResult || !apiResult.data || !apiResult.data.games || !apiResult.data.games.length) {
             return Spice.failed('mlb_games');
         }
         
-        DDG.require('sports', function(){
-            Games = env.ddg_spice_sports_games;
-                
-            Games.init(MLBInit);
-        });
-        
-        var MLBInit = function () {
-                Spice.add({
-                    id: 'mlb_games',
-                    name: 'MLB',
+        DDG.require(['moment.js', 'sports'], function() {
+            var games = env.ddg_spice_sports_games,
+                data = games.transformGameData(apiResult.data);
 
-                    data: Games.transformGameData(apiResult.data),
+            Spice.add({
+                id: 'mlb_games',
+                name: 'MLB',
+                data: games.transformGameData(apiResult.data),
+                from: apiResult.from,
+                signal: apiResult.signal,
+                meta: $.extend(games.META, {
+                    primaryText: 'Showing ' + data.length + ' Games',
+                    sourceUrl:  apiResult.url || "http://www.bleacherreport.com/mlb",
+                    selectedItem: apiResult.data.most_relevant_game_id,
+                }),
+                templates: $.extend(games.TEMPLATES, {
+                    options: {
+                        content: Spice.sports_mlb_games.mlb_score,
+                        in_progress: Spice.sports_mlb_games.head_in_progress,
+                        head_totals: Spice.sports_mlb_games.head_totals
+                    }
+                }),
+                normalize: function(attrs) {
+                    attrs = games.normalize(attrs, {
+                        updatedTimeout: 15
+                    });
 
-                    from: apiResult.from,
-                    signal: apiResult.signal,
-
-                    meta: $.extend(Games.META, {
-                        sourceUrl:  apiResult.url || "http://www.bleacherreport.com/mlb",
-                        selectedItem: apiResult.data.most_relevant_game_id,
-                    }),
-
-                    templates: $.extend(Games.TEMPLATES, {
-                        options: {
-                            content: Spice.sports_mlb_games.mlb_score,
-                            in_progress: Spice.sports_mlb_games.head_in_progress,
-                            head_totals: Spice.sports_mlb_games.head_totals
-                        }
-                    }),
+                    if (!attrs.has_started) {
+                        return attrs;
+                    }
                     
-                    normalize: MLBGameData
-                });
-            },
-        
-            MLBGameData = function(attrs) {
-                attrs = Games.normalize(attrs, {
-                    updatedTimeout: 15
-                });
-                
-                // Game Finished/In-Progress
-                if (attrs.has_started) {
+                    // Game Finished/In-Progress
                     var inning = attrs.score.away.innings.length-1 || -1,
                         placeholderStr = '&nbsp;';
                         
                     if (attrs.has_ended) {
-                        placeholderStr = Games.PLACEHOLDER;
+                        placeholderStr = games.PLACEHOLDER;
                         attrs.textGameOver = l("Game ended");
                     }
                     
@@ -68,11 +52,15 @@
                         attrs.score.current = attrs.score.pitch_count.inning;
 
                         // always display placeholders up to 9 innings
-                        attrs.score = Games.fillBoxscore(attrs.score, $.extend(OPS, {
+                        attrs.score = games.fillBoxscore(attrs.score, {
+                            sequenceType: 'inning',
+                            counter: 'number',
+                            name: 'innings',
+                            min: 9,
                             obj: {
-                                runs: ""
+                                runs: ''
                             }
-                        })); 
+                        });
 
                         inning = attrs.score.pitch_count.inning-1;
 
@@ -89,10 +77,11 @@
                         // replace un-played inning 'X' with something more stylish
                         attrs.score.home.innings[inning].runs = placeholderStr;
                     }
+                    
+                    return attrs;
                 }
-                
-                return attrs;
-            }
+            });
+        });
     }
 
 }(this));

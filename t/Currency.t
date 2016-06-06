@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 #@xe.com
+use open ':std', ':encoding(UTF-8)'; #prevent wide character warns
 use strict;
 use warnings;
 use Test::More;
@@ -106,7 +107,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     # Query with everything smushed together, with k for thousand.
-    '2kcadusd' => test_spice(
+    '2k cadusd' => test_spice(
         '/js/spice/currency/2000/cad/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
@@ -188,6 +189,26 @@ ddg_spice_test(
         is_cached => 0
     ),
 
+    '€ 20 to $' => test_spice(
+        '/js/spice/currency/20/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+    '$ 321 into yen' => test_spice(
+        '/js/spice/currency/321/usd/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+    '321 $ to yen' => test_spice(
+        '/js/spice/currency/321/usd/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
    '$45 to ؋' => test_spice(
         '/js/spice/currency/45/usd/afn',
@@ -221,6 +242,41 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    
+    # Support slash format e.g AUD/USD
+    'aud/usd' => test_spice(
+        '/js/spice/currency/1/aud/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'convert AUD/USD' => test_spice(
+        '/js/spice/currency/1/aud/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+    'convert 5 USD/AUD' => test_spice(
+        '/js/spice/currency/5/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    
+    # Requirement for space between unit and currency
+    '5m usd to aud' => test_spice(
+        '/js/spice/currency/5000000/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1k ars to eur' => test_spice(
+        '/js/spice/currency/1000/ars/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
 
     # Numbers with with ambiguous formatting.
@@ -230,6 +286,17 @@ ddg_spice_test(
     # Ambiguous queries.
     '100cny 40usd' => undef,
     '10 euro to 10 jpy' => undef,
+    '1mars' => undef,
+    '1baud' => undef,
+    'mars' => undef,
+    'kaud' => undef,
+    'baud' => undef,
+    
+    'k aud' => undef,
+    'm aud' => undef,
+    'b aud' => undef,
+    't aud' => undef,
+    
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
     '499 cny = ? usd' => undef,
@@ -245,4 +312,3 @@ ddg_spice_test(
 );
 
 done_testing;
-

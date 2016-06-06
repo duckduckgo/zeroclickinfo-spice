@@ -8,8 +8,13 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     'use strict';
 
     var MAX_TIME = 359999, // => 99 hrs 59 mins 59 secs
+        SOUND_NAME = "alarm-sound",
         soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
-        Timer;
+        soundIsPlaying = false,
+        hasShown = false,
+        $lastTimerToFinish,
+        Timer,
+        cachedPlayer;
 
     // helper methods
 
@@ -73,14 +78,45 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         return (time <= MAX_TIME) ? time : MAX_TIME;
     }
 
-    //play the alarm sound
-    function playLoopingSound() {
-        function requirePlayer(player) {
-            player.play('alarm-sound', soundUrl, {
-                autoPlay: true
+    function loop() {
+        shakeElement($lastTimerToFinish);
+        cachedPlayer.play(SOUND_NAME, soundUrl, {
+            autoPlay: true,
+            onfinish: loop
+        });
+    }
+
+    function stopLoop() {
+        soundIsPlaying = false;
+        cachedPlayer.stop(SOUND_NAME);
+    }
+
+    function playAlarmAndShakeTimer() {
+        // if we haven't required player before, grab it
+        // and try starting the alarm
+        if (!cachedPlayer) {
+            DDG.require('audio', function (player) {
+                cachedPlayer = player;
+
+                playAlarmAndShakeTimer();
             });
+
+            return;
         }
-        DDG.require('audio', requirePlayer);
+
+        // if a sound is already playing, stop for a moment
+        // and then start again
+        if (soundIsPlaying) {
+            stopLoop();
+            setTimeout(playAlarmAndShakeTimer, 500);
+            return;
+        }
+
+        // start looping sound - single click anywhere on the screen will
+        // stop looping
+        loop();
+        soundIsPlaying = true;
+        $(document).one("click", stopLoop);
     }
 
     // shake it like a timer that's just finished
@@ -136,8 +172,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         // interaction
         this.$nameInput
             .keyup(this.handleNameInput.bind(this))
+            .keydown(this.handleKeyDown.bind(this))
             .on("mouseenter mouseleave focus blur", this.updateNameInputBg.bind(this));
         this.$element.find(".time_input input")
+            .keydown(this.handleKeyDown.bind(this))
             .keyup(this.handleTimeInput.bind(this))
             .focus(this.handleTimeFocus.bind(this))
             .mouseup(this.handleTimeMouseUp.bind(this))
@@ -253,6 +291,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.$nameInput.blur();
             }
         },
+        handleKeyDown: function (e) {
+            // make sure other bindings don't affect the inputs
+            // e.g. left and right switching tabs
+            e.stopPropagation();
+        },
         handleTimeInput: function (e) {
             //make sure the bang dropdown doesn't trigger
             e.stopPropagation();
@@ -334,8 +377,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             // handle running out of time
             if (this.timeLeftMs <= 0) {
                 this.timeLeftMs = 0;
-                playLoopingSound();
-                shakeElement(this.$element);
+                $lastTimerToFinish = this.$element;
+                playAlarmAndShakeTimer();
                 this.$element.removeClass("status_running").addClass("status_stopped");
                 this.running = false;
             }
@@ -406,19 +449,43 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     });
 
     env.ddg_spice_timer = function(api_result) {
-        
+        var timers = [],
+            timerInterval,
+            $addTimerBtn;
+
+        function addTimer(startingTime) {
+            var timer = new Timer(timers.length + 1, startingTime);
+            timer.$element.insertBefore($addTimerBtn.parent());
+            timers.push(timer);
+            // start first timer automatically, but only when the user
+            // specified a time.
+            if (startingTime !== 0 && timers.length === 1) {
+                timer.start();
+            }
+        }
+
         function onShow() {
+            // make sure this runs only once
+            if (hasShown) {
+                return;
+            }
+
+            hasShown = true;
+
             var lastUpdate = new Date().getTime(),
                 enteredTime = parseQueryForTime(),
                 $dom = Spice.getDOM("timer"),
-                $addTimerBtn = $dom.find("#add_timer_btn"),
-                oldTitle = document.title,
-                // start with one timer initially
-                firstTimer = new Timer(1, enteredTime),
-                timers = [firstTimer];
+                oldTitle = document.title;
+
+            $addTimerBtn = $dom.find("#add_timer_btn");
+
+            // have at least one timer when the IA is displayed
+            if (timers.length === 0) {
+                addTimer(enteredTime);
+            }
 
             // every 100 ms, update timers
-            setInterval(function () {
+            timerInterval = setInterval(function () {
                 var timeDifference = new Date().getTime() - lastUpdate;
 
                 // update all timers
@@ -439,16 +506,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 lastUpdate = new Date().getTime();
             }, 100);
 
-            // insert first timer before the add button
-            firstTimer.$element.insertBefore($addTimerBtn.parent());
-
             $addTimerBtn.click(function (e) {
                 e.preventDefault();
 
                 // create new timer and insert it before the add button
-                var timer = new Timer(timers.length + 1);
-                timer.$element.insertBefore($addTimerBtn.parent());
-                timers.push(timer);
+                addTimer(0);
             });
         }
 
@@ -472,7 +534,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             //this makes sure the divs display at the right time so the layout doesn't break
             onShow: onShow
         });
-        
+
 
     };
 }(this));

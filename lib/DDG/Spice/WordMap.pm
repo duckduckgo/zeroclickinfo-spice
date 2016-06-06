@@ -4,18 +4,6 @@ package DDG::Spice::WordMap;
 use strict;
 use DDG::Spice;
 
-name "Word Map";
-description "Generates semantically related words";
-source "Twinword";
-primary_example_queries "similar to sound", "words like sound";
-category "reference";
-topics "words_and_games", "everyday";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WordMap.pm";
-icon_url "/i/www.twinword.com.ico";
-attribution web => ['https://www.twinword.com','Twinword Inc.'],
-            twitter => ['https://twitter.com/twinwordinc', 'Twinword Inc.'],
-            email => ['feedback@twinword.com','Twinword Inc.'];
-
 spice to => 'https://www.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
@@ -50,6 +38,7 @@ triggers start => (
 );
 
 handle remainder => sub {
+    return unless /^(\w+)$/;
     return lc $_ if $_;
     return;
 };
