@@ -6,9 +6,9 @@
         if (!api_result || api_result.error) {
             return Spice.failed('ski_resorts');
         }
-    
+
             Spice.add({
-                id: api_result.name,
+                id: "ski_resorts",
                 name: "Ski Resort",
                 templates: {
                     group: 'list',

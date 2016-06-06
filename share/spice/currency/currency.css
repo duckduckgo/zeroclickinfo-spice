@@ -205,6 +205,10 @@
     }
 }
 
+.is-mobile .flag-img {
+    width: 30px;
+}
+
 /* Mobile view */
 
 .is-mobile .tile--s {
