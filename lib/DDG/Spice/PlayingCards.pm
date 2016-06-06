@@ -13,11 +13,11 @@ spice proxy_cache_valid => "418 1d";
 handle remainder => sub {
     my $query = $_;
     
-    if ($query && $query =~ m/(\d{1,2})(?:random )?(?:(?:playing )? cards)?/) {
+    if ($query && $query =~ m/^(\d{1,2})\s(?:random )?(?:playing )?(?:card(?:s)?)$/) {
         my $num = (split)[0];
         return $num if ($num >= 1 && $num <= 52);
     }
-    
+
     return;
 };
 
