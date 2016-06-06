@@ -12,7 +12,7 @@ ddg_spice_test(
     [qw( DDG::Spice::PoliticalPolls )],
     # Good examples
     'election polls' => test_spice(
-        '/js/spice/political_polls/election',
+        '/js/spice/political_polls/',
         call_type => 'include',
         caller => 'DDG::Spice::PoliticalPolls'
     ),
