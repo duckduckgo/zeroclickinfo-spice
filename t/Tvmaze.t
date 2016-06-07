@@ -8,19 +8,19 @@ use DDG::Test::Spice;
 spice is_cached => 1;
 
 my $show = test_spice(
-    '/js/spice/tvmaze/show/game%20of%20thrones',
+    '/js/spice/tvmaze/show/mr.%20robot',
     call_type => 'include',
     caller => 'DDG::Spice::Tvmaze::Show'
 );
 
 my $nextepisode = test_spice(
-    '/js/spice/tvmaze/nextepisode/game%20of%20thrones',
+    '/js/spice/tvmaze/nextepisode/mr.%20robot',
     call_type => 'include',
     caller => 'DDG::Spice::Tvmaze::Nextepisode'
 );
 
 my $previousepisode = test_spice(
-    '/js/spice/tvmaze/previousepisode/game%20of%20thrones',
+    '/js/spice/tvmaze/previousepisode/mr.%20robot',
     call_type => 'include',
     caller => 'DDG::Spice::Tvmaze::Previousepisode'
 );
@@ -29,20 +29,19 @@ ddg_spice_test(
     [qw( DDG::Spice::Tvmaze::Show)],
 
     # core queries
-    'game of thrones tv'            => $show,
-    'game of thrones tv show'       => $show,
-    'game of thrones show'          => $show,
-    'game of thrones tv series'     => $show,
-    'game of thrones series'        => $show,
+    'mr. robot tv'            => $show,
+    'mr. robot tv show'       => $show,
+    'mr. robot show'          => $show,
+    'mr. robot tv series'     => $show,
+    'mr. robot series'        => $show,
 
-    'tv show game of thrones'       => $show,
-    'tv game of thrones'            => $show,
-    'tv series game of thrones'     => $show,
-    'series game of thrones'        => $show,
-
+    'tv show mr. robot'       => $show,
+    'tv mr. robot'            => $show,
+    'tv series mr. robot'     => $show,
+    'series mr. robot'        => $show,
+    
     # non matches
-    'show game of thrones'  => undef,
-
+    'show mr. robot'  => undef,
     'tv show'               => undef,
     'tv'                    => undef,
     'show'                  => undef,
@@ -54,24 +53,32 @@ ddg_spice_test(
     [qw( DDG::Spice::Tvmaze::Nextepisode)],
 
     # core queries
-    'game of thrones next episode'          => $nextepisode,
-    'game of thrones next airdate'          => $nextepisode,
-    'game of thrones upcoming episode'      => $nextepisode,
-    'next episode game of thrones'          => $nextepisode,
-    'next airdate game of thrones'          => $nextepisode,
-    'next episode for game of thrones'      => $nextepisode,
-    'upcoming episode game of thrones'      => $nextepisode,
-    'next game of thrones episode'          => $nextepisode,
-    'upcoming game of thrones episode'      => $nextepisode,
+    'mr. robot next episode'              => $nextepisode,
+    'mr. robot next airdate'              => $nextepisode,
+    'mr. robot upcoming episode'          => $nextepisode,
+    'next episode mr. robot'              => $nextepisode,
+    'next airdate mr. robot'              => $nextepisode,
+    'next episode for mr. robot'          => $nextepisode,
+    'upcoming episode mr. robot'          => $nextepisode,
+    'next mr. robot episode'              => $nextepisode,
+    'upcoming mr. robot episode'          => $nextepisode,
+    'when does mr. robot come back'       => $nextepisode,
+    'when does mr. robot come out',       => $nextepisode,
+    'when does mr. robot return',         => $nextepisode,
+    'when does mr. robot air',            => $nextepisode,
+    'when does mr. robot start',          => $nextepisode,
+    'when does mr. robot season 2 start'  => $nextepisode,
 
     # with extra text
-    'when is the next game of thrones episode?'         => $nextepisode,
-    'when does the next game of thrones episode air'    => $nextepisode,
-    'when is the next episode for game of thrones'      => $nextepisode,
-    'what is the next airdate from game of thrones'     => $nextepisode,
+    'when is the next mr. robot episode?'         => $nextepisode,
+    'when does the next mr. robot episode air'    => $nextepisode,
+    'when is the next episode for mr. robot'      => $nextepisode,
+    'what is the next airdate from mr. robot'     => $nextepisode,
+    'when does mr. robot season 2 start?'         => $nextepisode,
+    'when does mr. robot come back on'            => $nextepisode,
 
     # non matches
-    'game of thrones'               => undef,
+    'mr. robot'                     => undef,
     'episode'                       => undef,
     'airdate'                       => undef,
     'next airdate'                  => undef,
@@ -79,34 +86,35 @@ ddg_spice_test(
     'episode next'                  => undef,
     'upcoming episode'              => undef,
     'episode upcoming'              => undef,
-    'episode in game of thrones'    => undef,
+    'episode in mr. robot'          => undef,
+    'mr. robot come out'            => undef,
 );
 
 ddg_spice_test(
     [qw( DDG::Spice::Tvmaze::Previousepisode)],
 
     # core queries
-    'game of thrones previous episode'      => $previousepisode,
-    'game of thrones last episode'          => $previousepisode,
-    'game of thrones latest episode'        => $previousepisode,
-    'game of thrones previous airdate'      => $previousepisode,
-    'previous episode game of thrones'      => $previousepisode,
-    'previous airdate game of thrones'      => $previousepisode,
-    'previous episode for game of thrones'  => $previousepisode,
-    'last episode game of thrones'          => $previousepisode,
-    'last game of thrones episode'          => $previousepisode,
-    'latest game of thrones episode'        => $previousepisode,
-    'recent game of thrones episode'        => $previousepisode,
+    'mr. robot previous episode'      => $previousepisode,
+    'mr. robot last episode'          => $previousepisode,
+    'mr. robot latest episode'        => $previousepisode,
+    'mr. robot previous airdate'      => $previousepisode,
+    'previous episode mr. robot'      => $previousepisode,
+    'previous airdate mr. robot'      => $previousepisode,
+    'previous episode for mr. robot'  => $previousepisode,
+    'last episode mr. robot'          => $previousepisode,
+    'last mr. robot episode'          => $previousepisode,
+    'latest mr. robot episode'        => $previousepisode,
+    'recent mr. robot episode'        => $previousepisode,
 
     # with extra text
-    'when was the last game of thrones episode?'        => $previousepisode,
-    'when did the previous game of thrones episode air' => $previousepisode,
-    'when was the latest episode for game of thrones'   => $previousepisode,
-    'what is the last airdate from game of thrones'     => $previousepisode,
-    'what is the most recent game of thrones episode'   => $previousepisode,
+    'when was the last mr. robot episode?'        => $previousepisode,
+    'when did the previous mr. robot episode air' => $previousepisode,
+    'when was the latest episode for mr. robot'   => $previousepisode,
+    'what is the last airdate from mr. robot'     => $previousepisode,
+    'what is the most recent mr. robot episode'   => $previousepisode,
 
     # non matches
-    'game of thrones'               => undef,
+    'mr. robot'                     => undef,
     'episode'                       => undef,
     'airdate'                       => undef,
     'previous airdate'              => undef,
@@ -116,7 +124,7 @@ ddg_spice_test(
     'latest episode'                => undef,
     'recent episode'                => undef,
     'episode latest'                => undef,
-    'episode in game of thrones'    => undef,
+    'episode in mr. robot'          => undef,
 );
 
 done_testing;
