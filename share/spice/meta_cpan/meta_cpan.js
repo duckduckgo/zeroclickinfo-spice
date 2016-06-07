@@ -9,22 +9,25 @@
         Spice.add({
             id: "meta_cpan",
             name: "Software",
-            data: {
-                title: module_name,
-                subtitle: api_result.abstract,
-                record_data: api_result,
-                record_keys: ['author','version','description']
-            },
+            data: api_result.hits.hits,
             meta: {
-                sourceName: "MetaCPAN",
-                sourceUrl: 'https://metacpan.org/' + link
+                itemType: 'Software',
+                sourceName: 'MetaCPAN'
+            },
+            normalize: function(item) {
+                if ( !item.fields.module || !item.fields.module[0] ) {
+                    return null;
+                }
+                return {
+                    title: item.fields.module[0].name,
+                    url: 'https://metacpan.org/pod/' + item.fields.module[0].name,
+                    description: item.fields.description
+                };
             },
             templates: {
-                group: 'list',
-                options: {
-                    content: 'record',
-                    moreAt: true
-                }
+                group: 'text',
+                detail: false,
+                item_detail: false,
             }
         });
     };
