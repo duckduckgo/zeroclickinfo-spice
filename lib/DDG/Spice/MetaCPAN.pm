@@ -15,7 +15,8 @@ triggers startend => "cpan", "cpanm", "metacpan", "meta cpan", "perl library", "
 handle remainder => sub {
     if ($_) {
         $_ =~ s/-/::/g;
-        return $_;
+        my $clean = $_ =~ s/::/ /gr;
+        return $_, $clean;
     }
     return;
 };
