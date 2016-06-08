@@ -9,7 +9,7 @@ spice wrap_jsonp_callback => 1;
 
 triggers startend => "calculate", "solve", "compute", "integral", "integrate", "integration", "antiderivative", "derivative", "derive", "differentiate", "derivation";
 handle query_lc => sub {
-    if ($_ =~ /[\^\*\=\+\-\/\\]/ or $_ =~ /\b(sin|cos|tan|cot|csc|sec|ln|log|sqrt|integr|deriv|diff)/i) {
+    if ($_ =~ /[\^\*\=\+\-\/\\]/ or $_ =~ /\b(sin|cos|tan|cot|csc|sec|ln|log|sqrt)/i) {
         return $_;
     }
     return;
