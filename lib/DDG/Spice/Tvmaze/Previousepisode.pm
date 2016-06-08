@@ -16,11 +16,11 @@ spice wrap_jsonp_callback => 1;
 handle query_lc => sub {
     return unless $_;
 
-    return $4 if $_ =~ /(previous|last|latest|recent) (episode|airdate) (in|of|for|from)? ?([a-z0-9 ]+)/;
+    return $4 if $_ =~ /(previous|last|latest|recent) (episode|airdate) (in|of|for|from)? ?(.+)/;
 
-    return $2 if $_ =~ /(previous|last|latest|recent) ([a-z0-9 ]+) episode/;
+    return $2 if $_ =~ /(previous|last|latest|recent) (.+?) episode/;
 
-    return $1 if $_ =~ /([a-z0-9 ]+) (previous|last|latest|recent) (episode|airdate)/;
+    return $1 if $_ =~ /(.+?) (previous|last|latest|recent) (episode|airdate)/;
 
     return;
 };
