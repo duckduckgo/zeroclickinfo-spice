@@ -51,6 +51,11 @@
                 api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
             }
             
+            // #1137 returns â®LTR from the API (http://xkcd.com/1137/info.0.json), where it should really be the right-to-left override character (&#8238)
+            if (api_result.num === 1137) {
+                api_result.title = 'RTL';
+            }
+
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             api_result.month = months[parseInt(api_result.month)-1];
             

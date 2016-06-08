@@ -7,7 +7,7 @@
         }
 
         Spice.add({
-            id: "rfc",
+            id: "request_for_comments",
             name: "Answer",
             data: api_result,
             meta: {
