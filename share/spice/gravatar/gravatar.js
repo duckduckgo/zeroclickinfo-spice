@@ -71,12 +71,19 @@
                     }
                 }
 
+                // Decode string with special characters
+                function decodeSpecialChars(entry) {
+                    var elem = document.createElement('textarea');
+                    elem.innerHTML = entry;
+                    return elem.value;
+                }
+
                 return {
                     image: api_result.entry[0].thumbnailUrl + ".png",
                     title: getName(api_result.entry[0]),
                     subtitle: [getUsername(api_result.entry[0]), getCurrentLocation(api_result.entry[0])],
                     altSubtitle: getAccounts(api_result.entry[0]),
-                    description: api_result.entry[0].aboutMe
+                    description: decodeSpecialChars(api_result.entry[0].aboutMe)
                 };
             },
 
