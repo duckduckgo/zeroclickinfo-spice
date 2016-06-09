@@ -13,9 +13,8 @@
 
         Spice.add({
             id: "bitbucket_status",
-            name: "Status",
+            name: "Answer",
             data: dataDetails,
-            signal: 'low',
             meta: {
                 sourceName: api_result.page.name, 
                 sourceUrl: api_result.page.url
