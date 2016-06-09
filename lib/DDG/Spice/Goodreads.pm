@@ -51,6 +51,7 @@ handle query_clean => sub {
           : "title";
     $_ =~ s/$book_pattern//g;       # removing the book query pattern from query
     $_ =~ s/$goodreads_pattern//g;  # removing the goodreads trigger pattern from query
+    $_ =~ s/^\s+|\s+$//g;           # trim spaces from queries
     return "$search_type-$_" if $_;
 
     return;
