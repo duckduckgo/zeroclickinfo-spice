@@ -11,13 +11,10 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'http://status.bitbucket.org/index.json';
 
-triggers startend => "bitbucket";
+triggers any => 'bitbucket', 'bb';
 
-handle query_lc => sub {
-    my $query = trim($_);
-    return $query if $query =~ m/^bitbucket$/; # return if only bitbucket
-    $query =~ s/^bitbucket\s+//g; # remove trigger
-    return trim($query) if $query =~ m/^(system)?\s*(status|up|down)$/i; # return if query contains (system) status, up or down
+handle remainder => sub {
+    return $_ if m/^(is\s*)?(system)?\s*(status|up|down)\s*(of\s*)?$/i; # return if query contains (system) status, up or down; (system) status of and etc
     return;
 };
 
