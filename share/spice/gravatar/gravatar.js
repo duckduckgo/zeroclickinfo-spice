@@ -76,7 +76,7 @@
                     title: getName(api_result.entry[0]),
                     subtitle: [getUsername(api_result.entry[0]), getCurrentLocation(api_result.entry[0])],
                     altSubtitle: getAccounts(api_result.entry[0]),
-                    description: api_result.entry[0].aboutMe
+                    description: DDG.unescape(api_result.entry[0].aboutMe)
                 };
             },
 
