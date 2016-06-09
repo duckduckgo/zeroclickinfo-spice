@@ -27,7 +27,7 @@
             return Spice.failed('citi_bike_nyc');
         }
 
-        $.getJSON("https://gbfs.citibikenyc.com/gbfs/en/station_status.json")
+        $.getJSON('/js/spice/bike_sharing/citibike_nyc_status/')
             .done(function(status_api_result) {
                 if (!status_api_result || !status_api_result.data || !status_api_result.data.stations) {
                     return Spice.failed('citi_bike_nyc');
