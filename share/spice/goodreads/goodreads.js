@@ -86,7 +86,7 @@
                     brand: true,
                     moreAt: true,
                     ratingtext: true,
-                    subtitle_content: Spice.goodreads.details
+                    buy: Spice.goodreads.details
                 },
 
                 variants: {
