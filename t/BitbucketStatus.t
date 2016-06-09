@@ -34,8 +34,38 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::BitbucketStatus'
     ),
-    'bitbucket' => test_spice(
-        '/js/spice/bitbucket_status/bitbucket',
+    'is bitbucket system status' => test_spice(
+        '/js/spice/bitbucket_status/is%20system%20status',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitbucketStatus'
+    ),
+    'is bitbucket down' => test_spice(
+        '/js/spice/bitbucket_status/is%20down',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitbucketStatus'
+    ),
+    'status of bitbucket' => test_spice(
+        '/js/spice/bitbucket_status/status%20of',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitbucketStatus'
+    ),
+    'system status of bitbucket' => test_spice(
+        '/js/spice/bitbucket_status/system%20status%20of',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitbucketStatus'
+    ),
+    'bb status' => test_spice(
+        '/js/spice/bitbucket_status/status',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitbucketStatus'
+    ),
+    'is bb system status' => test_spice(
+        '/js/spice/bitbucket_status/is%20system%20status',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitbucketStatus'
+    ),
+    'system down of bb' => test_spice(
+        '/js/spice/bitbucket_status/system%20down%20of',
         call_type => 'include',
         caller => 'DDG::Spice::BitbucketStatus'
     ),
