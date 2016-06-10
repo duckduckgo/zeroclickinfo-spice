@@ -3,6 +3,7 @@ package DDG::Spice::Goodreads;
 use strict;
 use DDG::Spice;
 use URI::Escape;
+use Text::Trim;
 
 # Caching
 spice is_cached => 1;
@@ -39,10 +40,11 @@ spice from => '([^-]+)-([^-]+)';
 # Triggers
 triggers startend => "goodreads", "gr";
 
+my $book_pattern = qr/(list )?(of )?books? ?(written )?(on|by|about) /i;
+my $goodreads_pattern = qr/(goodreads|gr)/i;
+
 # Handle statement
 handle query_clean => sub {
-    my $book_pattern = qr/(list )?(of )?books? ?(written )?(on|by|about) /i;
-    my $goodreads_pattern = qr/(goodreads|gr)/i;
     return unless $_ =~ $book_pattern;
     
     my $search_type =
@@ -51,7 +53,7 @@ handle query_clean => sub {
           : "title";
     $_ =~ s/$book_pattern//g;       # removing the book query pattern from query
     $_ =~ s/$goodreads_pattern//g;  # removing the goodreads trigger pattern from query
-    $_ =~ s/^\s+|\s+$//g;           # trim spaces from queries
+    $_ = trim($_);                  # trim spaces from queries
     return "$search_type-$_" if $_;
 
     return;

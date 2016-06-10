@@ -59,7 +59,7 @@
 
                 $.getScript(book_details_uri + book.id.text, function (data) {
                     var book = data.GoodreadsResponse.book;
-                    var description = book.description.text || "-- No Description Found --";
+                    var description = book.description.text || "Description unavailable";
 
                     item.set({
                         abstract: description && Handlebars.helpers.ellipsis(description.replace(/<\/?\w*>/gm, ''), 400),
