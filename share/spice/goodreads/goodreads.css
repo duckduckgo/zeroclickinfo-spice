@@ -7,10 +7,10 @@
     To change this template use Tools | Templates.
 */
 
-.record__cell--key {
+.zci--goodreads .record__cell--key {
     width: 13em !important;
 }
 
-.record__cell--value {
+.zci--goodreads .record__cell--value {
     font-weight: bold;
 }
