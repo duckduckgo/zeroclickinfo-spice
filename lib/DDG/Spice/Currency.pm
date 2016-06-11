@@ -14,6 +14,7 @@ my %currHash = ();
 
 # load decimal => unicode currency codes
 my $currencyCodes = LoadFile share("currencySymbols.yml");
+my $country = LoadFile share("country.yml");
 
 foreach my $currency (@currencies){
     chomp($currency);
@@ -101,7 +102,7 @@ sub checkCurrencyCode {
             # This should probably depend on the user's location.
             # For example, if I was in the Philippines, I would expect "10 usd" to mean "10 usd to php"
             # But this would mean mapping currencies to countries.
-            $to = $from eq 'usd' ? 'eur' : 'usd';
+            $to = $country->{$loc->{"country_name"}};
         }
     }
 
