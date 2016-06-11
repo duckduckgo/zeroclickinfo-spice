@@ -125,13 +125,16 @@
         // Display the plug-in.
         Spice.add({
             id: 'detect_lang',
-            data: { first: d0, second: d1 },
+            data: {
+                first: d0,
+                second: d1
+            },
             name: "Answer",
             meta: {
-                sourceUrl       : "http://detectlanguage.com/",
-                sourceName      : "Detect Language",
+                sourceUrl: "http://detectlanguage.com/",
+                sourceName: "Detect Language",
             },
-        signal: 'high',
+            signal: 'high',
             templates: {
                 group: 'base',
                 options: {
@@ -139,7 +142,6 @@
                     moreAt: true
                 }
             }
-
         });
     };
 
