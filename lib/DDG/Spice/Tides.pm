@@ -8,7 +8,7 @@ spice is_cached => 1; #we can cache the response and just filter out the tide ev
 spice to => 'http://api.wunderground.com/api/{{ENV{DDG_SPICE_WUNDERGROUND_APIKEY}}}/tide/q/$1.json?callback={{callback}}';
 
 triggers any => "tide", "tides";
-triggers start => "tides for", "tide in", "tide times in";
+triggers start => "tides for", "tide for", "tide in", "tides in", "tide times in";
 
 handle remainder => sub {
     s/(when is|high|low|\?|\s)//g;
