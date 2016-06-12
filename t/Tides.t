@@ -29,7 +29,17 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Tides'
     ),
+    'tide for 02201' => test_spice(
+        '/js/spice/tides/02201',
+        call_type => 'include',
+        caller => 'DDG::Spice::Tides'
+    ),
     'tide in 02201' => test_spice(
+        '/js/spice/tides/02201',
+        call_type => 'include',
+        caller => 'DDG::Spice::Tides'
+    ),
+    'tides in 02201' => test_spice(
         '/js/spice/tides/02201',
         call_type => 'include',
         caller => 'DDG::Spice::Tides'
