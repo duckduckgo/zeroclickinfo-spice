@@ -6,8 +6,6 @@ use DDG::Spice;
 
 spice is_cached => 1;
 spice proxy_cache_valid => "200 1d";
-
-spice wrap_jsonp_callback => 0;
 spice from => '(\w+)/(\w+)';
 spice to => 'https://data.fcc.gov/api/spectrum-view/services/advancedSearch/getSpectrumBands?frequencyFrom=$1&frequencyTo=$2&format=jsonp&callback={{callback}}';
 

@@ -12,7 +12,7 @@
             name: "Answer",
             data: api_result.SpectrumBands.SpectrumBand,
             meta: {
-                sourceName: "fcc.gov",
+                sourceName: "FFC",
                 sourceUrl: 'https://www.fcc.gov/'
             },
             normalize: function(item) {
