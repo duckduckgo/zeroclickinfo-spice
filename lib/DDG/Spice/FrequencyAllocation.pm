@@ -11,7 +11,9 @@ spice to => 'https://data.fcc.gov/api/spectrum-view/services/advancedSearch/getS
 triggers startend => 'mhz';
 
 handle remainder => sub {
-    return $_,$_+1 if $_ =~ /^[0-9]{3,4}$/;
+    if (($_ >= 225) && ($_ < 3700)){
+        return $_,$_+1;
+    }
     return;
 };
 
