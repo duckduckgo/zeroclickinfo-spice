@@ -9,7 +9,7 @@
         var lastupdate = api_result.SpectrumBands.lastUpdate;
         Spice.add({
             id: "frequency_allocation",
-            name: "Answer",
+            name: "Radio Frequency",
             data: api_result.SpectrumBands.SpectrumBand,
             meta: {
                 sourceName: "FFC",
@@ -18,7 +18,7 @@
             normalize: function(item) {
                 return {
                     title: item.lowerBand + ' - ' + item.upperBand + ' MHz',
-                    subtitle: 'Electromagnetic wave frequency',
+                    subtitle: 'Radio frequency',
                     image: 'https://pixabay.com/static/uploads/photo/2014/04/02/10/59/tower-305150_960_720.png',
                     description: item.bandDesc,
                     infoboxData: [{heading: "Meta"},
