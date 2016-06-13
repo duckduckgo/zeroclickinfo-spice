@@ -88,7 +88,7 @@
             hero.heroKey = heroName;
         } else {
             $.each(herodata, function(index, value) {
-                if (value.dname.toLowerCase() == heroName) {
+                if (value && value.dname && value.dname.toLowerCase() == heroName) {
                     hero = value;
                     hero.heroKey = index;
                 }
@@ -174,7 +174,7 @@
 
     env.ddg_spice_dota2 = function(api_result){
 
-        if (api_result.error) {
+        if (!api_result || !api_result.herodata || api_result.error) {
             return Spice.failed('dota2');
         }
 
@@ -194,9 +194,9 @@
             };
         } else {
             var hero = getHeroFromData(api_result.herodata, searchTarget);
-            if (typeof hero !== 'undefined') {
-                returnData = createHeroReturnObject(hero, api_result);
-            }
+            if (!hero) { return Spice.failed('dota2'); }
+
+            returnData = createHeroReturnObject(hero, api_result);
             sourceUrl = 'https://www.dota2.com/hero/' + hero.dname.replace(" ", "_");
             template = {
                 group: 'base',

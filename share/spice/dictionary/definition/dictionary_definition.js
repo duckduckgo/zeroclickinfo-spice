@@ -156,21 +156,21 @@ var ddg_spice_dictionary = {
         hyphenated_word = hyphenated_word.replace(/^‖/, '');
 
         // Replace the, rather lame, non-hyphenated version of the word.
-        this.$el.find(".zci__def__word").text(hyphenated_word);
+        this.$el && this.$el.find(".zci__def__word").text(hyphenated_word);
     },
 
     pronunciation: function(api_result) {
         "use strict";
 
         if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
-            this.$el.find(".zci__def__pronunciation").html(api_result[0].raw);
+            this.$el && this.$el.find(".zci__def__pronunciation").html(api_result[0].raw);
         }
     },
 
     audio: function(api_result) {
         "use strict";
 
-        if (!api_result || !api_result.length) { return; }
+        if (!api_result || !api_result.length || !this.$el) { return; }
 
         var url = api_result[0].fileUrl; // default to the first audio file
 
