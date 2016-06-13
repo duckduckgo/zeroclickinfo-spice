@@ -37,6 +37,7 @@
 .zci--forvo .word-wrap {
     display: inline-block;
     max-width: 50%;
+    /*Better handles lengthy words on small screens*/
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
