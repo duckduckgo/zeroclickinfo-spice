@@ -19,7 +19,7 @@
                 return {
                     title: item.lowerBand + ' - ' + item.upperBand + ' MHz',
                     subtitle: 'Electromagnetic wave frequency',
-                    image: 'https://pixabay.com/static/uploads/photo/2014/04/02/10/59/tower-305150_960_720.png',
+                    image: 'https://pixabay.com/static/uploads/photo/2014/04/02/10/59/tower-305150_960_720.png', // Public domain
                     description: item.bandDesc,
                     infoboxData: [{heading: "Meta"},
                                   {label: "Lower band", value: item.lowerBand + ' MHz'},
