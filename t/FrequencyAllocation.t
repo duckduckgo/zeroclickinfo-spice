@@ -24,8 +24,8 @@ ddg_spice_test(
     ),
     'frequency 2400' => undef,
     '2400 KHz' => undef,
-    '224 MHz' => undef, // API limit
-    '7200 KHz' => undef // API limit
+    '224 MHz' => undef,
+    '7200 KHz' => undef,
 );
 
 done_testing;
