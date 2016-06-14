@@ -20,7 +20,9 @@
                 sourceUrl: 'https://metacpan.org/search?size=50&search_type=modules&q=' + encodeURIComponent(query)
             },
             normalize: function(item) {
-                if ( !item.fields.module || !item.fields.module[0] ) {
+                if ( !item.fields.module || !item.fields.module[0] ||
+                     ( !item.fields.description && !item.fields.abstract )
+                ) {
                     return null;
                 }
                 return {
