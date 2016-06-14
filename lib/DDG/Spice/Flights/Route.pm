@@ -102,7 +102,7 @@ triggers startend => @triggers;
 sub identifyCodes {
 
     my ($query, $leftQuery, $otherCity) = @_;
-
+    
     # split query into individual words
     # at least two words are required (1 for the airline and 1 for the city)
     my @query = split(/\s+/, $query);
@@ -132,7 +132,7 @@ sub identifyCodes {
                 and index($airlineName, $groupB) == 0
                 and (exists $citiesByName{$groupA} or exists $citiesByCode{$groupA});
         }
-
+        
         # [airline][city][to][city]
         return (join(",", @airlineCodes), $citiesByName{$groupB}, $citiesByName{$otherCity}, $groupB, $otherCity)
             if @airlineCodes and $leftQuery and exists $citiesByName{$groupB} and exists $citiesByName{$otherCity};
@@ -173,15 +173,18 @@ handle query_lc => sub {
 
     # clean up input; strip periods and common words,
     # replace all other non-letters with a space, strip trailing spaces
-    s/\b(airport|national|international|intl|regional)\b//g;
+    s/\b(airport|national|international|intl|regional)\b//g;    
     s/\.//g;
-    s/[^a-z]+/ /g;
-    s/\s+$//g;
+    s/\b[^a-z]+\b/ /g;
+    s/\s+$//g;    
 
     # query must be in the form [airline][city][to][city] or [city][to][city][airline]
     my @query = split(/\s+to\s+/, $_);
     return if scalar(@query) != 2;
 
+    # strip 'fligh(s) from' to allow more flexible queries
+    $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
+    
     # get the current time, minus six hours
     my ($second, $minute, $hour, $dayOfMonth,
         $month, $year, $dayOfWeek, $dayOfYear, $daylightSavings) = gmtime(time - 21600);

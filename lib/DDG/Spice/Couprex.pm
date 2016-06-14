@@ -6,7 +6,7 @@ use DDG::Spice;
 
 spice is_cached => 1;
 
-my @triggers = ("coupon", "coupon code", "promo code", "discount coupon", "discount code", "promotional code", "deal", "discount");
+my @triggers = ("coupon", "coupon code", "promo code", "discount coupon", "discount code", "promotional code");
 
 push (@triggers, map {$_."s"} @triggers);
 push (@triggers, map {"$_ for"} @triggers);

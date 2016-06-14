@@ -1,7 +1,3 @@
-.zci--thesaurus .thesaurus--part {
-    color: #777;
-}
-
-.zci--thesaurus h1 {
-    font-weight: 400;
+.zci--thesaurus .record__cell {
+    white-space: normal;
 }
