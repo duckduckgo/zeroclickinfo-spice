@@ -35,6 +35,7 @@
                 return {
                     description: item.strInstructions,
                     title: item.strDrink,
+                    url: "http://www.thecocktaildb.com/drink.php?c=" + item.idDrink,
                     image: item.strDrinkThumb || null,
                     infoboxData: getInfoBoxData(item)
                 };
