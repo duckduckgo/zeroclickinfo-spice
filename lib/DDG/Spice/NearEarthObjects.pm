@@ -30,7 +30,10 @@ my @triggers = (
 triggers startend => @triggers;
 
 handle remainder => sub {
-    return $_;
+    if ($_ eq "") {
+        return $_;
+    }
+    return;
 };
 
 1;

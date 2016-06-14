@@ -3,32 +3,25 @@ package DDG::Spice::Thesaurus;
 
 use strict;
 use DDG::Spice;
+use Text::Trim;
 
-spice from => '([^/]+)/([^/]+)';
 spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}';
 
-triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar", "thesaurus";
+triggers startend => "synonyms", "synonym", "antonyms", "antonym", "thesaurus";
 
-handle query_lc => sub {
-  /^
-      (?:(synonym|antonym|related|similar|thesaurus)s?) \s+
-      (?:(?:terms?|words?)\s+)? (?:(?:of|to|for)\s+)?
-      (\w+) \s*
-      |
-      (\w+) \s+
-      ((synonym|antonym|thesaurus)s?)? \s*
-  $/x;
-
-  my $type = $1 || $4;
-  my $word = $2 || $3;
-
-  return unless $word and $type;
-
-  $type = 'synonym' if $type eq 'thesaurus';
-
-  return $word, $type;
-
-  return;
+handle remainder_lc => sub {
+    my $query = $_;
+    return unless $query;
+    
+    # Remove words that have no bearing on the lookup
+    $query =~ s/\b(of|for)+\b//g;
+    trim $query;    
+    return unless $query;
+    
+    # Abort if we're left with more than one word to lookup
+    return if ($query =~ /\s+/);
+  
+    return $query;
 };
 
 1;

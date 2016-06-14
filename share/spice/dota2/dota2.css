@@ -1,0 +1,49 @@
+.zci--dota2 .hero-image {
+    padding-left: -1em;
+    height: 306px;
+}
+
+.zci--dota2 .hero-image img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.zci--dota2 .hero-info {
+    padding: 0.8em 1.25em;
+}
+
+.zci--dota2 .row {
+    border-bottom: 1px solid #d0d0d0;
+    padding: 0.5em 0;
+}
+
+.zci--dota2 .row-first {
+    padding-top: 0;
+}
+
+.zci--dota2 .row-last {
+    border: none;
+    padding-bottom: 0;
+}
+
+.zci--dota2 .row span {
+    padding: 0.15em 0;
+}
+
+.zci--dota2 .hero-stats {
+    padding: 0 0.75em;
+    display: inline-block;
+}
+
+.zci--dota2 .hero-stats-icon {
+    width: 2.5em;
+}
+
+.zci--dota2 .hero-ability-icon {
+    width: 2.5em;
+}
+
+.zci--dota2 .item-component-icon {
+    width: 3.5em;
+    margin-right: 0.25em;
+}
