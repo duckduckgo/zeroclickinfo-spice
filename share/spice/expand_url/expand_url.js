@@ -8,7 +8,7 @@
             query = source.match(/expand_url\/([^\/]+)/)[1];
 
         // Check if there are any errors.
-        if (!api_response || !api_response["long-url"] || api_response["long-url"] === query) {
+        if (!api_response || !api_response["url"] || api_response["url"] === query) {
             return Spice.failed('expand_url');
         }
 
@@ -18,8 +18,8 @@
             name: "Answer",
             data: api_response,
             meta: {
-                sourceUrl: "http://longurl.org/expand?url=" + query,
-                sourceName: "LongURL"
+                sourceUrl: "http://expandurl.com/api/v1/?url=" + query,
+                sourceName: "ExpandURL"
             },
             templates: {
                 group: 'base',
