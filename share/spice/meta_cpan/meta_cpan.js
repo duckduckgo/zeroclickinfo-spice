@@ -56,6 +56,9 @@
                 options: {
                     footer: Spice.meta_cpan.footer
                 },
+                variants: {
+                    tile: 'basic4'
+                }
             }
         });
     };
