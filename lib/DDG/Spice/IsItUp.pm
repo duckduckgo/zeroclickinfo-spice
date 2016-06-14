@@ -2,10 +2,11 @@ package DDG::Spice::IsItUp;
 # ABSTRACT: Checks if a website is up
 
 use strict;
+use Domain::PublicSuffix;
 use DDG::Spice;
 use DDG::Util::SpiceConstants;
 
-triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working|online|status)\?*$/i;
+triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*$/i;
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
@@ -15,14 +16,25 @@ my $regex_domain = qr/\.(@{[ DDG::Util::SpiceConstants::TLD_REGEX  ]})$/;
 my $regex_ipv4 = qr/^(?:\d{1,3}\.){3}\d{1,3}$/;
 
 handle matches => sub {
+    my $domain;
+    my $publicSuffix = Domain::PublicSuffix->new();
+    
     if ($_[2]) {
-        my $root_url = $_[1];
-        my $domain = $_[2];
-        # return the domain and the root url if the domain is valid
-        if ($domain =~ $regex_domain){
-            return $root_url.$domain;
+        $domain = $publicSuffix->get_root_domain($_[1].$_[2]);
+        if(!$domain) {
+             print $publicSuffix->error();
         }
+        return if !$domain;
+        return $domain;    
     }
+#     if ($_[2]) {
+#         my $root_url = $_[1];
+#         my $domain = $_[2];
+#         # return the domain and the root url if the domain is valid
+#         if ($domain =~ $regex_domain){
+#             return $root_url.$domain;
+#         }
+#     }
     else {
         return $_[1] if $_[1] =~ $regex_ipv4;
         # append .com only if "is" is in the query and there's no other domain given
