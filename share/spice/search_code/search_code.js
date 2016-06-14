@@ -22,24 +22,24 @@
             return Spice.failed('search_code');
         }
 
-        function formatName(result) {
-            var formatted_name = result.name;
-
-            if ((result.displayname && result.displayname !== '') || (result.namespace && result.namespace !== '')) {
-                formatted_name += ' (';
-                if (result.displayname && result.displayname !== '') {
-                    formatted_name += result.displayname;
-                }
-                if (result.namespace && result.namespace !== '') {
-                    formatted_name += (result.displayname ? ', ' : '') + result.namespace;
-                }
-                formatted_name += ')';
+        function formatTitle(result) {
+            var formatted_title = result.name;
+            if (result.displayname && result.displayname !== '') {
+                formatted_title += ' (' + result.displayname + ')';
             }
-
-            return formatted_name;
+            return formatted_title;
         }
 
-        result.title = formatName(result);
+        function formatSubtitle(result) {
+            var formatted_subtitle = null;
+            if (result.namespace && result.namespace !== '') {
+                formatted_subtitle = result.namespace;
+            }
+            return formatted_subtitle;
+        }
+
+        result.title = formatTitle(result);
+        result.subtitle = formatSubtitle(result);
 
         Spice.add({
             id: 'search_code',
@@ -48,12 +48,17 @@
             meta: {
                 sourceURL: 'https://searchcode.com/?q=' + query,
                 sourceName: 'search[code]',
-                sourceIcon: true
+            },
+            normalize: function(item) {
+                return {
+                    title: item.title,
+                    subtitle: item.subtitle
+                };
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.search_code.search_code,
+                    content: Spice.search_code.content,
                     moreAt: true
                 }
             }
