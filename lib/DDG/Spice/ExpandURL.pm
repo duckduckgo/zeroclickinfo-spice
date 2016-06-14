@@ -6,7 +6,8 @@ use DDG::Spice;
 
 triggers start => "http", "https", "expand", "expandurl", "unshorten";
 
-spice to => 'http://api.longurl.org/v2/expand?url=$1&format=json&callback={{callback}}';
+spice to => 'http://expandurl.com/api/v1/?url=$1&format=json';
+spice wrap_jsonp_callback => 1;
 
 handle query => sub {
 
