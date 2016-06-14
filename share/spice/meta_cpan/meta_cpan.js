@@ -25,10 +25,28 @@
                 ) {
                     return null;
                 }
+
+                var description = ( item.fields.description )
+                    ? item.fields.description
+                    : item.fields.abstract;
+                var version = ( item.fields.version )
+                    ? item.fields.version
+                    : item.fields.module[0].version
+                var date = ( item.fields.date )
+                    ? new Date(item.fields.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric' }
+                        )
+                    : ""
+
                 return {
                     title: item.fields.module[0].name,
                     url: 'https://metacpan.org/pod/' + item.fields.module[0].name,
-                    description: item.fields.description
+                    description: description,
+                    author: item.fields.author,
+                    version: version,
+                    date: date
                 };
             },
             templates: {
