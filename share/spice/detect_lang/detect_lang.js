@@ -7,18 +7,6 @@
             return Spice.failed('detect_lang');
         }
 
-        var query = "";
-        $("script").each(function() {
-            var matched, result;
-            matched = $(this).attr("src");
-            if(matched) {
-                result = matched.match(/\/js\/spice\/detect_lang\/([^\/]+)/);
-                if(result) {
-                    query = decodeURIComponent(result[1]);
-                }
-            }
-        });
-
         api_result.data.detections.sort(function(a, b) {
             if(a.confidence > b.confidence) {
                 return -1;
