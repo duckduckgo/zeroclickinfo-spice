@@ -1,5 +1,22 @@
 (function(env) {
     "use strict";
+
+    function formatTitle(result) {
+        var formatted_title = result.name;
+        if (result.displayname && result.displayname !== '') {
+            formatted_title += ' (' + result.displayname + ')';
+        }
+        return formatted_title;
+    }
+
+    function formatSubtitle(result) {
+        var formatted_subtitle = null;
+        if (result.namespace && result.namespace !== '') {
+            formatted_subtitle = result.namespace;
+        }
+        return formatted_subtitle;
+    }
+
     env.ddg_spice_search_code = function(api_result) {
 
         var query = api_result.query;
@@ -20,22 +37,6 @@
 
         if (!result) {
             return Spice.failed('search_code');
-        }
-
-        function formatTitle(result) {
-            var formatted_title = result.name;
-            if (result.displayname && result.displayname !== '') {
-                formatted_title += ' (' + result.displayname + ')';
-            }
-            return formatted_title;
-        }
-
-        function formatSubtitle(result) {
-            var formatted_subtitle = null;
-            if (result.namespace && result.namespace !== '') {
-                formatted_subtitle = result.namespace;
-            }
-            return formatted_subtitle;
         }
 
         result.title = formatTitle(result);
