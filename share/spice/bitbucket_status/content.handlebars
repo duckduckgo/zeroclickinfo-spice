@@ -1,0 +1,16 @@
+<h3 class="bbstatus--header text--primary">
+    {{! checks if the status is either good, minor, or major }} 
+    {{#BitbucketStatus_indicator status "none"}}
+        The status of Bitbucket is <span class="bbstatus--good">good</span>.
+    {{else}}
+        {{#BitbucketStatus_indicator status "minor"}}
+            Bitbucket status is <span class="bbstatus--minor">{{status}}</span> issues.
+        {{else}}
+            Bitbucket status is <span class="bbstatus--major">{{status}}</span> issues.
+        {{/BitbucketStatus_indicator}}
+    {{/BitbucketStatus_indicator}}
+
+    {{#BitbucketStatus_ifNotEmpty description}}
+        <h6 class="bbstatus--message text--secondary">{{description}}</h6>
+    {{/BitbucketStatus_ifNotEmpty}}
+</h3>

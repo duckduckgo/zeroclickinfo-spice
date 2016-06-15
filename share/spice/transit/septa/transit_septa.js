@@ -18,7 +18,7 @@
             now = timeInMins(new Date().toTimeString());
 
         Spice.add({
-            id: 'septa',
+            id: 'transit_septa',
             name: 'SEPTA',
             data: api_result,
             signal: 'high',

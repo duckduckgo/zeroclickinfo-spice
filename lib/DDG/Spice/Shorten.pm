@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 
 spice from => '([^/]+)/(.*)';
-spice to => 'http://is.gd/create.php?format=json&url=$1%3A%2F%2F$2&callback={{callback}}';
+spice to => 'https://is.gd/create.php?format=json&url=$1%3A%2F%2F$2&callback={{callback}}';
 triggers any => 'shorten', 'shorten url', 'short url', 'url shorten';
 
 my %connector_words = map { $_ => 1 } qw(for of);

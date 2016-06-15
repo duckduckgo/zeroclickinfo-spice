@@ -10,55 +10,55 @@
             email = re.exec(query)[1],
             url   = 'https://haveibeenpwned.com/account/' + email;
 
-		DDG.require("moment.js", function(){
-	        Spice.add({
-	            id: "pwned",
-	            name: "Pwned",
-	            data: api_result,
-	            meta: {
-	                sourceName: "Have I Been Pwned",
-	                sourceUrl: url,
+        DDG.require("moment.js", function(){
+            Spice.add({
+                id: "pwned",
+                name: "Pwned",
+                data: api_result,
+                meta: {
+                    sourceName: "Have I Been Pwned",
+                    sourceUrl: url,
                     primaryText: email + " is compromised:",
-                    snippetChars: 170
-	            },
-	            normalize: function(item) {
+                    snippetChars: 140
+                },
+                normalize: function(item) {
 
-	                if (item.fallback) {
-	                    return {
-	                        title: item.fallback
-	                    };
-	                } else {
-	                    return {
-	                        title: item.Name,
-							altSubtitle: item.Domain,
-							date: moment(item.BreachDate).format("MMM DD, YYYY"),
-	                        description: DDG.strip_html(item.Description).replace(/&quot;/g, "\""),
+                    if (item.fallback) {
+                        return {
+                            title: item.fallback
+                        };
+                    } else {
+                        return {
+                            title: item.Name,
+                            altSubtitle: item.Domain,
+                            date: moment(item.BreachDate).format("MMM DD, YYYY"),
+                            description: DDG.strip_html(item.Description).replace(/&quot;/g, "\""),
                             url: url
-	                    };
-	                }
-	            },
-	            templates: {
-	                group: 'icon',
-					item_detail: false,
-					detail: false,
-					variants: {
+                        };
+                    }
+                },
+                templates: {
+                    group: 'icon',
+                    item_detail: false,
+                    detail: false,
+                    variants: {
                         tileTitle: "1line-large",
                         tileSnippet: "large"
-					},
+                    },
                     options: {
                         footer: Spice.pwned.footer
                     }
-	            },
-			    relevancy: {
-			        type: api_result.fallback ? null : "primary", // detect when api returned error
-			        primary: [
-			            {required: 'Title'},
-			            {required: 'Name'},
-			            {required: 'Domain'},
-			            {required: 'DataClasses'}
-			        ]
-			    }
-        	});
-		});
+                },
+                relevancy: {
+                    type: api_result.fallback ? null : "primary", // detect when api returned error
+                    primary: [
+                        {required: 'Title'},
+                        {required: 'Name'},
+                        {required: 'Domain'},
+                        {required: 'DataClasses'}
+                    ]
+                }
+            });
+        });
     };
 }(this));

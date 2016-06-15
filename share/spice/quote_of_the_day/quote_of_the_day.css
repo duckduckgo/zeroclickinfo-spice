@@ -1,22 +1,22 @@
-.brainy__quote--container {
+.quote_of_the_day_container {
     overflow: hidden;
     margin-left: -2.8em;
 }
 
-.brainy__quote {
+.quote_of_the_day {
     quotes: "“" "”";
     font-size: 1.5em;
     font-weight: 300;
 }
 
-.zci--brainy_quote .zci__body {
+.zci--quote_of_the_day_ .zci__body {
     margin-left: -2em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     padding-left: 2.8em;
 }
 
-.brainy__quote:before {
+.quote_of_the_day:before {
     color: #D4D4D4;
     content: open-quote;
     float: left;
@@ -25,33 +25,31 @@
     margin-right: 0.1em;
 }
 
-.brainy__attribution {
+.quote_of_the_day_attribution {
     color: #999;
     float: left;
     margin-top: 5px;
 }
 
-.zci--brainy_quote .zci__content.chomp {
+.zci--quote_of_the_day_ .zci__content.chomp {
     max-height: none;
     margin-bottom: 0;
 }
 
-.zci--brainy_quote .zci__body.zci__body--info {
+.zci--quote_of_the_day_ .zci__body.zci__body--info {
     padding-left: 0.25em;
 }
 
-.is-mobile .brainy__quote--container {
+.is-mobile .quote_of_the_day_container {
     margin-left: 0px;
     margin-bottom: 0.5em;
 }
 
-.is-mobile .zci--brainy_quote .zci__more-at {
+.is-mobile .zci--quote_of_the_day_ .zci__more-at {
     margin-left: 40px;
 
 }
 
-.is-mobile .zci--brainy_quote .brainy__attribution {
+.is-mobile .zci--quote_of_the_day_ .quote_of_the_day_attribution {
     margin-left: 40px;
 }
-
-

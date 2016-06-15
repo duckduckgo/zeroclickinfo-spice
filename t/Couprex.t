@@ -22,14 +22,10 @@ ddg_spice_test(
         caller => 'DDG::Spice::Couprex'
     ),
 
-    'coupon codes for walgreens' => test_spice(
-        '/js/spice/couprex/walgreens',
-        call_type => 'include',
-        caller => 'DDG::Spice::Couprex'
-    ),
-
     'coupons' => undef,
-    'free deals' => undef
+    'free deals' => undef,
+    'retailmenot coupons' => undef,
+    'amazon discount' => undef
 );
 
 done_testing;
