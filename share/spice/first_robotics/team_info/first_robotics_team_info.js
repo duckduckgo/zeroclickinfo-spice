@@ -2,6 +2,12 @@
     
     "use strict";
     
+    // For testing purposes: teams with
+    // no motto: 900
+    // everything: 885
+    // no rookie year, website or motto: 10
+    // no nickname or motto: 800
+    
     env.ddg_spice_first_robotics_team_info = function(api_result) {
 
         if (!api_result || api_result.error || api_result.length === 0 || !api_result.name) {
@@ -13,13 +19,6 @@
             content: 'record',
             moreAt: true
         };
-
-        if (api_result.website && api_result.website != null) {
-            template_options.moreText = {
-                text: 'Team website',
-                href: api_result.website
-            };
-        }
         
         // Get the last year the team competed from a different API call
         $.getJSON('/js/spice/first_robotics/years_competed/' + api_result.team_number, 
@@ -51,15 +50,21 @@
                             team_data['Last competed'] = data[data.length - 1];
                         }
 
-                        
                         // And motto
                         if (item.motto && item.motto != null) {
                             team_data['Motto'] = item.motto;
                         }
+                        
+                        // And website
+                        var subt = item.nickname;
+                        
+                        if (item.website && item.website != null) {
+                            subt = [item.nickname, {text: 'Team Website', href: item.website}];
+                        }
 
                         return {
                             title: 'FIRST Robotics Competition Team ' + item.team_number,
-                            subtitle: item.nickname,
+                            subtitle: subt,
                             record_data: team_data
                         };
                     },
