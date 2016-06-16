@@ -40,25 +40,25 @@
         "1": ['netflix', 'netflix'],
         "2": ['netflix', 'netflix'],
         "3": ['itunes', 'itunes-alt'],
+        "4": ['fandango', 'fandango'],
         "5": ['vudu', 'vudu'],
         "7": ['amazon', 'amazon-alt'],
+        "9": ['redbox', 'redbox'],
         "12": ['youtube', 'youtube-alt'],
         "13": ['sundance', 'sundance-alt'],
+        "14": ['hulu', 'hulu'],
         "18": ['googleplay', 'googleplay-alt'],
         "19": ['xboxvideo', 'xboxvideo'],
-        "64": ['flixster', 'flixster'],
         "20": ['sony', 'sony-alt'],
-        "76": ['disney', 'disney-alt'],
         "21": ['hulu', 'hulu'],
+        "23": ['vhx', 'vhx-alt'],
         "31": ['bestbuy', 'bestbuy'],
         "32": ['walmart', 'walmart'],
         "36": ['target', 'target'],
         "37": ['targetticket', 'targetticket'],
-        "9": ['redbox', 'redbox'],
+        "64": ['flixster', 'flixster'],
         "65": ['crackle', 'crackle-alt'],
-        "4": ['fandango', 'fandango'],
-        "23": ['vhx', 'vhx-alt'],
-        "14": ['hulu', 'hulu']
+        "76": ['disney', 'disney-alt']
     };
 
     var zero_re = /\$0\.00/;
