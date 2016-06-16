@@ -14,7 +14,7 @@ handle query_lc => sub {
         return $1 if $1;
     }   
     if ($_ =~ /^bible\s+(?:random|random verse)$/i) {
-    return 'random';
+        return 'random';
     }
     return;
 };
