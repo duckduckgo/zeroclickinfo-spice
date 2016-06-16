@@ -51,9 +51,19 @@
                 sourceName: 'search[code]',
             },
             normalize: function(item) {
+                var subtitleArray = [];
+                if (item.subtitle) {
+                    subtitleArray.push(item.subtitle);
+                }
+                if (item.url && item.url !== '') {
+                    subtitleArray.push({
+                        href: item.url,
+                        text: "Reference"
+                    });
+                }
                 return {
                     title: item.title,
-                    subtitle: item.subtitle
+                    subtitle: subtitleArray
                 };
             },
             templates: {
