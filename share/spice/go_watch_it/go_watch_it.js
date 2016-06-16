@@ -37,94 +37,28 @@
     };
 
     var provider_icons = {
-        "1": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'netflix'),
-            light: DDG.get_asset_path('go_watch_it', path + 'netflix')
-        },
-        "2": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'netflix'),
-            light: DDG.get_asset_path('go_watch_it', path + 'netflix')
-        },
-        "3": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'itunes'),
-            light: DDG.get_asset_path('go_watch_it', path + 'itunes-alt')
-        },
-        "5": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'vudu'),
-            light: DDG.get_asset_path('go_watch_it', path + 'vudu')
-        },
-        "7": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'amazon'),
-            light: DDG.get_asset_path('go_watch_it', path + 'amazon-alt')
-        },
-        "12": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'youtube'),
-            light: DDG.get_asset_path('go_watch_it', path + 'youtube-alt')
-        },
-        "13": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'sundance'),
-            light: DDG.get_asset_path('go_watch_it', path + 'sundance-alt')
-        },
-        "18": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'googleplay'),
-            light: DDG.get_asset_path('go_watch_it', path + 'googleplay-alt')
-        },
-        "19": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'xboxvideo'),
-            light: DDG.get_asset_path('go_watch_it', path + 'xboxvideo')
-        },
-        "64": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'flixster'),
-            light: DDG.get_asset_path('go_watch_it', path + 'flixster')
-        },
-        "20": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'sony'),
-            light: DDG.get_asset_path('go_watch_it', path + 'sony-alt')
-        },
-        "76": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'disney'),
-            light: DDG.get_asset_path('go_watch_it', path + 'disney-alt')
-        },
-        "21": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
-            light: DDG.get_asset_path('go_watch_it', path + 'hulu')
-        },
-        "31": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'bestbuy'),
-            light: DDG.get_asset_path('go_watch_it', path + 'bestbuy')
-        },
-        "32": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'walmart'),
-            light: DDG.get_asset_path('go_watch_it', path + 'walmart')
-        },
-        "36": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'target'),
-            light: DDG.get_asset_path('go_watch_it', path + 'target')
-        },
-        "37": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'targetticket'),
-            light: DDG.get_asset_path('go_watch_it', path + 'targetticket')
-        },
-        "9": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'redbox'),
-            light: DDG.get_asset_path('go_watch_it', path + 'redbox')
-        },
-        "65": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'crackle'),
-            light: DDG.get_asset_path('go_watch_it', path + 'crackle-alt')
-        },
-        "4": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'fandango'),
-            light: DDG.get_asset_path('go_watch_it', path + 'fandango')
-        },
-        "23": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'vhx'),
-            light: DDG.get_asset_path('go_watch_it', path + 'vhx-alt')
-        },
-        "14": {
-            dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
-            light: DDG.get_asset_path('go_watch_it', path + 'hulu')
-        }
+        "1": ['netflix', 'netflix'],
+        "2": ['netflix', 'netflix'],
+        "3": ['itunes', 'itunes-alt'],
+        "5": ['vudu', 'vudu'],
+        "7": ['amazon', 'amazon-alt'],
+        "12": ['youtube', 'youtube-alt'],
+        "13": ['sundance', 'sundance-alt'],
+        "18": ['googleplay', 'googleplay-alt'],
+        "19": ['xboxvideo', 'xboxvideo'],
+        "64": ['flixster', 'flixster'],
+        "20": ['sony', 'sony-alt'],
+        "76": ['disney', 'disney-alt'],
+        "21": ['hulu', 'hulu'],
+        "31": ['bestbuy', 'bestbuy'],
+        "32": ['walmart', 'walmart'],
+        "36": ['target', 'target'],
+        "37": ['targetticket', 'targetticket'],
+        "9": ['redbox', 'redbox'],
+        "65": ['crackle', 'crackle-alt'],
+        "4": ['fandango', 'fandango'],
+        "23": ['vhx', 'vhx-alt'],
+        "14": ['hulu', 'hulu']
     };
 
     env.ddg_spice_go_watch_it = function (api_result) {
@@ -192,7 +126,7 @@
             data: watchable.availabilities,
             meta: {
                 sourceName: 'GoWatchIt',
-                sourceUrl: 'http://gowatchit.com' + (watchable.url ? watchable.url : ""),
+                sourceUrl: 'https://gowatchit.com' + (watchable.url ? watchable.url : ""),
                 primaryText: 'Providers for ' + watchable.title + " (" + watchable.year + ")"
             },
             normalize: function (item) {
@@ -227,9 +161,9 @@
 
                 // Replace the icon if we can.
                 if (item.provider_format_id in provider_icons) {
-                    item.provider_format_logos = provider_icons[item.provider_format_id];
-                    item.provider_format_logos.light += append;
-                    item.provider_format_logos.dark += append;
+                    item.provider_format_logos_names = provider_icons[item.provider_format_id];
+                    item.provider_format_logos.dark = DDG.get_asset_path('go_watch_it', path + item.provider_format_logos_names[0]) + append;
+                    item.provider_format_logos.light = DDG.get_asset_path('go_watch_it', path + item.provider_format_logos_names[1]) + append;
                 } else {
                     return null;
                 }
