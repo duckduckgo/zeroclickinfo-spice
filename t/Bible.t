@@ -20,6 +20,14 @@ ddg_spice_test(
         '/js/spice/bible/genesis%2026%3A4',
         caller    => 'DDG::Spice::Bible',
     ),
+     'bible random' => test_spice(
+        '/js/spice/bible/random',
+        caller    => 'DDG::Spice::Bible',
+    ),
+     'bible random verse' => test_spice(
+        '/js/spice/bible/random',
+        caller    => 'DDG::Spice::Bible',
+    ),
 );
 
 done_testing;

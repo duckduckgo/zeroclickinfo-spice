@@ -65,3 +65,5 @@ song of solomon
 titus
 zechariah
 zephaniah
+random
+random verse
