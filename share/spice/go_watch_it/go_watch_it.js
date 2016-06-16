@@ -61,6 +61,9 @@
         "14": ['hulu', 'hulu']
     };
 
+    var zero_re = /\$0\.00/;
+    var dollar_re = /\$/;
+
     env.ddg_spice_go_watch_it = function (api_result) {
         if (!api_result || api_result.error ||
             !DDG.getProperty(api_result, 'search.movies') ||
@@ -244,9 +247,9 @@
     });
 
     Spice.registerHelper("gwi_buyOrRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "" && !/\$0\.00/.test(buy_line) && /\$/.test(buy_line)) {
+        if (buy_line && buy_line !== "" && !zero_re.test(buy_line) && dollar_re.test(buy_line)) {
             this.rent_line = "";
-        } else if(rent_line && rent_line !== "" && !/\$0\.00/.test(rent_line) && /\$/.test(rent_line) && /\$/.test(rent_line)) {
+        } else if(rent_line && rent_line !== "" && !zero_re.test(rent_line) && dollar_re.test(rent_line)) {
             this.buy_line = "";
         } else {
             return options.inverse(this);
@@ -256,7 +259,7 @@
 
     // Check to see if both buy_line and rent_line are present.
     Spice.registerHelper("gwi_ifHasBothBuyAndRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "" && rent_line && rent_line !== "" && !/\$0\.00/.test(buy_line) && !/\$0\.00/.test(rent_line) && /\$/.test(buy_line) && /\$/.test(rent_line)) {
+        if (buy_line && buy_line !== "" && rent_line && rent_line !== "" && !zero_re.test(buy_line) && !zero_re.test(rent_line) && dollar_re.test(buy_line) && dollar_re.test(rent_line)) {
             return options.fn(this);
         } else {
             return options.inverse(this);
@@ -265,7 +268,7 @@
 
     // Grab dollar amount from 'Rent from $X.XX' string.
     Spice.registerHelper("gwi_price", function (line, options) {
-        if(/\$/.test(line)) {
+        if(dollar_re.test(line)) {
             var strings = line.split("$");
             return "$" + strings[strings.length - 1];
         }
