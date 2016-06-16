@@ -197,7 +197,7 @@
             if (!hero) { return Spice.failed('dota2'); }
 
             returnData = createHeroReturnObject(hero, api_result);
-            sourceUrl = 'https://www.dota2.com/hero/' + hero.dname.replace(" ", "_");
+            sourceUrl = 'https://www.dota2.com/hero/' + hero.u;
             template = {
                 group: 'base',
                 detail: false,
