@@ -23,7 +23,6 @@ ddg_spice_test(
     'frc team 885'                                  => build_test('885'),
     '800 frc team'                                  => build_test('800'),
     'first robotics team 1519'                      => build_test('1519'),
-    'where is frc team 811 based'                   => build_test('811'),
     'first robotics competition team 2342'          => build_test('2342'),
     '5687 first robotics competition'               => build_test('5687'),
     'frc 2333'                                      => build_test('2333'),
@@ -33,7 +32,8 @@ ddg_spice_test(
     'first robotics competition'                    => undef,
     'top 5 frc teams'                               => undef,
     '10 best frc teams'                             => undef,
-    '20 highest ranked frc teams'                   => undef
+    '20 highest ranked frc teams'                   => undef,
+    'where is frc team 811 based'                   => undef
 );
 
 done_testing;

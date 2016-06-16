@@ -20,18 +20,13 @@ spice alt_to => {
     }
 };
 
-triggers any => 'frc', 'frc team', 'first robotics team', 'first robotics competition';
+triggers startend => 'frc', 'frc team', 'first robotics team', 'first robotics competition';
 
 handle remainder_lc => sub {
 
     # only continue if the query contains digits
     return unless /\d+/;
     
-    # eliminate irrelevant queries containing 'frc'
-    return if ($req->query_clean =~ /frc/ 
-                && $req->query_clean !~ /frc\s*(?:team)?\s*\d+/
-                && $req->query_clean !~ /\d+\s*frc\s*(?:team)?/);
-                
     # guard against "top 10 teams" type queries
     return if ($req->query_clean =~ /\d+\s*(?:top|best|highest)/
                 || $req->query_clean =~ /(?:top|best|highest(?:\sranked)?)\s*\d+/);
