@@ -14,6 +14,7 @@
             id: 'bible',
             name: 'Answer',
             data: result,
+            signal: 'high',
             meta: {
                 sourceName: 'Bible',
                 sourceUrl: source_url,
