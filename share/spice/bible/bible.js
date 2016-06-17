@@ -14,11 +14,11 @@
             id: 'bible',
             name: 'Answer',
             data: result,
-            signal: 'high',
             meta: {
                 sourceName: 'Bible',
                 sourceUrl: source_url,
-                sourceIconUrl: 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
+                sourceIconUrl: 'http://bible.org/sites/bible.org/files/borg6_favicon.ico',
+                signal: 'high'
             },
             templates: {
                 group: 'text',
