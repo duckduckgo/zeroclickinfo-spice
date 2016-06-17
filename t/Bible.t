@@ -28,6 +28,18 @@ ddg_spice_test(
         '/js/spice/bible/random',
         caller    => 'DDG::Spice::Bible',
     ),
+     'random bible verse' => test_spice(
+        '/js/spice/bible/random',
+        caller    => 'DDG::Spice::Bible',
+    ),
+     'random verse bible' => test_spice(
+        '/js/spice/bible/random',
+        caller    => 'DDG::Spice::Bible',
+    ),
+     'random verse from the bible' => test_spice(
+        '/js/spice/bible/random',
+        caller    => 'DDG::Spice::Bible',
+    ),
 );
 
 done_testing;
