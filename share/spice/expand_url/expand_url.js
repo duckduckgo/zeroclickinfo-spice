@@ -1,6 +1,7 @@
-(function(env){    
+(function(env){
+    "use strict";
+
     env.ddg_spice_expand_url = function(api_result) {
-        "use strict";
 
 	    // Get original query.
         var script = $('[src*="/js/spice/expand_url/"]')[0],
@@ -21,11 +22,15 @@
                 sourceUrl: "http://untiny.me/",
                 sourceName: "Untiny"
             },
+            normalize: function (item) {
+                return {
+                    title: item.org_url,
+                    url: item.org_url,
+                    description: "Expanded URL for: " + decodeURI(query)
+                };
+            },
             templates: {
-                group: 'base',
-                options: {
-                    content: Spice.expand_url.content,
-                }
+                group: 'info'
             }
         });
     };
