@@ -26,7 +26,7 @@
                 return {
                     title: item.org_url,
                     url: item.org_url,
-                    description: "Expanded URL for: " + decodeURI(query)
+                    description: "Expanded URL for: " + decodeURIComponent(query)
                 };
             },
             templates: {
