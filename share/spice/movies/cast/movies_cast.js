@@ -18,12 +18,13 @@
             !data.results[0] ||
             !data.results[0].id
         );
+        var castId = data.results[0].id;
 
         if (hasFailed) {
             return Spice.failed('movies_cast');
         }
 
-        $.getJSON(DETAIL_ENDPOINT + data.results[0].id, function(api_result) {
+        $.getJSON(DETAIL_ENDPOINT + castId, function(api_result) {
             var hasFailed = (
                 !api_result ||
                 !api_result.results ||
@@ -34,37 +35,42 @@
                 return Spice.failed('movies_cast');
             }
 
-            Spice.add({
-                id: 'cast',
-                name: 'Movies',
-                data: api_result.results,
-                meta: {
-                    sourceName: 'TheMovieDb',
-                    sourceUrl: 'http://www.themoviedb.org/person/'
-                        + api_result.results[0].id,
-                    primaryText: 'Showing ' + api_result.results.length + ' Movies'
-                },
-                normalize: function(item) {
-                    return {
-                        heading: item.title,
-                        url: MOVIE_URL + item.id,
-                        rating: item.vote_average / 2, // normalize from 10 to 5 pt scale
-                        reviewCount: item.vote_count,
-                        brand: item.release_date,
-                        abstract: item.overview,
-                        image: POSTER_URL + item.poster_path,
-                        img_m: POSTER_URL + item.poster_path,
-                    };
-                },
-                templates: {
-                    group: 'movies',
-                    options: {
-                        rating: true,
-                        buy: Spice.movies_cast.buy,
+            DDG.require('moment.js', function() {
+                Spice.add({
+                    id: 'cast',
+                    name: 'Movies',
+                    data: api_result.results,
+                    meta: {
+                        sourceName: 'TheMovieDb',
+                        sourceUrl: 'http://www.themoviedb.org/person/'
+                            + castId,
+                        primaryText: 'Showing ' + api_result.results.length + ' Movies'
+                    },
+                    normalize: function(item) {
+                        var releaseDate = moment(
+                            item.release_date,
+                            'YYYY-MM-DD'
+                        ).format('MMMM Do YYYY');
+                        return {
+                            heading: item.title + '(Released ' + releaseDate + ')',
+                            url: MOVIE_URL + item.id,
+                            rating: item.vote_average / 2, // normalize from 10 to 5 pt scale
+                            reviewCount: item.vote_count,
+                            brand: item.release_date,
+                            abstract: item.overview,
+                            image: POSTER_URL + item.poster_path,
+                            img_m: POSTER_URL + item.poster_path,
+                        };
+                    },
+                    templates: {
+                        group: 'movies',
+                        options: {
+                            rating: true,
+                            buy: Spice.movies_cast.buy,
+                        }
                     }
-                }
+                });
             });
-
         });
     };
 }(this));
