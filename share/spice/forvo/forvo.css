@@ -1,10 +1,11 @@
 .zci--forvo .word {
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer;   
 }
 
 .zci--forvo .lang {
     font-size: 75%;
+    font-weight: bold;
 }
 
 .zci--forvo .sidenote {
@@ -35,8 +36,12 @@
 .zci--forvo .word-wrap {
     display: inline-block;
     max-width: 50%;
+    /* Better handles lengthy words on small screens */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .is-mobile .zci--forvo .word-wrap {
-    max-width: 50%;
+    max-width: 40%;
 }

@@ -6,7 +6,7 @@ DDG.require('maps',function(){
         // Mapbox sends back a bunch of places, just want the first one for now
         response = response.features[0];
 
-        var skipArray = [ "directions", "map", "maps" ];
+        var skipArray = [ "directions", "map", "maps", "st", "street", "ave", "avenue", "dr", "drive", "pl", "place", "apt", "suite" ];
 
         if ( response.relevance < 0.9 && !( response.place_name && DDG.isRelevant(response.place_name.toLowerCase(), skipArray)) ) {
             return Spice.failed('maps_maps');
