@@ -77,18 +77,34 @@
         });
     }
 
-    function casts(movies) {
-        var all_casts = [];
+    function casts(movies, lowercased_query) {
+        if (movies.length === 1) {
+            return movies[0].abridged_cast;
+        }
+
         var length = movies.length;
         for (var i = 0; i < length; i++) {
-            var movie_title = movies[i].title;
-            var casts = movies[i].abridged_cast.map(function (cast) {
-                cast.movie = movie_title;
-                return cast;
-            });
-            all_casts = all_casts.concat(casts);
+            if (movies[i].title.toLowerCase() === lowercased_query) {
+                return movies[i].abridged_cast;
+            }
         }
-        return all_casts;
+
+        return closestMatch(movies, lowercased_query);
+    }
+
+    function closestMatch(movies, lowercased_query) {
+        var length = movies.length;
+        var most_relevant = -1;
+        var closeness = 99;
+        for (var i = 0; i < length; i++) {
+            var lowercased_title = movies[i].title.toLowerCase();
+            var distance = lowercased_title.split(" ").length - lowercased_query.split(" ").length;
+            if (lowercased_title.indexOf(lowercased_query) >= 0 && distance < closeness) {
+                closeness = distance;
+                most_relevant = i;
+            }
+        }
+        return most_relevant >= 0 ? movies[most_relevant].abridged_cast : []
     }
 
     function movieTemplate() {
@@ -168,7 +184,7 @@
         }
 
         var isCastQuery = DDG.get_query().indexOf("cast") >= 0;
-        var data = isCastQuery ? casts(api_result.movies) : api_result.movies;
+        var data = isCastQuery ? casts(api_result.movies, query.toLowerCase()) : api_result.movies;
         Spice.add({
             id: 'movie',
             name: 'Movies',
