@@ -99,7 +99,7 @@
         for (var i = 0; i < length; i++) {
             var lowercased_title = movies[i].title.toLowerCase();
             var distance = lowercased_title.split(" ").length - lowercased_query.split(" ").length;
-            if (lowercased_title.indexOf(lowercased_query) >= 0 && distance < closeness) {
+            if (lowercased_title.indexOf(lowercased_query) >= 0 && distance < closeness && movies[i].abridged_cast.length) {
                 closeness = distance;
                 most_relevant = i;
             }
