@@ -89,6 +89,14 @@ ddg_spice_test(
         '/js/spice/movie/the%20revenant',
         caller    => 'DDG::Spice::Movie',
     ),
+    'dark knight movie cast' => test_spice(
+        '/js/spice/movie/dark%20knight',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'dark knight movie casts' => test_spice(
+        '/js/spice/movie/dark%20knight',
+        caller    => 'DDG::Spice::Movie',
+    ),
 );
 
 alt_to_test('DDG::Spice::Movie', ['movie_image']);

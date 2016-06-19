@@ -23,9 +23,10 @@ spice alt_to => {
 # with a few extra triggers that deep might miss.
 my @triggers = ( 'rotten tomatoes', 'rotten', 'cast', 'casts', 'actor', 'actors', 'actress', 'actresses');
 my @triggers_start = ( 'cast of', 'casts of', 'who stars in', 'who starred in', 'actor in', 'actors in', 'actress in', 'actresses in' );
-
-triggers startend => @triggers;
+my @triggers_end =( 'movie cast', 'movie casts');
 triggers start => @triggers_start;
+triggers end => @triggers_end;
+triggers startend => @triggers;
 
 handle remainder => sub {
     return unless $_;
