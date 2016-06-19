@@ -30,8 +30,7 @@
     function normalizeCast(item) {
         return {
             title: item.name,
-            altSubtitle: item.characters && item.characters.join(", "),
-            subtitle: item.movie,
+            altSubtitle: item.characters && 'as ' + item.characters.join(", "),
             image: null,
         }
     }
@@ -64,7 +63,7 @@
 
         $.getJSON("/js/spice/cast_image/" + item.name, function (data) {
             var path = data && data.results && data.results.length && data.results[0].profile_path,
-                image = path && "https://image.tmdb.org/t/p/w92/" + path;
+                image = path && "https://image.tmdb.org/t/p/w185/" + path;
 
             item.set({
                 // fallback to lo-res:
@@ -120,6 +119,13 @@
                     href: "https://www.themoviedb.org/search?query=" + query,
                     text: "themoviedb.org"
                 }
+            },
+            variants: {
+                tileTitle: '1line'
+            },
+            elClass: {
+                tile: "movie__cast",
+                tileMedia: 'movie__cast--image'
             }
         }
     }
