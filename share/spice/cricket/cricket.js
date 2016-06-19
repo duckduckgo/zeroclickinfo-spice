@@ -63,6 +63,8 @@
                 },
                 onItemShown: function (item) {
                     item.teams.map(function (team, i) {
+                        // Check if team is yet to be decided for the match (e.g. for final match)
+                        if (team.teamid==="") { return team; }
                         $.ajax({
                             url: DDG.get_asset_path('cricket', "assets/" + team.teamid + ".svg"),
                             type: 'get',
