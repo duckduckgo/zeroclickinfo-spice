@@ -19,28 +19,31 @@ handle matches => sub {
     my ($domain, $ascii);
     my $publicSuffix = Domain::PublicSuffix->new();
 
+    my $root_url = $_[1];
+
     if ($_[2]) {
-        $ascii = domain_to_ascii($_[1].$_[2]);
+        my $tld = $_[2];
+        $ascii = domain_to_ascii($root_url.$tld);
         $domain = $publicSuffix->get_root_domain($ascii);
 
-        if(!$domain) {  #if domain is undefined, it may be incorrect as a whole or the TLD was not found
-            $domain = $_[1].$_[2] if tld_exists(substr $_[2], 1);
+        if(!$domain) {  #if $domain was undefined, the input url may be incorrect as a whole or only the TLD was not found
+            $domain = $root_url.$tld if tld_exists(substr $tld, 1);
         }
-        return if !$domain;
+        return unless $domain;
         return domain_to_unicode($domain);
     }
     else {
-        return $_[1] if is_ipv4($_[1]);
+        return $root_url if is_ipv4($root_url);
 
         # append .com only if "is" is in the query and there's no other domain given
         if ($_[0]) {
-            return if length($_[1]) < 5;
-            return $_[1] . '.com';
+            return if length($root_url) < 5;
+            return $root_url . '.com';
         }
         # otherwise just return without '.com' -- stops false positives from showing zci
         else {
             # check for domain name in the end
-            $domain = $publicSuffix->get_root_domain($_[1]);
+            $domain = $publicSuffix->get_root_domain($root_url);
             return if !$domain;
             return domain_to_unicode($domain);
         }
@@ -48,4 +51,4 @@ handle matches => sub {
     return;
 };
 
-1;;
+1;
