@@ -56,7 +56,6 @@
             templates: {
                 group: 'text',
                 detail: false,
-                item_detail: false,
                 options: {
                 },
                 variants: {
