@@ -88,7 +88,7 @@
         return langs[language] || "";
     };
 
-    var formatTitle = function (first, second) {
+    var formatTitle = function (first) {
         var title = "This text is";
         if (first.isReliable) {
             title += " definitely ";
@@ -101,7 +101,7 @@
     }
 
     var formatSubtitle = function (second) {
-        var subtitle = null;
+        var subtitle = "";
         if (!second) {
             return subtitle;
         }
@@ -130,11 +130,11 @@
             return;
         }
 
-        var d0 = api_result.data.detections[0],
-            d1 = null;
+        var firstDetection = api_result.data.detections[0],
+            secondDetection = null;
 
         if (api_result.data.detections.length > 1) {
-            d1 = api_result.data.detections[1];
+            secondDetection = api_result.data.detections[1];
         }
 
         // Display the plug-in.
@@ -142,8 +142,8 @@
             id: 'detect_lang',
             name: "Answer",
             data: {
-                first: d0,
-                second: d1
+                first: firstDetection,
+                second: secondDetection
             },
             meta: {
                 sourceUrl: "http://detectlanguage.com/",
@@ -152,8 +152,8 @@
             signal: 'high',
             normalize: function(item) {
                 return {
-                    title: formatTitle(d0, d1),
-                    subtitle: formatSubtitle(d1)
+                    title: formatTitle(firstDetection),
+                    subtitle: formatSubtitle(secondDetection)
                 }
             },
             templates: {
