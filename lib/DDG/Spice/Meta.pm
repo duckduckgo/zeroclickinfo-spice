@@ -1,5 +1,5 @@
 package DDG::Spice::Meta;
-# ABSTRACT: Search for recipes on yummly.com
+# ABSTRACT: Meta IA (test)
 
 use strict;
 use DDG::Spice;
