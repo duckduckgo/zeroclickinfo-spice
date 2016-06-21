@@ -2,7 +2,7 @@
     "use strict";
 
     // No need for api results: data is hardcoded for this test
-    env.ddg_spice_meta = function() {
+    env.ddg_spice_meta = function(api_result) {
 
         /*if (!api_result || !api_result.items) {
             return Spice.failed('meta');
