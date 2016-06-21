@@ -48,9 +48,9 @@
             },
             normalize: function(item) {
                 return {
-                    title: item.name
+                    title: item.name,
                     subtitle: item.desc,
-                    url: item.example_query,
+                    url: item.example_query
                 };
             },
             templates: {
