@@ -2,7 +2,7 @@
     "use strict";
 
     // No need for api results: data is hardcoded for this test
-    env.ddg_spice_meta = function(api_result) {
+    env.ddg_spice_meta = function(result) {
 
         /*if (!api_result || !api_result.items) {
             return Spice.failed('meta');
@@ -41,7 +41,7 @@
             name: 'Meta IA',
             data: perl_ias,
             meta: {
-                searchTerm: unescape(query),
+                searchTerm: DDG.get_query(),
                 itemType: 'Perl IAs',
                 sourceUrl: 'https://duck.co/ia',
                 sourceName: 'IA Pages'

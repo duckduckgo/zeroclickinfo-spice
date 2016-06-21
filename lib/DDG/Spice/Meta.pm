@@ -7,7 +7,7 @@ use DDG::Spice;
 
 triggers startend => 'perl';
 
-spice to => 'https://duckduckgo.com/local.js?q=$1&cb={{callback}}'; 
+spice to => 'https://maria.duckduckgo.com/?q=$1&cb={{callback}}'; 
 
 handle remainder => sub {
     return lc($_) if $_;
