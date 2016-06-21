@@ -9,7 +9,7 @@ triggers startend => 'perl';
 
 spice to => 'http://api.duckduckgo.com/?q=DuckDuckGo&format=json'; 
 
-wrap_jsonp => 1;
+spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
     return lc($_) if $_;
