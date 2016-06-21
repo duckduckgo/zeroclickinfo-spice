@@ -13,8 +13,7 @@
             signal: 'high',
             meta: {
                 sourceUrl: 'http://isitup.org/' + api_result['domain'],
-                sourceName: 'Is it up?',
-                sourceIcon: true
+                sourceName: 'Is it up?'
             },
             templates: {
                 group: 'text',
