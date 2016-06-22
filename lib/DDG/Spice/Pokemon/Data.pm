@@ -25,7 +25,7 @@ my $accepted_names = join "|", share('pokemon-names.txt')->slurp(chomp => 1);
 
 # Handle statement
 handle remainder => sub {
-    return lc $_ unless !$_ or $_ =~ /\s/ or !($_ =~ m/$accepted_names/i);
+    return lc $_ unless !$_ or $_ =~ /\s/ or !($_ =~ /\b($accepted_names)\b/i);
     return;
 };
 
