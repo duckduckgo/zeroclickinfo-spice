@@ -2,6 +2,7 @@ package DDG::Spice::Pokemon::Data;
 # ABSTRACT: Returns pokemon data from the pokeapi API
 
 use DDG::Spice;
+use String::Util qw(trim);
 
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30d";
@@ -21,12 +22,13 @@ spice alt_to => {
 	}
 };
 
-my $accepted_names = join "|", share('pokemon-names.txt')->slurp(chomp => 1);
+my %pokemon = map { trim($_) => 0 } share('pokemon-names.txt')->slurp;
 
 # Handle statement
 handle remainder => sub {
-    return lc $_ unless !$_ or $_ =~ /\s/ or !($_ =~ /\b($accepted_names)\b/i);
-    return;
+    return unless $_;
+    return unless exists $pokemon{$_};
+    return lc $_;
 };
 
 1;
