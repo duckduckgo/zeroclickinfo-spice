@@ -7,13 +7,10 @@ use DDG::Spice;
 
 triggers startend => 'perl';
 
-spice to => 'http://api.duckduckgo.com/?q=DuckDuckGo&format=json'; 
+spice call_type => 'self'; 
 
-spice wrap_jsonp_callback => 1;
-
-handle remainder => sub {
-    return lc($_) if $_;
-    return;
+handle query_lc => sub {
+    return call;
 };
 
 1;
