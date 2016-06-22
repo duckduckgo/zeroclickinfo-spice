@@ -31,7 +31,13 @@ ddg_spice_test(
     'pokemon showdown' => undef,
     'pokemon go' => undef,
     'pokemon pictures' => undef,
-    'pokemon tower defense' => undef
+    'pokemon tower defense' => undef,
+    'pokemon game' => undef,
+    'pokemon movie' => undef,
+    'showdown pokemon' => undef,
+    'movie pokemon' => undef,
+    'game pokemon' => undef,
+    'pictures pokemon' => undef
 );
 
 alt_to_test('DDG::Spice::Pokemon::Data', ['description']);
