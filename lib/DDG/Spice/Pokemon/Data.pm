@@ -25,7 +25,7 @@ spice alt_to => {
 my %pokemon = map { trim($_) => 0 } share('pokemon-names.txt')->slurp;
 
 # Handle statement
-handle remainder => sub {
+handle remainder_lc => sub {
     return unless $_;
     return unless exists $pokemon{$_};
     return lc $_;
