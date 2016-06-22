@@ -21,9 +21,11 @@ spice alt_to => {
 	}
 };
 
+my $accepted_names = join "|", share('pokemon-names.txt')->slurp(chomp => 1);
+
 # Handle statement
 handle remainder => sub {
-    return lc $_ unless !$_ or $_ =~ /\s/;
+    return lc $_ unless !$_ or $_ =~ /\s/ or !($_ =~ m/$accepted_names/i);
     return;
 };
 
