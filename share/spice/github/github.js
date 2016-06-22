@@ -6,73 +6,70 @@
           return Spice.failed('github');
         }
 
-        var script = $('[src*="/js/spice/github/"]')[0],
-                    source = $(script).attr("src"),
-                    query = source.match(/github\/([^\/]+)/)[1];
-
-        if (/language:".*?"/.test(unescape(query))) {
-            var itemType = "Git Repos (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
-        } else {
-            var itemType = "Git Repos";
-        }
-
         var results = api_result.data.items;
 
         if (!results) {
             return Spice.failed('github');
         }
 
-        // TODO: temp size limit - relevancy block should handle this later
-        if (results.length > 30)
-            results = results.splice(0,30);
+        if (results.length)
+            results = results[0];
 
-        DDG.require("moment.js", function() {
+        results.infoboxData = [
+            {label: "Stars", value:  results.stargazers_count},
+            {label: "Forks", value: results.forks }, 
+            {label: "Open Issues", value: results.open_issues},
+            {label: "Last Update", value: results.pushed_at}
+        ];
+
+        var key = results.full_name.replace(/^.*\//, '');
+        var fatheads = {
+                "jquery": "?q=jquery&ia=about",
+                "react": "?q=react+javascript+library&ia=about",
+                "opencv": "?q=opencv&ia=about",
+                "bootstrap": "?q=bootstrap+front-end+framework&ia=about"
+        };
+
+        results.title = key;
+        results.url = results.html_url;
+        results.imageTile = true;
+
             Spice.add({
                 id: "github",
                 name: "Software",
                 data: results,
                 meta: {
-                    itemType: itemType,
-                    searchTerm: unescape(query),
-                    sourceUrl: 'https://www.github.com/search?q=' +  encodeURIComponent(query),
-                    sourceName: 'GitHub'
+                    sourceUrl: 'https://www.github.com/' + results.full_name,
+                    sourceName: 'GitHub',
+                    rerender: [ 'description', 'image' ]
                 },
                 templates: {
-                        group: 'text',
-                        detail: false,
-                        item_detail: false,
+                        group: 'info',
                         options: {
-                            footer: Spice.github.footer
-                        },
-                        variants: {
-                            tile: 'basic4'
+                            moreAt: true
                         }
                     },
-                normalize: function(item) {
-                    if (item.size === 0) {
-                        return;
-                    }
-                    return {
-                        title: item.name,
-                        subtitle: item.owner.login + "/" + item.name,
-                        url: item.html_url,
-                        pushed_at: moment(item.pushed_at).fromNow()
-                    };
-                },
                 relevancy: {
                     primary: [
-                        { key: 'description', match: /.+/, strict: false } // Reject things without a description.
+                        { required: 'description' }
                     ]
                 },
-                sort_fields: {
-                    watchers: function(a, b) {
-                        var x = a.watchers;
-                        var y = b.watchers;
-                        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+                onItemShown: function(item){
+                    var apiReq = fatheads[key] + "&o=json";
+                    if(!fatheads[key]){
+                        return;
                     }
-                },
-                sort_default: 'watchers'
+                    console.log(apiReq);
+                    $.getJSON(apiReq,
+                        function(data){
+                           item.set({ 
+                               description : data.Abstract, 
+                               image: data.Image
+                           });
+                        }
+                   );
+                }
             });
-        });
+
     }
 }(this));
