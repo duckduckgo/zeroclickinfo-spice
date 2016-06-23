@@ -13,6 +13,8 @@
             return Spice.failed('expand_url');
         }
 
+        api_result.context_info = "Expanded URL for: " + decodeURIComponent(query);
+
         // Display the plug-in.
         Spice.add({
             id: "expand_url",
@@ -22,15 +24,11 @@
                 sourceUrl: "http://untiny.me/",
                 sourceName: "Untiny"
             },
-            normalize: function (item) {
-                return {
-                    title: item.org_url,
-                    url: item.org_url,
-                    description: "Expanded URL for: " + decodeURIComponent(query)
-                };
-            },
             templates: {
-                group: 'info'
+                group: 'text',
+                options: {
+                    title_content: Spice.expand_url.title_content
+                }
             }
         });
     };
