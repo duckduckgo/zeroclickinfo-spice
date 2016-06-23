@@ -13,8 +13,7 @@ triggers any => "random word", "random words";
 
 spice alt_to => {
 	fetch_id => {
-		to => 'http://api.wordnik.com:80/v4/word.json/$1/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=097cdbc8f57b3857330060feb140178e3bbd72e461c7e9bd5&callback={{callback}}',
-		wrap_jsonp_callback => 1
+		to => 'http://api.wordnik.com:80/v4/word.json/$1/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=097cdbc8f57b3857330060feb140178e3bbd72e461c7e9bd5',
 	}
 };
 
