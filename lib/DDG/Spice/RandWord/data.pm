@@ -1,4 +1,4 @@
-package DDG::Spice::RandWord;
+package DDG::Spice::RandWord::data;
 # ABSTRACT: Shows a random word
 
 use strict;
@@ -6,10 +6,17 @@ use DDG::Spice;
 use List::Util 'min';
 
 spice from => '(?:([0-9]+)\-([0-9]+)\-([0-9]+))';
-spice to => 'http://api.wordnik.com/v4/words.json/randomWords?minLength=$1&maxLength=$2&limit=$3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
+spice to => 'http://api.wordnik.com/v4/words.json/randomWords?minLength=$1&maxLength=$2&limit=$3&api_key=097cdbc8f57b3857330060feb140178e3bbd72e461c7e9bd5&callback={{callback}}';
 spice proxy_cache_valid => "418 1d";
 
 triggers any => "random word", "random words";
+
+spice alt_to => {
+	fetch_id => {
+		to => 'http://api.wordnik.com:80/v4/word.json/$1/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=097cdbc8f57b3857330060feb140178e3bbd72e461c7e9bd5&callback={{callback}}',
+		wrap_jsonp_callback => 1
+	}
+};
 
 handle query_lc => sub {
     my $minlen = 1;
