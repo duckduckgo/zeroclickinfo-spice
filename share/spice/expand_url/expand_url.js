@@ -1,6 +1,7 @@
-(function(env){    
+(function(env){
+    "use strict";
+
     env.ddg_spice_expand_url = function(api_result) {
-        "use strict";
 
 	    // Get original query.
         var script = $('[src*="/js/spice/expand_url/"]')[0],
@@ -12,6 +13,8 @@
             return Spice.failed('expand_url');
         }
 
+        api_result.subtitle = "Expanded URL for: " + decodeURIComponent(query);
+
         // Display the plug-in.
         Spice.add({
             id: "expand_url",
@@ -22,9 +25,9 @@
                 sourceName: "Untiny"
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.expand_url.content,
+                    title_content: Spice.expand_url.title_content
                 }
             }
         });
