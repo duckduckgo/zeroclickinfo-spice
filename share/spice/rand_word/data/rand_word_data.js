@@ -4,7 +4,7 @@
         if(!api_result || api_result.length === 0) {
             return Spice.failed('rand_word');
         }
-        console.log(api_result)
+       
         var first = api_result[0];
         // dividing the whole array into an array of 4 elements each
         var list_of_list = [];
@@ -34,7 +34,7 @@
         if(list_of_list[0].length == 1) {
             get_definition(first.word).done(function(api_result) {       
 				var first = api_result[0];
-                console.log(first.text);
+               
                 spiceObj.data = {
                     title: "Random Word",
                     word: first.word,
