@@ -32,8 +32,7 @@
             }
         };
         if(list_of_list[0].length == 1) {
-            get_definition(first.word).done(function(api_result) {
-                console.log(2)
+            get_definition(first.word).done(function(api_result) {       
 				var first = api_result[0];
                 console.log(first.text);
                 spiceObj.data = {
@@ -48,17 +47,17 @@
                         moreAt: true
                     }
                 };
-                 console.log('end1');
+                 
                  Spice.add(spiceObj);
             });
         }else{
-        console.log('end2');
+        
         Spice.add(spiceObj);
         }
     }
 
     function get_definition(word) {
-        console.log(1);
+        
         return $.getJSON("/js/spice/rand_word/fetch_id/" + word);
     }
 }(this));
