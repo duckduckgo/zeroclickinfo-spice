@@ -28,10 +28,10 @@
                     }
 
                     var description = item.fields.description || item.fields.abstract;
-                    var version = item.fields.version || item.fields.module[0].version
+                    var version = item.fields.version || item.fields.module[0].version;
                     var date = ( item.fields.date )
                         ? moment(item.fields.date).format("DD MMM YYYY")
-                        : ""
+                        : "";
 
                     return {
                         title: item.fields.module[0].name,
