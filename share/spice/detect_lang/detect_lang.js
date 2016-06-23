@@ -90,11 +90,7 @@
 
     var formatTitle = function (first) {
         var title = "This text is";
-        if (first.isReliable) {
-            title += " definitely ";
-        } else {
-            title += " probably ";
-        }
+        title += first.isReliable ? " definitely " : " probably ";
         title += expandLang(first.language);
         title += " (" + getPercentConfidence(first.confidence) + ").";
         return title;
@@ -102,11 +98,10 @@
 
     var formatSubtitle = function (second) {
         var subtitle = "";
-        if (!second) {
-            return subtitle;
+        if (second) {
+            subtitle = "But it could also be " + expandLang(second.language);
+            subtitle += " (" + getPercentConfidence(second.confidence) + ").";
         }
-        subtitle = "But it could also be " + expandLang(second.language);
-        subtitle += " (" + getPercentConfidence(second.confidence) + ").";
         return subtitle;
     }
 
@@ -127,7 +122,7 @@
         });
 
         if(expandLang(api_result.data.detections[0].language) === "") {
-            return;
+            return Spice.failed('detect_lang');
         }
 
         var firstDetection = api_result.data.detections[0],
@@ -149,7 +144,6 @@
                 sourceUrl: "http://detectlanguage.com/",
                 sourceName: "Detect Language",
             },
-            signal: 'high',
             normalize: function(item) {
                 return {
                     title: formatTitle(firstDetection),
