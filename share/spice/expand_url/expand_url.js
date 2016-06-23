@@ -13,7 +13,7 @@
             return Spice.failed('expand_url');
         }
 
-        api_result.context_info = "Expanded URL for: " + decodeURIComponent(query);
+        api_result.subtitle = "Expanded URL for: " + decodeURIComponent(query);
 
         // Display the plug-in.
         Spice.add({
