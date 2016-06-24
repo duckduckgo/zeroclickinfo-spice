@@ -1,14 +1,14 @@
 (function(env) {
     "use strict";
     env.ddg_spice_rand_word_data = function(api_result) {
-        if(!api_result || api_result.length === 0) {
+        if (!api_result || api_result.length === 0) {
             return Spice.failed('rand_word');
         }
-       
+
         var first = api_result[0];
         // dividing the whole array into an array of 4 elements each
         var list_of_list = [];
-        while(api_result.length > 0) {
+        while (api_result.length > 0) {
             list_of_list.push(api_result.splice(0, 4));
         }
         var spiceObj = {
@@ -31,10 +31,10 @@
                 }
             }
         };
-        if(list_of_list[0].length == 1) {
-            get_definition(first.word).done(function(api_result) {       
-				var first = api_result[0];
-               
+        if (list_of_list[0].length == 1) {
+            get_definition(first.word).done(function(api_result) {
+                var first = api_result[0];
+
                 spiceObj.data = {
                     title: "Random Word",
                     word: first.word,
@@ -42,22 +42,27 @@
                 };
                 spiceObj.templates = {
                     group: 'text',
-                    options: {
-                        content: Spice.rand_word_data.single_word,
-                        moreAt: true
-                    }
+
                 };
-                 
-                 Spice.add(spiceObj);
+                spiceObj.normalize = function(item) {
+
+                    return {
+                        title: 'Random Word',
+                        subtitle: { href:"http://wordnik.com/words/"+(item.word), text: item.word },
+                        description: item.definition,
+                    }
+                }
+
+                Spice.add(spiceObj);
             });
-        }else{
-        
-        Spice.add(spiceObj);
+        } else {
+
+            Spice.add(spiceObj);
         }
     }
 
     function get_definition(word) {
-        
+
         return $.getJSON("/js/spice/rand_word/fetch_id/" + word);
     }
 }(this));
