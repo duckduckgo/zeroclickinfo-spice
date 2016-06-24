@@ -38,7 +38,15 @@ triggers startend => (
 
 
 handle remainder => sub {
-    return lc($_) if $_;
+    if ($_) {
+        # Remove quotes from the string since Wordnik does not have
+        # any words that start or end with quotes.
+        $_ =~ tr/"//d;
+        
+        # Make sure to transform the string to lowercase as well.
+        return lc($_);
+    }
+
     return;
 };
 
