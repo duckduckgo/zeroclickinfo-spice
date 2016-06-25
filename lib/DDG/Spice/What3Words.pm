@@ -22,24 +22,24 @@ triggers query_lc => qr/^(?:$w3w_re)?(\p{L}{4,}+\.\p{L}{4,}+\.\p{L}{1,}+)$/i;
 triggers query_lc => qr/^(?:$w3w_re)($coord_re), ?($coord_re)$/i;
 
 handle matches => sub {
-	my ($direction, $param, $remainder, $lat, $lon);
+    my ($direction, $param, $remainder, $lat, $lon);
 
-	if (scalar @_ == 1){
-		$remainder = lc shift;
-		my $end = pop @{[split(/\./, $remainder)]}; #split string into list, cast into array, pop last element
-		return if tld_exists($end); #prevent searches for websites
-		$direction = "forward";
-		$param     = "addr";
-	}
-	else {
-		$lat = shift;
-		$lon = shift;
-		return if abs $lat > 90 || abs $lon > 90;
-		$remainder = "$lat,$lon";
-		$direction = "reverse";
-		$param     = "coords";
-	}
-	return $direction, $param, $remainder;
+    if (scalar @_ == 1){
+        $remainder = lc shift;
+        my $end = pop @{[split(/\./, $remainder)]}; #split string into list, cast into array, pop last element
+        return if tld_exists($end); #prevent searches for websites
+        $direction = "forward";
+        $param     = "addr";
+    }
+    else {
+        $lat = shift;
+        $lon = shift;
+        return if abs $lat > 90 || abs $lon > 90;
+        $remainder = "$lat,$lon";
+        $direction = "reverse";
+        $param     = "coords";
+    }
+    return $direction, $param, $remainder;
 };
 
 1;
