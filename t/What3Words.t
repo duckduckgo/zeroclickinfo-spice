@@ -35,6 +35,8 @@ ddg_spice_test(
         caller => 'DDG::Spice::What3Words'
     ),
 
+    'what3words veal notion loses' => undef,
+    'w3w Empire State Building, New York' => undef,
     'www.facebook.com' => undef,
     'images.facebook.com' => undef
 );
