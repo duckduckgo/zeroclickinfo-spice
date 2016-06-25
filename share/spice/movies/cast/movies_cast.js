@@ -37,7 +37,7 @@
 
             DDG.require('moment.js', function() {
                 Spice.add({
-                    id: 'cast',
+                    id: 'movies_cast',
                     name: 'Movies',
                     data: api_result.results,
                     meta: {
