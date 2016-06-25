@@ -1,4 +1,4 @@
-/* Root Level Class */
+/* Root Level Instant Answer */
 
 .zci--twitch_channel_info {
 
@@ -8,6 +8,8 @@
 
 .zci--twitch_channel_info .c-info__img-wrap{
     min-width: 180px;
+    height: auto;
+    line-height: auto;
 }
 .is-mobile .zci--twitch_channel_info .c-info__img-wrap{
     min-width: initial;
@@ -19,12 +21,17 @@
 
 .zci--twitch_channel_info .c-info__img-wrap+.c-info__body{
     vertical-align: top;
+    padding-left: 1.5em;
+}
+.zci--twitch_channel_info .c-info__content{
+    margin-top: .5em;
 }
 .zci--twitch_channel_info .c-info__title a{
-    padding-right: 0.5em;
+    padding-right: 0.2em;
 }
 .zci--twitch_channel_info .c-info__title .c-info__title__sub{
     padding-left: 0;
+    text-transform: none;
 }
 .zci--twitch_channel_info .c-info__title__sub a{
     text-decoration: underline;
@@ -34,6 +41,37 @@
         overflow: visible;
     }
 }
+
+/* Channel preview */
+
+.zci--twitch_channel_info a.c-info__img-wrap__in{
+    left: initial;
+    line-height: initial;
+}
+.zci--twitch_channel_info a.c-info__img-wrap__in img{
+    right: initial;
+    max-width: 100%;
+    vertical-align: top;
+    margin-bottom: 0;
+}
+.zci--twitch_channel_info .channel__loading a.c-info__img-wrap__in:before{
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAzOCAzOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gICAgPGRlZnM+ICAgICAgICA8bGluZWFyR3JhZGllbnQgeDE9IjguMDQyJSIgeTE9IjAlIiB4Mj0iNjUuNjgyJSIgeTI9IjIzLjg2NSUiIGlkPSJhIj4gICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAiIG9mZnNldD0iMCUiLz4gICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9Ii42MzEiIG9mZnNldD0iNjMuMTQ2JSIvPiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNmZmYiIG9mZnNldD0iMTAwJSIvPiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4gICAgPC9kZWZzPiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMSAxKSI+ICAgICAgICAgICAgPHBhdGggZD0iTTM2IDE4YzAtOS45NC04LjA2LTE4LTE4LTE4IiBpZD0iT3ZhbC0yIiBzdHJva2U9InVybCgjYSkiIHN0cm9rZS13aWR0aD0iMiI+ICAgICAgICAgICAgICAgIDxhbmltYXRlVHJhbnNmb3JtICAgICAgICAgICAgICAgICAgICBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iICAgICAgICAgICAgICAgICAgICB0eXBlPSJyb3RhdGUiICAgICAgICAgICAgICAgICAgICBmcm9tPSIwIDE4IDE4IiAgICAgICAgICAgICAgICAgICAgdG89IjM2MCAxOCAxOCIgICAgICAgICAgICAgICAgICAgIGR1cj0iMC45cyIgICAgICAgICAgICAgICAgICAgIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiAvPiAgICAgICAgICAgIDwvcGF0aD4gICAgICAgICAgICA8Y2lyY2xlIGZpbGw9IiNmZmYiIGN4PSIzNiIgY3k9IjE4IiByPSIxIj4gICAgICAgICAgICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gICAgICAgICAgICAgICAgICAgIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgICAgICAgICAgICAgICAgICAgIHR5cGU9InJvdGF0ZSIgICAgICAgICAgICAgICAgICAgIGZyb209IjAgMTggMTgiICAgICAgICAgICAgICAgICAgICB0bz0iMzYwIDE4IDE4IiAgICAgICAgICAgICAgICAgICAgZHVyPSIwLjlzIiAgICAgICAgICAgICAgICAgICAgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+ICAgICAgICAgICAgPC9jaXJjbGU+ICAgICAgICA8L2c+ICAgIDwvZz48L3N2Zz4=);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.zci--twitch_channel_info a.c-info__img-wrap__in:before{
+    display: none;
+}
+
 
 /* Channel status (Offline or Live) */
 
@@ -69,7 +107,7 @@
 /* Channel Stats */
 
 .zci--twitch_channel_info .channel__stats{
-    margin: .8em 0 0 0;
+    margin: .5em 0 0 0;
     font-size: 0.87em;
 }
 .zci--twitch_channel_info .channel__stats span{
@@ -79,4 +117,10 @@
 .zci--twitch_channel_info .channel__stats span i{
     position: relative;
     top: 1px;
+}
+
+/* More At links */
+
+.is-not-mobile-device .zci--twitch_channel_info .c-info__links{
+    display: none;
 }
