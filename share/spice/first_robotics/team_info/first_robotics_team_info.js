@@ -11,7 +11,7 @@
     env.ddg_spice_first_robotics_team_info = function(api_result) {
 
         if (!api_result || api_result.error || api_result.length === 0 || !api_result.name) {
-            return Spice.failed('first_robotics_teams');
+            return Spice.failed('first_robotics_competition_info');
         }
         
         // Remove the space for a website if one isn't provided
