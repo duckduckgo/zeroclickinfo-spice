@@ -27,7 +27,7 @@
             function(data) {
 
                 Spice.add({
-                    id: 'first_robotics',
+                    id: 'first_robotics_competition_info',
                     name: 'Reference',
                     data: api_result,
                     meta: {
