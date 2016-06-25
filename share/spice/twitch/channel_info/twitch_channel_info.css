@@ -1,0 +1,82 @@
+/* Root Level Class */
+
+.zci--twitch_channel_info {
+
+}
+
+/* Image preview */
+
+.zci--twitch_channel_info .c-info__img-wrap{
+    min-width: 180px;
+}
+.is-mobile .zci--twitch_channel_info .c-info__img-wrap{
+    min-width: initial;
+    margin-top: -0.75em;
+}
+
+
+/* Channel info */
+
+.zci--twitch_channel_info .c-info__img-wrap+.c-info__body{
+    vertical-align: top;
+}
+.zci--twitch_channel_info .c-info__title a{
+    padding-right: 0.5em;
+}
+.zci--twitch_channel_info .c-info__title .c-info__title__sub{
+    padding-left: 0;
+}
+.zci--twitch_channel_info .c-info__title__sub a{
+    text-decoration: underline;
+}
+@media only screen and (max-width: 634px){
+    .zci--twitch_channel_info .c-info__img-wrap+.c-info__body {
+        overflow: visible;
+    }
+}
+
+/* Channel status (Offline or Live) */
+
+.zci--twitch_channel_info .c-info__img-wrap:before,
+.zci--twitch_channel_info .c-info__img-wrap:after{
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+}
+.zci--twitch_channel_info .c-info__img-wrap.channel__live:before{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d44949;
+    top: 10px;
+    right: 43px;
+    
+}
+.zci--twitch_channel_info .c-info__img-wrap:after{
+    content: 'OFFLINE';
+    font-size: 14px;
+    line-height: 14px;
+    text-shadow: 1px 1px 0 #000;
+    color: #fff;
+    top: 10px;
+    right: 10px;
+}
+.zci--twitch_channel_info .c-info__img-wrap.channel__live:after{
+    content: 'LIVE';
+}
+
+/* Channel Stats */
+
+.zci--twitch_channel_info .channel__stats{
+    margin: .8em 0 0 0;
+    font-size: 0.87em;
+}
+.zci--twitch_channel_info .channel__stats span{
+    white-space: nowrap;
+    margin:0 6px 0 0;
+}
+.zci--twitch_channel_info .channel__stats span i{
+    position: relative;
+    top: 1px;
+}
