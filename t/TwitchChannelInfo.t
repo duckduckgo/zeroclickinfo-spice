@@ -9,17 +9,35 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Twitch::ChannelInfo)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
     'twitch starladder' => test_spice(
-        '/js/spice/twitch_channel_info/query',
+        '/js/spice/twitch/channel_info/starladder',
         call_type => 'include',
         caller => 'DDG::Spice::Twitch::ChannelInfo'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'twitch riotgames' => test_spice(
+        '/js/spice/twitch/channel_info/riotgames',
+        call_type => 'include',
+        caller => 'DDG::Spice::Twitch::ChannelInfo'
+    ),
+    'twitchtv esl_csgo' => test_spice(
+        '/js/spice/twitch/channel_info/esl_csgo',
+        call_type => 'include',
+        caller => 'DDG::Spice::Twitch::ChannelInfo'
+    ),
+    'PhantomL0rd twitch' => test_spice(
+        '/js/spice/twitch/channel_info/PhantomL0rd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Twitch::ChannelInfo'
+    ),
+    'twitchtv summit1g' => test_spice(
+        '/js/spice/twitch/channel_info/summit1g',
+        call_type => 'include',
+        caller => 'DDG::Spice::Twitch::ChannelInfo'
+    ),
+    
+    'lorem ipsum' => undef,
+    '#undefined#' => undef,
+    '1twitch1' => undef,
 );
 
 done_testing;
