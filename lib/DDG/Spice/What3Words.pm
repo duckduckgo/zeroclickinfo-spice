@@ -23,9 +23,9 @@ triggers query_lc => qr/^(?:$w3w_re)?(\p{L}{4,}+\.\p{L}{4,}+\.\p{L}{1,}+)$/i;
 triggers query_lc => qr/^(?:$w3w_re)($coord_re), ?($coord_re)$/i;
 
 handle matches => sub {
-    my ($direction, $param, $remainder, $lat, $lon);
+    my ($direction, $param, $remainder);
 
-	# handle three word, forward geocode queries
+    # handle three word, forward geocode queries
     if (scalar @_ == 1){
         $remainder = lc shift;
         my $end = pop @{[split(/\./, $remainder)]}; #split string into list, cast into array, pop last element
@@ -34,10 +34,10 @@ handle matches => sub {
         $param     = "addr";
     }
 
-	# handle lat/lon, reverse geocode queries
+    # handle lat/lon, reverse geocode queries
     else {
-        $lat = shift;
-        $lon = shift;
+        my $lat = shift;
+        my $lon = shift;
         return if abs $lat > 90 || abs $lon > 90;
         $remainder = "$lat,$lon";
         $direction = "reverse";
