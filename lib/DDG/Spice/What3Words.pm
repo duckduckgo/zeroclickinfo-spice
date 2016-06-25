@@ -5,7 +5,7 @@ use Net::Domain::TLD qw(tld_exists);
 use strict;
 
 spice is_cached => 1;
-spice proxy_cache_valid => "200 1d"; # defaults to this automatically
+spice proxy_cache_valid => "200 1d";
 
 spice from => "([^/]+)/([^/]+)/([^/]+)";
 spice to => 'https://api.what3words.com/v2/$1?key={{ENV{DDG_SPICE_W3W_APIKEY}}}&$2=$3&callback={{callback}}';
@@ -15,6 +15,7 @@ my $coord_re = qr/[+-]?[0-9]+(?:\.\d{1,6})?/;
 
 # Handles queries like:
 # what3words | w3w | what three words word.word.word
+# word.word.word
 triggers query_lc => qr/^(?:$w3w_re)?(\p{L}{4,}+\.\p{L}{4,}+\.\p{L}{1,}+)$/i;
 
 # Handles queries like:
@@ -24,6 +25,7 @@ triggers query_lc => qr/^(?:$w3w_re)($coord_re), ?($coord_re)$/i;
 handle matches => sub {
     my ($direction, $param, $remainder, $lat, $lon);
 
+	# handle three word, forward geocode queries
     if (scalar @_ == 1){
         $remainder = lc shift;
         my $end = pop @{[split(/\./, $remainder)]}; #split string into list, cast into array, pop last element
@@ -31,6 +33,8 @@ handle matches => sub {
         $direction = "forward";
         $param     = "addr";
     }
+
+	# handle lat/lon, reverse geocode queries
     else {
         $lat = shift;
         $lon = shift;
