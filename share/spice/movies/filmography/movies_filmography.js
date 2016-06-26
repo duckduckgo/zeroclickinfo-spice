@@ -9,7 +9,7 @@
     var POSTER_URL = 'http://image.tmdb.org/t/p/w185';
     var MOVIE_URL = 'http://www.themoviedb.org/movie/';
 
-    env.ddg_spice_movies_cast = function(data) {
+    env.ddg_spice_movies_filmography = function(data) {
         // This isn't exactly pretty, but I can't think of any
         // more graceful way to handle this.
         var hasFailed = (
@@ -21,7 +21,7 @@
         var castId = data.results[0].id;
 
         if (hasFailed) {
-            return Spice.failed('movies_cast');
+            return Spice.failed('movies_filmography');
         }
 
         $.getJSON(DETAIL_ENDPOINT + castId, function(api_result) {
@@ -32,12 +32,12 @@
             );
 
             if (hasFailed) {
-                return Spice.failed('movies_cast');
+                return Spice.failed('movies_filmography');
             }
 
             DDG.require('moment.js', function() {
                 Spice.add({
-                    id: 'movies_cast',
+                    id: 'filmography',
                     name: 'Movies',
                     data: api_result.results,
                     meta: {
@@ -66,7 +66,7 @@
                         group: 'movies',
                         options: {
                             rating: true,
-                            buy: Spice.movies_cast.buy,
+                            buy: Spice.movies_filmography.buy,
                         }
                     }
                 });
