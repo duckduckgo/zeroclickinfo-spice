@@ -3,7 +3,7 @@ package DDG::Spice::Github;
 use strict;
 use DDG::Spice;
 
-spice to => 'https://api.github.com/search/repositories?q=$1&sort=updated&callback={{callback}}';
+spice to => 'https://api.github.com/search/repositories?q=$1&sort=stars&callback={{callback}}';
 
 spice proxy_cache_valid => '200 30d';
 
