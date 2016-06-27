@@ -1,4 +1,4 @@
-package DDG::Spice::Movies::Cast;
+package DDG::Spice::Movies::Filmography;
 
 use DDG::Spice;
 
@@ -6,7 +6,7 @@ spice to => 'https://api.themoviedb.org/3/search/person?query=$1&api_key={{ENV{D
 
 spice alt_to => {
     details => {
-        to => 'http://api.themoviedb.org/3/discover/movie?with_cast=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&sort_by=popularity.desc'
+        to => 'http://api.themoviedb.org/3/discover/movie?with_people=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&sort_by=popularity.desc'
     }
 };
 
@@ -24,7 +24,13 @@ my @nouns = (
 );
 my @triggers = ();
 foreach (@nouns) {
-    push @triggers, ($_ . " with", $_ . " starring", $_ . " featuring")
+    push @triggers, (
+        $_ . " with",
+        $_ . " starring",
+        $_ . " featuring",
+        $_ . " director",
+        $_ . " directed by"
+    )
 }
 
 triggers start => @triggers;
