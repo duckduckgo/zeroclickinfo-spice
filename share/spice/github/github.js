@@ -68,11 +68,13 @@
                             function(data){
                                 fatheads[key].image = data.Image;
                                 fatheads[key].abstract = data.Abstract;
-                            
-                                item.set({ 
-                                    description : fatheads[key].abstract, 
-                                    image: fatheads[key].image
-                                });
+
+                                if(fatheads[key].abstract){
+                                    item.set({ 
+                                        description : fatheads[key].abstract, 
+                                        image: fatheads[key].image
+                                    });
+                                }
                             });
                     }
                 }

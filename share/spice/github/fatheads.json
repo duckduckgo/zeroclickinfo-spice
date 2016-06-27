@@ -1,6 +1,6 @@
 {
     "jquery":       { "url": "1/jquery&ia=about" },
-    "react":        { "url": "1/react_javascript_library&ia=about" },
+    "react":        { "url": "?q=react+javascript+library&ia=about" },
     "opencv":       { "url": "1/opencv&ia=about" },
     "bootstrap":    { "url": "1/bootstrap_front-end_framework&ia=about" }
 }
