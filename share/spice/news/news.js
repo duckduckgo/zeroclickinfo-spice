@@ -92,6 +92,7 @@
             data: goodStories,
             ads: api_result.ads,
             meta: {
+		idField: 'url',
                 count: goodStories.length,
                 searchTerm: searchTerm,
                 itemType: 'Recent News',
