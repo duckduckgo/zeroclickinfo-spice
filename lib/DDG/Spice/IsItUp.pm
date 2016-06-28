@@ -3,39 +3,49 @@ package DDG::Spice::IsItUp;
 
 use strict;
 use DDG::Spice;
-use DDG::Util::SpiceConstants;
+use Domain::PublicSuffix;
+use Net::IDN::Encode qw(domain_to_ascii domain_to_unicode);
+use Net::Domain::TLD qw(tld_exists);
+use Data::Validate::IP qw(is_ipv4);
 
-triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working|online|status)\?*$/i;
+triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*$/i;
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
-my $regex_domain = qr/\.(@{[ DDG::Util::SpiceConstants::TLD_REGEX  ]})$/;
-my $regex_ipv4 = qr/^(?:\d{1,3}\.){3}\d{1,3}$/;
-
 handle matches => sub {
+
+    my ($domain, $ascii);
+    my $publicSuffix = Domain::PublicSuffix->new();
+
+    my $root_url = $_[1];
+
     if ($_[2]) {
-        my $root_url = $_[1];
-        my $domain = $_[2];
-        # return the domain and the root url if the domain is valid
-        if ($domain =~ $regex_domain){
-            return $root_url.$domain;
+        my $tld = $_[2];
+        $ascii = domain_to_ascii($root_url.$tld);
+        $domain = $publicSuffix->get_root_domain($ascii);
+
+        if(!$domain) {  #if $domain was undefined, the input url may be incorrect as a whole or only the TLD was not found
+            $domain = $root_url.$tld if tld_exists(substr $tld, 1);
         }
+        return unless $domain;
+        return domain_to_unicode($domain);
     }
     else {
-        return $_[1] if $_[1] =~ $regex_ipv4;
+        return $root_url if is_ipv4($root_url);
+
         # append .com only if "is" is in the query and there's no other domain given
         if ($_[0]) {
-            return if length($_[1]) < 5;
-            return $_[1] . '.com';
+            return if length($root_url) < 5;
+            return $root_url . '.com';
         }
         # otherwise just return without '.com' -- stops false positives from showing zci
         else {
             # check for domain name in the end
-            if ($_[1] =~ $regex_domain) {
-                return $2;
-            }
+            $domain = $publicSuffix->get_root_domain($root_url);
+            return if !$domain;
+            return domain_to_unicode($domain);
         }
     }
     return;

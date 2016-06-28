@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-.fa {
+.zci--experimentalia .fa {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
@@ -18,11 +18,11 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.fa-search:before { content: "\f002"; }
-.fa-github:before { content: "\f09b"; }
+.zci--experimentalia .fa-search:before { content: "\f002"; }
+.zci--experimentalia .fa-github:before { content: "\f09b"; }
 
-.tile--experimentalia .tx-clr--green,
-.tile--experimentalia .tx-clr--red-light {
+.zci--experimentalia .tile--experimentalia .tx-clr--green,
+.zci--experimentalia .tile--experimentalia .tx-clr--red-light {
     position: absolute;
     right: 0;
     bottom: -4px;

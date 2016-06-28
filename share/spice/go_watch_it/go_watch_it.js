@@ -1,6 +1,69 @@
 (function (env) {
     "use strict";
 
+    // Private functions, variables and helpers
+    var streaming_providers = {
+        "YouTube": 1,
+        "Google Play": 1,
+        "Disney Movies Anywhere": 1,
+        "Target Ticket": 1,
+        "Hulu": 1,
+        "Crackle": 1,
+        "Flixster": 1,
+        "Netflix": 1
+    };
+
+    var purchase_providers = {
+        "Best Buy": 1,
+        "Walmart": 1,
+        "Target": 1,
+        "Fandango": 1,
+        "Amazon": 1,
+        "Redbox": 1
+    };
+
+    // For retina screen return optimized images @2x.png
+    var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png");
+
+    var path = "assets/";
+
+    var skip_providers = {
+        // Movies on Demand
+        "10": 1,
+        // Filmmaker Direct Streaming
+        "46": 1,
+        // DirecTV
+        "113": 1
+    };
+
+    var provider_icons = {
+        "1": ['netflix', 'netflix'],
+        "2": ['netflix', 'netflix'],
+        "3": ['itunes', 'itunes-alt'],
+        "4": ['fandango', 'fandango'],
+        "5": ['vudu', 'vudu'],
+        "7": ['amazon', 'amazon-alt'],
+        "9": ['redbox', 'redbox'],
+        "12": ['youtube', 'youtube-alt'],
+        "13": ['sundance', 'sundance-alt'],
+        "14": ['hulu', 'hulu'],
+        "18": ['googleplay', 'googleplay-alt'],
+        "19": ['xboxvideo', 'xboxvideo'],
+        "20": ['sony', 'sony-alt'],
+        "21": ['hulu', 'hulu'],
+        "23": ['vhx', 'vhx-alt'],
+        "31": ['bestbuy', 'bestbuy'],
+        "32": ['walmart', 'walmart'],
+        "36": ['target', 'target'],
+        "37": ['targetticket', 'targetticket'],
+        "64": ['flixster', 'flixster'],
+        "65": ['crackle', 'crackle-alt'],
+        "76": ['disney', 'disney-alt']
+    };
+
+    var zero_re = /\$0\.00/;
+    var dollar_re = /\$/;
+
     env.ddg_spice_go_watch_it = function (api_result) {
         if (!api_result || api_result.error ||
             !DDG.getProperty(api_result, 'search.movies') ||
@@ -8,6 +71,10 @@
             api_result.search.movies.length === 0 && api_result.search.shows.length === 0) {
                 return Spice.failed('go_watch_it');
         }
+
+        // We use this variable to find duplicate Netflix items
+        // We'd want to merge them into one.
+        var foundNetflix = false;
 
         var watchable,
             fallbacks  = [],
@@ -56,17 +123,13 @@
             return Spice.failed("go_watch_it");
         }
 
-        // We use this variable to find duplicate Netflix items
-        // We'd want to merge them into one.
-        var foundNetflix = false;
-
         Spice.add({
             id: "go_watch_it",
             name: "Watch",
             data: watchable.availabilities,
             meta: {
                 sourceName: 'GoWatchIt',
-                sourceUrl: getUrl(watchable),
+                sourceUrl: 'https://gowatchit.com' + (watchable.url ? watchable.url : ""),
                 primaryText: 'Providers for ' + watchable.title + " (" + watchable.year + ")"
             },
             normalize: function (item) {
@@ -84,12 +147,11 @@
                 if (item.format_line === "DVD & Blu-ray") {
                     item.format_line = "DVD / Blu-ray";
                 }
-                
+
                 // If the provider is "Netflix Mail" Change buy_line and format_line
                 if (item.provider_format_name === "Netflix Mail" && item.category !== "online") {
                     item.format_line = "Available on Blu-ray / DVD";
                 }
-
 
                 // Only return a single Netflix item
                 if (item.provider_name === "Netflix") {
@@ -102,9 +164,9 @@
 
                 // Replace the icon if we can.
                 if (item.provider_format_id in provider_icons) {
-                    item.provider_format_logos = provider_icons[item.provider_format_id];
-                    item.provider_format_logos.light += append;
-                    item.provider_format_logos.dark += append;
+                    item.provider_format_logos_names = provider_icons[item.provider_format_id];
+                    item.provider_format_logos.dark = DDG.get_asset_path('go_watch_it', path + item.provider_format_logos_names[0]) + append;
+                    item.provider_format_logos.light = DDG.get_asset_path('go_watch_it', path + item.provider_format_logos_names[1]) + append;
                 } else {
                     return null;
                 }
@@ -125,176 +187,47 @@
         });
     };
 
-    // Private functions, variables and helpers
-
-    function getUrl(watchable) {
-        return 'http://gowatchit.com' + (watchable.url ? watchable.url : "");
-    }
-     var streaming_providers = {
-        "YouTube": 1,
-        "Google Play": 1,
-        "Disney Movies Anywhere": 1,
-        "Target Ticket": 1,
-        "Hulu": 1,
-        "Crackle": 1,
-        "Flixster": 1,
-        "Netflix": 1
-    };
-
-    var purchase_providers = {
-        "Best Buy": 1,
-        "Walmart": 1,
-        "Target": 1,
-        "Fandango": 1,
-        "Amazon": 1,
-        "Redbox": 1
-    };
-
-    // For retina screen return optimized images @2x.png
-    var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png"),
-        path = "assets/",
-        skip_providers = {
-            // Movies on Demand
-            10: 1,
-            // Filmmaker Direct Streaming
-            46: 1,
-            // DirecTV
-            113: 1
-        },
-        provider_icons = {
-            1: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'netflix'),
-                light: DDG.get_asset_path('go_watch_it', path + 'netflix')
-            },
-            2: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'netflix'),
-                light: DDG.get_asset_path('go_watch_it', path + 'netflix')
-            },
-            3: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'itunes'),
-                light: DDG.get_asset_path('go_watch_it', path + 'itunes-alt')
-            },
-            5: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'vudu'),
-                light: DDG.get_asset_path('go_watch_it', path + 'vudu')
-            },
-            7: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'amazon'),
-                light: DDG.get_asset_path('go_watch_it', path + 'amazon-alt')
-            },
-            12: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'youtube'),
-                light: DDG.get_asset_path('go_watch_it', path + 'youtube-alt')
-            },
-            13: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'sundance'),
-                light: DDG.get_asset_path('go_watch_it', path + 'sundance-alt')
-            },
-            18: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'googleplay'),
-                light: DDG.get_asset_path('go_watch_it', path + 'googleplay-alt')
-            },
-            19: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'xboxvideo'),
-                light: DDG.get_asset_path('go_watch_it', path + 'xboxvideo')
-            },
-            64: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'flixster'),
-                light: DDG.get_asset_path('go_watch_it', path + 'flixster')
-            },
-            20: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'sony'),
-                light: DDG.get_asset_path('go_watch_it', path + 'sony-alt')
-            },
-            76: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'disney'),
-                light: DDG.get_asset_path('go_watch_it', path + 'disney-alt')
-            },
-            21: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
-                light: DDG.get_asset_path('go_watch_it', path + 'hulu')
-            },
-            31: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'bestbuy'),
-                light: DDG.get_asset_path('go_watch_it', path + 'bestbuy')
-            },
-            32: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'walmart'),
-                light: DDG.get_asset_path('go_watch_it', path + 'walmart')
-            },
-            36: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'target'),
-                light: DDG.get_asset_path('go_watch_it', path + 'target')
-            },
-            37: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'targetticket'),
-                light: DDG.get_asset_path('go_watch_it', path + 'targetticket')
-            },
-            9: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'redbox'),
-                light: DDG.get_asset_path('go_watch_it', path + 'redbox')
-            },
-            65: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'crackle'),
-                light: DDG.get_asset_path('go_watch_it', path + 'crackle-alt')
-            },
-            4: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'fandango'),
-                light: DDG.get_asset_path('go_watch_it', path + 'fandango')
-            },
-            23: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'vhx'),
-                light: DDG.get_asset_path('go_watch_it', path + 'vhx-alt')
-            },
-            14: {
-                dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
-                light: DDG.get_asset_path('go_watch_it', path + 'hulu')
-            }
-        };
-
     // Display something even if we don't have any price
     Spice.registerHelper("gwi_fallbackText", function(options) {
-       var message = "Available";
-       var rent_re = /rent_own/;
-       var subscription_re = /subscription/;
-        
-       if(this.categories) {
-           this.categories.forEach(function(elem) {
+        var message = "Available";
+        var rent_re = /rent_own/;
+        var subscription_re = /subscription/;
+
+        if(this.categories) {
+            this.categories.forEach(function(elem) {
                 if(rent_re.test(elem)) {
                     message = 'Available for Purchase or Rent';
                 }
-               
-               if(subscription_re.test(elem)) {
-                   message = 'Available with Subscription';
-               }
-           });
-       }
-        
+                if(subscription_re.test(elem)) {
+                    message = 'Available with Subscription';
+                }
+            });
+        }
+
         // If the provider is in this hash, it means that they sell it 
         // but they don't have the actual price to display.
         if (this.provider_name in purchase_providers && this.buy_line === "") {
             message = "Available for Purchase";
         }
-        
+
         // If the provider is "Netflix Mail" Change buy_line and format_line
         if (this.provider_format_name === "Netflix Mail" && this.category !== "online") {
             message = "Available for Rent";
         }
-        
+
         // Fandango has its own suggested line
         if (this.provider_name === "Fandango") {
             message = this.suggested_line;
         }
-        
+
         // If the provider is in this hash, it means that they provide 
         // streaming if they don't buy or sell stuff.
         if (this.provider_name in streaming_providers && this.buy_line === "" && this.rent_line === "") {
             message = "Available for Streaming";
         }
-
         return message;
     });
-    
+
     // Display the footer properly and show something if all fails.
     Spice.registerHelper('gwi_footer', function(format_line) {
         if(!format_line) {
@@ -304,32 +237,29 @@
                     quality.push(this.formats[format].quality);
                 }
             }
-            
             if(quality.length > 0) {
                 format_line = "Available in " + quality.join(" / ");
             } else {
                 format_line = "Available";
             }
         }
-        
         return format_line;
     });
-    
+
     Spice.registerHelper("gwi_buyOrRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "" && !/\$0\.00/.test(buy_line) && /\$/.test(buy_line)) {
+        if (buy_line && buy_line !== "" && !zero_re.test(buy_line) && dollar_re.test(buy_line)) {
             this.rent_line = "";
-        } else if(rent_line && rent_line !== "" && !/\$0\.00/.test(rent_line) && /\$/.test(rent_line) && /\$/.test(rent_line)) {
-            this.buy_line = "";    
+        } else if(rent_line && rent_line !== "" && !zero_re.test(rent_line) && dollar_re.test(rent_line)) {
+            this.buy_line = "";
         } else {
             return options.inverse(this);
         }
-        
         return options.fn(this);
     });
 
     // Check to see if both buy_line and rent_line are present.
     Spice.registerHelper("gwi_ifHasBothBuyAndRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "" && rent_line && rent_line !== "" && !/\$0\.00/.test(buy_line) && !/\$0\.00/.test(rent_line) && /\$/.test(buy_line) && /\$/.test(rent_line)) {
+        if (buy_line && buy_line !== "" && rent_line && rent_line !== "" && !zero_re.test(buy_line) && !zero_re.test(rent_line) && dollar_re.test(buy_line) && dollar_re.test(rent_line)) {
             return options.fn(this);
         } else {
             return options.inverse(this);
@@ -338,7 +268,7 @@
 
     // Grab dollar amount from 'Rent from $X.XX' string.
     Spice.registerHelper("gwi_price", function (line, options) {
-        if(/\$/.test(line)) {
+        if(dollar_re.test(line)) {
             var strings = line.split("$");
             return "$" + strings[strings.length - 1];
         }
