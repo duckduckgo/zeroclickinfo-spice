@@ -11,8 +11,15 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'https://hex.pm/api/packages/$1';
 
-triggers startend => 'hex', 'elixir';
-triggers start => 'hex install', 'elixir install';
+triggers startend => 'hex';
+triggers start => [
+  'hex install',
+  'hex package',
+  'hex library',
+  'elixir install',
+  'elixir package',
+  'elixir library'
+];
 
 handle remainder => sub {
     return $_ if $_;

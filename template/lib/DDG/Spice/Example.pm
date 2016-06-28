@@ -6,6 +6,7 @@ package DDG::Spice::<: $ia_package_name :>;
 # to instant answer development
 
 use DDG::Spice;
+use strict;
 
 # Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
 spice is_cached => 1;
