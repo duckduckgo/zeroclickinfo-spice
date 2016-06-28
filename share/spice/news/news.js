@@ -91,6 +91,7 @@
             name: 'News',
             data: goodStories,
             meta: {
+		idField: 'url',
                 count: goodStories.length,
                 searchTerm: searchTerm,
                 itemType: 'Recent News',
