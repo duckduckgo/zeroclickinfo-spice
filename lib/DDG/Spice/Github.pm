@@ -5,7 +5,7 @@ use DDG::Spice;
 
 spice to => 'https://api.github.com/search/repositories?q=$1&sort=stars&callback={{callback}}';
 
-spice proxy_cache_valid => '200 30d';
+spice proxy_cache_valid => '200 1d';
 
 triggers start => '///***never trigger***///';
 
