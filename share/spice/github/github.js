@@ -44,8 +44,8 @@
                         rerender: [ 'description', 'image' ]
                     },
                     templates: {
-                            group: 'info',
-                            item_detail: false,
+                        detail: 'basic_info_detail',
+                        item: 'text_item',
                             options: {
                                 moreAt: true,
                                 footer: Spice.github.footer
@@ -61,10 +61,11 @@
                     },
                     normalize: function (item) {
                         var key = item.full_name.replace(/^.*\//, '');
+                        var lastUpdate = moment(item.pushed_at).fromNow();
                         var infoboxData = [
                             {label: "Clone URL", value: item.clone_url},
                             {label: "SSH URL", value: item.ssh_url},
-                            {label: "Last Update", value: get_days(item.pushed_at)},
+                            {label: "Last Update", value: lastUpdate},
                             {label: "Stars", value:  item.stargazers_count},
                             {label: "Forks", value: item.forks }, 
                             {label: "Open Issues", value: item.open_issues},
@@ -75,7 +76,8 @@
                             title: key,
                             url: item.html_url,
                             imageTile: true,
-                            infoboxData: infoboxData
+                            infoboxData: infoboxData,
+                            lastUpdate: lastUpdate
                         }
 
                     },
@@ -104,23 +106,6 @@
                         }
                     }
                 });
-                
-                function get_days(date) {
-                    var last_update = new Date(date),
-                    now = new Date(),
-                    elapsed_days = days(now - last_update);
-                    
-                    if (elapsed_days <= 1){
-                        return "Today";
-                    }
-                    else{
-                        return Math.ceil(elapsed_days) + " days ago";
-                    }
-                }
-                
-                function days(ms) {
-                    return ms/84400000;
-                }
             });
         });
     }
