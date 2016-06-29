@@ -11,6 +11,17 @@
         if (!results) {
             return Spice.failed('github');
         }
+        
+        var script = $('[src*="/js/spice/github/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/github\/([^\/]+)/)[1],
+            decodedQuery = decodeURIComponent(query);
+        
+        if (/language:".*?"/.test(unescape(query))) {
+            var itemType = "Git Repos (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
+        } else {
+           var itemType = "Git Repos";
+        }
 
         // Only accept results within 95% of the top scoring result
         // this allows for some disambiguation between popular forks
@@ -29,6 +40,13 @@
         }
 
         var templateObj = {};
+        var metaObj = { 
+                sourceName: 'GitHub',
+                searchTerm: decodedQuery,
+                itemType: itemType,
+                rerender: [ 'description', 'image' ]
+            };
+
         if(top_results.length > 1){
             templateObj = { 
                 group: 'text',
@@ -38,14 +56,16 @@
                     footer: Spice.github.footer
                 },
                 variants: {
-                    tile: 'basic4'
+                    tile: 'basic4',
                 }
             };
+            metaObj.sourceUrl = "https://github.com/search?q=" + encodeURIComponent(query);
         }
         else {
             templateObj = {
-                group: "info"
+                group: "info",
             };
+            metaObj.sourceUrl = "https://github.com/" + top_results[0].full_name;
         }
 
         $.getJSON(DDG.get_asset_path('github', 'fatheads.json'), function (data) { 
@@ -58,11 +78,7 @@
                     id: "github",
                     name: "Software",
                     data: top_results,
-                    meta: {
-                        sourceUrl: 'https://www.github.com/' + results.full_name,
-                        sourceName: 'GitHub',
-                        rerender: [ 'description', 'image' ]
-                    },
+                    meta: metaObj,
                     templates: templateObj,
                     relevancy: {
                         primary: [
