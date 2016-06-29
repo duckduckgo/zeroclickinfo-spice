@@ -11,5 +11,7 @@
     "meteor":       { "url": "?q=meteor+framework&ia=about" },
     "swift":        { "url": "1/swift_(programming language)"},
     "rails":        { "url": "1/ruby_on_rails" },
-    "ruby":        { "url": "1/ruby_(programming language)" }
+    "ruby":        { "url": "1/ruby_(programming language)" },
+    "atom":         { "url": "1/atom_(text editor)" },
+    "moment":       { "url": "1/moment.js" }
 }
