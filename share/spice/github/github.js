@@ -28,6 +28,26 @@
             }
         }
 
+        var templateObj = {};
+        if(top_results.length > 1){
+            templateObj = { 
+                group: 'text',
+                detail: false,
+                item_detail: false,
+                options : {
+                    footer: Spice.github.footer
+                },
+                variants: {
+                    tile: 'basic4'
+                }
+            };
+        }
+        else {
+            templateObj = {
+                group: "info"
+            };
+        }
+
         $.getJSON(DDG.get_asset_path('github', 'fatheads.json'), function (data) { 
             
             var fatheads = data;
@@ -43,17 +63,7 @@
                         sourceName: 'GitHub',
                         rerender: [ 'description', 'image' ]
                     },
-                    templates: {
-                        detail: 'basic_info_detail',
-                        item: 'text_item',
-                            options: {
-                                moreAt: true,
-                                footer: Spice.github.footer
-                            },
-                            variants: {
-                                tile: 'basic4'
-                            }
-                        },
+                    templates: templateObj,
                     relevancy: {
                         primary: [
                             { required: 'description' }
@@ -72,12 +82,17 @@
                             {label: "Default Branch", value: item.default_branch} 
                         ];
 
+                        var subtitle;
+                        if(top_results.length > 1){
+                            subtitle = item.full_name;
+                        }
                         return {
                             title: key,
                             url: item.html_url,
                             imageTile: true,
                             infoboxData: infoboxData,
-                            lastUpdate: lastUpdate
+                            lastUpdate: lastUpdate,
+                            subtitle: subtitle
                         }
 
                     },
