@@ -1,0 +1,28 @@
+/* Wrappers */
+
+.zci.zci--maps_stay.is-active,
+.zci.zci--maps_stay .cw,
+.zci--maps_stay .zci__main,
+.zci--maps_stay .zci__body,
+.is-mobile .zci--maps_stay .zci__body{
+    padding: 0;
+}
+
+/* Main wrapper */
+
+.zci--maps_stay .cw,
+.zci--maps_stay .zci__main{
+    max-width: none;
+}
+
+/* Iframe */
+
+
+.zci--maps_stay .zci__body,
+.zci--maps_stay .zci__body iframe{
+    display: block;
+    max-height: 400px;
+}
+.is-mobile .zci--maps_stay .zci__body iframe{
+    max-height: calc(100vh - 97px);
+}
