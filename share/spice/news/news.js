@@ -51,8 +51,6 @@
         // Check if the title is relevant to the query.
         var goodStories = [];
         for(var i = 0, story; story = api_result.results[i]; i++) {
-        // strip bold from story titles.
-            story.title = story.title.replace(/<b>|<\/b>|:/g, "");
             if (DDG.isRelevant(story.title, skip)) {
                 setSourceOnStory(story);
                 story.sortableDate = parseInt(story.date || 0);
