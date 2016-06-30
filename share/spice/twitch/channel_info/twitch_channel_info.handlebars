@@ -1,0 +1,26 @@
+<h1 class="c-info__title  has-sub">
+    <a href="https://www.twitch.tv/{{name}}">
+        {{display_name}}
+    </a>
+    <span class="c-info__title__sub">
+        {{#if game }}
+        playing 
+        <a href="https://www.twitch.tv/directory/game/{{game}}" title="{{game}}">
+            {{game}}
+        </a>
+        {{/if}}
+    </span>
+</h1>
+<div class="c-info__content ">
+    {{status}}
+    <div class="tx-clr--grey channel__stats">
+        <span>
+            <i class="ddgsi ddgsi-eye"></i> 
+            {{views}} views
+        </span>
+        <span>
+            <i class="ddgsi ddgsi-heart"></i>
+            {{followers }} followers
+        </span>
+    </div>
+</div>
