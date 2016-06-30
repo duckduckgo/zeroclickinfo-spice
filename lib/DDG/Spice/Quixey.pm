@@ -41,7 +41,7 @@ triggers any => @triggers;
 
 spice from => '([^/]+)/([^/]+)/?([^/]+)?/?([^/]+)?';
 
-spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&max_cents=$3&custom_id=$4&limit=50&skip=0&format=json';
+spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&max_cents=$3&custom_id=$4&limit=20&skip=0&format=json';
 
 spice proxy_ssl_session_reuse => "off";
 
