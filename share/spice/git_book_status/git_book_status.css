@@ -14,11 +14,3 @@
 .zci--git_book_status .gbstatus--major {
     color: #de5833;
 }
-
-.zci--git_book_status .gbstatus--message {
-    font-size: 1em;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0.75em;
-}
