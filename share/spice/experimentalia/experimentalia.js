@@ -6,7 +6,7 @@
           return Spice.failed('experimentalia');
         }
 
-        api_result = $.extend(api_result['spice'], api_result['goodies']);
+        api_result = $.extend(api_result['spice'], api_result['goodies'], api_result['fathead']);
         var results = [];
 
         for(var property in api_result){
