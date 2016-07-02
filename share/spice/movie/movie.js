@@ -32,6 +32,7 @@
             title: item.name,
             altSubtitle: item.characters && 'as ' + item.characters.join(", "),
             image: null,
+            url: null,
         }
     }
 
@@ -62,8 +63,9 @@
         $.ajaxSetup({cache: true});
 
         $.getJSON("/js/spice/cast_image/" + item.name, function (data) {
-            var path = data && data.results && data.results.length && data.results[0].profile_path,
-                image = path && "https://image.tmdb.org/t/p/w185/" + path;
+            var result = data && data.results && data.results.length && data.results[0],
+                image = result.profile_path && "https://image.tmdb.org/t/p/w185/" + result.profile_path,
+                url = result.id && result.name && "https://www.themoviedb.org/person/" + result.id + result.name.split(" ").join("-");
 
             item.set({
                 // fallback to lo-res:
@@ -72,7 +74,8 @@
                 // don't fallback in detail pane because
                 // it looks silly with the tiny image:
                 img: image,
-                img_m: image
+                img_m: image,
+                url: url
             });
         });
     }
@@ -194,7 +197,8 @@
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'https://www.rottentomatoes.com/search/?search=' + query,
                 rerender: [
-                    'image'
+                    'image',
+                    'url'
                 ]
             },
             normalize: function (item) {
