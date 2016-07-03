@@ -10,7 +10,7 @@ spice is_cached => 1;
 spice proxy_cache_valid => "200 30d";
 spice wrap_jsonp_callback => 0;
 
-spice from => '([^/]+)/([^/]+)/([^/]+)';
+spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
 
 my @triggers  = ('when is', 'what day is');
@@ -37,10 +37,12 @@ handle remainder_lc => sub {
     my $chosenYear;
     my $chosenCountry;
     my $chosenHoliday;
+    my $userSpecifiedYear = 0;
 
     $query =~ s/$in(?<year>$year)//;
     if ($+{year}) {
         $chosenYear = $+{year};
+        $userSpecifiedYear = 1;
     } else {
         $chosenYear = $defaultYear;
     }
@@ -74,7 +76,7 @@ handle remainder_lc => sub {
     # These are the min/max years available from the API (as of Feb 2016, API version 2)
     return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
     
-    return $chosenCountry, $chosenHoliday, $chosenYear; 
+    return $chosenCountry, $chosenHoliday, $chosenYear, $userSpecifiedYear; 
 };
 
 1;
