@@ -20,12 +20,12 @@
             id: "near_earth_objects",
             name: "Answer",
             data: neo_list,
+            signal: 'high',
             
             meta: {
                 sourceName: 'NASA',
                 sourceUrl: 'http://neo.jpl.nasa.gov/',
                 primaryText: 'Showing ' + neo_list.length + result_text,
-                signal: 'high'
             },
             
             sort_fields: {
