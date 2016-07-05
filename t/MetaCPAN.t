@@ -16,7 +16,7 @@ ddg_spice_test(
 sub create_tests {
     my $lib      = shift;
     my $call     = shift;
-    my @triggers = ( 'cpan', 'cpanm', 'meta cpan', 'metacpan', 'mcpan' );
+    my @triggers = ( 'cpan', 'cpanm', 'meta cpan', 'metacpan', 'mcpan', 'perl dist', 'perl module', 'perl lib', 'perl library', 'perl distribution' );
     my $caller   = 'DDG::Spice::MetaCPAN';
     my @tests;
 
