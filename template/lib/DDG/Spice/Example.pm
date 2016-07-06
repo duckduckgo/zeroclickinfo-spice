@@ -7,6 +7,7 @@ package DDG::Spice::<: $ia_package_name :>;
 
 use DDG::Spice;
 use strict;
+use warnings;
 
 # Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
 spice is_cached => 1;
