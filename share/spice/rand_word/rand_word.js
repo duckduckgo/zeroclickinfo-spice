@@ -1,6 +1,6 @@
 (function(env) {
     "use strict";
-    env.ddg_spice_rand_word_data = function(api_result) {
+    env.ddg_spice_rand_word = function(api_result) {
         if (!api_result || api_result.length === 0) {
             return Spice.failed('rand_word');
         }
@@ -26,7 +26,7 @@
             templates: {
                 group: 'list',
                 options: {
-                    list_content: Spice.rand_word_data.content,
+                    list_content: Spice.rand_word.content,
                     moreAt: true
                 }
             }
@@ -63,6 +63,6 @@
 
     function get_definition(word) {
 
-        return $.getJSON("/js/spice/rand_word/fetch_id/" + word);
+        return $.getJSON("/js/spice/rand_word_fetch_id/" + word);
     }
 }(this));

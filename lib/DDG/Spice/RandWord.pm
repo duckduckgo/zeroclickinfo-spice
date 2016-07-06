@@ -1,4 +1,4 @@
-package DDG::Spice::RandWord::data;
+package DDG::Spice::RandWord;
 # ABSTRACT: Shows a random word
 
 use strict;
@@ -12,7 +12,7 @@ spice proxy_cache_valid => "418 1d";
 triggers any => "random word", "random words";
 
 spice alt_to => {
-	fetch_id => {
+	rand_word_fetch_id => {
 		to => 'http://api.wordnik.com:80/v4/word.json/$1/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}',
 	}
 };
