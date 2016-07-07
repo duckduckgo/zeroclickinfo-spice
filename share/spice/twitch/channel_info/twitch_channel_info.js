@@ -12,6 +12,8 @@
         }
         
         var name = api_result.name.trim().toLowerCase();
+        var created_at = new Date(api_result.created_at);
+        
         
         // Render the response
         Spice.add({
@@ -19,7 +21,7 @@
             name: "Streaming",
             data: api_result,
             meta: {
-                sourceName: "Twitch",
+                sourceName: "Twitch.tv",
                 sourceUrl: BASE + name,
                 sourceIconUrl: BASE + 'favicon.ico'
             },
@@ -41,6 +43,10 @@
                     infoboxData: [
                         {
                             heading: 'Channel info'
+                        },
+                        {
+                            label: 'Created at',
+                            value: created_at.toISOString().slice(0, 10)
                         },
                         {
                             label: 'Followers',
