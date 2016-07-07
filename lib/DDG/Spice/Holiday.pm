@@ -47,7 +47,7 @@ handle remainder_lc => sub {
         $chosenYear = $defaultYear;
     }
 
-    $query =~ s/$inThe(?<country>$country)//;
+    $query =~ s/$inThe(?<country>$country)$//;
     if ($+{country}) {
         $chosenCountry = $+{country};
     } else {
@@ -59,9 +59,9 @@ handle remainder_lc => sub {
     my $holidayFile = country2code($chosenCountry) . ".hols";
     if (-f "share/spice/holiday/" . $holidayFile) {    
         $holidays = join('|', share($holidayFile)->slurp(chomp => 1));
-    } else {        
+    } else {
         return; # Unknown country
-    }    
+    }
 
     $query =~ s/(?<holiday>$holidays)//;
     if ($+{holiday}) {
