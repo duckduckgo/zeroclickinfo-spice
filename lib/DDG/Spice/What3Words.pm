@@ -10,6 +10,12 @@ spice proxy_cache_valid => "200 1d";
 spice from => "([^/]+)/([^/]+)/([^/]+)";
 spice to => 'https://api.what3words.com/v2/$1?key={{ENV{DDG_SPICE_W3W_APIKEY}}}&$2=$3&callback={{callback}}';
 
+spice alt_to => {
+    what3words_arcgis => {
+        to => 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=$1&f=json'
+    }
+};
+
 my $w3w_re   = qr/(?:(?:what ?(?:3|three) ?words|w3w)\s)/;
 my $coord_re = qr/[+-]?[0-9]+(?:\.\d{1,6})?/;
 
