@@ -7,7 +7,7 @@
         var images = {};
 
         $.each(imagesets, function(){
-            if (!is_mobile && this.large_image && this.medium_image){
+            if (!DDG.device.isMobile && this.large_image && this.medium_image){
                 images.large  = DDG.toHTTP(this.large_image.url);
                 images.medium = DDG.toHTTP(this.medium_image.url);
                 return false;

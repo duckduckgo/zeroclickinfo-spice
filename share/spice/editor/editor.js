@@ -1,7 +1,7 @@
 (function(env){
     "use strict";
 
-    if (is_mobile) {
+    if (DDG.device.isMobile) {
         return Spice.failed('editor');
     }
 

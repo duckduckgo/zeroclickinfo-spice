@@ -102,7 +102,7 @@
                 }
             });
             
-            if (is_mobile) {
+            if (DDG.device.isMobile) {
                 $('.zci--xkcd .c-base__sub .sep').first().replaceWith("<br>");
             }
         });

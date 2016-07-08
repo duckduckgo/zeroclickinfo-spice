@@ -80,7 +80,7 @@ var ddg_spice_dictionary = {
                 // otherwise the loading of the audio resources is deferred until the user clicks
                 // the button and loading things and waiting for them to load takes to long and
                 // the mobile browsers won't let us auto-play the audio after that:
-                if (is_mobile_device) {
+                if (DDG.device.isMobileDevice) {
                     DDG.require('audio', function(){});
                 }
             }
