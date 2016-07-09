@@ -22,6 +22,12 @@ handle remainder_lc => sub {
     my $query = $_;
     return unless $query;
 
+    # Sanitize the query by replacing non-alphanumeric characters, eg: 
+    #   "st. patricks day" -> "st patricks day"
+    #   "eid al-fitr" -> "eid al fitr"
+    $query =~ s/[^\w\s\-]//;
+    $query =~ s/-/ /;
+
     # Current year and users location are the defaults unless otherwise specified by the query
     my $defaultYear = (localtime(time))[5] + 1900;
     my $defaultCountry = $loc->country_name;
