@@ -31,22 +31,42 @@ ddg_spice_test(
         caller => 'DDG::Spice::Holiday'
     ),
     'when is christmas day 2016' => test_spice(
-        '/js/spice/holiday/United%20States/christmas%20day/2016/1',
+        "/js/spice/holiday/United%20States/christmas%20day/2016/1",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
     'when is easter sunday 2017' => test_spice(
-        '/js/spice/holiday/United%20States/easter%20sunday/2017/1',
+        "/js/spice/holiday/United%20States/easter%20sunday/2017/1",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
     'when is fathers day 2015 in the usa' => test_spice(
-        '/js/spice/holiday/usa/fathers%20day/2015/1',
+        "/js/spice/holiday/usa/fathers%20day/2015/1",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
     'when is fathers day 2015 in the us' => test_spice(
-        '/js/spice/holiday/us/fathers%20day/2015/1',
+        "/js/spice/holiday/us/fathers%20day/2015/1",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'when is eid al-fitr 2017 in the uk' => test_spice(
+        "/js/spice/holiday/uk/eid%20al%20fitr/2017/1",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'when is eid al fitr 2017 in the uk' => test_spice(
+        "/js/spice/holiday/uk/eid%20al%20fitr/2017/1",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'when is st. patricks day' => test_spice(
+        "/js/spice/holiday/United%20States/st%20patricks%20day/$currentYear/0",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'when is st patricks day' => test_spice(
+        "/js/spice/holiday/United%20States/st%20patricks%20day/$currentYear/0",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
