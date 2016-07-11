@@ -47,7 +47,7 @@
             name: 'Answer',
             data: result,
             meta: {
-                sourceURL: 'https://searchcode.com/?q=' + query,
+                sourceUrl: 'https://searchcode.com/?q=' + query,
                 sourceName: 'search[code]',
             },
             normalize: function(item) {
