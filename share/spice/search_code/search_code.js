@@ -48,7 +48,7 @@
             data: result,
             meta: {
                 sourceUrl: 'https://searchcode.com/?q=' + query,
-                sourceName: 'search[code]',
+                sourceName: 'searchcode',
             },
             normalize: function(item) {
                 var subtitleArray = [];
