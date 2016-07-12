@@ -44,7 +44,7 @@ handle matches => sub {
     else {
         my $lat = shift;
         my $lon = shift;
-        return if abs $lat > 90 || abs $lon > 90;
+        return if abs $lat > 90 || abs $lon > 180;
         $remainder = "$lat,$lon";
         $direction = "reverse";
         $param     = "coords";
