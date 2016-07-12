@@ -12,7 +12,7 @@ spice to => 'https://api.what3words.com/v2/$1?key={{ENV{DDG_SPICE_W3W_APIKEY}}}&
 
 spice alt_to => {
     what3words_arcgis => {
-        to => 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=$1&distance=100000&f=json'
+        to => 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=$1&distance=5000&f=json'
     }
 };
 
