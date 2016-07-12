@@ -7,48 +7,71 @@
         }
 
         var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
-        $.getJSON('/js/spice/what3words_arcgis/' + location, function(data) {
-            DDG.require('maps', function () {
+        DDG.require('maps', function () {
 
-                var address_string;
+            // Call ArcGIS API to get City + Country for location
+            $.getJSON('/js/spice/what3words_arcgis/' + location)
+                .done( function(data) {
+                    if (data && data.address){
+                        var address = [],
+                            address_string;
 
-                if (data && data.address){
-                    var address = [data.address.City];
-                    if (data.address.Region !== data.address.City) {
-                        address.push(data.address.Region);
-                    }
-                    address.push( getCountryName(data.address.CountryCode) );
-                    address_string = "near " + address.join(", ");
-                }
-
-                Spice.add({
-                    id: "what3words",
-                    name: "Map",
-                    data: {
-                        name: api_result.words,
-                        lat: api_result.geometry.lat,
-                        lon: api_result.geometry.lng,
-                        displayLatLon: api_result.geometry.lat + ", " + api_result.geometry.lng,
-                        address: address_string
-                    },
-                    model: 'Place',
-                    view: 'Map',
-                    meta: {
-                        zoomLevel: 15,
-                        sourceName: "What3Words",
-                        sourceUrl: api_result.map
-                    },
-                    templates: {
-                        group: 'map',
-                        options: {
-                            moreAt: true
+                        // ArcGIS doesn't always have a City, Region or Country available
+                        // e.g. "homing.udder.zooms"
+                        if (data.address.City){
+                            address.push(data.address.Region);
                         }
+                        // Skip Region if identical to City
+                        if (data.address.Region !== data.address.City) {
+                            address.push(data.address.Region);
+                        }
+                        if (data.address.CountryCode){
+                            address.push( getCountryName(data.address.CountryCode) );
+                        }
+                        if (address.length) {
+                            address_string = "near " + address.join(", ");
+                        }
+
+                        display(api_result, address_string);
                     }
+                })
+
+                // Gracefully handle ArcGIS API request timeout
+                // e.g. "homing.udder.zooms"
+                .fail(function(){
+                    display(api_result, null);
                 });
-            });
         });
     };
 
+    function display (api_result, address_string) {
+        Spice.add({
+            id: "what3words",
+            name: "Map",
+            data: {
+                name: api_result.words,
+                lat: api_result.geometry.lat,
+                lon: api_result.geometry.lng,
+                displayLatLon: api_result.geometry.lat + ", " + api_result.geometry.lng,
+                address: address_string
+            },
+            model: 'Place',
+            view: 'Map',
+            meta: {
+                zoomLevel: 15,
+                sourceName: "What3Words",
+                sourceUrl: api_result.map
+            },
+            templates: {
+                group: 'map',
+                options: {
+                    moreAt: true
+                }
+            }
+        });
+    }
+
+    // Get full country name for given ISO-3166 code
     function getCountryName (code) {
         return country_map[code] || "";
     }
