@@ -6,6 +6,23 @@
     background: transparent no-repeat;
 }
 
+.zci--movie .tile.movie__cast {
+    width: 13em;
+}
+
+.zci--movie .tile__media.movie__cast--image {
+    height: 17em;
+}
+
+.zci--movie .tile__title {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.zci--movie .tile__title .tile__title__sub {
+    text-transform: none;
+}
+
 .zci--movie .c-detail__title {
     padding-bottom: 0;
 }

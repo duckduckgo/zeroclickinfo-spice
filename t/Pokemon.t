@@ -26,7 +26,18 @@ ddg_spice_test(
     ),
     'bulbasaur pokemon stats' => undef,
     'pokemon movie release date' => undef,
-    'how to catch every pokemon', => undef
+    'how to catch every pokemon' => undef,
+    'pokemon sun and moon' => undef,
+    'pokemon showdown' => undef,
+    'pokemon go' => undef,
+    'pokemon pictures' => undef,
+    'pokemon tower defense' => undef,
+    'pokemon game' => undef,
+    'pokemon movie' => undef,
+    'showdown pokemon' => undef,
+    'movie pokemon' => undef,
+    'game pokemon' => undef,
+    'pictures pokemon' => undef
 );
 
 alt_to_test('DDG::Spice::Pokemon::Data', ['description']);
