@@ -18,7 +18,7 @@
                     // ArcGIS doesn't always have a City, Region or Country available
                     // e.g. "homing.udder.zooms"
                     if (data.address.City){
-                        address.push(data.address.Region);
+                        address.push(data.address.City);
                     }
                     // Skip Region if identical to City
                     if (data.address.Region !== data.address.City) {
