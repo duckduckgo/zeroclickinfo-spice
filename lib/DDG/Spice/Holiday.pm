@@ -25,6 +25,7 @@ handle remainder_lc => sub {
     # Sanitize the query by replacing non-alphanumeric characters, eg: 
     #   "st. patricks day" -> "st patricks day"
     #   "eid al-fitr" -> "eid al fitr"
+    #   "father's day" -> "fathers day"
     $query =~ s/[^\w\s\-]//;
     $query =~ s/-/ /;
 
