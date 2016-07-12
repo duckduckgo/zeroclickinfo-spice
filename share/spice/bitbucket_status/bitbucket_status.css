@@ -1,5 +1,4 @@
 .zci--bitbucket_status .bbstatus--header {
-    font-size: 1.5em;
     margin-bottom: 0;
     padding-bottom: 0;
 }
@@ -14,12 +13,4 @@
 
 .zci--bitbucket_status .bbstatus--major {
     color: #de5833;
-}
-
-.zci--bitbucket_status .bbstatus--message {
-    font-size: 1em;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0.75em;
 }

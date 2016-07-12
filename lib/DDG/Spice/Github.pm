@@ -15,7 +15,7 @@ my $langs = join("|", map(quotemeta, @triggers));
 
 spice to => 'https://api.github.com/search/repositories?q=$1&sort=stars&callback={{callback}}';
 
-spice proxy_cache_valid => '200 30d';
+spice proxy_cache_valid => '200 1d';
 
 handle query_lc => sub {
     s/^github\s*|\s+github$//;
@@ -39,10 +39,6 @@ handle query_lc => sub {
         # Github. You specify language as a part of the raw query string
         # passed to the api like on the web form interface.
         return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
-    } else {
-        return $query;
     }
-
-    return;
 };
 1;

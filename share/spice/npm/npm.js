@@ -85,7 +85,11 @@
                 group: 'text',
                 options: {
                     content: Spice.npm.content,
-                    moreAt: true
+                    moreAt: true,
+                    moreText: {
+                        href: 'https://tonicdev.com/npm/' + api_result.name,
+                        text: 'Test ' + api_result.name + ' in your browser'
+                    }
                 }
             }
         });

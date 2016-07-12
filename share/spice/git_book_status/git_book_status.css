@@ -1,0 +1,16 @@
+.zci--git_book_status .gbstatus--header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.zci--git_book_status .gbstatus--good {
+    color: #4b9e4d;
+}
+
+.zci--git_book_status .gbstatus--minor {
+    color: #f1a031;
+}
+
+.zci--git_book_status .gbstatus--major {
+    color: #de5833;
+}
