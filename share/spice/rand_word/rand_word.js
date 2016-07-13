@@ -32,37 +32,37 @@
             }
         };
         if (list_of_list[0].length == 1) {
-            get_definition(first.word).done(function(api_result) {
-                var first = api_result[0];
+            $.getJSON("/js/spice/rand_word_fetch_id/" + first.word, function(data) {
+                var first = data[0];
 
-                spiceObj.data = {
-                    title: "Random Word",
-                    word: first.word,
-                    definition: first.text
-                };
-                spiceObj.templates = {
-                    group: 'text',
+                $.extend(spiceObj, {
 
-                };
-                spiceObj.normalize = function(item) {
+                    data: {
+                        title: "Random Word",
+                        word: first.word,
+                        definition: first.text
+                    },
+                    templates: {
+                        group: 'text',
 
-                    return {
-                        title: 'Random Word',
-                        subtitle: { href:"http://wordnik.com/words/"+(item.word), text: item.word },
-                        description: item.definition,
+                    },
+                    normalize: function(item) {
+
+                        return {
+                            title: 'Random Word',
+                            subtitle: {
+                                href: "http://wordnik.com/words/" + (item.word),
+                                text: item.word
+                            },
+                            description: item.definition,
+                        }
                     }
-                }
+                });
 
                 Spice.add(spiceObj);
             });
         } else {
-
             Spice.add(spiceObj);
         }
-    }
-
-    function get_definition(word) {
-
-        return $.getJSON("/js/spice/rand_word_fetch_id/" + word);
     }
 }(this));
