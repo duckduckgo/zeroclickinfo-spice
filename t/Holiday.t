@@ -4,12 +4,13 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
+use DDG::Test::Location;
 use POSIX qw(strftime);
 
 my $currentYear = (localtime(time))[5] + 1900;
 
 ddg_spice_test(
-    [qw(DDG::Spice::Holiday)],
+    [qw(DDG::Spice::Holiday)],    
     'when is christmas day' => test_spice(
         "/js/spice/holiday/United%20States/christmas%20day/$currentYear/0",
         call_type => 'include',
@@ -69,21 +70,41 @@ ddg_spice_test(
         "/js/spice/holiday/United%20States/st%20patricks%20day/$currentYear/0",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
+    ),    
+    DDG::Request->new(
+        query_raw => "when is fathers day",
+        location => test_location("au")
+    ) => test_spice(
+        "/js/spice/holiday/Australia/fathers%20day/$currentYear/0",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
     ),
-
-    # For some reason the API is picky about holiday names that end in a quote.
+    DDG::Request->new(
+        query_raw => "when is fathers day 2019",
+        location => test_location("au")
+    ) => test_spice(
+        "/js/spice/holiday/Australia/fathers%20day/2019/1",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    
+    'when is day' => undef,
+    'when is easter 17' => undef,
+    'when is a day' => undef,
+    'when is california primary' => undef,
+    'when is the june primary' => undef,
+    'when is fathers day foo' => undef,
+    'when is fathers daytime television' => undef,    
+    'when is fathers day in theusa' => undef,
+    'qwhen is fathers day' => undef,
+    
+    # This test fails because the API is picky about holiday names that end in a quote.
     #  ie: "presidents' day" returns a result whereas "presidents day" does not...
     #    'when is presidents day in us' => test_spice(
     #        "/js/spice/holiday/United%20States/presidents%20day/$currentYear/0",
     #        call_type => 'include',
     #        caller => 'DDG::Spice::Holiday'
     #    ),
-
-    'when is day' => undef,
-    'when is easter 17' => undef,
-    'when is a day' => undef,
-    'when is california primary' => undef,
-    'when is the june primary' => undef
 );
 
 done_testing;
