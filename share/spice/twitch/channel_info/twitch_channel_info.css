@@ -1,6 +1,0 @@
-/* Push channel info to new line */
-.zci--twitch_channel_info .c-info__title__sub{
-    display: block;
-    padding-left: 0;
-    text-transform: none;
-}
