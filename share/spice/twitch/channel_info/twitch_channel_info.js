@@ -13,31 +13,27 @@
         
         var name = api_result.name.trim().toLowerCase();
         var created_at = new Date(api_result.created_at);
-        
-        
+        var status = 'Offline';
+        var playing = {
+            text: "Playing " + api_result.game,
+            href: "https://www.twitch.tv/directory/game/" + api_result.game
+        };
+                
         // Render the response
         Spice.add({
             id: ID,
-            name: "Streaming",
+            name: "Gaming",
             data: api_result,
             meta: {
                 sourceName: "Twitch.tv",
                 sourceUrl: BASE + name,
-                sourceIconUrl: BASE + 'favicon.ico'
+                sourceIconUrl: BASE + 'favicon.ico',
+                rerender: ["image", "subtitle"]
             },
             normalize: function(item) {
-                var getLink = function(url, label){
-                    return '<a href="' + url + '" title="">' + label + '</a>';
-                }
                 return {
                     url: BASE + item.name,
-                    title: item.name,
-                    subtitle: [
-                        'Offline',
-                        new Handlebars.SafeString('Playing <strong>' + getLink(BASE + 'directory/game/' + item.game, item.game) + '</strong>')
-                    ],
-                    game: item.game,
-                    game_url: BASE + item.game, 
+                    title: item.display_name,
                     image: item.video_banner,
                     description: item.status,
                     infoboxData: [
@@ -60,47 +56,33 @@
                 };
             },
             templates: {
-                group: 'info',
-                options: {
-                    content: Spice.twitch_channel_info.content
-                }
+                group: 'info'
             },
             // Check stream status after render and load preview if it's LIVE
             onItemShown: function(item) {
-                Spice.getDOM(ID).find('.c-info__img-wrap').addClass('channel__loading');
-                
-                $.ajaxSetup({ cache: true });
-                $.getJSON(STREAM_ENDPOINT + name)
-                    .done(function(data) {
-                        if(Object.keys(data).length === 0 || !data.stream) return;
-                    
-                        // Replace 'Offline' string with 'Live'
-                        var status = Spice.getDOM(ID).find('.c-info__title__sub').html()
-                        Spice.getDOM(ID).find('.c-info__title__sub').html(status.replace('Offline', 'Online'));
-                    
+                $.getJSON(STREAM_ENDPOINT + name, function(data) {
+                    var obj = {
+                        subtitle: [
+                            status,
+                            playing
+                        ]
+                    };
+                    if(Object.keys(data).length && data.stream){
+                        obj.subtitle[0] = 'Online';
+
                         // Update viewers count
                         if(data.stream.viewers){
-                            Spice.getDOM(ID).find('.c-info__title__sub')
-                                .append('<span class="sep"></span>' + data.stream.viewers + ' viewers');
+                            obj.subtitle.push("Viewers: " + DDG.commifyNumber(data.stream.viewers));
                         }
-                        
-                        // Update stream preview
+
+                        // Update channel preview
                         if(data.stream.preview){
-                            var src = 'https://images.duckduckgo.com/iu/?f=1&u=' + encodeURIComponent(data.stream.preview.medium);
-                            var $img = $('<img src="' + src + '" class="c-info__img  js-detail-img">');
-                            Spice.getDOM(ID).find('.c-info__img-wrap__in').html($img);
-                            $img.on('load', function(){
-                                Spice.getDOM(ID).find('.c-info__img-wrap').removeClass('channel__loading').addClass('channel__live');
-                            });
+                            obj.image = data.stream.preview.medium;
                         }
-                        
-                    })
-                    .fail(function() {
-                        
-                    })
-                    .always(function() {
-                        Spice.getDOM(ID).find('.c-info__img-wrap').removeClass('channel__loading');  
-                    });
+                    }
+
+                    item.set(obj);
+                });
             }
         });
     };
