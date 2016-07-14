@@ -33,7 +33,16 @@ ddg_spice_test(
         '/js/spice/package_tracking/C11422907783469',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
-    )
+    ),
+
+    # TODO: Display input form prompting for tracking number?
+    'fedex package tracking' => undef,
+    'package tracking' => undef,
+    'package tracking online' => undef,
+
+    'fedex' => undef,
+    'fedex website' => undef,
+    'fedex website' => undef
 );
 
 done_testing;
