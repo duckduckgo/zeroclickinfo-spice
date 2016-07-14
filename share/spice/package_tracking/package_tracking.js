@@ -33,7 +33,7 @@
 
                     var obj = {
                         url: details_url,
-                        title: data.status_description,
+                        title: data.status_description.replace(/\.$/, ""),
                         subtitle: [
                             carriers[data.c],
                             "Location: " + data.location,
