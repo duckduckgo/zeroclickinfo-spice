@@ -31,14 +31,12 @@
                 data: api_result,
                 normalize: function (data) {
 
-                    console.log(data);
-
                     var obj = {
                         url: details_url,
-                        title: api_result.status_description,
+                        title: data.status_description,
                         subtitle: [
-                            carriers[api_result.c],
-                            "Location: " + api_result.location,
+                            carriers[data.c],
+                            "Location: " + data.location,
                             "Updated: " + moment(data.progress_at).fromNow(),
                         ],
                         image: DDG.get_asset_path('package_tracking', logo + '.png'),
@@ -47,11 +45,10 @@
                         }
                     };
 
-
                     $.each(dates, function(property, text){
                         var value = data[property];
                         if (value){
-                            obj.record_data[text] = moment(value).format('MMM DD, YYYY');
+                            obj.record_data[text] = moment(value).format('lll');
                         }
                     });
 
@@ -73,7 +70,7 @@
     };
 
     var dates = {
-        shipped_at: "Shipped at",
+        shipped_at: "Shipped on",
         est_delivery_at: "Scheduled delivery",
         act_delivery_at: "Delivered"
     };
