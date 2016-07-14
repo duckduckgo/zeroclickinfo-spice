@@ -4,7 +4,7 @@ use DDG::Spice;
 use YAML::XS 'LoadFile';
 
 spice is_cached => 1;
-spice proxy_cache_valid => "200 1d";
+spice proxy_cache_valid => "200 1m";
 
 spice wrap_jsonp_callback => 1;
 
@@ -12,11 +12,10 @@ spice to => 'https://api.packagetrackr.com/ddg/v1/track/simple?n=$1&api_key={{EN
 
 my $carriers = LoadFile(share('carriers.yml'));
 
-triggers any => @$carriers, 'package', 'track package', 'shipping status', 'package tracking';
+triggers startend => @$carriers, 'package', 'track package', 'shipping status', 'package tracking';
 
 handle remainder => sub {
     return $_ if $_;
-    
     return;
 };
 
