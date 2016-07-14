@@ -24,8 +24,10 @@ handle remainder_lc => sub {
     s/\b$carriers_re\b//g;
     trim($_);
     # remainder should be numeric or alphanumeric, not alpha
-    return if m/^[a-z]+$/;
-    return unless m/^[a-z0-9\-]+$/;
+    return if m/^[a-z\s]+$/;
+    # ignore us zipcodes
+    return if m/^[0-9]{5}+$/;
+    return unless m/^[a-z0-9\-]{6,}$/;
     return $_;
 };
 
