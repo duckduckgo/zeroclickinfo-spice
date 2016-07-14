@@ -13,7 +13,7 @@
                 id: "package_tracking",
                 name: "Answer",
                 data: {
-                    title: api_result.status_description,  
+                    title: api_result.status_description,
                     subtitle: api_result.location,
                     description: "Last update: " + DDG.getDateFromString(api_result.progress_at),
                     image: DDG.get_asset_path('package_tracking', logo + '.png'),
@@ -23,11 +23,11 @@
                         },
                         {
                             label: "Shipped at: ",
-                            value: (api_result.shipped_at) ? moment.format('MMM DD, YYYY') : ""
+                            value: (api_result.shipped_at) ? moment(api_result.shipped_at).format('MMM DD, YYYY') : ""
                         },
                         {
                             label: "Scheduled delivery at: ",
-                            value: (api_result.est_delivery_at) ? moment.format('MMM DD, YYYY') : ""
+                            value: (api_result.est_delivery_at) ? moment(api_result.est_delivery_at).format('MMM DD, YYYY') : ""
                         },
                         {
                             label: "Delivery at: ",
