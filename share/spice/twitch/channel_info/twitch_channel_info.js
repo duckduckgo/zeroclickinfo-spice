@@ -63,10 +63,13 @@
                 $.getJSON(STREAM_ENDPOINT + name, function(data) {
                     var obj = {
                         subtitle: [
-                            status,
-                            playing
+                            status
                         ]
                     };
+                    // If channel game field not null
+                    if(item.game){
+                        obj.subtitle.push(playing);
+                    }
                     if(Object.keys(data).length && data.stream){
                         obj.subtitle[0] = 'Online';
 
