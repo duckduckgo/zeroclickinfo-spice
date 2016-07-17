@@ -19,7 +19,7 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 spice to => 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => 'earthquake', 'earthquakes', 'recent earthquakes';
+triggers any => 'earthquake', 'earthquakes';
 
 # Handle statement
 handle query_lc => sub {
