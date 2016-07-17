@@ -70,7 +70,27 @@ ddg_spice_test(
         "/js/spice/holiday/United%20States/st%20patricks%20day/$currentYear/0",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
-    ),    
+    ),
+    'independence day' => test_spice(
+        "/js/spice/holiday/United%20States/independence%20day/$currentYear/0",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'independence day 2018' => test_spice(
+        "/js/spice/holiday/United%20States/independence%20day/2018/1",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'independence day in the usa' => test_spice(
+        "/js/spice/holiday/usa/independence%20day/$currentYear/0",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'independence day 2015 in the usa' => test_spice(
+        "/js/spice/holiday/usa/independence%20day/2015/1",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
     DDG::Request->new(
         query_raw => "when is fathers day",
         location => test_location("au")
