@@ -13,21 +13,14 @@ spice wrap_jsonp_callback => 0;
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
 
-my @triggers  = ('when is', 'what day is');
-my $countries = join('|', share("countries.txt")->slurp(chomp => 1));
+my @triggers  = share('holidays.txt')->slurp(chomp => 1);
+my $countries = join('|', share('countries.txt')->slurp(chomp => 1));
 
-triggers start => @triggers;
+triggers any => @triggers;
 
-handle remainder_lc => sub {
+handle query_lc => sub {
     my $query = $_;
     return unless $query;
-
-    # Sanitize the query by replacing non-alphanumeric characters, eg: 
-    #   "st. patricks day" -> "st patricks day"
-    #   "eid al-fitr" -> "eid al fitr"
-    #   "father's day" -> "fathers day"
-    $query =~ s/[^\w\s\-]//;
-    $query =~ s/-/ /;
 
     # Current year and users location are the defaults unless otherwise specified by the query
     my $defaultYear = (localtime(time))[5] + 1900;
@@ -36,6 +29,7 @@ handle remainder_lc => sub {
     # Regexes to match components of queries relevant to this IA
     my $country  = qr/$countries/;
     my $year     = qr/[1-9]{1}[0-9]{3}/;
+    my $prefix   = qr/^(when is |what day is )/;
     
     # Regexes to ignore optional words that can precede the year or country name
     my $in       = qr/(?:in )?/;
@@ -45,6 +39,16 @@ handle remainder_lc => sub {
     my $chosenCountry;
     my $chosenHoliday;
     my $userSpecifiedYear = 0;
+
+    # Remove common prefixes queries for holidays may contain
+    $query =~ s/$prefix//;
+
+    # Sanitize the query by replacing non-alphanumeric characters, eg: 
+    #   "st. patricks day" -> "st patricks day"
+    #   "eid al-fitr" -> "eid al fitr"
+    #   "father's day" -> "fathers day"
+    $query =~ s/[^\w\s\-]//;
+    $query =~ s/-/ /;
 
     $query =~ s/$in(?<year>$year)//;
     if ($+{year}) {
@@ -61,7 +65,7 @@ handle remainder_lc => sub {
         $chosenCountry = $defaultCountry;
     }
      
-    # Load the list of holidays for a given country
+    # Load the list of holidays for the selected country
     my $holidays;
     my $holidayFile = "countries/" . country2code($chosenCountry) . ".txt";
     if (-f "share/spice/holiday/" . $holidayFile) {    
