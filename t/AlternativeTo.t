@@ -24,6 +24,14 @@ ddg_spice_test(
         '/js/spice/alternative_to/spotify/windows/free',
         caller    => 'DDG::Spice::AlternativeTo',
     ),
+    'open source alternative to spotify for windows' => test_spice(
+        '/js/spice/alternative_to/spotify/windows/opensource',
+        caller    => 'DDG::Spice::AlternativeTo',
+    ),
+    'opensource alternative to spotify for windows' => test_spice(
+        '/js/spice/alternative_to/spotify/windows/opensource',
+        caller    => 'DDG::Spice::AlternativeTo',
+    ),
 );
 
 done_testing;
