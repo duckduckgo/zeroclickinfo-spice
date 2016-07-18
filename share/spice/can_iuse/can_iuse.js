@@ -9,26 +9,26 @@
 
         //parse the query for name of feature to be shown
         var query  = DDG.get_query(),
-            result = query.match(/css[2-3]?|html5|svg|js api/g),            
-            
+            result = query.match(/css[2-3]?|html5|svg|js api/g),
+
             //get relevant array from the return JSON object
             statuses      = api_result['statuses'],
             data          = api_result['data'],
             browsers      = api_result['agents'],
             required_data = [];
-        
+
         //pick only the required features
-        for( var feature in data ) {            
+        for( var feature in data ) {
             var obj = data[feature];
-            
+
             for(var search_term in result) {
                 if( obj['categories'].indexOf(result[search_term].toUpperCase()) != -1) {
                     required_data.push(obj);
                     break;
-                }    
-            }            
+                }
+            }
         }
-        
+
         //sort by usage percentage, since there are many features
         required_data.sort(function(a,b) {
             return b.usage_perc_y - a.usage_perc_y;
@@ -46,13 +46,17 @@
                 sourceUrl: 'http://caniuse.com/'
             },
             normalize: function(item) {
-                return {                    
+
+                return {
                     title: item.title,
-                    subtitle: item.categories,                                        
-                    description: getDescription(item),
+                    subtitle: item.categories,
+                    description: item.description,
                     status: statuses[item.status],
                     info: item.description,
-                    usage: item.usage_perc_y
+                    usage: item.usage_perc_y,
+                    ie: getStatus('ie', item),
+                    chrome: getStatus('chrome', item),
+                    firefox: getStatus('firefox', item),
                 };
             },
             templates: {
@@ -63,29 +67,19 @@
                     moreAt: true
                 },
                 variants: {
-                    tileTitle: '2line-small',                                        
-                    tileSnippet: 'small'
+                    tileTitle: '2line-small',
+                    tileSnippet: 'small',
+                    tileFooter: '3line'
                 }
             }
         });
-        
-        function getDescription(item) {
-            var current_firefox = browsers['firefox']['current_version'],
-                current_chrome  = browsers['chrome']['current_version'],
-                current_ie      = browsers['ie']['current_version'],
-                description = '';
-            
-            if(item.stats['firefox'][current_firefox] === 'y') {
-                description = 'Firefox: V' + current_firefox;
+
+        function getStatus(browser_name,item) {
+            var current_version = browsers[browser_name]['current_version'];
+
+            if(item.stats[browser_name][current_version] === 'y') {
+                return current_version;
             }
-            if(item.stats['chrome'][current_chrome] === 'y') {
-                description += '  Chrome: V' + current_chrome;
-            }
-            if(item.stats['ie'][current_ie] == 'y') {
-                description += '  IE: V' + current_ie;
-            } 
-            
-            return description;
         }
     };
 }(this));
