@@ -59,6 +59,7 @@
         }
         
         // Render the response
+        DDG.require('moment.js', function(){
         Spice.add({
             id: 'skyscanner_flight_search',
 
@@ -83,12 +84,15 @@
             },
             
             templates: {
-                group: 'text',
+                group: 'media',
                 detail: false,
                 item_detail: false,
                 options: {
                     //footer: true,
                     dateBadge: true,
+                    rating: false,
+                    price: true,
+                    footer: Spice.skyscanner_flight_search.footer
                 },
                 // use variants to modify the template's visual appearance, pre-determined css classes (or combinations of classes) from the DDG style guide
                 variants: {
@@ -111,15 +115,18 @@
             normalize: function(item) {
                 return {
                     // customize as needed for your chosen template
-                    icon: 'http://s1.apideeplink.com/images/airlines/BE.png',
+                    image: 'http://static.asiawebdirect.com/m/phuket/portals/www-singapore-com/homepage/attractions/all-attractions/pagePropertiesImage/singapore1.jpg',
                     title: item.flight_destination_city,
                     altSubtitle: (item.flight_destination_airport === item.flight_destination_city) ? ' ' : item.flight_destination_airport,
                     //subtitle: "Outbound: " + item.flight_outbound_date + ", return: " + item.flight_return_date,
-                    description: "from £" + item.flight_price,
+                    description: "£" + item.flight_price,
                     //footer: 'url here',
                     //dateBadge: item.flight_outbound_date
+                    source: moment(item.flight_outbound_date).format('MMMM Do'),
+                    relative_time: moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') + ' days'
                 };
             },
+        });
         });
     };
     
