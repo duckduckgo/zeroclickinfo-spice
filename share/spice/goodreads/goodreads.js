@@ -29,7 +29,7 @@
                     'abstract',
                     'heading',
                     'img_m',
-                    'image'
+                    'img'
                 ]
             },
 
@@ -40,7 +40,7 @@
                     url: "https://www.goodreads.com/book/show/" + book.id.text,
                     title: book.title.text,
                     heading: book.title.text,
-                    image: book.image_url.text,
+                    img: book.image_url.text,
                     img_m: book.image_url.text,
                     rating: parseFloat(item.average_rating.text),
                     ratingText: item.average_rating.text,
@@ -49,6 +49,7 @@
                     yop: item.original_publication_year.text,
                     reviews_count: item.text_reviews_count.text,
                     author: book.author.name.text,
+                    link_to_reviews: "https://www.goodreads.com/book/show/" + book.id.text + "#other_reviews",
                     link_to_author: "https://www.goodreads.com/author/show/" + book.author.id.text
                 };
             },
@@ -57,14 +58,12 @@
 
                 var book = item.best_book;
 
-                $.getScript(book_details_uri + book.id.text, function (data) {
+                $.getJSON(book_details_uri + book.id.text, function (data) {
                     var book = data.GoodreadsResponse.book;
                     var description = book.description.text || "Description unavailable";
 
                     item.set({
                         abstract: description && Handlebars.helpers.ellipsis(description.replace(/<\/?\w*>/gm, ''), 400),
-                        isbn: book.isbn && book.isbn.text,
-                        isbn13: book.isbn13 && book.isbn13.text,
                         num_pages: book.num_pages.text
                     });
 
@@ -80,18 +79,17 @@
             },
 
             templates: {
-                group: "products_simple",
+                group: "products",
                 options: {
                     rating: true,
                     brand: true,
                     moreAt: true,
                     ratingtext: true,
-                    buy: Spice.goodreads.details
+                    subtitle_content: Spice.goodreads.subtitle,
+                    buy: Spice.goodreads.buy
                 },
-
                 variants: {
-                    tile: 'poster',
-                    tileTitle: "2line"
+                    tile: 'poster'
                 }
             }
         });
