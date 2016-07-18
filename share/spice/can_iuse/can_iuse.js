@@ -7,22 +7,29 @@
             return Spice.failed('can_iuse');
         }
 
-        var statuses = api_result['statuses'];
-        var data = api_result['data']
-        var browsers = api_result['agents'];
-        
-        var required_data = [];               
+        //parse the query for name of feature to be shown
+        var query  = DDG.get_query(),
+            result = query.match(/css[2-3]?|html5|svg|js api/g),            
+            
+            //get relevant array from the return JSON object
+            statuses      = api_result['statuses'],
+            data          = api_result['data'],
+            browsers      = api_result['agents'],
+            required_data = [];
         
         //pick only the required features
-        for( var feature in data ) {
+        for( var feature in data ) {            
+            var obj = data[feature];
             
-            var obj = data[feature];            
-            if( obj['categories'].indexOf("CSS") != -1 || obj['categories'].indexOf("CSS2") != -1 || obj['categories'].indexOf("CSS3") != -1) {                
-                required_data.push(obj);
-            }
+            for(var search_term in result) {
+                if( obj['categories'].indexOf(result[search_term].toUpperCase()) != -1) {
+                    required_data.push(obj);
+                    break;
+                }    
+            }            
         }
         
-        //sort by usage percentage, since there are too many features
+        //sort by usage percentage, since there are many features
         required_data.sort(function(a,b) {
             return b.usage_perc_y - a.usage_perc_y;
         });
@@ -39,9 +46,6 @@
                 sourceUrl: 'http://caniuse.com/'
             },
             normalize: function(item) {
-                
-                getDescription(item);
-                
                 return {                    
                     title: item.title,
                     subtitle: item.categories,                                        
@@ -59,7 +63,7 @@
                     moreAt: true
                 },
                 variants: {
-                    tileTitle: '1line-large',
+                    tileTitle: '2line-small',                                        
                     tileSnippet: 'small'
                 }
             }
@@ -69,16 +73,16 @@
             var current_firefox = browsers['firefox']['current_version'],
                 current_chrome  = browsers['chrome']['current_version'],
                 current_ie      = browsers['ie']['current_version'],
-                description;
+                description = '';
             
             if(item.stats['firefox'][current_firefox] === 'y') {
-                description = 'Firefox: ' + current_firefox;
+                description = 'Firefox: V' + current_firefox;
             }
             if(item.stats['chrome'][current_chrome] === 'y') {
-                description += ' Chrome: ' + current_chrome;
+                description += '  Chrome: V' + current_chrome;
             }
             if(item.stats['ie'][current_ie] == 'y') {
-                description += ' IE: ' + current_ie;
+                description += '  IE: V' + current_ie;
             } 
             
             return description;
