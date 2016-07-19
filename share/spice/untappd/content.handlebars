@@ -1,0 +1,12 @@
+<div class="detail__inner">
+    <p class="untappd__beer__info">
+        <span>{{abv}}% <lable class="untappd__info">ABV</lable></span>
+        <i class="sep"></i>
+        <span>{{ibu}} <lable class="untappd__info">IBU</lable></span>
+        <i class="sep"></i>
+        <span>{{ratings}} Ratings</span>
+    </p>
+    {{#if style}}<p><lable class="untappd__info">Style:</lable> {{style}}</p>{{/if}}
+    {{#if location}}<p><lable class="untappd__info">Location:</lable> {{location}}</p>{{/if}}
+    {{#if content}}<p class="untappd__description">{{content}}</p>{{/if}}
+</div>
