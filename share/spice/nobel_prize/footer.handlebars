@@ -1,2 +1,7 @@
-<span>Year : <b>{{year}}</b></span><br/>
-<span>Category : <b>{{category}}</b></span><br/>
+ {{#if prizeCategory}}
+    <span class="one-line text--secondary" >Year : <b>{{year}}</b></span><br/> 
+ {{/if}}
+ 
+ {{#if prizeYear}}
+    <span class="one-line text--secondary" >Category : <b>{{toUpperCase category}}</b></span><br/>
+ {{/if}}
