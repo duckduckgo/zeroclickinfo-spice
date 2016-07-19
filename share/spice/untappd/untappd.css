@@ -1,0 +1,27 @@
+.zci--untappd .sep {
+    margin: 0 0.5em;
+}
+
+@media only screen and (max-width: 425px) {
+    .zci--untappd .sep {
+        margin: 0 0.1em;
+    }
+}
+
+.zci--untappd .untappd__info {
+    font-weight: bold;
+}
+
+.zci--untappd .untappd__description {
+    margin-top: 0.5em;
+}
+
+.zci--untappd .js-detail-img {
+    padding: 8px;
+    border: 1px solid #dbdbdb;
+    background: white;
+}
+
+.detail .untappd__beer__info {
+    display: none;
+}
