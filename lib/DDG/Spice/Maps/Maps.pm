@@ -11,7 +11,12 @@ spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 spice wrap_jsonp_callback => 1;
 
-my @startend_triggers = ("map of", "map", "maps", "current location");
+# (mohammed): When adding triggers, put plural or compound forms of the same word first.
+# For example, if you have @startend_triggers = ("map", "maps") and the input query is
+# "maps", in the matching step, the query will match "map" first and will then split the
+# input query into "map" and "s" and pass "s" to the upstream, this is obviously wrong,
+# so your @startend_triggers should look like ("maps", "map").
+my @startend_triggers = ("maps of", "maps", "map of", "map", "current location");
 my $startend_joined = join "|", @startend_triggers;
 my $start_qr = qr/^($startend_joined)/;
 my $end_qr = qr/($startend_joined)$/;
