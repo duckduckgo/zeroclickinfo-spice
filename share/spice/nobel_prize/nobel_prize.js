@@ -49,12 +49,12 @@
                     laureates = item.laureates,
                     searchTermArray = getSearchTerm();
                 description = laureates[0].motivation;
-        console.info(searchTermArray);
+
                 return {
                     title: getDetailTitleNames(item),
                     description: description && description.replace(/"/g, '').replace('for', 'For'),
-                    prizeYear: searchTermArray[1],
-                    prizeCategory: searchTermArray[2],
+                    hasPrizeYear: searchTermArray[1],
+                    hasPrizeCategory: searchTermArray[2],
                     url: "http://www.nobelprize.org/nobel_prizes/" + item.category + "/laureates/" + item.year + "/"
                 };
             },
