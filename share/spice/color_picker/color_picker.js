@@ -13,8 +13,9 @@
         var palette_type = 'analogous';
 
         //Maintains the current color in all supported formats.
+        console.log(DDG.get_query());
         var current_color = get_initial_color(DDG.get_query());
-
+        console.log(current_color);
         //Holds coordinate positions for the selection markers in the hue and saturation/value
         //  pickers.
         var markers = get_marker_positions(current_color.hsv);
@@ -560,6 +561,7 @@
         //  a specified color. If no color was specified, one is randomly generated.
         function get_initial_color(query) {
             var query_color = parse_color_from_query(query);
+            console.log(query_color);
             if (query_color !== null)
                 return query_color;
 
@@ -578,8 +580,11 @@
             //  format it for later processing. The result will have all spaces, and parentheses
             //  replaced with commas such that there will only be one comma between any text.
             //  For example, HSV(1, 2, 3) becomes hsv,1,2,3
-            var possible_color_query = query.split(/[\s,()]+/).slice(2)
+            console.log(query.split(/[\s,()]+/));
+            var possible_color_query = query.split(/[\s,()]+/).slice(2);
+            console.log(possible_color_query);
             possible_color_query = $.map(possible_color_query, function(el) { if (el.length > 0) return el; }).join(',').toLowerCase();
+            console.log(possible_color_query);
             if (possible_color_query.length === 0)
                 return null;
 
