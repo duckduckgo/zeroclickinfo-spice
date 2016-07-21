@@ -1,6 +1,6 @@
 package DDG::Spice::CanIUse;
 
-# ABSTRACT: Show compatibility of various features in different browsers with data from caniuse.com
+# ABSTRACT: Show compatibility of various features with different browsers from caniuse.com
 
 use DDG::Spice;
 use strict;
@@ -13,13 +13,13 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 
 spice to => 'https://raw.githubusercontent.com/Fyrd/caniuse/master/fulldata-json/data-2.0.json';
 
-triggers any => 'browser compatibility', 'caniuse', 'can i use';
+triggers startend => 'browser compatibility', 'caniuse', 'can i use';
 
 # Handle statement
 handle remainder => sub {
 
     return unless $_ =~ /css[2-3]?|html5|svg|canvas|js api/i;
-    return \$_;
+    return $_;
 };
 
 1;

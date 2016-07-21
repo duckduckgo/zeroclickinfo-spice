@@ -2,3 +2,13 @@
     vertical-align: bottom;
 }
 
+.zci--can_iuse .fourteen {
+    width: 14%;
+    float: left;
+    margin-bottom: 0em;
+}
+
+.zci--can_iuse .usage_perc{
+    float: left;
+    margin-top: 0.5em;
+}
