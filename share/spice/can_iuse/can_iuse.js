@@ -18,11 +18,10 @@
             supported     = false,
             required_data = [];
 
-            //pick only the required features based on category
+        //pick only the required features based on category
         for( var feature in data ) {
 
             var obj = data[feature];
-
             for(var search_term in result) {
                 if( obj['categories'].indexOf(result[search_term].toUpperCase()) != -1) {
                     required_data.push(obj);
@@ -30,7 +29,6 @@
                 }
             }
         }
-
 
         //sort by usage percentage, since there are many features
         required_data.sort(function(a,b) {
@@ -109,7 +107,8 @@
                 compatibility_info = [],
                 index = 0,
                 range,
-                versions = Object.keys(compatibility);
+                versions = Object.keys(compatibility),
+                return_value = [];
 
             versions.sort(function(a,b){
                 return b - a;
@@ -117,7 +116,11 @@
 
             index = versions.length - 1;
             for(index = 0; index < versions.length ; index++) {
+
                 while(compatibility[versions[index]] === 'y') {
+                    if(versions[index].indexOf('-') != -1) {
+                        removeHyphen(versions, compatibility, index);
+                    }
                     compatibility_info.push(versions[index]);
                     index++;
                 }
@@ -126,6 +129,9 @@
 
                 compatibility_info = [];
                 while(compatibility[versions[index]] === 'a' && index < versions.length) {
+                    if(versions[index].indexOf('-') != -1) {
+                        removeHyphen(versions, compatibility, index);
+                    }
                     compatibility_info.push(versions[index]);
                     index++;
                 }
@@ -146,6 +152,19 @@
                 return 'v ' + versions[0];
             }
             return 'v ' + versions[0] + ' - ' + versions[versions.length - 1];
+        }
+
+        function removeHyphen(versions, compatibility, index) {
+
+            var split_v = versions[index].split('-'),
+                support_value = compatibility[versions[index]],
+                old_version = versions[index];
+
+            versions.splice(index, 1, split_v[0], split_v[1]);
+            compatibility[split_v[0]] = support_value;
+            compatibility[split_v[1]] = support_value;
+
+            delete compatibility[old_version];
         }
     };
 }(this));
