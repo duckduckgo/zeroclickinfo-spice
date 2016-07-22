@@ -16,6 +16,8 @@
             data          = api_result['data'],
             browsers      = api_result['agents'],
             supported     = false,
+            supported_d   = false,
+            supported_m   = false,
             required_data = [];
 
         //pick only the required features based on category
@@ -47,7 +49,9 @@
                 sourceUrl: 'http://caniuse.com/'
             },
             normalize: function(item) {
-                supported = false;
+                supported   = false;
+                supported_d = false;
+                supported_m = false;
                 return {
                     title: item.title,
                     subtitle: item.categories,
@@ -55,17 +59,19 @@
                     status: statuses[item.status],
                     usage_y: item.usage_perc_y,
                     usage_a: item.usage_perc_a,
-                    ie: getStatus('ie', item),
-                    chrome: getStatus('chrome', item),
-                    firefox: getStatus('firefox', item),
-                    android: getStatus('android', item),
-                    ios_saf: getStatus('ios_saf', item),
-                    supported: supported,
+                    ie: getStatus('ie', item, 'd'),
+                    chrome: getStatus('chrome', item, 'd'),
+                    firefox: getStatus('firefox', item, 'd'),
+                    android: getStatus('android', item, 'm'),
+                    ios_saf: getStatus('ios_saf', item, 'm'),
                     ie_stats: getStats('ie',item),
                     chr_stats: getStats('chrome',item),
                     ff_stats: getStats('firefox',item),
                     and_stats: getStats('android', item),
-                    saf_stats: getStats('ios_saf', item)
+                    saf_stats: getStats('ios_saf', item),
+                    supported: supported,
+                    supported_d: supported_d,
+                    supported_m: supported_m
                 };
             },
             templates: {
@@ -83,11 +89,15 @@
             }
         });
 
-        function getStatus(browser_name,item) {
+        function getStatus(browser_name,item, type) {
             var current_version = browsers[browser_name]['current_version'];
 
             if(item.stats[browser_name][current_version] === 'y') {
                 supported = true;
+                if(type === 'd')
+                    supported_d = true;
+                else
+                    supported_m = true;
                 return current_version;
             }
         }

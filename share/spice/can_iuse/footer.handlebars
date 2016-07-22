@@ -1,9 +1,13 @@
 {{#if supported}}
-    Desktop: {{#if firefox}}<img src='share/spice/can_iuse/assets/firefox-icon-16.png'><span class='tx--14 align'> {{firefox}}&emsp;</span>{{/if}}
-    {{#if chrome}}<img src='share/spice/can_iuse/assets/chrome-icon-16.png'><span class='tx--14 align'> {{chrome}}&emsp;</span>{{/if}}
-    {{#if ie}}<img src='share/spice/can_iuse/assets/ie-icon-16.png'><span class='tx--14 align'> {{ie}}</span>{{/if}}<br>
-    Mobile:&emsp;{{#if android}}<img src='share/spice/can_iuse/assets/android-browser-icon-16.png'><span class='tx--14 align'> {{android}}&emsp;</span>{{/if}}
-    {{#if ios_saf}}<img src='share/spice/can_iuse/assets/ios-safari-icon-16.png'><span class='tx--14 align'> {{ios_saf}}</span>{{/if}}
+    {{#if supported_d}}
+        Desktop: {{#if firefox}}<img src='share/spice/can_iuse/assets/firefox-icon-16.png'><span class='tx--14 align'> {{firefox}}&emsp;</span>{{/if}}
+        {{#if chrome}}<img src='share/spice/can_iuse/assets/chrome-icon-16.png'><span class='tx--14 align'> {{chrome}}&emsp;</span>{{/if}}
+        {{#if ie}}<img src='share/spice/can_iuse/assets/ie-icon-16.png'><span class='tx--14 align'> {{ie}}</span>{{/if}}<br>
+    {{/if}}
+    {{#if supported_m}}
+        Mobile:&emsp;{{#if android}}<img src='share/spice/can_iuse/assets/android-browser-icon-16.png'><span class='tx--14 align'> {{android}}&emsp;</span>{{/if}}
+        {{#if ios_saf}}<img src='share/spice/can_iuse/assets/ios-safari-icon-16.png'><span class='tx--14 align'> {{ios_saf}}</span>{{/if}}
+    {{/if}}
 {{else}}
     <span>Click to view browser support</span>
 {{/if}}
