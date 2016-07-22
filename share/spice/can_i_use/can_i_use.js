@@ -39,7 +39,7 @@
         
         // Render the response
         Spice.add({
-            id: 'can_iuse',
+            id: 'can_i_use',
 
             // Customize these properties
             name: 'Can I Use',
