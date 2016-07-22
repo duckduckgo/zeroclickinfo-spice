@@ -103,8 +103,7 @@
 
         function getStats(browser_name, item) {
             var compatibility = item.stats[browser_name],
-                supported_versions = {},
-                compatibility_info = [],
+                supported_versions = {"y":"-", "a":"-"},
                 index = 0,
                 range,
                 versions = Object.keys(compatibility),
@@ -114,29 +113,10 @@
                 return b - a;
             });
 
-            index = versions.length - 1;
             for(index = 0; index < versions.length ; index++) {
 
-                while(compatibility[versions[index]] === 'y') {
-                    if(versions[index].indexOf('-') != -1) {
-                        removeHyphen(versions, compatibility, index);
-                    }
-                    compatibility_info.push(versions[index]);
-                    index++;
-                }
-                range = getRange(compatibility_info);
-                supported_versions.y = range;
-
-                compatibility_info = [];
-                while(compatibility[versions[index]] === 'a' && index < versions.length) {
-                    if(versions[index].indexOf('-') != -1) {
-                        removeHyphen(versions, compatibility, index);
-                    }
-                    compatibility_info.push(versions[index]);
-                    index++;
-                }
-                range = getRange(compatibility_info);
-                supported_versions.a = range;
+                index = addInfo(compatibility, versions, index, 'y', supported_versions);
+                index = addInfo(compatibility, versions, index, 'a', supported_versions);
             }
 
             return supported_versions;
@@ -165,6 +145,26 @@
             compatibility[split_v[1]] = support_value;
 
             delete compatibility[old_version];
+        }
+
+        function addInfo(compatibility, versions, index, support_type, supported_versions) {
+            if(compatibility[versions[index]] != support_type) {
+                return;
+            }
+
+            var compatibility_info = [];
+
+            while(compatibility[versions[index]] === support_type) {
+                if(versions[index].indexOf('-') != -1) {
+                    removeHyphen(versions, compatibility, index);
+                }
+                compatibility_info.push(versions[index]);
+                index++;
+            }
+            var range = getRange(compatibility_info);
+            supported_versions[support_type] = range;
+
+            return index;   //return how much we have advanced in the array
         }
     };
 }(this));
