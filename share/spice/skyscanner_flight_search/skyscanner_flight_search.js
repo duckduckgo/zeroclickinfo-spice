@@ -14,12 +14,14 @@
         var placesById = api_result.Places.reduce(function (result, place) { result[place.PlaceId] = place; return result; }, {});
         var quotesById = api_result.Quotes.reduce(function (result, quote) { result[quote.QuoteId] = quote; return result; }, {});
         
-        var listOfRoutes = routes.filter(function (r){return r.Price;}).sort(function(r1, r2){return r1.Price - r2.Price;}).slice(0,3);
+        // building list of routes from results by sorting them by price, removing any without price and limiting the number to 10
+        var listOfRoutes = routes.filter(function (r){return r.Price;}).sort(function(r1, r2){return r1.Price - r2.Price;}).slice(0,10);
         
         var listOfCityIds = listOfRoutes.map(function(route){
             return "SKY%3A" + placesById[route.DestinationId].CityId;    
         });
         
+        console.log(listOfCityIds);
         var build_flight_route = function (current_route, index, response) {
             var price = "";
             var destination_city = "";
@@ -29,11 +31,16 @@
             var quote_date_time = "";
             var outbound_date = "";
             var return_date = "";
+            var image_array = [];
 
             var current_route = listOfRoutes[index];
             var cityId = "SKY:" + placesById[current_route.DestinationId].CityId; 
-            var image_array = response.results[response.index[cityId]].images;
-
+            
+            if (response.index[cityId]) {
+                console.log(response.index[cityId] + ": ");
+                console.log(response.results[response.index[cityId]].name["en-GB"]);
+                image_array = response.results[response.index[cityId]].images;
+            }
             if (Array.isArray(image_array) && image_array.length > 0) {
                 destination_city_image = image_array[0].url;
             } else {
@@ -60,7 +67,8 @@
                 flight_return_date: return_date
             };
         }
-                
+        
+        console.log("https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=" + listOfCityIds + "&enhancers=images&apikey=09fd8de5844d4b1d982a320ad5dee5b8");
         var settings = {
             "async": true,
             "crossDomain": true,
