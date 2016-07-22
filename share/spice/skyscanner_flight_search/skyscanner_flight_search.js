@@ -21,7 +21,6 @@
             return "SKY%3A" + placesById[route.DestinationId].CityId;    
         });
         
-        console.log(listOfCityIds);
         var build_flight_route = function (current_route, index, response) {
             var price = "";
             var destination_city = "";
@@ -37,8 +36,6 @@
             var cityId = "SKY:" + placesById[current_route.DestinationId].CityId; 
             
             if (response.index[cityId]) {
-                console.log(response.index[cityId] + ": ");
-                console.log(response.results[response.index[cityId]].name["en-GB"]);
                 image_array = response.results[response.index[cityId]].images;
             }
             if (Array.isArray(image_array) && image_array.length > 0) {
@@ -68,7 +65,6 @@
             };
         }
         
-        console.log("https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=" + listOfCityIds + "&enhancers=images&apikey=09fd8de5844d4b1d982a320ad5dee5b8");
         var settings = {
             "async": true,
             "crossDomain": true,
