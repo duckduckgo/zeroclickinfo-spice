@@ -578,6 +578,8 @@
             //  format it for later processing. The result will have all spaces, and parentheses
             //  replaced with commas such that there will only be one comma between any text.
             //  For example, HSV(1, 2, 3) becomes hsv,1,2,3
+            query = query.replace('colourpicker','color picker');
+            query = query.replace('colorpicker','color picker');
             var possible_color_query = query.split(/[\s,()]+/).slice(2)
             possible_color_query = $.map(possible_color_query, function(el) { if (el.length > 0) return el; }).join(',').toLowerCase();
             if (possible_color_query.length === 0)
