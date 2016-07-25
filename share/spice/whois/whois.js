@@ -172,9 +172,8 @@
             name: 'Whois',
             meta: {
                 sourceName: 'Whois API',
-                sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
+                sourceUrl: 'http://whois.whoisxmlapi.com/'
                     + api_result.domainName
-                    + '&target=raw'
             },
             normalize: function(item) {
                 return {
