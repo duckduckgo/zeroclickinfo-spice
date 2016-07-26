@@ -53,6 +53,10 @@
         var dateOutputFormat = "MMM DD, YYYY",
             dateUTCParse = "YYYY-MM-DD HH:mm:ss Z";
 
+        // set objects if they don't exist to prevent TypeError's with
+        // undefined variables being tested as if they were objects.
+        api_result.registryData = api_result.registryData || {};
+
         // store the domain's various contacts in an array.
         // we'll iterate through this array in order, using
         // info from the first contact that contains the field we want.
@@ -125,17 +129,20 @@
     // Searches an array of objects for the first value
     // at the specified key.
     function get_first_by_key(arr, key) {
-        if(!arr || arr.length == 0) return;
-        var first;
-        $.each(arr, function(index, obj) {
-            var value = obj && obj[key];
-            // update the first var if the value is truthy
-            // and first hasn't already been found
-            if (!first && value) {
-                first = value;
+        var arrLength, i, obj;
+
+        if(!arr || (arrLength = arr.length) === 0) {
+            return;
+        }
+
+        for(i = 0; i < arrLength; ++i) {
+            obj = arr[i];
+            if(obj && obj[key]) {
+                return obj[key];
             }
-        });
-        return first;
+        }
+
+        return;
     }
 
     //Converts timestamp into local time using moment.js
