@@ -53,6 +53,10 @@
         var dateOutputFormat = "MMM DD, YYYY",
             dateUTCParse = "YYYY-MM-DD HH:mm:ss Z";
 
+        // set objects if they don't exist to prevent TypeError's with
+        // undefined variables being tested as if they were objects.
+        api_result.registryData = api_result.registryData || {};
+
         // store the domain's various contacts in an array.
         // we'll iterate through this array in order, using
         // info from the first contact that contains the field we want.
