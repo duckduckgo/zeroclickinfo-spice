@@ -39,7 +39,7 @@
         
         // Render the response
         Spice.add({
-            id: 'can_i_use',
+            id: 'can_iuse',
 
             // Customize these properties
             name: 'Can I Use',
@@ -149,7 +149,9 @@
             var split_v = versions[index].split('-'),
                 support_value = compatibility[versions[index]],
                 old_version = versions[index];
-
+            
+            split_v = removePeriods(split_v);
+            
             versions.splice(index, 1, split_v[0], split_v[1]);
             compatibility[split_v[0]] = support_value;
             compatibility[split_v[1]] = support_value;
@@ -175,6 +177,17 @@
             supported_versions[support_type] = range;
 
             return index;   //return how much we have advanced in the array
+        }
+        
+        function removePeriods(versions) {
+            var count;
+            
+            for(count = 0; count < versions.length; count++) {
+                if(versions[count].match(/\./g).length >= 2) {
+                    versions[count] = versions[count].substr(0, versions[count].lastIndexOf('.'));
+                }    
+            }
+            return versions;
         }
     };
 }(this));
