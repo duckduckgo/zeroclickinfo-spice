@@ -10,14 +10,14 @@ spice is_cached => 1;
 sub build_test {
     my ($query) = @_;
     return test_spice(
-        '/js/spice/can_iuse/'.$query,
+        '/js/spice/caniuse_lists/'.$query,
         call_type => 'include',
-        caller => 'DDG::Spice::CanIUse'
+        caller => 'DDG::Spice::CaniuseLists'
     )
 }
 
 ddg_spice_test(
-    [qw( DDG::Spice::CanIUse)],
+    [qw( DDG::Spice::CaniuseLists)],
 
     'css browser compatibility'   => build_test('css'),
     'html5 browser compatibility' => build_test('html5'),

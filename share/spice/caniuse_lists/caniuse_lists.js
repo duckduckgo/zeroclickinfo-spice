@@ -1,10 +1,10 @@
 (function (env) {
     'use strict';
 
-    env.ddg_spice_can_iuse = function(api_result) {
+    env.ddg_spice_caniuse_lists = function(api_result) {
         
         if (!api_result) {
-            return Spice.failed('can_iuse');
+            return Spice.failed('caniuse_lists');
         }
 
         //parse the query for name of feature to be shown
@@ -39,7 +39,7 @@
         
         // Render the response
         Spice.add({
-            id: 'can_iuse',
+            id: 'caniuse_lists',
 
             // Customize these properties
             name: 'Can I Use',
@@ -77,8 +77,8 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.can_iuse.content,
-                    footer: Spice.can_iuse.footer,
+                    content: Spice.caniuse_lists.content,
+                    footer: Spice.caniuse_lists.footer,
                     moreAt: true
                 },
                 variants: {

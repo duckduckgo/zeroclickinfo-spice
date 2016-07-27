@@ -1,4 +1,4 @@
-package DDG::Spice::CanIUse;
+package DDG::Spice::CaniuseLists;
 
 # ABSTRACT: Show compatibility of various features with different browsers from caniuse.com
 
