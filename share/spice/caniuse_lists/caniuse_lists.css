@@ -1,5 +1,6 @@
 .zci--caniuse_lists .align{
     vertical-align: bottom;
+    padding-right: 0.55em;
 }
 
 .zci--caniuse_lists .fourteen {
@@ -11,4 +12,8 @@
 .zci--caniuse_lists .usage_perc{
     float: left;
     margin-top: 0.5em;
+}
+
+.zci--caniuse_lists .mobile-browser{
+    padding-right: 1.0em;
 }
