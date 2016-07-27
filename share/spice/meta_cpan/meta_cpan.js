@@ -27,10 +27,10 @@
                         return null;
                     }
 
-                    var description = item.fields.description || item.fields["abstract.analyzed"][0];
-                    var version = item._source.version || item._source.module[0].version;
-                    var date = ( item.fields.date )
-                        ? moment(item.fields.date).format("DD MMM YYYY")
+                    var description = item.fields.description[0] || item.fields["abstract.analyzed"][0];
+                    var version = item._source.module[0].version;
+                    var date = ( item.fields.date && item.fields.date[0] )
+                        ? moment(item.fields.date[0]).format("DD MMM YYYY")
                         : "";
 
                     return {
