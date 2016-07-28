@@ -34,20 +34,16 @@
         if (list_of_list[0].length == 1) {
             $.getJSON("/js/spice/rand_word_fetch_id/" + first.word, function(data) {
                 var first = data[0];
-
                 $.extend(spiceObj, {
-
                     data: {
                         title: "Random Word",
                         word: first.word,
                         definition: first.text
                     },
                     templates: {
-                        group: 'text',
-
+                        group: 'text'
                     },
                     normalize: function(item) {
-
                         return {
                             title: 'Random Word',
                             subtitle: {
