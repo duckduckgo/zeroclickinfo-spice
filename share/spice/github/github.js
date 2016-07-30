@@ -8,7 +8,7 @@
 
         var results = api_result.data.items;
 
-        if (!results) {
+        if (!results || !$.isArray(results) || results.length === 0) {
             return Spice.failed('github');
         }
         
