@@ -2,17 +2,12 @@
     "use strict";
     env.ddg_spice_github = function(api_result) {
 
-        if (!api_result || !api_result.meta.status === 200) {
+        if (!api_result || !api_result.meta || api_result.meta.status !== 200 || !api_result.data || !api_result.data.items || !api_result.data.items.length) {
           return Spice.failed('github');
         }
 
-        var results = api_result.data.items;
-
-        if (!results) {
-            return Spice.failed('github');
-        }
-        
-        var script = $('[src*="/js/spice/github/"]')[0],
+        var results = api_result.data.items,
+            script = $('[src*="/js/spice/github/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/github\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query);
