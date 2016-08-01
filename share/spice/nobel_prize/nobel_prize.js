@@ -14,28 +14,35 @@
             match = decodeURIComponent(query).match(/(\d{4})?-(\w+)?/),
             year = match && match[1],
             category = match && match[2],
-            searchTerm = ((year && 'Year: ' + year) || "") 
+            searchTerm = ((category && capitalizeWord(category)) || "")
                         + " " 
-                        + ((category && ' Category: ' + category.toUpperCase()) || "");
+                        + ((category && year && 'in ' + year) || year || "");
             
             return [searchTerm, year, category];
         }
 
         function getDetailTitleNames(item) {
             var names = [];
-            for (var laureate of item.laureates) {
+            $.each(item.laureates, function(index, laureate) {
                 names.push(" " + laureate.firstname + " " + (laureate.surname || ""));
-            }
-            
+            });
+
             return names;
+        }
+
+        function capitalizeWord(word) {
+            if (word == null || word == undefined || word == "")
+                return "";
+
+            return word[0].toUpperCase() + word.substring(1);
         }
 
         // Render the response
         Spice.add({
-            id: "nobelprize",
+            id: "nobel_prize",
 
             // Customize these properties
-            name: "Nobel Prize",
+            name: "Answer",
             data: api_result.prizes,
             meta: {
                 sourceName: "nobelprize.org",
@@ -47,7 +54,8 @@
             normalize: function(item) {
                 var description,
                     laureates = item.laureates,
-                    searchTermArray = getSearchTerm();
+                    searchTermArray = getSearchTerm(),
+                    category = item.category;
                 description = laureates[0].motivation;
 
                 return {
@@ -55,12 +63,15 @@
                     description: description && description.replace(/"/g, '').replace('for', 'For'),
                     hasPrizeYear: searchTermArray[1],
                     hasPrizeCategory: searchTermArray[2],
-                    url: "http://www.nobelprize.org/nobel_prizes/" + item.category + "/laureates/" + item.year + "/"
+                    url: "http://www.nobelprize.org/nobel_prizes/" + item.category + "/laureates/" + item.year + "/",
+                    category: capitalizeWord(category)
                 };
             },
 
             templates: {
-                item: "text_item",
+                group: 'text',
+                detail: false,
+                item_detail: false,
                 options: {
                     rating: false,
                     moreAt: true,
@@ -73,9 +84,4 @@
             }
         });
     };
-    
-    Handlebars.registerHelper('toUpperCase', function(str) {
-        return str.toUpperCase();
-    });
-    
 }(this));
