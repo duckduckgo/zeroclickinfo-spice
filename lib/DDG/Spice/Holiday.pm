@@ -2,68 +2,92 @@ package DDG::Spice::Holiday;
 
 # ABSTRACT: Query timeanddate.com for a holiday
 
+use strict;
 use DDG::Spice;
-use POSIX qw(strftime);
+use Locale::Country;
 
-triggers start => 'when is', 'when was', 'what day is', 'what day was';
+spice is_cached => 1;
+spice proxy_cache_valid => "200 30d";
+spice wrap_jsonp_callback => 0;
 
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
-spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$2&q=$3&y=$4&callback={{callback}}';
+spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
+
+my @triggers  = share('holidays.txt')->slurp(chomp => 1);
+my $countries = join('|', share('countries.txt')->slurp(chomp => 1));
+
+triggers any => @triggers;
 
 handle query_lc => sub {
-    return unless ($_);
+    my $query = $_;
+    return unless $query;
 
-    my ($t, $q, $c, $y);
+    # Current year and users location are the defaults unless otherwise specified by the query
+    my $defaultYear = (localtime(time))[5] + 1900;
+    my $defaultCountry = $loc->country_name;
 
-    if ($_ =~ /\ ?(?:when|what day)\ ?(is|was)/g) {
-        $t = $1;
-        $_ =~ s/\ ?(when|what day)\ ?(is|was)\ ?//g;
-    }
-
-    if (/\s+in\s+(.*)$/p) {
-        # Did the user query for holidays in a specific country?
-        ($q, $c) = (${^PREMATCH}, $1);
-
-        # For cases like "in the usa"
-        $c =~ s/\ ?\bthe\b\ ?//g;
-        $c =~ s/\b(us|usa|america|murica)\b/United States/g;
-    } elsif ($loc && $loc->country_name) {
-        # No - check the country the user is currently in.
-        ($q, $c) = ($_, $loc->country_name);
-    } else {
-        # Fallback to US if no country can be determined, that's the
-        # country that has best holiday coverage.
-        ($q, $c) = ($_, 'us');
-    }
-
-    # Block queries like "a day"
-    return if $q =~ /^[a-z1-9]?\ ?day$/;
+    # Regexes to match components of queries relevant to this IA
+    my $country  = qr/$countries/;
+    my $year     = qr/[1-9]{1}[0-9]{3}/;
+    my $prefix   = qr/^(when is |what day is )/;
     
-    # Block queries like "california primary"
-    return if $q =~ /primary/;
+    # Regexes to ignore optional words that can precede the year or country name
+    my $in       = qr/(?:in )?/;
+    my $inThe    = qr/(?:in the |in )?/;
 
-    if ($q =~ /([\d]{4})/) {
-        $y = $1;
+    my $chosenYear;
+    my $chosenCountry;
+    my $chosenHoliday;
+    my $userSpecifiedYear = 0;
+
+    # Remove common prefixes queries for holidays may contain
+    $query =~ s/$prefix//;
+
+    # Sanitize the query by replacing non-alphanumeric characters, eg: 
+    #   "st. patricks day" -> "st patricks day"
+    #   "eid al-fitr" -> "eid al fitr"
+    #   "father's day" -> "fathers day"
+    $query =~ s/[^\w\s\-]//;
+    $query =~ s/-/ /;
+
+    $query =~ s/$in(?<year>$year)//;
+    if ($+{year}) {
+        $chosenYear = $+{year};
+        $userSpecifiedYear = 1;
     } else {
-        $y = " ";
+        $chosenYear = $defaultYear;
     }
 
-    $q =~ s/\ *\d+\ *//g;
+    $query =~ s/$inThe(?<country>$country)$//;
+    if ($+{country}) {
+        $chosenCountry = $+{country};
+    } else {
+        $chosenCountry = $defaultCountry;
+    }
+     
+    # Load the list of holidays for the selected country
+    my $holidays;
+    my $holidayFile = "countries/" . country2code($chosenCountry) . ".txt";
+    if (-f "share/spice/holiday/" . $holidayFile) {    
+        $holidays = join('|', share($holidayFile)->slurp(chomp => 1));
+    } else {
+        return; # Unknown country
+    }
 
-    # Kill eventual slashes to avoid misbehaviour of the `spice from'
-    # regular expression.
-    $q =~ s/\///g;
-    $c =~ s/\///g;
+    $query =~ s/(?<holiday>$holidays)//;
+    if ($+{holiday}) {
+        $chosenHoliday = $+{holiday};
+    } else {
+        return; # Unknown holiday
+    }
 
-    # Translate holidays that timeanddate.com doesn't understand.
-    my %fixups = (
-        "mardi gras" => "shrove tuesday",
-        "new years" => "new years day",
-    );
-
-    map { $q =~ s/$_/$fixups{$_}/ } keys %fixups;
-
-    return $t, $c, $q, $y;
+    # If there's anything left in the query we can't be sure its relevant
+    return unless ($query =~ /^\s*$/);
+    
+    # These are the min/max years available from the API (as of Feb 2016, API version 2)
+    return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
+    
+    return $chosenCountry, $chosenHoliday, $chosenYear, $userSpecifiedYear; 
 };
 
 1;
