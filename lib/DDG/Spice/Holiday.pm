@@ -13,81 +13,80 @@ spice wrap_jsonp_callback => 0;
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
 
-my @triggers  = share('holidays.txt')->slurp(chomp => 1);
-my $countries = join('|', share('countries.txt')->slurp(chomp => 1));
+my @triggers  = sort { length $b <=> length $a } share('holidays.txt')->slurp(chomp => 1);
 
 triggers any => @triggers;
 
+my $triggers_re = join('|', @triggers);
+my $countries = join('|', sort { length $b <=> length $a } share('countries.txt')->slurp(chomp => 1));
+# Regexes to match components of queries relevant to this IA
+my $country_re = qr/\b$countries\b/;
+my $year_re = qr/\b[1-9]{1}[0-9]{3}\b/;
+
+# Regexes to ignore optional words that can precede the year or country name
+my $in    = qr/(?:\bin\b)?/;
+my $inThe = qr/(?:\bin(?: the)?\b)?/;
+
 handle query_lc => sub {
+    return unless $_;
     my $query = $_;
-    return unless $query;
 
-    # Current year and users location are the defaults unless otherwise specified by the query
-    my $defaultYear = (localtime(time))[5] + 1900;
-    my $defaultCountry = $loc->country_name;
+    my ($chosenYear, $chosenCountry, $chosenHoliday);
 
-    # Regexes to match components of queries relevant to this IA
-    my $country  = qr/$countries/;
-    my $year     = qr/[1-9]{1}[0-9]{3}/;
-    my $prefix   = qr/^(when is |what day is )/;
-    
-    # Regexes to ignore optional words that can precede the year or country name
-    my $in       = qr/(?:in )?/;
-    my $inThe    = qr/(?:in the |in )?/;
-
-    my $chosenYear;
-    my $chosenCountry;
-    my $chosenHoliday;
     my $userSpecifiedYear = 0;
 
-    # Remove common prefixes queries for holidays may contain
-    $query =~ s/$prefix//;
+    # make sure we have a $loc and country name
+    return unless $loc and $loc->country_name;
 
-    # Sanitize the query by replacing non-alphanumeric characters, eg: 
+    # Current year and users location are the defaults unless otherwise specified by the query
+    $chosenYear = (localtime(time))[5] + 1900;
+    $chosenCountry = $loc->country_name;
+
+    # Remove common prefixes queries for holidays may contain
+    $query =~ s/^(when|what day) is\s+//;
+
+    # Sanitize the query by replacing non-alphanumeric characters, eg:
     #   "st. patricks day" -> "st patricks day"
     #   "eid al-fitr" -> "eid al fitr"
     #   "father's day" -> "fathers day"
     $query =~ s/[^\w\s\-]//;
     $query =~ s/-/ /;
 
-    $query =~ s/$in(?<year>$year)//;
-    if ($+{year}) {
+    # Extract holiday from query
+    $query =~ s/(?<holiday>$triggers_re)//;
+    $chosenHoliday = $+{holiday};
+
+    # Extract year from query
+    # Do this after holiday because some holidays contain years
+    if ($query =~ s/$in ?(?<year>$year_re)//) {
         $chosenYear = $+{year};
+        # These are the min/max years available from the API (as of Feb 2016, API version 2)
+        return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
         $userSpecifiedYear = 1;
-    } else {
-        $chosenYear = $defaultYear;
     }
 
-    $query =~ s/$inThe(?<country>$country)$//;
-    if ($+{country}) {
+    # Extract country from query
+    if ($query =~ s/$inThe ?(?<country>$country_re)$//) {
         $chosenCountry = $+{country};
-    } else {
-        $chosenCountry = $defaultCountry;
-    }
-     
-    # Load the list of holidays for the selected country
-    my $holidays;
-    my $holidayFile = "countries/" . country2code($chosenCountry) . ".txt";
-    if (-f "share/spice/holiday/" . $holidayFile) {    
-        $holidays = join('|', share($holidayFile)->slurp(chomp => 1));
-    } else {
-        return; # Unknown country
     }
 
-    $query =~ s/(?<holiday>$holidays)//;
-    if ($+{holiday}) {
-        $chosenHoliday = $+{holiday};
-    } else {
-        return; # Unknown holiday
-    }
+    # Verify we have a country code for chosen country
+    return unless my $countryCode = country2code($chosenCountry);
 
     # If there's anything left in the query we can't be sure its relevant
     return unless ($query =~ /^\s*$/);
-    
-    # These are the min/max years available from the API (as of Feb 2016, API version 2)
-    return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
-    
-    return $chosenCountry, $chosenHoliday, $chosenYear, $userSpecifiedYear; 
+
+    # Load the list of holidays for the selected country
+    my $filePath = "countries/$countryCode.txt";
+
+    # Ensure we have a list of holidays for the chosen country
+    return unless (my @lines = share($filePath)->slurp(chomp => 1));
+    my %holidays = map { $_ => 1 } @lines;
+
+    # Ensure specified holiday exists for chosen country
+    return unless $holidays{$chosenHoliday};
+
+    return $chosenCountry, $chosenHoliday, $chosenYear, $userSpecifiedYear;
 };
 
 1;
