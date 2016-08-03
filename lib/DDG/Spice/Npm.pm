@@ -11,7 +11,11 @@ spice to => 'http://registry.npmjs.org/$1/latest';
 spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub {
-    return $_ if $_;
+    return unless $_;
+    return $_, data => {
+        text: "hello, world!"
+        moreText: "this is awesome"
+    }
     return;
 };
 
