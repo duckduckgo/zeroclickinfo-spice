@@ -6,6 +6,8 @@
             return Spice.failed('npm');
         }
 
+        console.log(DDH.npm.call_data);
+
         Spice.add({
             id: "npm",
             name: "Software",
