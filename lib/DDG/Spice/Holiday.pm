@@ -37,6 +37,7 @@ my $countries = join('|', sort { length $b <=> length $a } share('countries.txt'
 # Regexes to match components of queries relevant to this IA
 my $country_re = qr/\b$countries\b/;
 my $year_re = qr/\b[1-9]{1}[0-9]{3}\b/;
+my $prefix_re = qr/^(when|what day) is\s+/;
 
 # Regexes to ignore optional words that can precede the year or country name
 my $in    = qr/(?:\bin\b)?/;
@@ -58,7 +59,7 @@ handle query_lc => sub {
     $chosenCountry = $loc->country_name;
 
     # Remove common prefixes queries for holidays may contain
-    $query =~ s/^(when|what day) is\s+//;
+    $query =~ s/$prefix_re//;
 
     # Sanitize the query by replacing non-alphanumeric characters, eg:
     #   "st. patricks day" -> "st patricks day"
