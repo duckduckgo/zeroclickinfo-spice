@@ -71,7 +71,9 @@
 
                 $.getJSON("/js/spice/board_game_geek/get_details/" + item.bggId, function (response) {
                     var responseItem = response.items.item,
-                        rating = DDG.getProperty(responseItem, "statistics.ratings.average.value");
+                        rating = DDG.getProperty(responseItem, "statistics.ratings.average.value"),
+                        img_m = DDG.getProperty(responseItem, "image.text"),
+                        img = DDG.getProperty(responseItem, "thumbnail.text");
 
                     // the BGG rating is out of 10 so divide to get a five star rating
                     if (rating) {
@@ -79,8 +81,8 @@
                     }
 
                     item.set({
-                        img_m: DDG.getProperty(responseItem, "image.text"),
-                        img: DDG.getProperty(responseItem, "thumbnail.text"),
+                        img_m: addProtocol(img_m),
+                        img: addProtocol(img),
                         abstract: DDG.getProperty(responseItem, "description.text"),
                         rating: rating,
                         reviewCount: DDG.getProperty(responseItem, "statistics.ratings.usersrated.value"),
@@ -103,6 +105,20 @@
             }
         });
     };
+
+    /**
+     * Images with a placeholder protocol seem to break when we try and request
+     * https images - so force http:// on them
+     *
+     * They'll be proxied via https://images.duckduckgo.com anyway so it's not a problem
+     */
+    function addProtocol(img) {
+        if (img.indexOf("//") === 0) {
+            img = "http:" + img;
+        }
+
+         return img;
+    }
 
     /**
      * Possible values this returns are based on
