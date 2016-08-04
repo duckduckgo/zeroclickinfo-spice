@@ -8,21 +8,21 @@ use DDG::Test::Spice;
 spice is_cached => 1;
 
 ddg_spice_test(
-    [qw( DDG::Spice::BoardGameGeek)],
+    [qw(DDG::Spice::BoardGameGeek::Search)],
     'carcasonne boardgame' => test_spice(
-        '/js/spice/board_game_geek/carcasonne',
+        '/js/spice/board_game_geek/search/carcasonne',
         call_type => 'include',
-        caller => 'DDG::Spice::BoardGameGeek'
+        caller => 'DDG::Spice::BoardGameGeek::Search'
     ),
     'catan board game' => test_spice(
-        '/js/spice/board_game_geek/catan',
+        '/js/spice/board_game_geek/search/catan',
         call_type => 'include',
-        caller => 'DDG::Spice::BoardGameGeek'
+        caller => 'DDG::Spice::BoardGameGeek::Search'
     ),
     'munchkin card game' => test_spice(
-        '/js/spice/board_game_geek/munchkin',
+        '/js/spice/board_game_geek/search/munchkin',
         call_type => 'include',
-        caller => 'DDG::Spice::BoardGameGeek'
+        caller => 'DDG::Spice::BoardGameGeek::Search'
     ),
     'where to buy board games' => undef,
     'board games for kids' => undef,
@@ -30,4 +30,3 @@ ddg_spice_test(
 );
 
 done_testing;
-
