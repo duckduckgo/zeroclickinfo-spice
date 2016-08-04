@@ -47,16 +47,15 @@ handle query_lc => sub {
     return unless $_;
     my $query = $_;
 
-    my ($chosenYear, $chosenCountry, $chosenHoliday);
-
-    my $userSpecifiedYear = 0;
+    my ($chosen_year, $chosen_country, $chosen_holiday);
+    my $user_specified_year = 0;
 
     # make sure we have a $loc and country name
     return unless $loc and $loc->country_name;
 
     # Current year and users location are the defaults unless otherwise specified by the query
-    $chosenYear = (localtime(time))[5] + 1900;
-    $chosenCountry = $loc->country_name;
+    $chosen_year = (localtime(time))[5] + 1900;
+    $chosen_country = $loc->country_name;
 
     # Remove common prefixes queries for holidays may contain
     $query =~ s/$prefix_re//;
@@ -70,20 +69,20 @@ handle query_lc => sub {
 
     # Extract holiday from query
     $query =~ s/(?<holiday>$triggers_re)//;
-    $chosenHoliday = $+{holiday};
+    $chosen_holiday = $+{holiday};
 
     # Extract year from query
     # Do this after holiday because some holidays contain years
     if ($query =~ s/$in ?(?<year>$year_re)//) {
-        $chosenYear = $+{year};
+        $chosen_year = $+{year};
         # These are the min/max years available from the API (as of Feb 2016, API version 2)
-        return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
-        $userSpecifiedYear = 1;
+        return unless ($chosen_year >= 1600 && $chosen_year <= 2400);
+        $user_specified_year = 1;
     }
 
     # Extract country from query
     if ($query =~ s/$inThe ?(?<country>$country_re)$//) {
-        $chosenCountry = $+{country};
+        $chosen_country = $+{country};
     }
 
     # Verify we have a country code for chosen country
@@ -95,14 +94,13 @@ handle query_lc => sub {
     # Load the list of holidays for the selected country
     my $filePath = "countries/$countryCode.txt";
 
-    # Ensure we have a list of holidays for the chosen country
     return unless (my @lines = share($filePath)->slurp(chomp => 1));
     my %holidays = map { $_ => 1 } @lines;
 
     # Ensure specified holiday exists for chosen country
-    return unless $holidays{$chosenHoliday};
+    return unless $holidays{$chosen_holiday};
 
-    return $chosenCountry, $chosenHoliday, $chosenYear, $userSpecifiedYear;
+    return $chosen_country, $chosen_holiday, $chosen_year, $user_specified_year;
 };
 
 1;
