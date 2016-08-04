@@ -22,7 +22,7 @@ spice alt_to => {
     }
 };
 
-triggers end => 'boardgame', 'board game', 'card game';
+triggers end => 'boardgamegeek', 'board game geek', 'boardgame', 'board game', 'card game';
 
 handle remainder => sub {
     return unless $_;
