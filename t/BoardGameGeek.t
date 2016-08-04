@@ -19,6 +19,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::BoardGameGeek::Search'
     ),
+    'scythe boardgamegeek' => test_spice(
+        '/js/spice/board_game_geek/search/scythe',
+        call_type => 'include',
+        caller => 'DDG::Spice::BoardGameGeek::Search'
+    ),
     'munchkin card game' => test_spice(
         '/js/spice/board_game_geek/search/munchkin',
         call_type => 'include',
