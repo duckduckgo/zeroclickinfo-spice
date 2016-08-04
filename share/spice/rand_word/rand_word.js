@@ -36,7 +36,6 @@
                 var first = data[0];
                 $.extend(spiceObj, {
                     data: {
-                        title: "Random Word",
                         word: first.word,
                         definition: first.text
                     },
@@ -45,11 +44,8 @@
                     },
                     normalize: function(item) {
                         return {
-                            title: 'Random Word',
-                            subtitle: {
-                                href: "http://wordnik.com/words/" + (item.word),
-                                text: item.word
-                            },
+                            title: item.word,
+                            url: "http://wordnik.com/words/" + item.word,
                             description: item.definition,
                         }
                     }
