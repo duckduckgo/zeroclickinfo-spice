@@ -13,6 +13,21 @@ spice wrap_jsonp_callback => 0;
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
 
+# TODO:
+# Build this array from share()
+# OR find a better way of searching through share dir
+my @supported_countries_list = qw(
+    ad ae af al am ao ar at au aw az ba bb bd be bf bg bh bi bj bm bo br bs bw
+    by ca cd cf cg ch ci cl cm cn co cr cu cv cw cy cz de dj dk do dz ec ee eg
+    er es et fi fj fo fr ga gb gd ge gh gi gl gm gn gq gr gt gw hk hn hr ht hu
+    id ie il in iq ir is it jm jo jp ke kg kh km kp kr kw ky kz lb li lk lr ls
+    lt lu lv ly ma mc md me mg mk ml mn mo mq mt mu mw mx my mz na ne ng ni nl
+    no np nz om pa pe ph pk pl pr pt py qa re ro rs ru rw sa sc sd se sg sh si
+    sk sl sm sn so sr ss st sv sy sz td tg th tn tr tt tw tz ua ug us uy uz va
+    ve vi vn ye yt za zm zw
+);
+my %supported_countries = map { $_ => 1 } @supported_countries_list;
+
 my @triggers  = sort { length $b <=> length $a } share('holidays.txt')->slurp(chomp => 1);
 
 triggers any => @triggers;
