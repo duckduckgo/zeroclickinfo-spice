@@ -86,7 +86,10 @@ handle query_lc => sub {
     }
 
     # Verify we have a country code for chosen country
-    return unless my $countryCode = country2code($chosenCountry);
+    return unless my $countryCode = country2code($chosen_country);
+
+    # Ensure we have a list of holidays for the chosen country
+    return unless exists $supported_countries{$countryCode};
 
     # If there's anything left in the query we can't be sure its relevant
     return unless ($query =~ /^\s*$/);
