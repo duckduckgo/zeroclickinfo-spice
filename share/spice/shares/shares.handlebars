@@ -1,0 +1,29 @@
+<div class="sf__shares">
+  <h1 class="sf__header">
+      <a href="{{url}}">
+          {{name}}
+      </a>
+  </h1>
+  <div class="sf__content">
+    <div class="sf__data_row">
+      <span>{{ric}}</span> as of {{updated_at}}
+      <span class="sf__split">|</span> End-of-Day
+    </div>
+    <div class="sf__numbers_row">
+      {{currency}} {{price}}
+      <span class="sf__arrow sf__arrow-{{arrow}}"></span>
+      {{valueChange}} {{percentageChange}}%
+    </div>
+    <div class="sf__info_row">
+      {{value}} million
+      {{#if forecast_pe}}
+        <span class="sf__split">|</span>
+        Forecast PE {{forecast_pe}}x
+      {{/if}}
+      {{#if dividend}}
+        <span class="sf__split">|</span>
+        Dividend yield {{dividend}}%<br/>
+      {{/if}}
+    </div>
+  </div>
+</div>
