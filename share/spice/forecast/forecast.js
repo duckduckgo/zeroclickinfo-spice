@@ -116,7 +116,8 @@
       currentObj.icon = getIcon(getIconType(f.currently.icon));
 
       if(f.currently.humidity) {
-        currentObj.humidity = 'Humidity: ' + (f.currently.humidity * 100) + '%';
+        var humidity = Math.round(f.currently.humidity * 100);
+        currentObj.humidity = 'Humidity: ' + humidity + '%';
       }
 
       return currentObj;
@@ -153,7 +154,7 @@
         day = days[i];
 
         tmp_date = moment(today).add(i, 'days');
-        dailyObj[i].date = tmp_date.format("MMM D");        
+        dailyObj[i].date = tmp_date.format("MMM D");
         dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
         dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
         dailyObj[i].icon = getIcon(getIconType(days[i].icon));
@@ -161,8 +162,8 @@
           height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
           top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
         };
-        
-        if (i == 0) { 
+
+        if (i == 0) {
             dailyObj[i].day = 'Today';
         } else if (is_mobile) {
             dailyObj[i].day = tmp_date.format("ddd").toUpperCase();
