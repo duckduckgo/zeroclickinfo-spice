@@ -16,7 +16,7 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 # API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
 # API key: te156164883435915545347296647887
 # DDG_SPICE_SKYSCANNER_APIKEY
-spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/GB/GBP/en-GB/se/anywhere/anytime/anytime?apikey=te156164883435915545347296647887';
+spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/GB/GBP/en-GB/$1/anywhere/anytime/anytime?apikey=te156164883435915545347296647887';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 #triggers any => 'skyscanner flights to', 'skycanner show me flights to ', 'skyscanner inspire me';
