@@ -15,17 +15,23 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 
 # API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
 # API key: te156164883435915545347296647887
-spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/GB/GBP/en-GB/edi/$1/anytime/anytime?apikey=te156164883435915545347296647887';
+# DDG_SPICE_SKYSCANNER_APIKEY
+spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/GB/GBP/en-GB/se/anywhere/anytime/anytime?apikey=te156164883435915545347296647887';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => 'skyscanner flights to', 'skycanner show me flights to ', 'skyscanner inspire me';
+#triggers any => 'skyscanner flights to', 'skycanner show me flights to ', 'skyscanner inspire me';
+triggers any => 'skyscanner', 'skycanner flights', 'skyscanner inspire me', 'skyscanner deals';
 
 # Handle statement
 handle remainder => sub {
-    return $_ if $_;
+    # get user's location for default origin
+    my $location = $loc->country_code;
+    return $location if $location;
+    return;
+    # return $_ if $_;
     # Query is in $_ or @_, depending on the handle you chose...if you
     # need to do something with it before returning
-    return "anywhere";
+    #return "anywhere";
 };
 
 1;

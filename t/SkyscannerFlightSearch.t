@@ -12,14 +12,14 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'example query' => test_spice(
+    'skyscanner' => test_spice(
         '/js/spice/skyscanner_flight_search/query',
         call_type => 'include',
         caller => 'DDG::Spice::SkyscannerFlightSearch'
     ),
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'sky scanner' => undef,
 );
 
 done_testing;
