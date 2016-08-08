@@ -27,7 +27,6 @@
         });
         
         var origin_country = placesById[listOfRoutes[0].OriginId].Name;
-        //console.log(listOfRoutes[0]);
         
         var build_flight_route = function (current_route, index, response) {
             var price = "";
@@ -47,19 +46,9 @@
             var cityId = "SKY:" + placesById[current_route.DestinationId].CityId; 
             var countryId = "SKY:" + placesById[current_route.DestinationId].SkyscannerCode; 
             
-            console.log("Getting data for: " + countryId);
-            console.log("Is there an index? " + response.index[countryId]);
-            
             if (response.index[countryId] >=0) {
-                console.log("true");
                 image_array = response.results[response.index[countryId]].images;
-            } else {
-                console.log("false");
-            }
-            
-            //console.log("First image array for " + cityId + ": " + response.results[response.index[cityId]].images);
-            //console.log("Second image array for " + cityId + ": " + image_array);
-
+            } 
             
             if (Array.isArray(image_array) && image_array.length > 0) {
                 destination_city_image = image_array[0].url;
@@ -94,7 +83,6 @@
                 flight_return_date: return_date
             };
         }
-        console.log("https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=" + listOfCountryIds + "&enhancers=images&apikey=09fd8de5844d4b1d982a320ad5dee5b8");
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -134,7 +122,6 @@
                     primaryText: "Skyscanner's best deals from " + origin_country + "",
                     // add regex to retrieve destination from search query
                     searchTerm: 'flights to destination_city',
-                    
                 },
 
                 templates:{
