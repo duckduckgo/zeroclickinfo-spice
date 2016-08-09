@@ -11,7 +11,7 @@
         var query  = DDG.get_query(),
             result = query.match(/css[2-3]?|html5|svg|js api/ig),
 
-            //get relevant array from the return JSON object
+            //get relevant array from the returned JSON object
             statuses      = api_result['statuses'],
             data          = api_result['data'],
             browsers      = api_result['agents'],
@@ -56,33 +56,21 @@
                     title      : item.title,
                     subtitle   : item.categories,
                     description: item.description,
-                    status     : statuses[item.status],
-                    usage_y    : item.usage_perc_y,
-                    usage_a    : item.usage_perc_a,
                     ie         : getStatus('ie', item, 'd'),
                     chrome     : getStatus('chrome', item, 'd'),
                     firefox    : getStatus('firefox', item, 'd'),
-                    android    : getStatus('android', item, 'm'),
-                    ios_saf    : getStatus('ios_saf', item, 'm'),
-                    ie_stats   : getStats('ie',item),
-                    chr_stats  : getStats('chrome',item),
-                    ff_stats   : getStats('firefox',item),
-                    and_stats  : getStats('android', item),
-                    saf_stats  : getStats('ios_saf', item),
+                    safari     : getStatus('safari', item, 'd'),
                     ie_path    : DDG.get_asset_path('caniuse_lists', 'assets/ie-icon-16.png'),
                     chr_path   : DDG.get_asset_path('caniuse_lists', 'assets/chrome-icon-16.png'),
                     ff_path    : DDG.get_asset_path('caniuse_lists', 'assets/firefox-icon-16.png'),
                     and_path   : DDG.get_asset_path('caniuse_lists', 'assets/android-browser-icon-16.png'),
-                    saf_path   : DDG.get_asset_path('caniuse_lists', 'assets/ios-safari-icon-16.png'),
-                    supported  : supported,
-                    supported_d: supported_d,
-                    supported_m: supported_m
+                    saf_path   : DDG.get_asset_path('caniuse_lists', 'assets/ios-safari-icon-16.png')
                 };
             },
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.caniuse_lists.content,
+                    //content: Spice.caniuse_lists.content,
                     footer: Spice.caniuse_lists.footer,
                     moreAt: true
                 },
@@ -95,61 +83,57 @@
         });
 
         function getStatus(browser_name,item, type) {
-            var current_version = browsers[browser_name]['current_version'];
-
-            if(item.stats[browser_name][current_version] === 'y') {
-                supported = true;
-                if(type === 'd')
-                    supported_d = true;
-                else
-                    supported_m = true;
-                return current_version;
-            }
-        }
-
-    // y - (Y)es, supported by default
-    // a - (A)lmost supported (aka Partial support)
-    // n - (N)o support, or disabled by default
-    // p - No support, but has (P)olyfill
-    // u - Support (u)nknown
-    // x - Requires prefi(x) to work
-    // d - (D)isabled by default (need to enable flag or something)
-    // #n - Where n is a number, starting with 1, corresponds to the notes_by_num note. For example: '42':'y #1'
-
-        function getStats(browser_name, item) {
-            var compatibility = item.stats[browser_name],
-                supported_versions = {"y":"-", "a":"-"},
-                index = 0,
-                range,
+            var current_version = browsers[browser_name]['current_version'],
+                compatibility = item.stats[browser_name],
                 versions = Object.keys(compatibility),
+                index = 0,
+                minVersion = '--',
                 return_value = [];
 
-            versions.sort(function(a,b){
+            versions.sort(function(a,b) {
                 return b - a;
             });
 
             for(index = 0; index < versions.length ; index++) {
 
-                index = addInfo(compatibility, versions, index, 'y', supported_versions);
-                index = addInfo(compatibility, versions, index, 'a', supported_versions);
+                return_value = findSupportInfo(compatibility, versions, index, ['y','#n']);
+                if(return_value && return_value[2]) {
+                    minVersion = return_value[1];
+                    index = return_value[0];
+                    break;
+                } else {
+                    return_value = findSupportInfo(compatibility, versions, index, ['a','a x','y x']);
+                    if(return_value && return_value[2]) {
+                        minVersion = return_value[1] + '*';
+                    }
+                    break;
+                }
             }
 
-            return supported_versions;
+            return minVersion;
         }
-
-        function getRange(versions) {
-            versions.sort(function(a,b) {
-               return a - b;
-            });
-            if(versions[0] == null) {
-                return ' - ';
-            } else if(versions[0] == versions[versions.length - 1]) {
-                return 'v ' + versions[0];
+              
+        function findSupportInfo(compatibility, versions, index, support_type) {
+            if(support_type.indexOf(compatibility[versions[index]]) == -1) {
+                return;
             }
-            return 'v ' + versions[0] + ' - ' + versions[versions.length - 1];
-        }
 
-        function removeHyphen(versions, compatibility, index) {
+            var minVersion,
+                found = false;
+
+            while(support_type.indexOf(compatibility[versions[index]]) != -1) {
+                if(versions[index].indexOf('-') != -1) {
+                    removeHyphen(versions, compatibility, index);
+                }
+                minVersion = versions[index];
+                found = true;
+                index++;
+            }
+            minVersion += '+';
+            return [index, minVersion, found];   //return how much we have advanced in the array
+        }
+        
+        function removeHyphen(versions, compatibility, index) {  //separate versions having a range, eg. 4.4.3-4.4.4
 
             var split_v = versions[index].split('-'),
                 support_value = compatibility[versions[index]],
@@ -164,27 +148,7 @@
             delete compatibility[old_version];
         }
 
-        function addInfo(compatibility, versions, index, support_type, supported_versions) {
-            if(compatibility[versions[index]] != support_type) {
-                return;
-            }
-
-            var compatibility_info = [];
-
-            while(compatibility[versions[index]] === support_type) {
-                if(versions[index].indexOf('-') != -1) {
-                    removeHyphen(versions, compatibility, index);
-                }
-                compatibility_info.push(versions[index]);
-                index++;
-            }
-            var range = getRange(compatibility_info);
-            supported_versions[support_type] = range;
-
-            return index;   //return how much we have advanced in the array
-        }
-        
-        function removePeriods(versions) {
+        function removePeriods(versions) {  //change version of form x.y.z -> x.y, because it has to be sorted
             var count;
             
             for(count = 0; count < versions.length; count++) {

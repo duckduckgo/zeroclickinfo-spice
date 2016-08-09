@@ -1,13 +1,16 @@
-{{#if supported}}
-    {{#if supported_d}}
-        Desktop: {{#if firefox}}<img src={{ff_path}}><span class='tx--14 align'> {{firefox}}</span>{{/if}}
-        {{#if chrome}}<img src={{chr_path}}><span class='tx--14 align'> {{chrome}}</span>{{/if}}
-        {{#if ie}}<img src={{ie_path}}><span class='tx--14 align'> {{ie}}</span>{{/if}}<br>
-    {{/if}}
-    {{#if supported_m}}
-        <span class="mobile-browser">Mobile:</span>{{#if android}}<img src={{and_path}}><span class='tx--14 align'> {{android}}</span>{{/if}}
-        {{#if ios_saf}}<img src={{saf_path}}><span class='tx--14 align'> {{ios_saf}}</span>{{/if}}
-    {{/if}}
-{{else}}
-    <span>Click to view browser support</span>
-{{/if}}
+<span class='align'>
+    <div><img src={{ff_path}}></div>
+    <div> {{firefox}}</div>
+</span>
+<span class='align'>
+    <div><img src={{chr_path}}></div>
+    <div> {{chrome}}</div>
+</span>
+<span class='align'>
+    <div><img src={{saf_path}}></div>
+    <div> {{safari}}</div>
+</span>
+<span class='align'>
+    <div><img src={{ie_path}}></div>
+    <div> {{ie}}</div>
+</span>
