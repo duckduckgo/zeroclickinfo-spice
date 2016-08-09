@@ -2,5 +2,9 @@
     vertical-align: top;
     text-align: center;
     display: inline-block;
-    padding: 0 1.5em 0 0.4em;
+    padding: 0 1.5em 0 0.3em;
+}
+
+.zci--caniuse_lists .fade {
+    opacity: 0.5;
 }

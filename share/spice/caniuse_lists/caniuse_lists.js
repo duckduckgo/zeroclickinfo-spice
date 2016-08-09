@@ -18,7 +18,8 @@
             supported     = false,
             supported_d   = false,
             supported_m   = false,
-            required_data = [];
+            required_data = [],
+            $dom;
 
         //pick only the required features based on category
         for( var feature in data ) {
@@ -40,8 +41,6 @@
         // Render the response
         Spice.add({
             id: 'caniuse_lists',
-
-            // Customize these properties
             name: 'Can I Use',
             data: required_data,
             meta: {
@@ -67,10 +66,15 @@
                     saf_path   : DDG.get_asset_path('caniuse_lists', 'assets/ios-safari-icon-16.png')
                 };
             },
+//             onItemShown: function(item) {
+//                 var $dom = $('.zci--caniuse_lists');
+//                 if(item.ie == '--') {
+//                     $dom.find('.ie').addClass("tx-clr--platinum-dark fade");
+//                 }
+//             },
             templates: {
                 group: 'text',
                 options: {
-                    //content: Spice.caniuse_lists.content,
                     footer: Spice.caniuse_lists.footer,
                     moreAt: true
                 },
@@ -83,77 +87,76 @@
         });
 
         function getStatus(browser_name,item, type) {
-            var current_version = browsers[browser_name]['current_version'],
-                compatibility = item.stats[browser_name],
+            var compatibility = item.stats[browser_name],
                 versions = Object.keys(compatibility),
                 index = 0,
                 minVersion = '--',
-                return_value = [];
+                return_value = [],
+                support_type = {'yes': ['y'],'partial': ['a','a x','y x'], 'y': ['y #n'], 'a': ['a #n', 'a x #n']};
+
+            removeHyphen(versions);
 
             versions.sort(function(a,b) {
                 return b - a;
             });
 
-            for(index = 0; index < versions.length ; index++) {
-
-                return_value = findSupportInfo(compatibility, versions, index, ['y','#n']);
+            for(var type in support_type) {
+                return_value = findSupportInfo(compatibility, versions, index, type, support_type[type]);
                 if(return_value && return_value[2]) {
                     minVersion = return_value[1];
+                    break;
+                } else if(return_value && !return_value[2]) {
                     index = return_value[0];
-                    break;
-                } else {
-                    return_value = findSupportInfo(compatibility, versions, index, ['a','a x','y x']);
-                    if(return_value && return_value[2]) {
-                        minVersion = return_value[1] + '*';
-                    }
-                    break;
                 }
             }
-
             return minVersion;
         }
               
-        function findSupportInfo(compatibility, versions, index, support_type) {
-            if(support_type.indexOf(compatibility[versions[index]]) == -1) {
-                return;
-            }
-
+        function findSupportInfo(compatibility, versions, index, type, support_type) {
             var minVersion,
                 found = false;
 
             while(support_type.indexOf(compatibility[versions[index]]) != -1) {
-                if(versions[index].indexOf('-') != -1) {
-                    removeHyphen(versions, compatibility, index);
-                }
                 minVersion = versions[index];
+                minVersion += '+';
                 found = true;
                 index++;
             }
-            minVersion += '+';
+            while(!found && versions[index] && compatibility[versions[index]].match(/([y|a|a x]\s#)+/g)) {
+                minVersion = versions[index];
+                minVersion += '+*';
+                found = true;
+                index++;
+            }
+            if(!found)
+                return;
+            if(type == 'partial') {
+                minVersion += '*';
+            }
             return [index, minVersion, found];   //return how much we have advanced in the array
         }
         
-        function removeHyphen(versions, compatibility, index) {  //separate versions having a range, eg. 4.4.3-4.4.4
-
-            var split_v = versions[index].split('-'),
-                support_value = compatibility[versions[index]],
-                old_version = versions[index];
+        function removeHyphen(versions) {  //separate versions having a range, eg. 4.4.3-4.4.4
+            var index = 0,
+                split_v;
             
-            split_v = removePeriods(split_v);
-            
-            versions.splice(index, 1, split_v[0], split_v[1]);
-            compatibility[split_v[0]] = support_value;
-            compatibility[split_v[1]] = support_value;
-
-            delete compatibility[old_version];
+            for(index = 0; index < versions.length; index++) {
+                split_v = versions[index].split('-'),
+                split_v = removePeriods(split_v);
+                if(split_v.length > 1)
+                    versions.splice(index, 1, split_v[0], split_v[1]);
+                else
+                    versions.splice(index, 1, split_v[0]);
+            }
         }
 
         function removePeriods(versions) {  //change version of form x.y.z -> x.y, because it has to be sorted
             var count;
             
             for(count = 0; count < versions.length; count++) {
-                if(versions[count].match(/\./g).length >= 2) {
-                    versions[count] = versions[count].substr(0, versions[count].lastIndexOf('.'));
+                var matched = versions[count].match(/\./g);
+                if(matched && matched.length >= 2) {
+                    versions[count] = versions[count].substr(0, versions[count].indexOf('.',versions[count].indexOf('.')));
                 }    
             }
             return versions;
