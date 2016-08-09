@@ -11,6 +11,12 @@ spice proxy_cache_valid => "418 1d";
 
 triggers any => "random word", "random words";
 
+spice alt_to => {
+    rand_word_fetch_id => {
+        to => 'http://api.wordnik.com:80/v4/word.json/$1/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}',
+	}
+};
+
 handle query_lc => sub {
     my $minlen = 1;
     my $maxlen = 100;
