@@ -1,16 +1,36 @@
 <span class='align'>
-    <div class='ff'><img src={{ff_path}}></div>
-    <div class='ff'> {{firefox}}</div>
-</span>
-<span class='chr align'>
-    <div><img src={{chr_path}}></div>
-    <div> {{chrome}}</div>
-</span>
-<span class='saf align'>
-    <div><img src={{saf_path}}></div>
-    <div> {{safari}}</div>
+    {{#if firefox_present}}
+        <div><img src={{ff_path}}></div>
+        <div>{{firefox}}</div>
+    {{else}}
+        <div class='tx-clr--grey-light fade'><img src={{ff_path}}></div>
+        <div class='tx-clr--grey-light'>{{firefox}}</div>
+    {{/if}}
 </span>
 <span class='align'>
-    <div class='ie'><img src={{ie_path}}></div>
-    <div class='ie'> {{ie}}</div>
+    {{#if chrome_present}}
+        <div><img src={{chr_path}}></div>
+        <div>{{chrome}}</div>
+    {{else}}
+        <div class='tx-clr--grey-light fade'><img src={{chr_path}}></div>
+        <div class='tx-clr--grey-light'>{{chrome}}</div>
+    {{/if}}
+</span>
+<span class='saf align'>
+    {{#if safari_present}}
+        <div><img src={{saf_path}}></div>
+        <div>{{safari}}</div>
+    {{else}}
+        <div class='tx-clr--grey-light fade'><img src={{saf_path}}></div>
+        <div class='tx-clr--grey-light'>{{safari}}</div>
+    {{/if}}
+</span>
+<span class='align'>
+    {{#if ie_present}}
+        <div><img src={{ie_path}}></div>
+        <div>{{ie}}</div>
+    {{else}}
+        <div class='tx-clr--grey-light fade'><img src={{ie_path}}></div>
+        <div class='tx-clr--grey-light'>{{ie}}</div>
+    {{/if}}
 </span>

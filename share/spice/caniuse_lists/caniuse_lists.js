@@ -15,11 +15,8 @@
             statuses      = api_result['statuses'],
             data          = api_result['data'],
             browsers      = api_result['agents'],
-            supported     = false,
-            supported_d   = false,
-            supported_m   = false,
-            required_data = [],
-            $dom;
+            supported     = {'ie': true,'firefox': true,'chrome': true,'safari': true},
+            required_data = [];
 
         //pick only the required features based on category
         for( var feature in data ) {
@@ -48,17 +45,19 @@
                 sourceUrl: 'http://caniuse.com/'
             },
             normalize: function(item) {
-                supported   = false;
-                supported_d = false;
-                supported_m = false;
+                supported = {'ie': true,'firefox': true,'chrome': true,'safari': true};
                 return {
                     title      : item.title,
                     subtitle   : item.categories,
                     description: item.description,
-                    ie         : getStatus('ie', item, 'd'),
-                    chrome     : getStatus('chrome', item, 'd'),
-                    firefox    : getStatus('firefox', item, 'd'),
-                    safari     : getStatus('safari', item, 'd'),
+                    ie         : getStatus('ie', item),
+                    chrome     : getStatus('chrome', item),
+                    firefox    : getStatus('firefox', item),
+                    safari     : getStatus('safari', item),
+                    ie_present : supported['ie'],
+                    chrome_present : supported['chrome'],
+                    firefox_present : supported['firefox'],
+                    safari_present : supported['safari'],
                     ie_path    : DDG.get_asset_path('caniuse_lists', 'assets/ie-icon-16.png'),
                     chr_path   : DDG.get_asset_path('caniuse_lists', 'assets/chrome-icon-16.png'),
                     ff_path    : DDG.get_asset_path('caniuse_lists', 'assets/firefox-icon-16.png'),
@@ -66,12 +65,6 @@
                     saf_path   : DDG.get_asset_path('caniuse_lists', 'assets/ios-safari-icon-16.png')
                 };
             },
-//             onItemShown: function(item) {
-//                 var $dom = $('.zci--caniuse_lists');
-//                 if(item.ie == '--') {
-//                     $dom.find('.ie').addClass("tx-clr--platinum-dark fade");
-//                 }
-//             },
             templates: {
                 group: 'text',
                 options: {
@@ -86,28 +79,31 @@
             }
         });
 
-        function getStatus(browser_name,item, type) {
+        function getStatus(browser_name,item) {
             var compatibility = item.stats[browser_name],
                 versions = Object.keys(compatibility),
                 index = 0,
                 minVersion = '--',
-                return_value = [],
+                return_value,
                 support_type = {'yes': ['y'],'partial': ['a','a x','y x'], 'y': ['y #n'], 'a': ['a #n', 'a x #n']};
 
             removeHyphen(versions);
 
-            versions.sort(function(a,b) {
+            versions.sort(function(a,b) {   //sort descending
                 return b - a;
             });
 
             for(var type in support_type) {
                 return_value = findSupportInfo(compatibility, versions, index, type, support_type[type]);
-                if(return_value && return_value[2]) {
-                    minVersion = return_value[1];
+                if(return_value && return_value['found']) {
+                    minVersion = return_value['minVersion'];
                     break;
-                } else if(return_value && !return_value[2]) {
-                    index = return_value[0];
+                } else if(return_value && !return_value['found']) {
+                    index = return_value['index'];
                 }
+            }
+            if(minVersion == '--') {
+                supported[browser_name] = false;
             }
             return minVersion;
         }
@@ -115,13 +111,14 @@
         function findSupportInfo(compatibility, versions, index, type, support_type) {
             var minVersion,
                 found = false;
-
+            //for support values of yes, partial
             while(support_type.indexOf(compatibility[versions[index]]) != -1) {
                 minVersion = versions[index];
                 minVersion += '+';
                 found = true;
                 index++;
             }
+            //for support values of the form 'a #n', 'y #n', etc
             while(!found && versions[index] && compatibility[versions[index]].match(/([y|a|a x]\s#)+/g)) {
                 minVersion = versions[index];
                 minVersion += '+*';
@@ -133,7 +130,7 @@
             if(type == 'partial') {
                 minVersion += '*';
             }
-            return [index, minVersion, found];   //return how much we have advanced in the array
+            return {'index': index, 'minVersion': minVersion, 'found': found};   //return how much we have advanced in the array
         }
         
         function removeHyphen(versions) {  //separate versions having a range, eg. 4.4.3-4.4.4
