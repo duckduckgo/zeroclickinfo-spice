@@ -110,16 +110,18 @@
               
         function findSupportInfo(compatibility, versions, index, type, support_type) {
             var minVersion,
-                found = false;
+                found = false,
+                yp_found = false;
             //for support values of yes, partial
             while(support_type.indexOf(compatibility[versions[index]]) != -1) {
                 minVersion = versions[index];
                 minVersion += '+';
                 found = true;
                 index++;
+                yp_found = true;
             }
             //for support values of the form 'a #n', 'y #n', etc
-            while(!found && versions[index] && compatibility[versions[index]].match(/([y|a|a x]\s#)+/g)) {
+            while(!yp_found && versions[index] && compatibility[versions[index]].match(/([y|a|a x]\s#)+/g)) {
                 minVersion = versions[index];
                 minVersion += '+*';
                 found = true;
