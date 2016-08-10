@@ -86,7 +86,7 @@
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=" + listOfCountryIds + "&enhancers=images&apikey=09fd8de5844d4b1d982a320ad5dee5b8",
+            // "url": "https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=" + listOfCountryIds + "&enhancers=images&apikey=09fd8de5844d4b1d982a320ad5dee5b8",
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache",
@@ -94,8 +94,9 @@
             }
         };
 
-        $.ajax(settings).success(function (response) {
-            
+        //$.ajax(settings).success(function (response) {
+          
+        $.getJSON('/js/spice/skyscanner_images/' + listOfCountryIds, function(response) {
             var flights = listOfRoutes.map(function(route,index) { return build_flight_route(route, index, response); });
             
             // Fail if no flights to show

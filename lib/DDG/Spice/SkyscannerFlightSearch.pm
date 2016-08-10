@@ -13,6 +13,12 @@ spice proxy_cache_valid => '200 1d'; # defaults to this automatically
 
 spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/GB/GBP/en-GB/$1/anywhere/anytime/anytime?apikey={{ENV{DDG_SPICE_SKYSCANNER_APIKEY}}}';
+spice alt_to => {
+    skyscanner_images => {
+        to => 'https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=$1&enhancers=images&apikey={{ENV{DDG_SPICE_SKYSCANNER_IMAGES_APIKEY}}}'
+        # proxy_cache_valid => '418 1d' #disable api response caching, if needed
+    }
+};
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 #triggers any => 'skyscanner flights to', 'skycanner show me flights to ', 'skyscanner inspire me';
