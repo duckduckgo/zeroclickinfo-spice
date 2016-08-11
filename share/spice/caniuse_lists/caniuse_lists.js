@@ -15,7 +15,7 @@
             statuses      = api_result['statuses'],
             data          = api_result['data'],
             browsers      = api_result['agents'],
-            supported     = {'ie': true,'firefox': true,'chrome': true,'safari': true},
+            supported,
             required_data = [];
 
         //pick only the required features based on category
@@ -42,7 +42,8 @@
             data: required_data,
             meta: {
                 sourceName: 'caniuse.com',
-                sourceUrl: 'http://caniuse.com/'
+                sourceUrl: 'http://caniuse.com/',
+                snippetChars: 140
             },
             normalize: function(item) {
                 supported = {'ie': true,'firefox': true,'chrome': true,'safari': true};
@@ -67,6 +68,8 @@
             },
             templates: {
                 group: 'text',
+                detail: false,
+                item_detail: false,
                 options: {
                     footer: Spice.caniuse_lists.footer,
                     moreAt: true
@@ -85,7 +88,12 @@
                 index = 0,
                 minVersion = '--',
                 return_value,
-                support_type = {'yes': ['y'],'partial': ['a','a x','y x'], 'y': ['y #n'], 'a': ['a #n', 'a x #n']};
+                support_type = {
+                                yes: ['y'],
+                                partial: ['a','a x','y x'],
+                                y: ['y #n'],
+                                a: ['a #n', 'a x #n']
+                               };
 
             removeHyphen(versions);
 
@@ -102,7 +110,7 @@
                     index = return_value['index'];
                 }
             }
-            if(minVersion == '--') {
+            if(minVersion === '--') {
                 supported[browser_name] = false;
             }
             return minVersion;
@@ -129,7 +137,7 @@
             }
             if(!found)
                 return;
-            if(type == 'partial') {
+            if(type === 'partial') {
                 minVersion += '*';
             }
             return {'index': index, 'minVersion': minVersion, 'found': found};   //return how much we have advanced in the array
@@ -153,10 +161,10 @@
             var count;
             
             for(count = 0; count < versions.length; count++) {
-                var matched = versions[count].match(/\./g);
-                if(matched && matched.length >= 2) {
-                    versions[count] = versions[count].substr(0, versions[count].indexOf('.',versions[count].indexOf('.')));
-                }    
+                var matched = versions[count].match(/(\d+\.\d+)/);
+                if(matched) {
+                    versions[count] = matched[0];
+                }
             }
             return versions;
         }
