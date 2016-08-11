@@ -20,7 +20,6 @@
 
         //pick only the required features based on category
         for( var feature in data ) {
-
             var obj = data[feature];
             for(var search_term in result) {
                 if( obj['categories'].indexOf(result[search_term].toUpperCase()) != -1) {
@@ -51,14 +50,15 @@
                     title      : item.title,
                     subtitle   : item.categories,
                     description: item.description,
+                    url        : (item.keywords) ? 'http://caniuse.com/#search=' + encodeURIComponent(item.keywords.split(',')[0]) : 'http://caniuse.com/',
                     ie         : getStatus('ie', item),
                     chrome     : getStatus('chrome', item),
                     firefox    : getStatus('firefox', item),
                     safari     : getStatus('safari', item),
-                    ie_present : supported['ie'],
-                    chrome_present : supported['chrome'],
+                    ie_present      : supported['ie'],
+                    chrome_present  : supported['chrome'],
                     firefox_present : supported['firefox'],
-                    safari_present : supported['safari'],
+                    safari_present  : supported['safari'],
                     ie_path    : DDG.get_asset_path('caniuse_lists', 'assets/ie-icon-16.png'),
                     chr_path   : DDG.get_asset_path('caniuse_lists', 'assets/chrome-icon-16.png'),
                     ff_path    : DDG.get_asset_path('caniuse_lists', 'assets/firefox-icon-16.png'),
