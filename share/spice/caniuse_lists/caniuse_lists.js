@@ -59,11 +59,10 @@
                     chrome_present  : supported['chrome'],
                     firefox_present : supported['firefox'],
                     safari_present  : supported['safari'],
-                    ie_path    : DDG.get_asset_path('caniuse_lists', 'assets/ie-icon-16.png'),
-                    chr_path   : DDG.get_asset_path('caniuse_lists', 'assets/chrome-icon-16.png'),
-                    ff_path    : DDG.get_asset_path('caniuse_lists', 'assets/firefox-icon-16.png'),
-                    and_path   : DDG.get_asset_path('caniuse_lists', 'assets/android-browser-icon-16.png'),
-                    saf_path   : DDG.get_asset_path('caniuse_lists', 'assets/ios-safari-icon-16.png')
+                    ie_path    : DDG.get_asset_path('caniuse_lists', 'assets/icon-ie.svg'),
+                    chr_path   : DDG.get_asset_path('caniuse_lists', 'assets/icon-chrome.svg'),
+                    ff_path    : DDG.get_asset_path('caniuse_lists', 'assets/icon-ff.svg'),
+                    saf_path   : DDG.get_asset_path('caniuse_lists', 'assets/icon-safari.svg')
                 };
             },
             templates: {
