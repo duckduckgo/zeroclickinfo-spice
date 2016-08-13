@@ -18,7 +18,7 @@ spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 spice proxy_cache_valid => "418 1d";
 
 handle matches => sub {
-    return unless $_ =~ /^((?:is\s|isitup\s|isitdown\s|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*$/i;
+    return unless grep {$req->query_lc}=~ /^((?:is\s|isitup\s|isitdown\s|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*$/i;
     my ($domain, $ascii);
     my $publicSuffix = Domain::PublicSuffix->new();
 
