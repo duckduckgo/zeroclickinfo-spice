@@ -20,6 +20,25 @@ ddg_spice_test(
         '/js/spice/bible/genesis%2026%3A4',
         caller    => 'DDG::Spice::Bible',
     ),
+<<<<<<< HEAD
+=======
+    'bible verse of the day' => test_spice(
+        '/js/spice/bible/votd',
+        caller    => 'DDG::Spice::Bible',
+    ),
+    'verse of the day' => test_spice(
+        '/js/spice/bible/votd',
+        caller    => 'DDG::Spice::Bible',
+    ),
+    'bible verse of today' => test_spice(
+        '/js/spice/bible/votd',
+        caller    => 'DDG::Spice::Bible',
+    ),
+    'verse of today' => test_spice(
+        '/js/spice/bible/votd',
+        caller    => 'DDG::Spice::Bible',
+    ),
+>>>>>>> cd95500912cee185a7280f6a2bd96bf44770d514
 );
 
 done_testing;
