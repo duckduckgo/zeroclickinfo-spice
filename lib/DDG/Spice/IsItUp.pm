@@ -8,14 +8,17 @@ use Net::IDN::Encode qw(domain_to_ascii domain_to_unicode);
 use Net::Domain::TLD qw(tld_exists);
 use Data::Validate::IP qw(is_ipv4);
 
-triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*$/i;
+
+triggers start => "isitup", "isitdown" , "is";
+triggers end => "up", "down", "working", "online", "status";
+
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
 handle matches => sub {
-
+    return unless $_ =~ /^((?:is\s|isitup\s|isitdown\s|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*$/i;
     my ($domain, $ascii);
     my $publicSuffix = Domain::PublicSuffix->new();
 
