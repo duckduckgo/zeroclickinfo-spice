@@ -9,15 +9,15 @@ use Net::Domain::TLD qw(tld_exists);
 use Data::Validate::IP qw(is_ipv4);
 
 
-triggers start => "isitup", "isitdown" , "status of";
-triggers end => "up", "down", "working", "online", "status";
+triggers start => "isitup", "isitdown" , "status of","is";
+triggers end => "up", "down", "working", "online", "status","up right now","down right now";
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
-handle matches => sub {
-    return unless {$req->query_lc}=~ m/^((?:isitup\s|isitdown\s|status\sof|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*/;
+handle query_lc  => sub {
+    return unless $_ =~ m/^((?:is\s|isitup\s|isitdown\s|status\sof|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status|down\sright\snow|down\sright\snow)\?*/;
     my ($domain, $ascii);
     my $publicSuffix = Domain::PublicSuffix->new();
 
