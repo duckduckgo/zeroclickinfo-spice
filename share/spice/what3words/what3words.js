@@ -1,64 +1,85 @@
 (function (env) {
     "use strict";
     env.ddg_spice_what3words = function (api_result) {
-
-        if (!api_result || !api_result.geometry) {
+        if (!api_result) {
             return Spice.failed('what3words');
         }
-
-        var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
-
-        DDG.require('maps', function () {
-
-            // Call ArcGIS API to get City + Country for location
-            $.getJSON('/js/spice/what3words_arcgis/' + location, function(data) {
-                var address_string;
-                if (data && data.address){
-                    var address = [];
-                    // ArcGIS doesn't always have a City, Region or Country available
-                    // e.g. "homing.udder.zooms"
-                    if (data.address.City){
-                        address.push(data.address.City);
-                    }
-                    // Skip Region if identical to City
-                    if (data.address.Region !== data.address.City) {
-                        address.push(data.address.Region);
-                    }
-                    if (data.address.CountryCode){
-                        address.push( getCountryName(data.address.CountryCode) );
-                    }
-                    if (address.length) {
-                        address_string = "near " + address.join(", ");
-                    }
-                }
-
-                Spice.add({
-                    id: "what3words",
-                    name: "Map",
-                    data: {
-                        name: api_result.words,
-                        lat: api_result.geometry.lat,
-                        lon: api_result.geometry.lng,
-                        displayLatLon: api_result.geometry.lat + ", " + api_result.geometry.lng,
-                        address: address_string
-                    },
-                    model: 'Place',
-                    view: 'Map',
-                    meta: {
-                        zoomLevel: 15,
-                        sourceName: "What3Words",
-                        sourceUrl: api_result.map
-                    },
-                    templates: {
-                        group: 'map',
-                        options: {
-                            moreAt: true
+        else if (api_result.status.code == 300){
+            console.log(api_result)
+        }
+        else {
+            var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
+            var success = 'yes'
+            console.log(api_result)
+        }
+        
+        if (success == 'yes') {
+            DDG.require('maps', function () {
+                // Call ArcGIS API to get City + Country for location
+                $.getJSON('/js/spice/what3words_arcgis/' + location, function(data) {
+                    console.log('inside other api')
+                    var address_string;
+                    if (data && data.address){
+                        var address = [];
+                        // ArcGIS doesn't always have a City, Region or Country available
+                        // e.g. "homing.udder.zooms"
+                        if (data.address.City){
+                            address.push(data.address.City);
+                        }
+                        // Skip Region if identical to City
+                        if (data.address.Region !== data.address.City) {
+                            address.push(data.address.Region);
+                        }
+                        if (data.address.CountryCode){
+                            address.push( getCountryName(data.address.CountryCode) );
+                        }
+                        if (address.length) {
+                            address_string = "near " + address.join(", ");
                         }
                     }
+            
+                   
+                    Spice.add({
+                        id: "what3words",
+                        name: "Map",
+                        data: {
+                            name: api_result.words,
+                            lat: api_result.geometry.lat,
+                            lon: api_result.geometry.lng,
+                            displayLatLon: api_result.geometry.lat + ", " + api_result.geometry.lng,
+                            address: address_string
+                        },
+                        model: 'Place',
+                        view: 'Map',
+                        meta: {
+                            zoomLevel: 15,
+                            sourceName: "What3Words",
+                            sourceUrl: api_result.map
+                        },
+                        templates: {
+                            group: 'map',
+                            options: {
+                                moreAt: true
+                            }
+                        }
                 });
+            }).fail(function() {
+                    consose.log("error");
             });
+            
         });
-    };
+        }
+        else {
+            // the object returned when the api cannot match the three word phrase doesn't seem to contain any information
+            // about what the words were, but still hardcoding a wrong result wont work for me
+            var words = encodeURIComponent('force.tension.mow')
+            $.getJSON('/js/spice/standard_blend/', function(data) {
+                console.log('api worked');
+            }).fail(function() {
+                console.log("error");
+            });
+        }
+    }
 
     // Get full country name for given ISO-3166 code
     function getCountryName (code) {
