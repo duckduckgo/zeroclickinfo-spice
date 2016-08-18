@@ -83,16 +83,6 @@
                 flight_return_date: return_date
             };
         }
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            // "url": "https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=" + listOfCountryIds + "&enhancers=images&apikey=09fd8de5844d4b1d982a320ad5dee5b8",
-            "method": "GET",
-            "headers": {
-                "cache-control": "no-cache",
-                "postman-token": "cf3cb5f2-92ff-15a0-3331-6b014e83abba"
-            }
-        };
 
         //$.ajax(settings).success(function (response) {
           
@@ -101,7 +91,7 @@
             
             // Fail if no flights to show
             if (flights.length === 0) {
-                return Spice.failed('No flights found');
+                return Spice.failed('skyscanner_flight_search');
             }
         
             // Render the response
