@@ -15,7 +15,7 @@ spice alt_to => {
         to => 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?location=$1&distance=5000&f=json'
     },
     what3words_standard_blend => {
-        to => 'https://api.what3words.com/v2/standardblend?addr=$1&lang=en&key={{ENV{DDG_SPICE_W3W_APIKEY}}}&callback={{callback}}'
+        to => 'https://api.what3words.com/v2/standardblend?addr=$1&lang=en&key={{ENV{DDG_SPICE_W3W_APIKEY}}}'
     }
 };
 
