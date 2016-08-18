@@ -1,0 +1,36 @@
+<div class="quarter quarter--screen-s">
+    {{#if firefox_present}}
+        <div><img src={{ff_path}}></div>
+        <div>{{firefox}}</div>
+    {{else}}
+        <div class='tx-clr--platinum-darker fade'><img src={{ff_path}}></div>
+        <div class='tx-clr--platinum-darker'>{{firefox}}</div>
+    {{/if}}
+</div>
+<div class="quarter quarter--screen-s">
+    {{#if chrome_present}}
+        <div><img src={{chr_path}}></div>
+        <div>{{chrome}}</div>
+    {{else}}
+        <div class='tx-clr--platinum-darker fade'><img src={{chr_path}}></div>
+        <div class='tx-clr--platinum-darker'>{{chrome}}</div>
+    {{/if}}
+</div>
+<div class="quarter quarter--screen-s">
+    {{#if safari_present}}
+        <div><img src={{saf_path}}></div>
+        <div>{{safari}}</div>
+    {{else}}
+        <div class='tx-clr--platinum-darker fade'><img src={{saf_path}}></div>
+        <div class='tx-clr--platinum-darker'>{{safari}}</div>
+    {{/if}}
+</div>
+<div class="quarter quarter--screen-s">
+    {{#if ie_present}}
+        <div><img src={{ie_path}}></div>
+        <div>{{ie}}</div>
+    {{else}}
+        <div class='tx-clr--platinum-darker fade'><img src={{ie_path}}></div>
+        <div class='tx-clr--platinum-darker'>{{ie}}</div>
+    {{/if}}
+</div>
