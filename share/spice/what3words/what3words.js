@@ -4,13 +4,17 @@
         if (!api_result) {
             return Spice.failed('what3words');
         }
-        else if (api_result.status.code == 300){
-            console.log(api_result)
+        else if (api_result.status.code == 300 && api_result.status.message === "Invalid or non-existent 3 word address"){
+            // Grab 3 word address from query
+            var query = DDG.get_query()
+            console.log(query)
+            var three_word_re = /[a-z][a-z]+\.[a-z]+\.[a-z]+/;
+            var address = query.match(three_word_re)[0]
+            console.log(address)
         }
         else {
             var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
             var success = 'yes'
-            console.log(api_result)
         }
         
         if (success == 'yes') {
@@ -38,7 +42,6 @@
                         }
                     }
             
-                   
                     Spice.add({
                         id: "what3words",
                         name: "Map",
@@ -70,10 +73,8 @@
         });
         }
         else {
-            // the object returned when the api cannot match the three word phrase doesn't seem to contain any information
-            // about what the words were, but still hardcoding a wrong result wont work for me
-            var words = encodeURIComponent('force.tension.mow')
-            $.getJSON('/js/spice/standard_blend/', function(data) {
+            // the object returned when the api cannot match the three word phrase
+            $.getJSON('/js/spice/what3words_standard_blend/' + address, function(data) {
                 console.log('api worked');
             }).fail(function() {
                 console.log("error");
