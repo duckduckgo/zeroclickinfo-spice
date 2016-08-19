@@ -7,9 +7,7 @@
         if (!api_result || api_result.error || api_result.Routes.length === 0) {
             return Spice.failed('skyscanner_flight_search');
         }
-        
-        jQuery.ajaxSetup({ cache: true });
-        
+                
         // get the currency and the format (symbol on the left or on the right)
         var currency_symbol = api_result.Currencies[0].Symbol;
         var currency_symbol_left = api_result.Currencies[0].SymbolOnLeft;
@@ -113,7 +111,7 @@
                     total: flights,
                     // You can either show Results: or customised text (primaryText)
                     //itemType: (flights.length === 1) ? 'Result' : 'Results',
-                    primaryText: "Skyscanner's best deals from " + origin_country + "",
+                    primaryText: "Skyscanner's best deals from " + origin_country ,
                     // add regex to retrieve destination from search query
                     searchTerm: 'flights to destination_city',
                 },
