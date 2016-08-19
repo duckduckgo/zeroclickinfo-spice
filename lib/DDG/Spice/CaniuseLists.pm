@@ -18,7 +18,7 @@ triggers startend => 'browser compatibility', 'caniuse', 'can i use', 'browser s
 # Handle statement
 handle remainder => sub {
 
-    return unless $_ =~ /(?:css[2-3]?|html5|svg|canvas|js api)/i;
+    return unless $_ =~ /^(?:css[23]?|html5?|svg|canvas|js api)$/i;
     return $_;
 };
 

@@ -21,11 +21,8 @@
         //pick only the required features based on category
         for( var feature in data ) {
             var obj = data[feature];
-            for(var search_term in result) {
-                if( obj['categories'].indexOf(result[search_term].toUpperCase()) != -1) {
-                    required_data.push(obj);
-                    break;
-                }
+            if( obj['categories'].indexOf(result[0].toUpperCase()) != -1) {
+                required_data.push(obj);
             }
         }
 
