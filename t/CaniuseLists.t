@@ -20,8 +20,7 @@ ddg_spice_test(
     [qw( DDG::Spice::CaniuseLists)],
 
     'css browser compatibility'   => build_test('css'),
-    'html5 browser compatibility' => build_test('html5'),
-    'css css3 browser compatibility' => build_test('css%20css3'),        
+    'html5 browser compatibility' => build_test('html5')
 );
 
 done_testing;
