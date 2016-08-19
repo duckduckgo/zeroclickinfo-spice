@@ -13,7 +13,7 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 
 spice to => 'https://raw.githubusercontent.com/Fyrd/caniuse/master/fulldata-json/data-2.0.json';
 
-triggers startend => 'browser compatibility', 'caniuse', 'can i use', 'browser support';
+triggers startend => 'browser compatibility', 'caniuse', 'can i use', 'browser support', 'browser compatibility list', 'browser compatibility reference';
 
 # Handle statement
 handle remainder => sub {
