@@ -26,7 +26,7 @@ ddg_spice_test(
 sub expected_output {
     # return the output we expect for the spice test
     return test_spice(
-        '/js/spice/skyscanner_flight_search/US',
+        '/js/spice/skyscanner_flight_search/US/en-US/USD',
         call_type => 'include',
         caller => 'DDG::Spice::SkyscannerFlightSearch',
     );
