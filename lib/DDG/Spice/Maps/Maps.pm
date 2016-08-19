@@ -21,7 +21,7 @@ my $startend_joined = join "|", @startend_triggers;
 my $start_qr = qr/^($startend_joined)/;
 my $end_qr = qr/($startend_joined)$/;
 
-my $skip_words_qr = qr/google|yahoo|bing|mapquest|fallout|time zone|editor|world|star|search/i;
+my $skip_words_qr = qr/google|yahoo|bing|mapquest|fallout|time zone|editor|world|star|search|tube/i;
 
 my @all_triggers = @startend_triggers;
 push @all_triggers, "directions";
