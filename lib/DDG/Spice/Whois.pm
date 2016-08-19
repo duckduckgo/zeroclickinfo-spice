@@ -11,6 +11,9 @@ triggers any => "whois", "lookup", "domain", "is domain", "available", "is avail
 # API call details for Whois API (http://www.whoisxmlapi.com/)
 spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
 
+spice is_cached => 1;
+spice proxy_cache_valid => "200 1d";
+
 handle remainder_lc => sub {
 
     my $domain;
