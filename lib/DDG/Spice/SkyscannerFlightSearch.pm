@@ -29,7 +29,7 @@ my $currencies = decode_json($data);
 # Handle statement
 handle remainder => sub {
     # ensuring there is no remainder, meaning the query is identical the trigger phrase
-    return if $_;
+    # return if $_;
     
     # get user's location for the market if available (airline and travel agent prices depend on the market)
     my $market = $loc->country_code;
