@@ -37,7 +37,7 @@
 
             DDG.require('moment.js', function() {
                 Spice.add({
-                    id: 'filmography',
+                    id: 'movies_filmography',
                     name: 'Movies',
                     data: api_result.results,
                     meta: {
