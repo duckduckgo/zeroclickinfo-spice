@@ -35,13 +35,12 @@
                         url: details_url,
                         title: data.status_description.replace(/\.$/, ""),
                         subtitle: [
-                            carriers[data.c],
-                            "Location: " + data.location,
                             "Updated: " + moment(data.progress_at).fromNow(),
                         ],
                         image: DDG.get_asset_path('package_tracking', logo + '.png'),
                         record_data: {
-                            "Tracking number": data.n
+                            "Tracking number": data.n,
+                            "Location": data.location,
                         }
                     };
 
