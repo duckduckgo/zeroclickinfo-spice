@@ -116,7 +116,7 @@
       currentObj.icon = getIcon(getIconType(f.currently.icon));
 
       if(f.currently.humidity) {
-        currentObj.humidity = 'Humidity: ' + (f.currently.humidity * 100) + '%';
+        currentObj.humidity = 'Humidity: ' + Math.round(f.currently.humidity * 100) + '%';
       }
 
       if(f.currently.precipProbability) {
