@@ -119,6 +119,10 @@
         currentObj.humidity = 'Humidity: ' + (f.currently.humidity * 100) + '%';
       }
 
+      if(f.currently.precipProbability) {
+        currentObj.precipitation = 'Precipitation: ' + Math.round(f.currently.precipProbability * 100) + '%';
+      }
+
       return currentObj;
     };
 
