@@ -31,21 +31,7 @@ ddg_spice_test(
         '/js/spice/nobel_prize/-medicine',
         call_type => 'include',
         caller => 'DDG::Spice::NobelPrize'
-    ),
-    
-    # Take only first of given years
-    'nobel laureates of 2004 and 2005' => test_spice(
-        '/js/spice/nobel_prize/2004-',
-        call_type => 'include',
-        caller => 'DDG::Spice::NobelPrize'
-    ),
-    
-    # Take only the first of given categories as well.
-    'nobel winners of 1984 and 1985 in Peace and economy' => test_spice(
-        '/js/spice/nobel_prize/1984-peace',
-        call_type => 'include',
-        caller => 'DDG::Spice::NobelPrize'
-    ),
+    )
 );
 
 done_testing;
