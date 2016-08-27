@@ -10,7 +10,6 @@
             console.log(query)
             var three_word_re = /[a-z][a-z]+\.[a-z]+\.[a-z]+/;
             var address = query.match(three_word_re)[0]
-            console.log(address)
         }
         else {
             var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
@@ -21,7 +20,6 @@
             DDG.require('maps', function () {
                 // Call ArcGIS API to get City + Country for location
                 $.getJSON('/js/spice/what3words_arcgis/' + location, function(data) {
-                    console.log('inside other api')
                     var address_string;
                     if (data && data.address){
                         var address = [];
@@ -73,15 +71,53 @@
         });
         }
         else {
-            // the object returned when the api cannot match the three word phrase
-            $.getJSON('/js/spice/what3words_standard_blend/' + address, function(data) {
-                console.log('api worked');
-            }).fail(function() {
-                console.log("error");
+            DDG.require('maps', function () {
+                // the object returned when the api cannot match the three word phrase
+                $.getJSON('/js/spice/what3words_standard_blend/' + address, function(data) {
+                    var item;
+                    // built-in flags use 'uk' instead of 'gb' that standardblend uses
+                    for (item in data.blends) {
+                        if (data.blends[item].country == 'gb'){
+                            data.blends[item].country = 'uk'
+                        }
+                    }
+                    Spice.add({
+                        id: 'what3words',
+                        name: 'Standardblend',
+                        model: 'Place',
+                        view: 'Places',
+                        meta: {
+                            itemType: 'suggestions',
+                            searchTerm: address
+                        },
+                        templates: {
+                            group: 'text',
+                            variants: {
+                                tile: 'video'
+                            }
+                        },
+                        data: data.blends,
+                        normalize: function(item){
+                            return {
+                                name: item.words,
+                                lat: item.geometry.lat,
+                                lon: item.geometry.lng,
+                                title: item.words,
+                                description: 'near ' + item.place + ', ' + country_map[item.country],
+                                displayLatLon: item.geometry.lat + '\xB0, ' + item.geometry.lng + '\xB0',
+                                place: item.place,
+                                icon: DDG.settings.region.getLargeIconURL(item.country)
+                                }
+                            }
+                        });
+                   
+                    
+                }).fail(function() {
+                    console.log("error");
+                });
             });
-        }
+        };
     }
-
     // Get full country name for given ISO-3166 code
     function getCountryName (code) {
         return country_map[code] || "";
@@ -339,6 +375,23 @@
         "ESH": "Western Sahara",
         "YEM": "Yemen",
         "ZMB": "Zambia",
-        "ZWE": "Zimbabwe"
+        "ZWE": "Zimbabwe",
+        "ca": "Canada",
+        "cn": "China",
+        "dk": "Denmark",
+        "uk": "England",
+        "fr": "France",
+        "de": "Germany",
+        "it": "Italy",
+        "jp": "Japan",
+        "kz": "Kazakhstan",
+        "nl": "Netherlands",
+        "ru": "Russia",
+        "sp": "Spain",
+        "se": "Sweden",
+        "uk": "UK",
+        "us": "USA",
+        'au': 'Australia',
+        'nz': 'New Zealand'
     };
 }(this));
