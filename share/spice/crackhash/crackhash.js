@@ -19,7 +19,7 @@
             normalize: function(item) {
                 return {
                     title: api_result.title,
-		    url:(item.url) ? item.url : 'http://api.md5crack.com/crack/ZFCQCcpS1kLgbCQZ/' + item.objectID,
+		    url:(item.url) ? item.url : 'http://flipchan.se/crack/' + item.objectID,
                     subtitle: api_result.subtitle,
                     image: api_result.icon
                 };
