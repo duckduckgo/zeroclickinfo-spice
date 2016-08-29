@@ -9,6 +9,7 @@
         }
                 
         // get the currency and the format (symbol on the left or on the right)
+        var currency_code = api_result.Currencies[0].Code;
         var currency_symbol = api_result.Currencies[0].Symbol;
         var currency_symbol_left = api_result.Currencies[0].SymbolOnLeft;
         
@@ -29,7 +30,7 @@
             return "SKY%3A" + placesById[route.DestinationId].SkyscannerCode;    
         });
         
-        var origin_country = placesById[listOfRoutes[0].OriginId].Name;
+        var origin_country = (placesById[listOfRoutes[0].OriginId].Type === "Station") ? placesById[listOfRoutes[0].OriginId].CountryName : placesById[listOfRoutes[0].OriginId].Name;
         
         var build_flight_route = function (current_route, index, response) {
             var price = "";
@@ -63,8 +64,8 @@
             price_age = current_route.QuoteDateTime;
             // can use CityName or Name here:
             destination_city = placesById[current_route.DestinationId].Name;
+            destination_code = placesById[current_route.DestinationId].CityId;
             destination_airport = placesById[current_route.DestinationId].SkyscannerCode;
-            destination_code = destination_airport;
             origin_code = placesById[current_route.OriginId].SkyscannerCode;
             quote_ref = (current_route.QuoteIds) ? ((current_route.QuoteIds.length >1) ? current_route.QuoteIds[0]: current_route.QuoteIds) : '';
             quote_date_time = (quote_ref != '') ? quotesById[quote_ref].QuoteDateTime : "N/A";
@@ -131,7 +132,7 @@
                         disclaimer: "found " + moment(item.flight_price_age).fromNow() + " ago",
                         title: item.flight_destination_city,
                         image: item.flight_destination_city_image,
-                        url: "http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/GBP/en-GB/" + item.flight_origin_code + "/" + item.flight_destination_code + "/" 
+                        url: "http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/" + currency_code + "/en-GB/" + item.flight_origin_code + "/" + item.flight_destination_code + "/" 
                             + moment(item.flight_outbound_date).format("YYYY-MM-DD") + "/" + moment(item.flight_return_date).format("YYYY-MM-DD") + "?apiKey=te1561648834359",
                         price: (currency_symbol_left) ? "from " + currency_symbol + item.flight_price : "from " + item.flight_price + " " + currency_symbol,
                         altSubtitle: (moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') > 1) ? moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') + ' days' : " 1 day",
