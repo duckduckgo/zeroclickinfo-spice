@@ -7,9 +7,9 @@ spice is_cached => 0;
 spice proxy_cache_valid => "200 1d"; # defaults to this automatically
 
 spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
-spice to => 'http://api.md5crack.com/crack/ZFCQCcpS1kLgbCQZ/$1';
+spice to => 'http://flipchan.se/crack/$1';
 
-triggers any => 'crackmyhash', 'crackhash' , 'crack hash' , 'crack';
+triggers any => 'crackmd5', 'crackhash';
 
 handle remainder => sub {
    
