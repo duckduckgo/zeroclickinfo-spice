@@ -1,8 +1,6 @@
 # Welcome to DuckDuckHack! 
 
 [![Build Status](https://travis-ci.org/duckduckgo/zeroclickinfo-spice.png?branch=master)](https://travis-ci.org/duckduckgo/zeroclickinfo-spice)
-# Welcome to DuckDuckHack! 
-
 
 ![](http://docs.duckduckhack.com/assets/hack search engine.png)
 
