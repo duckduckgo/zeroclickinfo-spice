@@ -6,7 +6,7 @@ use Text::Trim;
 use DDG::Spice;
 use Data::Dumper;
 
-spice to => 'https://duckduckgo.com/local.js?q=$1&has_address=1';
+spice to => 'https://duckduckgo.com/local.js?q=$1&ha=1';
 spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 
