@@ -8,8 +8,9 @@ use strict;
 use warnings;
 use JSON;
 
+# No caching of results
 # Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
-spice is_cached => 1;
+Spice is_cached => 0
 
 spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 spice from => '([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)';
