@@ -35,17 +35,6 @@ my $countries = decode_json($countries_raw);
 my $cities_raw = share('cities.json')->slurp;
 my $cities = decode_json($cities_raw);
 
-sub get_origin_and_destination {
-
-}
-
-
-sub get_place_code {
-    my ($param) = @_;
-    @_ = "FR";
-    return @_;
-}
-
 # Handle statement
 handle remainder => sub {
     my $market = "";
@@ -54,13 +43,21 @@ handle remainder => sub {
     my $origin = "";
     my $destination = "";
     my $word = "";
-    # get user's location for the market if available (airline and travel agent prices depend on the market)
+    
+    # get user's location for the market if available (airline and travel agent prices depend on the market), if none default to 'US'
     $market = $loc->country_code;
-    # get language locale (replace '_' with '-' for compatibility) 
+    if ($market eq "") {
+        $market = "US";
+    }
+    
+    # get language locale (replace DDG's '_' with '-' for Skyscanner compatibility), if none default to 'en-US'
     $locale = $lang->locale;
     $locale =~ tr/_/-/;
+    if ($locale eq "") {
+        $locale = "en-US";
+    }   
     
-    # get currency from the json file using the market
+    # get currency from the json file using the market, if none default to USD
     if (exists $currencies->{$market}) {
         $currency = $currencies->{$market};
     } else {
@@ -74,13 +71,13 @@ handle remainder => sub {
     # or [destination]
     # 
     my @query = split(/\s+to\s+/, $_);
-    # strip 'fligh(s) from' to allow more flexible queries and remove left space
+    # strip 'flight(s) from' to allow more flexible queries and remove left space
     $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
     $query[0] =~ s/^\s+//;
-    print "\n\n**** User query *****";
-    print "\nOrigin: " . $query[0];
-    print "\nDestination: " . $query[1];
-    print "\n*********************\n\n";
+    #print "\n\n**** User query *****";
+    #print "\nOrigin: " . $query[0];
+    #print "\nDestination: " . $query[1];
+    #print "\n*********************\n\n";
 
     # determine origin country or city (use lowercase), if no match use user's country
     $origin = lc($query[0]);
@@ -109,15 +106,6 @@ handle remainder => sub {
             $destination = "anywhere";
         }
     } 
-    
-    # if no market, locale or currency, default to US, en-US and USD
-    if ($market eq "") {
-        $market = "US";
-    }
-    
-    if ($locale eq "") {
-        $locale = "en-US";
-    }
     
     return $market, $locale, $currency, $origin, $destination;
     return;
