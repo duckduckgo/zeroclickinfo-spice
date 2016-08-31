@@ -76,27 +76,16 @@ handle remainder => sub {
     # strip 'fligh(s) from' to allow more flexible queries and remove left space
     $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
     $query[0] =~ s/^\s+//;
-    print "\n**** Number of terms: " . scalar(@query) . "*****";
-    print "\n" . $query[0];
-    print "\n" . $query[1];
-    print "\n*********";
+    print "\n\n**** User query *****";
+    print "\nOrigin: " . $query[0];
+    print "\nDestination: " . $query[1];
+    print "\n*********************\n\n";
 
-    if ($query[0] eq "") {
-        # determine destination (use lowercase) and use user's country as origin
+    # determine origin country or city (use lowercase), if no match use user's country
+    $origin = lc($query[0]);
+    if ($origin eq "") {
         $origin = $market;
-        $word = lc($query[1]);
-        if (exists $countries->{$word}) {
-            $destination = $countries->{$word};
-        } elsif (exists $cities->{$word}) {
-            $destination = $cities->{$word};
-        } else {
-            $destination = "anywhere";
-        }
     } else {
-        # determine origin and destination (use lowercase)
-        $origin = lc($query[0]);
-        $destination = lc($query[1]);
-        
         if (exists $countries->{$origin}) {
             $origin = $countries->{$origin};
         } elsif (exists $cities->{$origin}) {
@@ -104,7 +93,13 @@ handle remainder => sub {
         } else {
             $origin = $market;
         }
-        
+    } 
+    
+    # determine destination country or city (use lowercase), if no match use 'anywhere'
+    $destination = lc($query[1]);
+    if ($destination eq "") {
+        $destination = "anywhere";
+    } else {
         if (exists $countries->{$destination}) {
             $destination = $countries->{$destination};
         } elsif (exists $cities->{$destination}) {
@@ -112,18 +107,15 @@ handle remainder => sub {
         } else {
             $destination = "anywhere";
         }
-    }
-
+    } 
+    
     # if no market, locale or currency, default to US, en-US and USD
     if ($market eq "") {
         $market = "US";
     }
+    
     if ($locale eq "") {
         $locale = "en-US";
-    }
-    
-    if ($destination eq "") {
-        $destination = "anywhere";
     }
     
     return $market, $locale, $currency, $origin, $destination;
