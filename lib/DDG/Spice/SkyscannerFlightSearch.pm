@@ -9,10 +9,10 @@ use warnings;
 use JSON;
 
 # No caching of results
-# Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
-Spice is_cached => 0
+spice is_cached => 0;
 
 spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
+
 spice from => '([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)';
 spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/$1/$3/$2/$4/$5/anytime/anytime?apikey={{ENV{DDG_SPICE_SKYSCANNER_APIKEY}}}';
 spice alt_to => {
@@ -31,8 +31,9 @@ my $currencies = decode_json($data);
 my $countries_raw = share('countryIsoCodes.json')->slurp;
 my $countries = decode_json($countries_raw);
 
-# Load the list of countries and their ISO code
-my $cities_raw = share('cities.json')->slurp;
+# Load the list of cities and their Skyscanner code (using Skyscanner code as IATA code is ambiguous in certain cases such as Berlin where the city 
+# and one of the airports have the same code)
+my $cities_raw = share('citySkyscannerCodes.json')->slurp;
 my $cities = decode_json($cities_raw);
 
 # Handle statement
@@ -71,7 +72,7 @@ handle remainder => sub {
     # or [destination]
     # 
     my @query = split(/\s+to\s+/, $_);
-    # strip 'flight(s) from' to allow more flexible queries and remove left space
+    # strip 'flight(s) from' to allow more flexible queries and remove left trailing space
     $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
     $query[0] =~ s/^\s+//;
     #print "\n\n**** User query *****";
