@@ -15,7 +15,7 @@ attribution github => ["https://github.com/echosa", "Echosa"],
 
 triggers startend => 'dota2', 'dota 2';
 
-spice to => 'https://www.dota2.com/jsfeed/heropediadata?feeds=itemdata,herodata,abilitydata';
+spice to => 'https://www.dota2.com/jsfeed/heropediadata?feeds=itemdata,herodata,abilitydata&l=english';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
