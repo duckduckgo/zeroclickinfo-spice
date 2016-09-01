@@ -6,7 +6,7 @@ use DDG::Spice;
 
 triggers any => 'minecraft', 'mcstatus', 'mc', 'mine craft';
 
-spice to => 'https://mcstatusraw.thedestruc7i0n.ca/';
+spice to => 'https://status.mojang.com/check';
 spice wrap_jsonp_callback => 1;
 
 spice is_cached => 1;
