@@ -47,6 +47,7 @@ sub expected_output {
         '/js/spice/skyscanner_flight_search/' . $search_parameters,
         call_type => 'include',
         caller => 'DDG::Spice::SkyscannerFlightSearch',
+        is_cached => 0
     );
 
 }
