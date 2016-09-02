@@ -1,17 +1,13 @@
 (function (env) {
     'use strict';
-    env.ddg_spice_minecraft_status = function(api_result) {
-        
-        if (!api_result) {
-            return Spice.failed('minecraft_status');
-        }     
-        
+    
+    function getStatus(data) {
         var green = [];
         var yellow = [];
         var red = [];        
-        
-        for (var i = 0; i < api_result.length; i++) {
-            var service = api_result[i];
+
+        for (var i = 0; i < data.length; i++) {
+            var service = data[i];
             var status = Object.keys(service)[1];
             var name = Object.keys(service)[0];
 
@@ -27,14 +23,25 @@
                     break;
             }
         } 
-        
-        var status = good;
-        
+
+        var status = 'good';
+
         if(red.length >= 1) {
             status = 'major';
         } else if(yellow.length >= 1) {
             status = 'minor';
         }
+
+        return status;
+    }
+    
+    env.ddg_spice_minecraft_status = function(api_result) {
+        
+        if (!api_result) {
+            return Spice.failed('minecraft_status');
+        }    
+        
+        var status = getStatus(api_result);
 
         Spice.add({
             id: 'minecraft_status',
