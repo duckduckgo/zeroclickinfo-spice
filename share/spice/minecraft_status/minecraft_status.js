@@ -16,30 +16,32 @@
             var name = Object.keys(service)[0];
 
             switch(status) {
-                case "green":
+                case 'green':
                     green.push(name);
                     break;
-                case "yellow":
+                case 'yellow':
                     yellow.push(name);
                     break;
-                case "red":
+                case 'red':
                     red.push(name);
                     break;
             }
         } 
         
-        var final = {status: "good"}
+        var status = good;
         
         if(red.length >= 1) {
-            final.status = "major";
+            status = 'major';
         } else if(yellow.length >= 1) {
-            final.status = "minor";
+            status = 'minor';
         }
 
         Spice.add({
             id: 'minecraft_status',
             name: 'Status',
-            data: final,
+            data: {
+                status: status
+            },
             meta: {
                 sourceName: 'Mojang Support',
                 sourceUrl: 'https://help.mojang.com/',
