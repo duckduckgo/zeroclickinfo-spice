@@ -56,7 +56,7 @@ handle remainder => sub {
     
     # get currency from the json file using the market, if none default to USD
     my $currency = $currencies->{$market};
-    if ($currency eq "") {}
+    if ($currency eq "") {
         $currency = "USD";
     }
     
