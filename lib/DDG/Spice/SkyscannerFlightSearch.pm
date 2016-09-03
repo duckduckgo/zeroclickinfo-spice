@@ -24,8 +24,8 @@ spice alt_to => {
 triggers startend => 'skyscanner';
 
 # Load the list of currencies for each market
-my $data = share('currencyCountryMapping.json')->slurp;
-my $currencies = decode_json($data);
+my $currencies_raw = share('currencyCountryMapping.json')->slurp;
+my $currencies = decode_json($currencies_raw);
 
 # Load the list of countries and their ISO code
 my $countries_raw = share('countryIsoCodes.json')->slurp;
@@ -38,33 +38,31 @@ my $cities = decode_json($cities_raw);
 
 # Handle statement
 handle remainder => sub {
-    my $market = "";
-    my $locale = "";
-    my $currency = "";
     my $origin = "";
     my $destination = "";
-    my $word = "";
     
     # get user's location for the market if available (airline and travel agent prices depend on the market), if none default to 'US'
-    $market = $loc->country_code;
+    my $market = $loc->country_code;
     if ($market eq "") {
         $market = "US";
     }
-    
+        
     # get language locale (replace DDG's '_' with '-' for Skyscanner compatibility), if none default to 'en-US'
-    $locale = $lang->locale;
+    my $locale = $lang->locale;
     $locale =~ tr/_/-/;
     if ($locale eq "") {
         $locale = "en-US";
     }   
     
     # get currency from the json file using the market, if none default to USD
-    if (exists $currencies->{$market}) {
-        $currency = $currencies->{$market};
-    } else {
+    my $currency = $currencies->{$market};
+    if ($currency eq "") {}
         $currency = "USD";
     }
     
+    print "\n\nMarket: " . $market;
+    print "\nCurrency: " . $currency . "\n\n";
+
     # query must be in the form 
     # [from][origin][to][destination]
     # or [origin][to][destination]
