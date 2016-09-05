@@ -9,7 +9,6 @@
             return Spice.failed('daily_holidays');
         }
 
-
         DDG.require('moment.js', function() {
             Spice.add({
                 id: 'daily_holidays',
