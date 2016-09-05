@@ -13,8 +13,8 @@
             name: 'Answer',
             data: api_result,
             meta: {
-                sourceName: 'Example.com',
-                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                sourceName: 'Checkiday',
+                sourceUrl: 'http://www.checkiday.com/' + api_result.date
             },
             normalize: function(item) {
                 return {
