@@ -29,7 +29,7 @@ my @other_forms = (
 
 triggers any => (keys %no_remainder_forms, @other_forms);
 
-my $stop_re = qr/(what|is|'s|\p{punct}|on|for)/i;
+my $stop_re = qr/(what|is|'s|\p{punct}|on|for|public|national)/i;
 
 sub check_no_remainder_form {
     my ($trigger) = @_;
