@@ -13,7 +13,7 @@ spice proxy_cache_valid => '200 1d';
 
 spice wrap_jsonp_callback => 0;
 
-spice to => 'http://www.checkiday.com/api.php?d=$1';
+spice to => 'http://www.checkiday.com/api/3/?d=$1';
 
 triggers any => 'holidays';
 
