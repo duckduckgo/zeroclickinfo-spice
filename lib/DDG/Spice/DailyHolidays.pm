@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 # TODO: Use 'DDG::GoodieRole::Dates' when it becomes available.
-sub parse_date { $_ }
+sub parse_date { $_[0] }
 
 spice is_cached => 1;
 spice proxy_cache_valid => '200 1d';
