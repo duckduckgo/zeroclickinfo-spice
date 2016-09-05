@@ -18,7 +18,14 @@ sub build_test {
 
 ddg_spice_test(
     [qw( DDG::Spice::DailyHolidays)],
-    'holidays today' => build_test('today');
+    'holidays today'        => build_test('today'),
+    'holidays for tomorrow' => build_test('tomorrow'),
+    'holidays on tomorrow'  => build_test('tomorrow'),
+    'what day is tomorrow'  => build_test('tomorrow'),
+    'holidays'              => undef,
+    'holidays today'        => build_test('today'),
+    'what day is'           => undef,
+    'what day is today'     => build_test('today'),
 );
 
 done_testing;
