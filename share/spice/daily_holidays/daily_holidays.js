@@ -3,7 +3,7 @@
 
     env.ddg_spice_daily_holidays = function(api_result) {
 
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error !== 'none') {
             return Spice.failed('daily_holidays');
         }
 
