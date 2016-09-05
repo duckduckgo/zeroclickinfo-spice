@@ -10,7 +10,7 @@
         Spice.add({
             id: 'daily_holidays',
 
-            name: 'AnswerBar title',
+            name: 'Answer',
             data: api_result,
             meta: {
                 sourceName: 'Example.com',
