@@ -11,7 +11,7 @@ sub parse_date { $_ }
 spice is_cached => 1;
 spice proxy_cache_valid => '200 1d';
 
-spice wrap_jsonp_callback => 0;
+spice wrap_jsonp_callback => 1;
 
 spice to => 'http://www.checkiday.com/api/3/?d=$1';
 
