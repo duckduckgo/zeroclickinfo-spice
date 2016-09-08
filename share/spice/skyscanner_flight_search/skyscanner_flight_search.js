@@ -64,8 +64,8 @@
             price_age = current_route.QuoteDateTime;
             // can use CityName or Name here:
             destination_city = placesById[current_route.DestinationId].Name;
-            destination_code = placesById[current_route.DestinationId].CityId;
-            destination_airport = placesById[current_route.DestinationId].SkyscannerCode;
+            destination_code = placesById[current_route.DestinationId].SkyscannerCode;
+            //destination_airport = placesById[current_route.DestinationId].SkyscannerCode;
             origin_code = placesById[current_route.OriginId].SkyscannerCode;
             quote_ref = (current_route.QuoteIds) ? ((current_route.QuoteIds.length >1) ? current_route.QuoteIds[0]: current_route.QuoteIds) : '';
             quote_date_time = (quote_ref != '') ? quotesById[quote_ref].QuoteDateTime : "N/A";
