@@ -55,7 +55,7 @@
             } 
             
             if (Array.isArray(image_array) && image_array.length > 0) {
-                destination_city_image = image_array[0].url;
+                destination_city_image = image_array[0].url + "?crop=411px:220px&quality=100";
             } else {
                 destination_city_image = "http://www.skyscanner.net/images/opengraph.png";
             }
