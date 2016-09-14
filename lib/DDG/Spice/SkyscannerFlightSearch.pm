@@ -6,7 +6,7 @@ package DDG::Spice::SkyscannerFlightSearch;
 use DDG::Spice;
 use strict;
 use warnings;
-use JSON;
+use JSON::MaybeXS
 
 # No caching of results
 spice is_cached => 0;
@@ -17,7 +17,7 @@ spice from => '([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)';
 spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/$1/$3/$2/$4/$5/anytime/anytime?apikey={{ENV{DDG_SPICE_SKYSCANNER_APIKEY}}}';
 spice alt_to => {
     skyscanner_images => {
-        to => 'https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=$1&enhancers=images&apikey={{ENV{DDG_SPICE_SKYSCANNER_IMAGES_APIKEY}}}'
+        to => 'https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=$1&enhancers=images&nocache=true&apikey={{ENV{DDG_SPICE_SKYSCANNER_IMAGES_APIKEY}}}'
     }
 };
 
@@ -41,34 +41,21 @@ handle remainder => sub {
     my $origin = "";
     my $destination = "";
     
-    # get user's location for the market if available (airline and travel agent prices depend on the market), if none default to 'US'
-    my $market = $loc->country_code;
-    if ($market eq "") {
-        $market = "US";
-    }
+    # get user's location for the market if available (airline and travel agent prices depend on the market), if none default to 'US' 
+    my $market = $loc->country_code // "US";
         
     # get language locale (replace DDG's '_' with '-' for Skyscanner compatibility), if none default to 'en-US'
     my $locale = $lang->locale;
+    
     $locale =~ tr/_/-/;
     if ($locale eq "") {
         $locale = "en-US";
     }   
     
     # get currency from the json file using the market, if none default to USD
-    my $currency = $currencies->{$market};
-    if ($currency eq "") {
-        $currency = "USD";
-    }
+    my $currency = $currencies->{$market} // "USD";
     
-    print "\n\nMarket: " . $market;
-    print "\nCurrency: " . $currency . "\n\n";
-
-    # query must be in the form 
-    # [from][origin][to][destination]
-    # or [origin][to][destination]
-    # or [from][origin]
-    # or [destination]
-    # 
+    return unless $query =~ m/\sto\s/;
     my @query = split(/\s+to\s+/, $_);
     # strip 'flight(s) from' to allow more flexible queries and remove left trailing space
     $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
@@ -79,35 +66,15 @@ handle remainder => sub {
     #print "\n*********************\n\n";
 
     # determine origin country or city (use lowercase), if no match use user's country
-    $origin = lc($query[0]);
-    if ($origin eq "") {
-        $origin = $market;
-    } else {
-        if (exists $countries->{$origin}) {
-            $origin = $countries->{$origin};
-        } elsif (exists $cities->{$origin}) {
-            $origin = $cities->{$origin};
-        } else {
-            $origin = $market;
-        }
-    } 
+    my $requested_origin = lc($query[0]);
+    $origin = $countries->{$requested_origin} // $cities->{$requested_origin} // $market;
     
     # determine destination country or city (use lowercase), if no match use 'anywhere'
-    $destination = lc($query[1]);
-    if ($destination eq "") {
-        $destination = "anywhere";
-    } else {
-        if (exists $countries->{$destination}) {
-            $destination = $countries->{$destination};
-        } elsif (exists $cities->{$destination}) {
-            $destination = $cities->{$destination};
-        } else {
-            $destination = "anywhere";
-        }
-    } 
+    my $requested_destination = lc($query[1]);
+    $destination = $countries->{$requested_destination} // $cities->{$requested_destination} // "anywhere";
+
     
     return $market, $locale, $currency, $origin, $destination;
-    return;
 };
 
 1;
