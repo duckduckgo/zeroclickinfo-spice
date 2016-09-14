@@ -55,7 +55,6 @@ handle remainder => sub {
     # get currency from the json file using the market, if none default to USD
     my $currency = $currencies->{$market} // "USD";
     
-    return unless $query =~ m/\sto\s/;
     my @query = split(/\s+to\s+/, $_);
     # strip 'flight(s) from' to allow more flexible queries and remove left trailing space
     $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
