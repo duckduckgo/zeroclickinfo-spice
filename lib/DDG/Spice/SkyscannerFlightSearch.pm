@@ -28,12 +28,12 @@ my $currencies_raw = share('currencyCountryMapping.json')->slurp;
 my $currencies = decode_json($currencies_raw);
 
 # Load the list of countries and their ISO code
-my $countries_raw = share('countryIsoCodes.json')->slurp;
+my $countries_raw = share('countryCodes.json')->slurp;
 my $countries = decode_json($countries_raw);
 
 # Load the list of cities and their Skyscanner code (using Skyscanner code as IATA code is ambiguous in certain cases such as Berlin where the city 
 # and one of the airports have the same code)
-my $cities_raw = share('citySkyscannerCodes.json')->slurp;
+my $cities_raw = share('cityCodes.json')->slurp;
 my $cities = decode_json($cities_raw);
 
 # Handle statement
