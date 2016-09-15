@@ -45,7 +45,7 @@ handle remainder => sub {
     my $market = $loc->country_code // "US";
         
     # get language locale (replace DDG's '_' with '-' for Skyscanner compatibility), if none default to 'en-US'
-    my $locale = $lang->locale;
+    my $locale = $lang->locale // "en-US";
     
     $locale =~ tr/_/-/;
     if ($locale eq "") {
