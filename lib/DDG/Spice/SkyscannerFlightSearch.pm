@@ -16,10 +16,11 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 spice from => '([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)';
 spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/$1/$3/$2/$4/$5/anytime/anytime?apikey={{ENV{DDG_SPICE_SKYSCANNER_APIKEY}}}';
 spice alt_to => {
-    skyscanner_images => {
+    skyscanner_images =d> {
         to => 'https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=$1&enhancers=images&nocache=true&apikey={{ENV{DDG_SPICE_SKYSCANNER_IMAGES_APIKEY}}}'
     }
 };
+spice accept_header => 'application/json';
 
 triggers startend => 'skyscanner';
 
