@@ -19,7 +19,7 @@ my %alternatives = (
 );
 
 handle query_lc => sub {
-    if (/^(?:(free|open\ssource|commercial))?\s*(?:alternative(?:s|)?\s*?(?:to|for)\s*?)(\b(?!for\b).*?\b)(?:\s*?for\s(.*))?$/) {
+    if (/^(?:(free|open\s?source|commercial))?\s*(?:alternative(?:s|)?\s*?(?:to|for)\s*?)(\b(?!for\b).*?\b)(?:\s*?for\s(.*))?$/) {
         my $license = $1 || "";
         my $prog = $2 || "";
         my $platform = $3 || "";

@@ -39,20 +39,20 @@
 
     var getIcon = function(type) {
       return { 'icon': type, 'path': iconPath, 'file': iconFiletype }
-    }
+    };
 
     var getIconType = function(icon) {
       if ($.inArray(icon, availableIcons) === -1) {
         icon = 'cloudy';
       }
       return icon;
-    }
+    };
 
     // Convert a wind bearing in degrees to a string
     var wind_bearing_to_str = function(bearing) {
       var wind_i = Math.round(bearing / 45);
       return ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'][wind_i];
-    }
+    };
 
     // Build the current conditions
     var build_currently = function(f) {
@@ -115,8 +115,16 @@
 
       currentObj.icon = getIcon(getIconType(f.currently.icon));
 
+      if(f.currently.humidity) {
+        currentObj.humidity = 'Humidity: ' + Math.round(f.currently.humidity * 100) + '%';
+      }
+
+      if(f.currently.precipProbability) {
+        currentObj.precipitation = 'Precipitation: ' + Math.round(f.currently.precipProbability * 100) + '%';
+      }
+
       return currentObj;
-    }
+    };
 
     var build_daily = function(f) {
       var dailyObj = [],
@@ -169,7 +177,7 @@
       })(i);
 
       return dailyObj;
-    }
+    };
 
     // Build any weather alerts or warnings
     var build_alerts = function(f) {
@@ -191,7 +199,7 @@
       if(alert_message){
         return '<a href="'+alert_message.uri+'" class="fe_alert  tx-clr--red" target="_blank"><span class="ddgsi fe_icon--alert">!</span>'+alert_message.title+'</a>';
       }
-    }
+    };
 
     DDG.require('moment.js', function(){
       // Go!
@@ -252,7 +260,7 @@
       } else if (unit === 'F') {
         return d*(9/5) + 32;
       }
-    }
+    };
 
     var convertSpeed = function(from, to, val){
       // http://en.wikipedia.org/wiki/Miles_per_hour#Conversions
@@ -263,7 +271,7 @@
         'km/h-mph': 0.6214
       };
       return val * conversionFactors[from + '-' + to];
-    }
+    };
 
     //update the style of the F/C (make one bold and the other grayed out)
     var updateTempSwitch = function(new_unit){
@@ -274,7 +282,7 @@
         $('#fe_celsius').removeClass('tx-clr--lt3').addClass('is-active');
         $('#fe_fahrenheit').removeClass('is-active').addClass('tx-clr--lt3');
       }
-    }
+    };
 
     var updateUnitOfMeasure = function() {
       //initialize the temperatures with the API data
@@ -330,7 +338,7 @@
         ' ('+wind_bearing_to_str(api_result.currently.windBearing)+')');
 
       updateTempSwitch(uom);
-    }
+    };
 
     // if the metric setting is enabled and the API returned temps in F, switch to 'C':
     if (!DDG.settings.isDefault('kaj')) {

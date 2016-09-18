@@ -18,6 +18,10 @@
     }
 
     env.ddg_spice_search_code = function(api_result) {
+        
+        if(!api_result) {
+            return Spice.failed('search_code');
+        }
 
         var query = api_result.query;
         var data = api_result.results;
@@ -47,8 +51,8 @@
             name: 'Answer',
             data: result,
             meta: {
-                sourceURL: 'https://searchcode.com/?q=' + query,
-                sourceName: 'search[code]',
+                sourceUrl: 'https://searchcode.com/?q=' + query,
+                sourceName: 'searchcode',
             },
             normalize: function(item) {
                 var subtitleArray = [];

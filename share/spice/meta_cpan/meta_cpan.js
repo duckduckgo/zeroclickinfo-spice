@@ -21,23 +21,23 @@
                     sourceUrl: 'https://metacpan.org/search?size=50&search_type=modules&q=' + encodeURIComponent(query)
                 },
                 normalize: function(item) {
-                    if ( !item.fields.module || !item.fields.module[0] ||
-                         ( !item.fields.description && !item.fields.abstract )
+                    if ( !item._source.module || !item._source.module[0] ||
+                         ( !item.fields.description && !item.fields["abstract.analyzed"] )
                     ) {
                         return null;
                     }
 
-                    var description = item.fields.description || item.fields.abstract;
-                    var version = item.fields.version || item.fields.module[0].version;
-                    var date = ( item.fields.date )
-                        ? moment(item.fields.date).format("DD MMM YYYY")
+                    var description = item.fields.description[0] || item.fields["abstract.analyzed"][0];
+                    var version = item._source.module[0].version;
+                    var date = ( item.fields.date && item.fields.date[0] )
+                        ? moment(item.fields.date[0]).format("DD MMM YYYY")
                         : "";
 
                     return {
-                        title: item.fields.module[0].name,
-                        url: 'https://metacpan.org/pod/' + item.fields.module[0].name,
+                        title: item._source.module[0].name,
+                        url: 'https://metacpan.org/pod/' + item._source.module[0].name,
                         description: description,
-                        author: item.fields.author,
+                        author: item.fields.author[0],
                         version: version,
                         date: date
                     };
