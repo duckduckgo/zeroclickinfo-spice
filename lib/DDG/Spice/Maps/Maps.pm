@@ -6,10 +6,9 @@ use Text::Trim;
 use DDG::Spice;
 use Data::Dumper;
 
-spice to => 'https://api.mapbox.com/geocoding/v5/mapbox.places/$1.json?types=country,region,district,place,locality,neighborhood,address,postcode&access_token={{ENV{DDG_SPICE_MAPBOX_KEY}}}';
+spice to => 'https://duckduckgo.com/local.js?q=$1&ha=1';
 spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
-spice wrap_jsonp_callback => 1;
 
 # (mohammed): When adding triggers, put plural or compound forms of the same word first.
 # For example, if you have @startend_triggers = ("map", "maps") and the input query is
