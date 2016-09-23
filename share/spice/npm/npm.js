@@ -87,7 +87,7 @@
                     content: Spice.npm.content,
                     moreAt: true,
                     moreText: {
-                        href: 'https://tonicdev.com/npm/' + api_result.name,
+                        href: 'https://runkit.com/npm/' + api_result.name,
                         text: 'Test ' + api_result.name + ' in your browser'
                     }
                 }
