@@ -21,8 +21,8 @@ handle remainder_lc => sub {
 
     return unless $_;
 
-    my $year = m/$year_regex/ ? $+{year} : "";
-    my $category = m/$category_regex/ ? $+{category} : "";
+    my $year = m/$year_regex/ ? $+{year} : '';
+    my $category = m/$category_regex/ ? $+{category} : '';
 
     $_ =~ s/$year_regex//;          # Removing the first year (yyyy) value found.
     $_ =~ s/$category_regex//;      # Removing the first category found.
