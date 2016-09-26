@@ -1,0 +1,38 @@
+/*
+    Document   : zeroclickinfo-spice/share/spice/skyscanner_flight_search/skyscanner_flight_search.css
+    Created on : 2016-09-23 11:50 AM
+    Author     : sheyman
+    Description:
+    Purpose of the stylesheet follows.
+    To change this template use Tools | Templates.
+*/
+
+.tile_title {
+}
+
+.tile__title__sub {
+    color:#999 !important;
+}
+
+.tile__foot {
+    max-height: 4.37em !important;
+}
+
+@media only screen and (max-width: 590px) {
+    .tile__media__img {
+        max-width: 139% !important;
+    }
+}
+
+.price {
+    color: #333;    
+}
+
+.dates {
+    padding-bottom:7px;
+}
+
+.price-age {
+    padding-top:3px;
+    color: #999;
+}

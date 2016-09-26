@@ -16,10 +16,11 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 spice from => '([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)';
 spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/$1/$3/$2/$4/$5/anytime/anytime?apikey={{ENV{DDG_SPICE_SKYSCANNER_APIKEY}}}';
 spice alt_to => {
-    skyscanner_images =d> {
+    skyscanner_images => {
         to => 'https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=$1&enhancers=images&nocache=true&apikey={{ENV{DDG_SPICE_SKYSCANNER_IMAGES_APIKEY}}}'
     }
 };
+
 spice accept_header => 'application/json';
 
 triggers startend => 'skyscanner';
@@ -56,24 +57,27 @@ handle remainder => sub {
     # get currency from the json file using the market, if none default to USD
     my $currency = $currencies->{$market} // "USD";
     
-    my @query = split(/\s+to\s+/, $_);
+    if (index($_, 'to') != -1) {
+        my @query = split(/\s+to\s+/, $_);
+        $origin = $query[0];
+        $destination = $query[1];
+    } else {
+        $origin = $_;
+    }
     # strip 'flight(s) from' to allow more flexible queries and remove left trailing space
-    $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
-    $query[0] =~ s/^\s+//;
+    $origin =~ s/\b(flight(?:s)?|from)\b//g;
+    $origin =~ s/^\s+//;
     #print "\n\n**** User query *****";
-    #print "\nOrigin: " . $query[0];
-    #print "\nDestination: " . $query[1];
+    #print "\nOrigin: " . $origin;
+    #print "\nDestination: " . $destination;
     #print "\n*********************\n\n";
 
     # determine origin country or city (use lowercase), if no match use user's country
-    my $requested_origin = lc($query[0]);
-    $origin = $countries->{$requested_origin} // $cities->{$requested_origin} // $market;
+    $origin = $countries->{lc($origin)} // $cities->{lc($origin)} // $market;
     
     # determine destination country or city (use lowercase), if no match use 'anywhere'
-    my $requested_destination = lc($query[1]);
-    $destination = $countries->{$requested_destination} // $cities->{$requested_destination} // "anywhere";
+    $destination = $countries->{lc($destination)} // $cities->{lc($destination)} // "anywhere";
 
-    
     return $market, $locale, $currency, $origin, $destination;
 };
 

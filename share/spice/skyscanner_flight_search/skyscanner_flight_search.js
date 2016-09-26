@@ -35,11 +35,13 @@
         var build_flight_route = function (current_route, index, response) {
             var price = "";
             var price_age = "";
-            var destination_city = "";
-            var destination_city_image = "";
+            var destination_city_name = "";
+            var destination_country = "";
             var destination_airport = "";
-            var origin_code = "";
             var destination_code = "";
+            var destination_quote_ref = "";
+            var destination_city_image = "";
+            var origin_code = "";
             var quote_ref = "";
             var quote_date_time = "";
             var outbound_date = "";
@@ -55,28 +57,34 @@
             } 
             
             if (Array.isArray(image_array) && image_array.length > 0) {
-                destination_city_image = image_array[0].url + "?crop=411px:220px&quality=100";
+                destination_city_image = image_array[0].url + "?crop=411px:187px&quality=100";
             } else {
-                destination_city_image = "http://www.skyscanner.net/images/opengraph.png";
+                destination_city_image = "http://res.freestockphotos.biz/pictures/8/8453-a-blue-sky-with-white-clouds-pv.jpg";
             }
 
             price = current_route.Price; 
             price_age = current_route.QuoteDateTime;
-            // can use CityName or Name here:
-            destination_city = placesById[current_route.DestinationId].Name;
-            destination_code = placesById[current_route.DestinationId].SkyscannerCode;
-            //destination_airport = placesById[current_route.DestinationId].SkyscannerCode;
-            origin_code = placesById[current_route.OriginId].SkyscannerCode;
+            
             quote_ref = (current_route.QuoteIds) ? ((current_route.QuoteIds.length >1) ? current_route.QuoteIds[0]: current_route.QuoteIds) : '';
+            // we're using the quote destination ref rather than the route destination as it specifies which airport (the routes ref only gives the city)
+            destination_quote_ref = quotesById[quote_ref].OutboundLeg.DestinationId;
+            destination_code = placesById[destination_quote_ref].SkyscannerCode;
+            destination_city_name = (placesById[destination_quote_ref].Type == "Station") ? placesById[destination_quote_ref].CityName : placesById[destination_quote_ref].CityName;
+            destination_country = (placesById[destination_quote_ref].Type == "Country") ? placesById[destination_quote_ref].Name : placesById[destination_quote_ref].CountryName;
+            origin_code = placesById[current_route.OriginId].SkyscannerCode;
             quote_date_time = (quote_ref != '') ? quotesById[quote_ref].QuoteDateTime : "N/A";
 
             outbound_date = (quote_ref != '') ? quotesById[quote_ref].OutboundLeg.DepartureDate : "N/A";
             return_date = (quote_ref != '') ? quotesById[quote_ref].InboundLeg.DepartureDate : "N/A";
 
+            
             return {
                 flight_price: price,
                 flight_price_age: price_age,
-                flight_destination_city: destination_city,
+                flight_quote_ref: quote_ref,
+                flight_destination_quote_ref: destination_quote_ref,
+                flight_destination_city_name: destination_city_name,
+                flight_destination_country: destination_country,
                 flight_destination_city_image: destination_city_image,
                 flight_destination_airport: destination_airport,
                 flight_destination_code: destination_code,
@@ -124,22 +132,29 @@
                     options: {
                         description: false,
                         footer: Spice.skyscanner_flight_search.footer,
-                    }
+                        aux: true
+                    },
+                    variants: {
+                        tile: 'wide',
+                    } 
                 },
 
                 normalize: function(item) {
                     return {
-                        disclaimer: "found " + moment(item.flight_price_age).fromNow() + " ago",
-                        title: item.flight_destination_city,
                         image: item.flight_destination_city_image,
+                        title: item.flight_destination_city_name + " (" + item.flight_destination_code + ")",
+                        altSubtitle: item.flight_destination_country,
+                        dates: moment(item.flight_outbound_date).format('ddd D MMM') + " to " + moment(item.flight_return_date).format('ddd D MMM'),
+                        days: moment(item.flight_outbound_date).format('ddd') + " - " + moment(item.flight_return_date).format('ddd'),
+             
+                        duration: (moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') > 1) ? moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') + ' nights' : " 1 day",
+                        price: (currency_symbol_left) ? "from " + currency_symbol + item.flight_price : "from " + item.flight_price + " " + currency_symbol,
+                        priceAge: moment(item.flight_price_age).fromNow(),
                         url: "http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/" + currency_code + "/en-GB/" + item.flight_origin_code + "/" + item.flight_destination_code + "/" 
                             + moment(item.flight_outbound_date).format("YYYY-MM-DD") + "/" + moment(item.flight_return_date).format("YYYY-MM-DD") + "?apiKey=te1561648834359",
-                        price: (currency_symbol_left) ? "from " + currency_symbol + item.flight_price : "from " + item.flight_price + " " + currency_symbol,
-                        altSubtitle: (moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') > 1) ? moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') + ' days' : " 1 day",
-                        date: moment(item.flight_outbound_date).format('MMM Do') ,
                     };
                 },
-            });
+            }); 
             });
         });
     }
