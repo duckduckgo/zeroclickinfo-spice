@@ -132,10 +132,10 @@
                     options: {
                         description: false,
                         footer: Spice.skyscanner_flight_search.footer,
-                        aux: true
                     },
                     variants: {
                         tile: 'wide',
+                        tileTitle: '1line-large'
                     } 
                 },
 
@@ -144,9 +144,7 @@
                         image: item.flight_destination_city_image,
                         title: item.flight_destination_city_name + " (" + item.flight_destination_code + ")",
                         altSubtitle: item.flight_destination_country,
-                        dates: moment(item.flight_outbound_date).format('ddd D MMM') + " to " + moment(item.flight_return_date).format('ddd D MMM'),
-                        days: moment(item.flight_outbound_date).format('ddd') + " - " + moment(item.flight_return_date).format('ddd'),
-             
+                        description: moment(item.flight_outbound_date).format('ddd D MMM') + " to " + moment(item.flight_return_date).format('ddd D MMM'),             
                         duration: (moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') > 1) ? moment(item.flight_return_date).diff(moment(item.flight_outbound_date), 'days') + ' nights' : " 1 day",
                         price: (currency_symbol_left) ? "from " + currency_symbol + item.flight_price : "from " + item.flight_price + " " + currency_symbol,
                         priceAge: moment(item.flight_price_age).fromNow(),

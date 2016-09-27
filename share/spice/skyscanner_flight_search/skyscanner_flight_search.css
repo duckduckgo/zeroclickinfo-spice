@@ -7,32 +7,22 @@
     To change this template use Tools | Templates.
 */
 
-.tile_title {
+
+.zci--skyscanner_flight_search .tile__foot {
+    max-height: 4.37em;
 }
 
-.tile__title__sub {
-    color:#999 !important;
-}
-
-.tile__foot {
-    max-height: 4.37em !important;
+.zci--skyscanner_flight_search .fix {
+    margin-top:15px;
 }
 
 @media only screen and (max-width: 590px) {
-    .tile__media__img {
-        max-width: 139% !important;
+    .zci--skyscanner_flight_search .tile__media__img {
+        max-width: 139%;
     }
 }
 
-.price {
-    color: #333;    
-}
-
-.dates {
-    padding-bottom:7px;
-}
-
-.price-age {
-    padding-top:3px;
-    color: #999;
+.zci--skyscanner_flight_search .price-age {
+    text-align: right;
+    padding-top:4px;
 }
