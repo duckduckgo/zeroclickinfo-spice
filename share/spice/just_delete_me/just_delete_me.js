@@ -12,11 +12,6 @@
         if (!decodedQuery || decodedQuery.length < 4) {
             return Spice.failed('just_delete_me');
         }
-        var matchPartial = function(item) {
-            var that = this;
-            return (item.name.toLowerCase().indexOf(this) != -1 ||
-                    item.domains.some(function(domain) { return domain.indexOf(this) != -1; }, that));
-        }
         function normalizeDomains(api_result) {
             for (var i=0;i<api_result.length; i++) {
                 if (!api_result[i].domains)
