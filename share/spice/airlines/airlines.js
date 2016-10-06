@@ -80,7 +80,7 @@
             var apiResponseDate = moment(api_result.request.date.year + "-" +
                                         api_result.request.date.month + "-" + 
                                         api_result.request.date.day + " " +
-                                        originalRequestHour, "YYYY-MM-DD HH").utc();
+                                        originalRequestHour, "YYYY-MM-DD HH:00Z");
 
             // if this response is for the original same-day request...
             if (originalRequestDayOfMonth == apiResponseDate.date()) {
