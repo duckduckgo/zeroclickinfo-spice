@@ -31,6 +31,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Emojipedia'
     ),
+    "emojipedia \N{U+1F468}\N{U+1F3FD}" => test_spice(
+        '/js/spice/emojipedia/%F0%9F%91%A8%F0%9F%8F%BD',
+        call_type => 'include',
+        caller => 'DDG::Spice::Emojipedia'
+    ),
+    "\N{U+1F1E6}\N{U+1F1F6} emoji" => test_spice(
+        '/js/spice/emojipedia/%F0%9F%87%A6%F0%9F%87%B6',
+        call_type => 'include',
+        caller => 'DDG::Spice::Emojipedia'
+    ),
     # Non-emoji matches
     'f emojipedia' => undef,
     'f emoji' => undef,
