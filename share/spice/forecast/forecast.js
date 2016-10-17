@@ -239,8 +239,8 @@
           data: spiceData,
           signal: "high",
           meta: {
-              sourceUrl: 'http://forecast.io/#/f/'+api_result.latitude+','+api_result.longitude,
-              sourceName: 'Forecast.io',
+              sourceUrl: 'https://darksky.net/'+api_result.latitude+','+api_result.longitude,
+              sourceName: 'Dark Sky',
               primaryText: weatherData.header,
               secondaryText: altMeta,
 
