@@ -3,7 +3,7 @@ package DDG::Spice::Rain;
 use strict;
 use DDG::Spice;
 
-spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
+spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
 triggers start => "is it raining";
 triggers end => "raining here", "raining now", "raining yet";
