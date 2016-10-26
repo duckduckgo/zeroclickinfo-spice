@@ -11,8 +11,8 @@
             name: 'Rain',
             data: api_result,
             meta: {
-                sourceName: "Forecast.io",
-                sourceUrl: "http://forecast.io/#/f/" + api_result.latitude + "," + api_result.longitude,
+                sourceName: "Dark Sky",
+                sourceUrl: "https://darksky.net/" + api_result.latitude + "," + api_result.longitude,
             },
             normalize: function(item) {
                 var is_raining = ["hail", "thunderstorm", "tornado", "sleet", "rain"].indexOf(item.currently.icon) >= 0;
