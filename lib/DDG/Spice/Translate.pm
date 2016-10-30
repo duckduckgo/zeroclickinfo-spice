@@ -6,8 +6,8 @@ package DDG::Spice::Translate;
 # to instant answer development
 
 use DDG::Spice;
-use strict;
-use warnings;
+# use strict;
+# use warnings;
 
 spice wrap_jsonp_callback => 1;
 spice to => 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=$1';

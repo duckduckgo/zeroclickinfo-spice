@@ -8,38 +8,43 @@
             return Spice.failed('translate');
         }
         
-        console.log(api_result);
-        
-        let response = JSON.parse(decodeURI(api_result.replace(/\,\,/g, ',').replace(/\,\,/g, ',')));
+        let response = api_result;
         let translation = [];
+        let originalText = [];
         for(var i = 0; i < response[0].length; i++) {
-          translation.push(response[0][i][0]);
+            translation.push(response[0][i][0]);
+            originalText.push(response[0][i][1]);
         }
-        let originLang = decodeURI(response[1].toUpperCase());
+        translation = translation.join(' ');
+        originalText = originalText.join(' ');
+        let originLang = decodeURI(response[2]);
 
         // Render the response
         Spice.add({
             id: 'translate',
-
-            // Customize these properties
+            signal:"high",
             name: `Translate`,
-            data: api_result,
+            data: {
+                translation: translation,
+                originalLanguage: originLang,
+                originalText: originalText
+            },
             meta: {
                 sourceName: 'Google Translate',
-                sourceUrl: 'https://translate.google.com'
+                sourceUrl: `https://translate.google.com/#auto/en/${encodeURI(originalText)}`
             },
             normalize: function(item) {
                 return {
                     // customize as needed for your chosen template
-                    title: `Translate ${originLang} to English`,
-                    translation: translation.join(' '),
+                    title: `Translate "${originalText}" from ${originLang} to English`,
+                    translation: translation,
                     icon: 'https://icons.duckduckgo.com/ip2/translate.google.com.ico'
                 };
             },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.translate.content,
+                    content: Spice.translate.footer,
                     moreAt: true
                 }
             }
