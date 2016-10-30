@@ -1,6 +1,6 @@
-package DDG::Spice::Translate;
+package DDG::Spice::Translation;
 
-# ABSTRACT: Translator
+# ABSTRACT: Translation
 
 # Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
 # to instant answer development
