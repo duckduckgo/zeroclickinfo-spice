@@ -43,7 +43,16 @@ my %legalWordsFunctions = (
 	"factor" => 1,
 	"factorize" => 1,
 	"factorise" => 1,
-	"expand" =>1
+	"expand" => 1,
+    "x" => 1,                # to catch cases like x^2+2x=0
+    "2x" => 1, 
+    "3x" => 1,
+    "4x" => 1,
+    "5x" => 1,
+    "6x" => 1,
+    "7x" => 1,
+    "8x" => 1,
+    "9x" => 1
 );
 
 spice is_cached => 1;
@@ -52,50 +61,55 @@ spice to => 'https://www.symbolab.com/ddg?query=$1';
 spice wrap_jsonp_callback => 1;
 
 triggers startend => keys %legalWordsFunctions;
+
 handle query_lc => sub {
-	#for cases like c++, j++
+    #for cases like c++, j++
 	if ($_ =~ /\+\+/){  
 	  return;
 	}
 	
-	$minWeight = 2;
+	my $minWeight = 2;
 	my @words = split (/[ ()]/);
-	for $word (@words){
+	for my $word (@words){
 		
+		# i.e x^sinhx
 		if ($word =~ /[^\w](arc)?(cos|tan|sin|cot|sec|csc)(h)?(\d)?[xtu]/){
 			$minWeight -= 3;
 			next;
 		}
 		
+		# i.e sinhx
 		if ($word =~ /^(arc)?(cos|tan|sin|cot|sec|csc)(h)?(\d)?[xtu]/){
 			$minWeight -= 3;
 			next;
 		}
 		
+		# i.e x^lnx
 		if ($word =~ /[^\w](ln|log|log10|sqrt)(\d)?[xtu]/){
 			$minWeight -= 3;
 			next;
 		}
 		
+		# i.e lnx
 		if ($word =~ /(ln|log|log10|sqrt)(\d)?[xtu]/){
 			$minWeight -= 3;
 			next;
 		}
 		
+		# i.e sqrt(x)
 		if ($word =~ /(log10|sqrt|\([xt]\))/){
 			$minWeight -= 3;
 			next;
 		}
 		
-		if (	$word !~ /\w\w\w\w/ and (
-					$word =~ /[\^\*\=\+\-\/\\]/ or 
-					$word =~ /^\d*x$/)){
+		if (	$word !~ /\w\w\w\w/ and 
+                    ($word =~ /[\^\*\=\+\-\/\\]/ or 
+					 $word =~ /^\d*x$/)){
 			$minWeight -= 2;
 			next;
 		}
 		
-		
-		$val = $legalWordsFunctions{$word};
+		my $val = $legalWordsFunctions{$word};
 		if (defined $val){
 			$minWeight -= $val;
 			next;
@@ -104,7 +118,7 @@ handle query_lc => sub {
 			next;
 		}
 		else{
-			return 0;
+			return;
 		}
 	}
 	
