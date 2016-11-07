@@ -10,18 +10,6 @@
     {Tests/Docs/Other}: {Short Description} -->
 
 
-## Type of Change
-<!-- Place and 'X' in the correct box (E.g `[X] Improvement`) -->
-
-- [ ] New Instant Answer
-    - [ ] Cheat Sheet
-- [ ] Improvement
-    - [ ] Bug fix
-    - [ ] Enhancement
-- [ ] Non–Instant Answer
-    - [ ] Other (Role, Template, Test, Documentation, etc.)
-
-
 ## Description of new Instant Answer, or changes
 <!-- What does this new Instant Answer do? What changes does this PR introduce? -->
 
@@ -32,16 +20,11 @@
 
 
 ## People to notify
-<!-- Please @mention any relevant people/organizations here:-->
+<!-- Please @mention any relevant people/organizations here: -->
 
-
+<!-- DO NOT REMOVE -->
 ---
 
 <!-- The Instant Answer ID can be found by clicking the `?` icon beside the Instant Answer result on DuckDuckGo.com -->
-
-IA Page: https://duck.co/ia/view/{ID}
-
-
-<!-- For Instant Answers related to a forum topic -->
-
-Forum Topic:
+Instant Answer Page: https://duck.co/ia/view/{ID}
+<!-- FILL THIS IN:                           ^^^^ -->
