@@ -6,9 +6,7 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw(
-        DDG::Spice::Symbolab
-    )],
+    [qw(DDG::Spice::Symbolab)],
     'calculate integral of x^2' => test_spice(
         '/js/spice/symbolab/calculate%20integral%20of%20x%5E2',
         call_type => 'include',
