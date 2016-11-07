@@ -9,7 +9,7 @@ For now, we are **only accepting Pull Requests and Issues related to the Program
 
 
 ## How to contribute
-- [**Create new Spice Instant Answers, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
+- [**Create new Spice Instant Answers, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-spice/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
     - **Note**: Spices are written in Perl (back-end) and JavaScript (front-end). They can also typically use CSS, and [Handlebars](http://handlebarsjs.com) Templates.
 - [**Visit DuckDuckHack.com**](https://duckduckhack.com) to learn more about the Programming Mission, and how you can help us **analyze Instant Answer performance data** to determine new projects
 
