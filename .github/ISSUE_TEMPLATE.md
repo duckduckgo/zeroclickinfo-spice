@@ -4,7 +4,7 @@
     {IA Name} Bug: {Short description of bug}
 
     SUGGESTION
-    {IA Name} Suggestion: {Short description of suggestion}"
+    {IA Name} Suggestion: {Short description of suggestion}
 
     OTHER
     {IA Name}: {Short description} -->
