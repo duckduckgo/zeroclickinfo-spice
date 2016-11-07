@@ -24,7 +24,7 @@
 <!-- LANGUAGE LEADERS ONLY: REMOVE THIS LINE
 ## Get Started
 - [ ] 1) Claim this issue by commenting below
-- [ ] 2) Review our [Contributing Guide](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/CONTRIBUTING.md)
+- [ ] 2) Review our [Contributing Guide](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/CONTRIBUTING.md)
 - [ ] 3) [Set up your development environment](https://docs.duckduckhack.com/welcome/setup-dev-environment.html), and fork this repository
 - [ ] 4) Create a Pull Request
 
