@@ -21,7 +21,7 @@ Spices retrieve data from third-party JSON APIs. An API call is generated at the
 #### Example: NPM Spice
 - [Code](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Npm.pm) | [Example Query](https://duckduckgo.com/?q=npm+express.js&t=opera&ia=software) | [Instant Answer Page](https://duck.co/ia/view/npm)
 
-![npm expressjs search](https://cloud.githubusercontent.com/assets/873785/20064623/515e8b04-a4d9-11e6-84d9-66ffa2a5d6d2.png))
+![npm expressjs search](https://cloud.githubusercontent.com/assets/873785/20064623/515e8b04-a4d9-11e6-84d9-66ffa2a5d6d2.png)
 
 
 ## Resources
