@@ -27,7 +27,7 @@ handle remainder => sub {
 
     # Query is in $_ or @_, depending on the handle you chose...if you
     # need to do something with it before returning
-    return \$_;
+    return $_;
 };
 
 1;
