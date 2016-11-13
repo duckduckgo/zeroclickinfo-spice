@@ -62,7 +62,7 @@
                         Actors: data.Actors,
                         rating: movieRating,
                         reviewCount: data.imdbVotes,
-                        abstract: data.Plot
+                        Plot: data.Plot
                     });
                 });
             }
