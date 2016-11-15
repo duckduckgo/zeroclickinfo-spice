@@ -33,12 +33,14 @@
     }
 
     env.ddg_spice_arxiv = function(api_result){
-        var url = get_arxiv_rel_link( api_result.feed.entry.link );
-        var pdf_url = get_pdf_link( api_result.feed.entry.link );
 
         if (!api_result) {
             return Spice.failed('arxiv');
         }
+
+        var url = get_arxiv_rel_link( api_result.feed.entry.link );
+        var pdf_url = get_pdf_link( api_result.feed.entry.link );
+
 
         Spice.add({
             id: "arxiv",
