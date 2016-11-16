@@ -29,6 +29,7 @@
                 sourceName: 'SoundCloud',
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
                 sourceIcon: true,
+                autoplay: false,
                 itemType: 'Tracks'
             },
             templates: {
