@@ -34,7 +34,7 @@
 
     env.ddg_spice_arxiv = function(api_result){
 
-        if (!api_result) {
+        if (!api_result || !api_result.feed) {
             return Spice.failed('arxiv');
         }
 
