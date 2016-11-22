@@ -6,7 +6,7 @@ use DDG::Spice;
 
 triggers startend => 'quote', 'quotes', 'quotation', 'quotations';
 
-spice to => 'http://www.brainyquote.com/api/ddg?q=$1';
+spice to => 'https://www.brainyquote.com/api/ddg?q=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
@@ -15,9 +15,9 @@ handle remainder => sub {
     if(/^\w\.\w/) {
         s/\./\. /g;
     }
-    
+
     # Avoid triggering on 'stock' quotes; these are handled by Stocks IA
-    
+
     if ($req->query_lc =~ m/stock quote/) {
        return;
     }
@@ -27,7 +27,7 @@ handle remainder => sub {
             return;
         }
     }
-    
+
 
     return $_ if $_;
     return;
