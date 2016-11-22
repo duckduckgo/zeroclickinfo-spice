@@ -27,17 +27,17 @@
                         return null;
                     }
 
-                    var description = item.fields.description[0] || item.fields["abstract.analyzed"][0];
+                    var description = item.fields.description || item.fields["abstract.analyzed"];
                     var version = item._source.module[0].version;
-                    var date = ( item.fields.date && item.fields.date[0] )
-                        ? moment(item.fields.date[0]).format("DD MMM YYYY")
+                    var date = ( item.fields.date && item.fields.date )
+                        ? moment(item.fields.date).format("DD MMM YYYY")
                         : "";
 
                     return {
                         title: item._source.module[0].name,
                         url: 'https://metacpan.org/pod/' + item._source.module[0].name,
                         description: description,
-                        author: item.fields.author[0],
+                        author: item.fields.author,
                         version: version,
                         date: date
                     };
