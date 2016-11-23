@@ -58,9 +58,11 @@
                         item.feed.entry.published.text.replace( /^(\d{4}).*/, "$1" )
                     ),
                     url: url,
-                    subtitle: item.feed.entry.author.map( function(e) {
-                        return e.name.text;
-                    } ).join(', '),
+                    subtitle: (item.feed.entry.author instanceof Array) ?
+                        item.feed.entry.author.map(function(e) {
+                            return e.name.text;
+                        }).join(', ') :
+                        item.feed.entry.author.name.text,
                     description: item.feed.entry.summary.text
                 };
             },
