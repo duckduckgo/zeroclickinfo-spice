@@ -18,7 +18,7 @@
                 meta: {
                     itemType: 'Software',
                     sourceName: 'MetaCPAN',
-                    sourceUrl: 'https://metacpan.org/search?size=50&search_type=modules&q=' + encodeURIComponent(query)
+                    sourceUrl: 'https://metacpan.org/search?size=50&search_type=modules&q=' + query
                 },
                 normalize: function(item) {
                     if ( !item._source.module || !item._source.module[0] ||
