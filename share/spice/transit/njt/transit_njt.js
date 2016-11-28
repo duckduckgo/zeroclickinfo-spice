@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_transit_njt = function(api_result) {
         if (!api_result || api_result.failed){
-            return Spice.failed('njt');
+            return Spice.failed('transit_njt');
         }
 
         var now = timeInMins(api_result.now);
