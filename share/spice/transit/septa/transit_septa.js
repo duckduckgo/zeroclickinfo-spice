@@ -7,7 +7,7 @@
                 !api_result[0].orig_line ||
                 !api_result[0].orig_departure_time ||
                 !api_result[0].orig_delay) {
-            return Spice.failed('septa');
+            return Spice.failed('transit_septa');
         }
 
         var script = $("[src*='js/spice/transit/septa/']")[0],
