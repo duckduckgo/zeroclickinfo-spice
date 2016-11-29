@@ -14,7 +14,7 @@ triggers startend => "cpan", "cpanm", "metacpan", "mcpan", "meta cpan", "perl mo
 
 handle remainder => sub {
     if ($_) {
-        $_ =~ s/-/::/g;
+        $_ =~ s/(?!\s+)-/::/g;
         $_ = ( grep { /::/ } split /\s+/, $_ )[0] || $_;
         my $clean = $_ =~ s/::/ /gr;
         return $_, $clean;
