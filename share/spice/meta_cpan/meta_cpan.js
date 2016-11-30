@@ -2,13 +2,20 @@
     env.ddg_spice_meta_cpan = function(api_result) {
         "use strict";
 
+        if ( !api_result || api_result.hits.hits.length < 1 ) {
+            return DDH.failed('meta_cpan');
+        }
+
+
         var script = $('[src*="/js/spice/meta_cpan/"]')[0];
         var source = $(script).attr("src");
         var query = source.match(/meta_cpan\/([^\/]*)/)[1];
 
-        if ( !api_result || api_result.hits.hits.length < 1 ) {
-            return DDH.failed('meta_cpan');
+        // if query still has both items from handle remainder, remove $clean version
+        if (query.indexOf('/' !== -1)) {
+            query = query.split('/')[0];
         }
+
 
         DDG.require('moment.js', function() {
             Spice.add({
