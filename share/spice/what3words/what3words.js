@@ -36,6 +36,7 @@
                     id: "what3words",
                     name: "Map",
                     data: {
+                        showDirections: true,
                         name: api_result.words,
                         lat: api_result.geometry.lat,
                         lon: api_result.geometry.lng,
