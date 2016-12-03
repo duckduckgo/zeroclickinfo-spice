@@ -4,7 +4,7 @@ package DDG::Spice::Maven;
 use strict;
 use DDG::Spice;
 
-triggers startend => "maven", "mvn";
+triggers startend => "maven", "mvn","library","repository","repo","package";
 
 spice to => 'http://search.maven.org/solrsearch/select?q=$1&rows=5&wt=json&callback={{callback}}';
 spice wrap_jsonp_callback => 1;
