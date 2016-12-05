@@ -17,8 +17,8 @@ If this is something else:
 
 
 ## Related Issues and Discussions
-<!--  Link related issues here to automatically close them when PR is merged
-      E.g. "Fixes #1234" -->
+<!-- Link related issues here to automatically close them when PR is merged -->
+<!-- E.g. "Fixes #1234" -->
 
 
 ## People to notify
