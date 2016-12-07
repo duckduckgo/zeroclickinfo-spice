@@ -4,7 +4,7 @@ package DDG::Spice::RxInfo;
 use strict;
 use DDG::Spice;
 
-triggers startend => 'pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets';
+triggers startend => 'pill', 'rxinfo', 'capsule', 'softgel', 'caplets';
 
 spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=300&includeIngredients=true&parse=$1';
 spice from => '(.*?)/(\d)';
