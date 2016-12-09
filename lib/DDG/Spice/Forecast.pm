@@ -7,8 +7,8 @@ use Text::Trim;
 
 triggers start => "weather", "forecast", "weather forecast";
 
-spice from => '([^/]*)/?([^/]*)';
-spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
+spice from => '([^/]*)/([^/]*)/?';
+spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}&lang=$2';
 
 # cache DDG Rewrite for 24 hours and
 # API responses with return code 200 for 30 minutes
