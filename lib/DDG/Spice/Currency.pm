@@ -14,6 +14,8 @@ my %currHash = ();
 
 # load decimal => unicode currency codes
 my $currencyCodes = LoadFile share("currencySymbols.yml");
+# country code => currency code
+my $currencyPerCountry = LoadFile share("currencyPerCountry.yml");
 
 foreach my $currency (@currencies){
     chomp($currency);
@@ -95,17 +97,35 @@ sub checkCurrencyCode {
     # If we don't get a currency to convert to, e.g., the user types in "usd"
     # we set them to be the same thing. This will trigger our tile view.
     if($to eq '') {
+        my $local_currency = getLocalCurrency();
+
         if($normalized_number == 1) {
             $to = $from;
+        } elsif ($local_currency) {
+            $to = $local_currency;
         } else {
-            # This should probably depend on the user's location.
-            # For example, if I was in the Philippines, I would expect "10 usd" to mean "10 usd to php"
-            # But this would mean mapping currencies to countries.
+            # if we can't get the user's location, just default to USD/EUR
             $to = $from eq 'usd' ? 'eur' : 'usd';
         }
     }
 
     return $normalized_number, $from, $to;
+}
+
+# get the local currency where the user is
+sub getLocalCurrency {
+    my $local_currency = '';
+
+    if ($loc && $loc->{country_code}) {
+        my $country_code = lc $loc->{country_code};
+
+        $local_currency = $currencyPerCountry->{$country_code} // '';
+
+        # make sure we've got the currency in our list
+        $local_currency = '' unless $currHash{$local_currency};
+    }
+
+    return $local_currency;
 }
 
 handle query_lc => sub {
