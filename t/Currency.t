@@ -6,6 +6,8 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 use utf8;
+use DDG::Test::Location;
+use DDG::Request;
 
 ddg_spice_test(
     [
@@ -273,6 +275,26 @@ ddg_spice_test(
     ),
     '1k ars to eur' => test_spice(
         '/js/spice/currency/1000/ars/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # check if the currency is detected from the location
+    # when you don't specify the target currency
+    DDG::Request->new(
+        query_raw => "300 bgn",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/currency/300/bgn/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "6008 usd",
+        location => test_location("my")
+    ) => test_spice(
+        '/js/spice/currency/6008/usd/myr',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
