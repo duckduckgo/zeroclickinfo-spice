@@ -21,7 +21,7 @@ spice alt_to => {
     }
 };
 
-spice accept_header => 'application/json';
+spice headers => { Accept => 'application/json' };
 
 triggers startend => 'skyscanner';
 
