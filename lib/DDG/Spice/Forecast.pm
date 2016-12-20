@@ -8,7 +8,7 @@ use Text::Trim;
 triggers start => "weather", "forecast", "weather forecast";
 
 spice from => '([^/]*)/?([^/]*)';
-spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
+spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}&lang=$2';
 
 # cache DDG Rewrite for 24 hours and
 # API responses with return code 200 for 30 minutes
@@ -22,7 +22,15 @@ handle remainder => sub {
     return if $_;
 
     my $loc_str = join " ", map { $loc->{$_} } @locs;
-    return $loc_str, 'current', {is_cached => 0};
+
+    # Default to English
+    my $parsed_lang = 'en';
+    # And try to extract language from locale
+    if ($lang && $lang->locale) {
+        ($parsed_lang) = $lang->locale =~ /_([A-Z]{2})$/;
+        $parsed_lang = lc $parsed_lang;
+    }
+    return $loc_str, $parsed_lang, {is_cached => 0};
 };
 
 # 2015.03.17 tommytommytommy:
