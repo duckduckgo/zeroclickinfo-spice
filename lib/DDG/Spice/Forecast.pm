@@ -23,10 +23,11 @@ handle remainder => sub {
 
     my $loc_str = join " ", map { $loc->{$_} } @locs;
 
+    my ($parsed_locale) = $lang->locale =~ /_([A-Z]{2})$/;
     # Default to English
-    my $parsed_locale = lc ($lang->locale =~ /_[A-Z]{2}$/);
-    my $local_lang = $parsed_locale // 'en';
-    return $loc_str, $local_lang, {is_cached => 0};
+    $parsed_locale ||= 'en';
+    $parsed_locale = lc $parsed_locale;
+    return $loc_str, $parsed_locale, {is_cached => 0};
 };
 
 # 2015.03.17 tommytommytommy:
