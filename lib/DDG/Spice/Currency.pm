@@ -122,7 +122,9 @@ sub getLocalCurrency {
         $local_currency = $currencyPerCountry->{$country_code} // '';
 
         # make sure we've got the currency in our list
-        $local_currency = '' unless $currHash{$local_currency};
+        unless (exists $currHash{$local_currency}) {
+            $local_currency = '';
+        }
     }
 
     return $local_currency;
