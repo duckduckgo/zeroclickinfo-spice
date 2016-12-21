@@ -38,8 +38,7 @@
                     data: {
                         showDirections: true,
                         name: api_result.words,
-                        lat: api_result.geometry.lat,
-                        lon: api_result.geometry.lng,
+                        latLng: [ api_result.geometry.lat, api_result.geometry.lng ],
                         displayLatLon: api_result.geometry.lat + ", " + api_result.geometry.lng,
                         address: address_string
                     },

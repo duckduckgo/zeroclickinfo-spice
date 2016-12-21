@@ -33,12 +33,14 @@
     }
 
     env.ddg_spice_arxiv = function(api_result){
+
+        if (!api_result || !api_result.feed) {
+            return Spice.failed('arxiv');
+        }
+
         var url = get_arxiv_rel_link( api_result.feed.entry.link );
         var pdf_url = get_pdf_link( api_result.feed.entry.link );
 
-        if (!api_result) {
-            return Spice.failed('arxiv');
-        }
 
         Spice.add({
             id: "arxiv",
@@ -56,9 +58,11 @@
                         item.feed.entry.published.text.replace( /^(\d{4}).*/, "$1" )
                     ),
                     url: url,
-                    subtitle: item.feed.entry.author.map( function(e) {
-                        return e.name.text;
-                    } ).join(', '),
+                    subtitle: (item.feed.entry.author instanceof Array) ?
+                        item.feed.entry.author.map(function(e) {
+                            return e.name.text;
+                        }).join(', ') :
+                        item.feed.entry.author.name.text,
                     description: item.feed.entry.summary.text
                 };
             },
