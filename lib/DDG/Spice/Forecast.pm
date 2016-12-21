@@ -27,8 +27,7 @@ handle remainder => sub {
     my $parsed_lang = 'en';
     # And try to extract language from locale
     if ($lang && $lang->locale) {
-        ($parsed_lang) = $lang->locale =~ /_([A-Z]{2})$/;
-        $parsed_lang = lc $parsed_lang;
+        ($parsed_lang) = $lang->locale =~ /^([a-z]{2})_/;
     }
     return $loc_str, $parsed_lang, {is_cached => 0};
 };
