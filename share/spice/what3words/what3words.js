@@ -18,7 +18,7 @@
         if (success == 'yes') {
             var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
 
-        DDG.require('maps', function () {
+            DDG.require('maps', function () {
 
             // Call ArcGIS API to get City + Country for location
             $.getJSON('/js/spice/what3words_arcgis/' + location, function(data) {
