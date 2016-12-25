@@ -8,21 +8,32 @@ use Net::IDN::Encode qw(domain_to_ascii domain_to_unicode);
 use Net::Domain::TLD qw(tld_exists);
 use Data::Validate::IP qw(is_ipv4);
 
-triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)\s(?:up|down|working|online|status)\?*$/i;
+triggers start => 'isitup', 'isitdown', 'is it up', 'is it down', 'status of';
+triggers end => 'up', 'down', 'working', 'online', 'status', 'up right now';
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
-handle matches => sub {
+my $query_start_regex = qr/(?:is\s|isitup\s|isitdown\s|is it up\s|is it down\s|status of\s|)/;
+my $query_end_regex   = qr/(?:up|down|working|online|status|up\sright\snow|)/;
+my $url_regex         = qr/(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)/;
 
-    my ($domain, $ascii);
+my $query_regex = qr/^($query_start_regex)$url_regex\s?($query_end_regex)\?*$/i;
+
+handle query_lc => sub {
+
+    my ($domain, $ascii, $root_url);
     my $publicSuffix = Domain::PublicSuffix->new();
 
-    my $root_url = $_[1];
+    my $query = $_;
 
-    if ($_[2]) {
-        my $tld = $_[2];
+    $query =~ $query_regex;
+
+    $root_url = $2;
+
+    if ($3) {
+        my $tld = $3;
         $ascii = domain_to_ascii($root_url.$tld);
         $domain = $publicSuffix->get_root_domain($ascii);
 
@@ -36,7 +47,7 @@ handle matches => sub {
         return $root_url if is_ipv4($root_url);
 
         # append .com only if "is" is in the query and there's no other domain given
-        if ($_[0]) {
+        if ($1) {
             return if length($root_url) < 5;
             return $root_url . '.com';
         }
