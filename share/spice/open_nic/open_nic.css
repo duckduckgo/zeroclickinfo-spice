@@ -1,20 +1,18 @@
 /* main formatting */
 .zci--open_nic .opennic__list {
     height:30px;
+    line-height:30px;
+    font-size:13px;
 }
 
 .zci--open_nic .opennic__subblocks {
     float:left;
     height:inherit;
-    line-height:30px;
-    font-size:13px;
-    margin-right:8px;
 }
 
 /* cell-specific */
 .zci--open_nic .opennic__ip {
     font-size:16px;
-    margin-right:10px;
     width:350px;
 }
 
@@ -23,28 +21,27 @@
 }
 
 .zci--open_nic .opennic__stat {
-    width:107px;
+    width:89px;
 }
 
 .zci--open_nic .opennic__loc {
     width:60px;
-    margin-right:0px;
 }
 
 /* removes columns depending on the screen's size */
-@media only screen and (max-width: 710px) {
+@media only screen and (max-width: 695px) {
     .zci--open_nic .opennic__loc {
         display:none;
     }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 635px) {
     .zci--open_nic .opennic__stat {
         display:none;
     }
 }
 
-@media only screen and (max-width: 492px) {
+@media only screen and (max-width: 477px) {
     .zci--open_nic .opennic__km {
         display:none;
     }
