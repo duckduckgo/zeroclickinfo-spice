@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_transit_njt = function(api_result) {
         if (!api_result || api_result.failed){
-            return Spice.failed('njt');
+            return Spice.failed('transit_njt');
         }
 
         var now = timeInMins(api_result.now);
@@ -27,12 +27,12 @@
             },
             normalize: function(item) {
                 var classes = {
-                        "Cancelled": "njt__cancelled",
-                        "Delayed": "njt__delayed",
-                        "All Aboard": "njt__boarding",
-                        "Boarding": "njt__boarding",
-                        "Stand By": "njt__boarding",
-                        "On Time": "njt__boarding"
+                        "Cancelled": "transit_njt__cancelled",
+                        "Delayed": "transit_njt__delayed",
+                        "All Aboard": "transit_njt__boarding",
+                        "Boarding": "transit_njt__boarding",
+                        "Stand By": "transit_njt__boarding",
+                        "On Time": "transit_njt__boarding"
                     };
 
                 if (!item.status) item.status = "On Time";
@@ -42,7 +42,7 @@
                     status: actualStatus(item, now),
                     line: item.line.replace('Line', ''),
                     cancelled: item.status === "Cancelled",
-                    status_class: delayedMins(item, now) > 0 ? "njt__delayed" : classes[item.status],
+                    status_class: delayedMins(item, now) > 0 ? "transit_njt__delayed" : classes[item.status],
                     bold_status_text: item.status === "Boarding" || item.status === "All Aboard",
                     url: 'http://dv.njtransit.com/mobile/train_stops.aspx?train=' + item.train
                 };
@@ -67,7 +67,7 @@
             },
             sort_default: 'time',
             onShow: function(){
-                $('.njt__cancelled').parents('.tile__body').addClass('njt__cancelled-tile');
+                $('.transit_njt__cancelled').parents('.tile__body').addClass('transit_njt__cancelled-tile');
             }
         });
     };
