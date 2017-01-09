@@ -149,7 +149,7 @@
                         price: (currency_symbol_left) ? "from " + currency_symbol + item.flight_price : "from " + item.flight_price + " " + currency_symbol,
                         priceAge: moment(item.flight_price_age).fromNow(),
                         url: "http://partners.api.skyscanner.net/apiservices/referral/v1.0/GB/" + currency_code + "/en-GB/" + item.flight_origin_code + "/" + item.flight_destination_code + "/" 
-                            + moment(item.flight_outbound_date).format("YYYY-MM-DD") + "/" + moment(item.flight_return_date).format("YYYY-MM-DD") + "?apiKey=te1561648834359",
+                            + moment(item.flight_outbound_date).format("YYYY-MM-DD") + "/" + moment(item.flight_return_date).format("YYYY-MM-DD") + "?apiKey=te15616488343591",
                     };
                 },
             }); 
