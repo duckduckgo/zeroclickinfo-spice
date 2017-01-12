@@ -6,7 +6,7 @@
             return Spice.failed('news');
         }
 
-        var useRelevancy = false,
+        var useRelevancy = DDG.opensearch.installed.experiment === "organic_ux" && DDG.opensearch.installed.variant === 'b',
             entityWords = [],
             goodStories = [],
             searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim(),
