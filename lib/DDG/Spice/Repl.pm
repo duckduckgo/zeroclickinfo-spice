@@ -15,8 +15,6 @@ my $uname = $ENV{DDG_SPICE_REPL_UNAME};
 my $passw = $ENV{DDG_SPICE_REPL_PASSW};
 my $encoded_uname_pw = encode_base64("$uname:$passw");
 
-warn $encoded_uname_pw;
-
 # Use a garbage endpoint to spoof first API call so we can load JS
 spice to => 'https://api.duckduckgo.com?q=hello&format=json';
 spice alt_to => {
@@ -31,7 +29,7 @@ spice alt_to => {
     }
 };
 
-triggers end => 'repl';
+triggers startend => 'repl', 'repl online', 'online repl', 'interpreter', 'interpreter online', 'online interpreter';
 
 my @langs = qw(
     apl
@@ -64,8 +62,8 @@ my @langs = qw(
     scheme
     swift
     unlambda
-    web_project
 );
+# web_project
 
 my %aliases = (
     'brain fuck' => 'brainf',
@@ -77,7 +75,7 @@ my %aliases = (
     'css' => 'web_project',
     'es6' => 'babel',
     'f#' => 'fsharp',
-    'html' => 'web_project',
+    # 'html' => 'web_project',
     'java script' => 'javascript',
     'javascript es6' => 'babel',
     'js es6' => 'babel',
@@ -85,19 +83,19 @@ my %aliases = (
     'node.js' => 'nodejs',
     'node' => 'nodejs',
     'python 2' => 'python',
+    'python2' => 'python',
     'python 3' => 'python3',
     'python turtle' => 'python_turtle',
     'python with turtle' => 'python_turtle',
-    'python2' => 'python'
 );
 
 handle remainder => sub {
 
     return unless $_;
-    warn $_;
-    return $_, "10*10" if $_ ~~ @langs;
-    warn $aliases{$_};
-    return $aliases{$_}, "5*5" if exists $aliases{$_};
+    # strip 'online ' from query
+    s/online //;
+    return unless $_ ~~ @langs || exists $aliases{$_};
+    return $aliases{$_} // $_;
 };
 
 1;

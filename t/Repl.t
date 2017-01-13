@@ -9,18 +9,69 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Repl)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/repl/query',
+
+    'python repl' => test_spice(
+        '/js/spice/repl/python',
         call_type => 'include',
         caller => 'DDG::Spice::Repl'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+
+    'python repl online' => test_spice(
+        '/js/spice/repl/python',
+        call_type => 'include',
+        caller => 'DDG::Spice::Repl'
+    ),
+
+    'online python repl' => test_spice(
+    '/js/spice/repl/python',
+    call_type => 'include',
+    caller => 'DDG::Spice::Repl'
+    ),
+
+    'c++ repl' => test_spice(
+        '/js/spice/repl/cpp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Repl'
+    ),
+
+    'repl python' => test_spice(
+        '/js/spice/repl/python',
+        call_type => 'include',
+        caller => 'DDG::Spice::Repl'
+    ),
+
+    'python interpreter' => test_spice(
+        '/js/spice/repl/python',
+        call_type => 'include',
+        caller => 'DDG::Spice::Repl'
+    ),
+
+    'python interpreter online' => test_spice(
+        '/js/spice/repl/python',
+        call_type => 'include',
+        caller => 'DDG::Spice::Repl'
+    ),
+
+    'online python interpreter' => test_spice(
+    '/js/spice/repl/python',
+    call_type => 'include',
+    caller => 'DDG::Spice::Repl'
+    ),
+
+    'c++ interpreter' => test_spice(
+        '/js/spice/repl/cpp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Repl'
+    ),
+
+    'interpreter python' => test_spice(
+        '/js/spice/repl/python',
+        call_type => 'include',
+        caller => 'DDG::Spice::Repl'
+    ),
+
+    'perl repl' => undef,
+    'perl interpreter' => undef,
 );
 
 done_testing;
-

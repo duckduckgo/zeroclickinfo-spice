@@ -9,7 +9,8 @@
         }
     });
 
-    var langs = [
+    // Use array to ensure order for <select>
+    var select_langs = [
         { val: "apl", text: "Apl" },
         { val: "bloop", text: "Bloop" },
         { val: "babel", text: "Babel" },
@@ -26,10 +27,10 @@
         { val: "java", text: "Java" },
         { val: "javascript", text: "JavaScript" },
         { val: "jest", text: "Jest" },
-        { val: "lolcode", text: "Lolcode" },
+        { val: "lolcode", text: "LOLCODE" },
         { val: "lua", text: "Lua" },
         { val: "nodejs", text: "Node.js" },
-        { val: "php", text: "Php" },
+        { val: "php", text: "PHP" },
         { val: "python", text: "Python" },
         { val: "python_turtle", text: "Python (Turtle)" },
         { val: "python3", text: "Python 3" },
@@ -38,10 +39,16 @@
         { val: "ruby", text: "Ruby" },
         { val: "rust", text: "Rust" },
         { val: "scheme", text: "Scheme" },
-        { val: "swift", text: "Swift" },
+        // { val: "swift", text: "Swift" },
         { val: "unlambda", text: "Unlambda" },
-        { val: "web_project", text: "HTML, CSS" }
+        // { val: "web_project", text: "HTML, CSS" }
     ];
+
+    // build map of "Select" text to API
+    var langs = {};
+    $.each(select_langs, function(index, obj){
+        langs[obj.text] = obj.val;
+    });
 
     // Remap languages to appropriate editing mode name
     // use "text" mode for unsupported languages
@@ -82,7 +89,7 @@
     env.ddg_spice_repl = function(api_result) {
 
         var query = DDG.get_query(),
-            codeLang = query.replace("repl", "").toLowerCase().trim();
+            codeLang = query.replace(/repl|interpreter|online/g, "").toLowerCase().trim();
 
         DDG.require("/js/ace/ace.js", function() {
             Spice.add({
@@ -95,13 +102,12 @@
                 },
                 normalize: function() {
                     return {
-                        langs: langs,
+                        langs: select_langs,
                         selected: codeLang
                     };
                 },
                 onShow: function () {
                     if (hasShown) {
-                        console.log("ALREADY SHOWN");
                         return;
                     } else {
                         hasShown = true;
@@ -128,7 +134,6 @@
                     $submit.click(function(){
                         var code = editor.getValue();
                         code = encodeURIComponent(code);
-                        console.log("CODE: ", code);
                         var url = [endpoint, codeLang, code].join("/");
                         $.getJSON( url , function(data){
                             var output;
@@ -143,10 +148,11 @@
 
                     // Select element handler
                     $select.change(function(){
-                        codeLang = $select.find("option:selected").text().toLowerCase();
-                        console.log("CODE LANGE: ", codeLang);
+                        var selectText = $select.find("option:selected").text();
+                        console.log('SELECT TEXT: ', selectText);
+                        codeLang = langs[selectText];
+                        console.log('CODE LANG: ', codeLang);
                         var mode = getMode(codeLang);
-                        console.log("MODE: ", mode);
                         editor.getSession().setMode("ace/mode/" + mode);
                     });
 
