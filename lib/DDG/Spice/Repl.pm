@@ -60,9 +60,9 @@ my @langs = qw(
     ruby
     rust
     scheme
-    swift
     unlambda
 );
+# swift
 # web_project
 
 my %aliases = (
