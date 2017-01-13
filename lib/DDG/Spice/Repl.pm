@@ -4,7 +4,6 @@ use DDG::Spice;
 use strict;
 use warnings;
 
-use MIME::Base64 ;
 use MIME::Base64 qw(encode_base64);
 
 spice is_cached => 1;
