@@ -1,0 +1,20 @@
+.zci--repl #repl__editor {
+    position: relative;
+    width: 100%;
+    height: 14em;
+    border: 1px solid #ddd;
+}
+
+.zci--repl #repl__result {
+    height: 14em;
+    font-family: monospace;
+}
+
+.zci--repl .cw,
+.zci--repl .c-base {
+    max-width: none;
+}
+
+.zci--repl .frm__buttons {
+    margin-bottom: 1em;
+}
