@@ -98,7 +98,7 @@
                 data: api_result,
                 meta: {
                     sourceName: 'repl.it',
-                    sourceUrl: 'https://repl.it/languages/'
+                    sourceUrl: 'https://repl.it/languages/' + codeLang
                 },
                 normalize: function() {
                     return {

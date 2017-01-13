@@ -13,7 +13,8 @@ spice wrap_jsonp_callback => 1;
 
 my $uname = $ENV{DDG_SPICE_REPL_UNAME};
 my $passw = $ENV{DDG_SPICE_REPL_PASSW};
-my $encoded_uname_pw = encode_base64("$uname:$passw");
+# Pass empty string as eol char
+my $encoded_uname_pw = encode_base64("$uname:$passw", '');
 
 # Use a garbage endpoint to spoof first API call so we can load JS
 spice to => 'https://api.duckduckgo.com?q=hello&format=json';
