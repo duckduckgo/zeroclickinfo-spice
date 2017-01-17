@@ -90,7 +90,7 @@
         editor_id = "repl__editor",
         endpoint  = "/js/spice/repl_eval/";
 
-    env.ddg_spice_repl = function(api_result) {
+    env.ddg_spice_repl = function() {
 
         // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getJSON
         $.ajaxSetup({ cache: true });
@@ -102,16 +102,13 @@
             Spice.add({
                 id: 'repl',
                 name: 'REPL',
-                data: api_result,
+                data: {
+                    langs: select_langs,
+                    selected: codeLang
+                },
                 meta: {
                     sourceName: 'repl.it',
                     sourceUrl: 'https://repl.it/languages/' + codeLang
-                },
-                normalize: function() {
-                    return {
-                        langs: select_langs,
-                        selected: codeLang
-                    };
                 },
                 onShow: function () {
                     if (hasShown) {
@@ -205,5 +202,7 @@
             });
         });
     };
-
 }(this));
+
+// Call self
+ddg_spice_repl();

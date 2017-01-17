@@ -6,22 +6,17 @@ use warnings;
 
 use MIME::Base64 qw(encode_base64);
 
-spice is_cached => 1;
-spice proxy_cache_valid => '200 1d'; # defaults to this automatically
-
-spice wrap_jsonp_callback => 1;
-
 my $uname = $ENV{DDG_SPICE_REPL_UNAME};
 my $passw = $ENV{DDG_SPICE_REPL_PASSW};
 # Pass empty string as eol char
 my $encoded_uname_pw = encode_base64("$uname:$passw", '');
 
-# Use a garbage endpoint to spoof first API call so we can load JS
-spice to => 'https://api.duckduckgo.com?q=hello&format=json';
+spice call_type => 'self';
+
 spice alt_to => {
     repl_eval => {
         to => 'https://eval.repl.it/eval?language=$1&code=$2',
-        from => '([^/]+)(?:/(.*))?',
+        from => '([^/]+)/([^/]+)',
         is_cached => 1,
         proxy_cache_valid => '418 1d',
         headers => {
@@ -96,7 +91,7 @@ handle remainder => sub {
     # strip 'online ' from query
     s/online //;
     return unless $_ ~~ @langs || exists $aliases{$_};
-    return $aliases{$_} // $_;
+    return '';
 };
 
 1;
