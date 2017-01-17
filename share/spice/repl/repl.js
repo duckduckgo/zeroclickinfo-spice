@@ -168,11 +168,12 @@
                             if (!res) {
                                 return false;
                             }
-                            if (res && res.length > 1) {
+                            if (res && res.length > 0) {
                                 // Iterate over array of data
                                 $.each(res, function(key, obj){
+
                                     // If any errors, return error message as output
-                                    if (obj.command === "result" && obj.error.length) {
+                                    if (obj.command === "result" && obj.error !== '') {
                                         output = obj.error;
                                         hasError = true;
                                         return false;
