@@ -23,9 +23,9 @@ ddg_spice_test(
     ),
 
     'online python repl' => test_spice(
-    '',
-    call_type => 'self',
-    caller => 'DDG::Spice::Repl'
+        '',
+        call_type => 'self',
+        caller => 'DDG::Spice::Repl'
     ),
 
     'c++ repl' => test_spice(
@@ -53,9 +53,9 @@ ddg_spice_test(
     ),
 
     'online python interpreter' => test_spice(
-    '',
-    call_type => 'self',
-    caller => 'DDG::Spice::Repl'
+        '',
+        call_type => 'self',
+        caller => 'DDG::Spice::Repl'
     ),
 
     'c++ interpreter' => test_spice(

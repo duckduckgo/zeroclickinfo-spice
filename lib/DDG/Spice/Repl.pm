@@ -6,8 +6,8 @@ use warnings;
 
 use MIME::Base64 qw(encode_base64);
 
-my $uname = $ENV{DDG_SPICE_REPL_UNAME};
-my $passw = $ENV{DDG_SPICE_REPL_PASSW};
+my $uname = $ENV{DDG_SPICE_REPL_UNAME} || '';
+my $passw = $ENV{DDG_SPICE_REPL_PASSW} || '';
 # Pass empty string as eol char
 my $encoded_uname_pw = encode_base64("$uname:$passw", '');
 
@@ -48,9 +48,6 @@ my @langs = qw(
 # brainf
 # coffeescript
 # emoticon
-# fsharp
-# go
-# java
 # jest
 # lolcode
 # lua
@@ -62,35 +59,39 @@ my @langs = qw(
 # unlambda
 
 
-my %aliases = (
-    'c plus plus' => 'cpp',
-    'c sharp' => 'csharp',
-    'c#' => 'csharp',
-    'c++' => 'cpp',
-    'c++11' => 'cpp11',
-    'cplusplus' => 'cpp',
-    'f sharp' => 'fsharp',
-    'f#' => 'fsharp',
-    'go lang' => 'go',
-    'golang' => 'go',
-    'java script' => 'nodejs',
-    'js es6' => 'babel',
-    'js' => 'node',
-    'node.js' => 'nodejs',
-    'node' => 'nodejs',
-    'python 2' => 'python',
-    'python 3' => 'python3',
-    'python2' => 'python',
-    # 'es6' => 'babel',
-    # 'javascript es6' => 'babel',
+my @aliases = (
+    'c plus plus',
+    'c sharp',
+    'c#',
+    'c++ 11',
+    'c++',
+    'c++11',
+    'cplusplus',
+    'es6',
+    'f sharp',
+    'f#',
+    'go lang',
+    'golang',
+    'java script',
+    'javascript es6',
+    'javascript',
+    'js es6',
+    'js',
+    'node.js',
+    'node',
+    'python 2',
+    'python 3',
+    'python2'
 );
 
-handle remainder => sub {
+my @allowed = (@langs, @aliases);
+
+handle remainder_lc => sub {
 
     return unless $_;
     # strip 'online ' from query
-    s/online //;
-    return unless $_ ~~ @langs || exists $aliases{$_};
+    s/(online|interpreter) //g;
+    return unless $_ ~~ @allowed;
     return '';
 };
 
