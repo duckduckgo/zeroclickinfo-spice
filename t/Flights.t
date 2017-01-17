@@ -127,6 +127,7 @@ ddg_spice_test(
     'Boston' => undef,
     'Jetblue' => undef,
     'Boston Paris' => undef,
+    'flights den to phl' => undef
 );
 
 alt_to_test('DDG::Spice::Flights::Route', ['route_helper']);
