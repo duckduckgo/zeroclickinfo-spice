@@ -3,6 +3,7 @@ package DDG::Spice::Flights::Route;
 
 use strict;
 use DDG::Spice;
+use Text::Trim;
 
 # cache responses for 5 minutes
 spice proxy_cache_valid => "200 304 5m";
@@ -176,15 +177,17 @@ handle query_lc => sub {
     s/\b(airport|national|international|intl|regional)\b//g;    
     s/\.//g;
     s/\b[^a-z]+\b/ /g;
-    s/\s+$//g;    
+    trim;
 
     # query must be in the form [airline][city][to][city] or [city][to][city][airline]
     my @query = split(/\s+to\s+/, $_);
     return if scalar(@query) != 2;
 
     # strip 'fligh(s) from' to allow more flexible queries
-    $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
-    
+    $query[0] =~ s/\b(flights?|from)\b//g;
+
+    trim($_) foreach @query;
+
     # get the current time, minus six hours
     my ($second, $minute, $hour, $dayOfMonth,
         $month, $year, $dayOfWeek, $dayOfYear, $daylightSavings) = gmtime(time - 21600);
@@ -194,7 +197,7 @@ handle query_lc => sub {
 
     my @flightCodes = ();
 
-    # query format: [airline][city or airline code][to][city or airline code]
+    # query format: [airline][city or airport code][to][city or airport code]
     if (exists $citiesByName{$query[1]} or exists $citiesByCode{$query[1]}) {
         @flightCodes = identifyCodes($query[0], 1, $query[1]);
 
