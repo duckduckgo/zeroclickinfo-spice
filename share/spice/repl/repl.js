@@ -10,7 +10,7 @@
     });
 
     // Use array to ensure order for <select>
-    var select_langs = [
+    var selectLangs = [
         { val: "c", text: "C" },
         { val: "cpp", text: "C++" },
         { val: "cpp11", text: "C++11" },
@@ -48,9 +48,30 @@
 
     // build map of "Select" text to API
     var langs = {};
-    $.each(select_langs, function(index, obj){
+    $.each(selectLangs, function(index, obj){
         langs[obj.text] = obj.val;
     });
+
+    var langAliases = {
+        'c plus plus': 'cpp',
+        'c sharp': 'csharp',
+        'c#': 'csharp',
+        'c++': 'cpp',
+        'c++11': 'cpp11',
+        'cplusplus': 'cpp',
+        'f sharp': 'fsharp',
+        'f#': 'fsharp',
+        'go lang': 'go',
+        'golang': 'go',
+        'java script': 'nodejs',
+        'js es6': 'babel',
+        'js': 'nodejs',
+        'node.js': 'nodejs',
+        'node': 'nodejs',
+        'python 2': 'python',
+        'python 3': 'python3',
+        'python2': 'python',
+    };
 
     // Remap languages to appropriate editing mode name
     // use "text" mode for unsupported languages
@@ -98,12 +119,14 @@
         var query = DDG.get_query(),
             codeLang = query.replace(/repl|interpreter|online/g, "").toLowerCase().trim();
 
+        codeLang = langAliases[codeLang] || codeLang;
+
         DDG.require("/js/ace/ace.js", function() {
             Spice.add({
                 id: 'repl',
                 name: 'REPL',
                 data: {
-                    langs: select_langs,
+                    langs: selectLangs,
                     selected: codeLang
                 },
                 meta: {
