@@ -33,61 +33,61 @@ spice alt_to => {
 triggers startend => 'repl', 'repl online', 'online repl', 'interpreter', 'interpreter online', 'online interpreter';
 
 my @langs = qw(
-    apl
-    bloop
-    brainf
     c
-    csharp
     cpp
     cpp11
-    coffeescript
-    emoticon
-    babel
+    csharp
     fsharp
-    forth
     go
     java
-    javascript
-    jest
-    lolcode
-    lua
     nodejs
     php
     python
-    python_turtle
     python3
-    qbasic
-    roy
     ruby
-    rust
-    scheme
-    unlambda
 );
-# swift
-# web_project
+
+# More Languages Coming Soon...
+# apl
+# bloop
+# brainf
+# coffeescript
+# emoticon
+# fsharp
+# go
+# java
+# jest
+# lolcode
+# lua
+# python_turtle
+# qbasic
+# roy
+# rust
+# scheme
+# unlambda
+
 
 my %aliases = (
-    'brain fuck' => 'brainf',
-    'brainfuck' => 'brainf',
+    'c plus plus' => 'cpp',
+    'c sharp' => 'csharp',
     'c#' => 'csharp',
     'c++' => 'cpp',
     'c++11' => 'cpp11',
-    'coffee script' => 'coffeescript',
-    'css' => 'web_project',
-    'es6' => 'babel',
+    'cplusplus' => 'cpp',
+    'f sharp' => 'fsharp',
     'f#' => 'fsharp',
-    # 'html' => 'web_project',
-    'java script' => 'javascript',
-    'javascript es6' => 'babel',
+    'go lang' => 'go',
+    'golang' => 'go',
+    'java script' => 'nodejs',
     'js es6' => 'babel',
-    'js' => 'javascript',
+    'js' => 'node',
     'node.js' => 'nodejs',
     'node' => 'nodejs',
     'python 2' => 'python',
-    'python2' => 'python',
     'python 3' => 'python3',
-    'python turtle' => 'python_turtle',
-    'python with turtle' => 'python_turtle',
+    'python2' => 'python',
+    # 'es6' => 'babel',
+    # 'javascript es6' => 'babel',
 );
 
 handle remainder => sub {

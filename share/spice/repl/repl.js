@@ -11,36 +11,38 @@
 
     // Use array to ensure order for <select>
     var select_langs = [
-        { val: "apl", text: "Apl" },
-        { val: "bloop", text: "Bloop" },
-        { val: "babel", text: "Babel" },
-        { val: "brainf", text: "Brainf" },
         { val: "c", text: "C" },
-        { val: "csharp", text: "C#" },
         { val: "cpp", text: "C++" },
         { val: "cpp11", text: "C++11" },
-        { val: "coffeescript", text: "CoffeeScript" },
-        { val: "emoticon", text: "Emoticon" },
+        { val: "csharp", text: "C#" },
         { val: "fsharp", text: "F#" },
-        { val: "forth", text: "Forth" },
         { val: "go", text: "Go" },
         { val: "java", text: "Java" },
-        { val: "javascript", text: "JavaScript" },
-        { val: "jest", text: "Jest" },
-        { val: "lolcode", text: "LOLCODE" },
-        { val: "lua", text: "Lua" },
-        { val: "nodejs", text: "Node.js" },
+        { val: "nodejs", text: "JavaScript (Node.js)" },
         { val: "php", text: "PHP" },
         { val: "python", text: "Python" },
-        { val: "python_turtle", text: "Python (Turtle)" },
         { val: "python3", text: "Python 3" },
-        { val: "qbasic", text: "Qbasic" },
-        { val: "roy", text: "Roy" },
-        { val: "ruby", text: "Ruby" },
-        { val: "rust", text: "Rust" },
-        { val: "scheme", text: "Scheme" },
+        { val: "ruby", text: "Ruby" }
+
+        // Coming Soon
+        // { val: "apl", text: "Apl" },
+        // { val: "babel", text: "Babel" },
+        // { val: "bloop", text: "Bloop" },
+        // { val: "brainf", text: "Brainf" },
+        // { val: "coffeescript", text: "CoffeeScript" },
+        // { val: "emoticon", text: "Emoticon" },
+        // { val: "forth", text: "Forth" },
+        // { val: "javascript", text: "JavaScript" },
+        // { val: "jest", text: "Jest" },
+        // { val: "lolcode", text: "LOLCODE" },
+        // { val: "lua", text: "Lua" },
+        // { val: "python_turtle", text: "Python (Turtle)" },
+        // { val: "qbasic", text: "Qbasic" },
+        // { val: "roy", text: "Roy" },
+        // { val: "rust", text: "Rust" },
+        // { val: "scheme", text: "Scheme" },
         // { val: "swift", text: "Swift" },
-        { val: "unlambda", text: "Unlambda" },
+        // { val: "unlambda", text: "Unlambda" },
         // { val: "web_project", text: "HTML, CSS" }
     ];
 
@@ -53,24 +55,26 @@
     // Remap languages to appropriate editing mode name
     // use "text" mode for unsupported languages
     var modes = {
-        apl: "text",
-        bloop: "text",
-        brainf: "text",
         c: "c_cpp",
+        coffeescript: "coffee",
         cpp: "c_cpp",
         cpp11: "c_cpp",
-        coffeescript: "coffee",
-        emoticon: "text",
         fsharp: "text",
         go: "golang",
-        jest: "text",
-        lolcode: "text",
         nodejs: "javascript",
-        python_turtle: "python",
-        python3: "python",
-        qbasic: "text",
-        roy: "text",
-        unlambda: "text"
+        python3: "python"
+
+        // Coming Soon
+        // apl: "text",
+        // bloop: "text",
+        // brainf: "text",
+        // emoticon: "text",
+        // jest: "text",
+        // lolcode: "text",
+        // python_turtle: "python",
+        // qbasic: "text",
+        // roy: "text",
+        // unlambda: "text"
     };
 
     function getMode(lang) {
