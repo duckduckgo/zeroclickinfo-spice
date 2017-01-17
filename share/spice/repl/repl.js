@@ -92,6 +92,9 @@
 
     env.ddg_spice_repl = function(api_result) {
 
+        // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getJSON
+        $.ajaxSetup({ cache: true });
+
         var query = DDG.get_query(),
             codeLang = query.replace(/repl|interpreter|online/g, "").toLowerCase().trim();
 
@@ -139,23 +142,50 @@
                         var code = editor.getValue();
                         code = encodeURIComponent(code);
                         var url = [endpoint, codeLang, code].join("/");
-                        $.getJSON( url , function(data){
-                            var output;
-                            if (data && data[0]) {
-                                output = data[0].error || data[0].data;
+                        $.getJSON( url , function(res){
+                            var output = '',
+                                hasError = false;
+                            if (!res) {
+                                return false;
+                            }
+                            if (res && res.length > 1) {
+                                // Iterate over array of data
+                                $.each(res, function(key, obj){
+                                    // If any errors, return error message as output
+                                    if (obj.command === "result" && obj.error.length) {
+                                        output = obj.error;
+                                        hasError = true;
+                                        return false;
+
+                                    // If no output, but we have a result, print result
+                                    } else if (obj.command === "result" && output.length === 0) {
+                                        output = obj.data;
+                                        return false;
+
+                                    // Join output string as we iterate over them
+                                    } else if (obj.command === "output") {
+                                        output = output + obj.data;
+                                    }
+                                });
                             } else {
+                                hasError = true;
                                 output = "Error: Unable to evaluate result";
                             }
                             $result.val(output);
+
+                            // Set text color red when in error state
+                            if (hasError) {
+                                $result.addClass('tx-clr--red');
+                            } else {
+                                $result.removeClass('tx-clr--red');
+                            }
                         });
                     });
 
                     // Select element handler
                     $select.change(function(){
                         var selectText = $select.find("option:selected").text();
-                        console.log('SELECT TEXT: ', selectText);
                         codeLang = langs[selectText];
-                        console.log('CODE LANG: ', codeLang);
                         var mode = getMode(codeLang);
                         editor.getSession().setMode("ace/mode/" + mode);
                     });
