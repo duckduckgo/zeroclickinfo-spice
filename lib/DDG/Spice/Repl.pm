@@ -35,11 +35,14 @@ my @langs = qw(
     fsharp
     go
     java
+    lua
     nodejs
     php
     python
     python3
     ruby
+    rust
+    swift
 );
 
 # More Languages Coming Soon...
@@ -50,11 +53,9 @@ my @langs = qw(
 # emoticon
 # jest
 # lolcode
-# lua
 # python_turtle
 # qbasic
 # roy
-# rust
 # scheme
 # unlambda
 

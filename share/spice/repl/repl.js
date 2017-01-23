@@ -18,11 +18,14 @@
         { val: "fsharp", text: "F#" },
         { val: "go", text: "Go" },
         { val: "java", text: "Java" },
+        { val: "lua", text: "Lua" },
         { val: "nodejs", text: "JavaScript (Node.js)" },
         { val: "php", text: "PHP" },
         { val: "python", text: "Python" },
         { val: "python3", text: "Python 3" },
-        { val: "ruby", text: "Ruby" }
+        { val: "ruby", text: "Ruby" },
+        { val: "rust", text: "Rust" },
+        { val: "swift", text: "Swift" }
 
         // Coming Soon
         // { val: "apl", text: "Apl" },
@@ -35,13 +38,10 @@
         // { val: "javascript", text: "JavaScript" },
         // { val: "jest", text: "Jest" },
         // { val: "lolcode", text: "LOLCODE" },
-        // { val: "lua", text: "Lua" },
         // { val: "python_turtle", text: "Python (Turtle)" },
         // { val: "qbasic", text: "Qbasic" },
         // { val: "roy", text: "Roy" },
-        // { val: "rust", text: "Rust" },
         // { val: "scheme", text: "Scheme" },
-        // { val: "swift", text: "Swift" },
         // { val: "unlambda", text: "Unlambda" },
         // { val: "web_project", text: "HTML, CSS" }
     ];
