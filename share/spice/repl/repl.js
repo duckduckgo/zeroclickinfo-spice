@@ -213,15 +213,19 @@
                     if (hasSamples) {
                         var sampleLang = getSampleLang(codeLang);
                         $.when( getSamples(sampleLang) ).then(function(){
-                            $samples.change(function() {
-                                var code = $samples.find("option:selected").data('text') || null;
-                                if (code) {
-                                    editor.setValue(code);
-                                }
-                            });
                             $samplesContainer.removeClass('hide');
                         });
                     }
+
+                    // Event Handlers
+                    // //////////////
+
+                    $samples.change(function() {
+                        var code = $samples.find("option:selected").data('text') || null;
+                        if (code) {
+                            editor.setValue(code);
+                        }
+                    });
 
                     // "Execute" button handler
                     $submit.click(function(){
