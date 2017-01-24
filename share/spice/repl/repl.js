@@ -229,6 +229,7 @@
 
                     // "Execute" button handler
                     $submit.click(function(){
+                        $result.removeClass('tx-clr--red');
                         $result.val("Executing code...");
                         var code = editor.getValue();
                         code = encodeURIComponent(code);
@@ -271,6 +272,10 @@
                             } else {
                                 $result.removeClass('tx-clr--red');
                             }
+                        })
+                        .fail(function(){
+                            $result.addClass('tx-clr--red');
+                            $result.val("Error: Unable to execute code");
                         });
                     });
 
