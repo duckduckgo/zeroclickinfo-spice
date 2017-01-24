@@ -200,7 +200,11 @@
                             return $.getJSON('/js/spice/repl_samples/' + sampleLang, function(json) {
                                 var html = DDH.repl.samples_select(json);
                                 $samples.html(DDH.repl.samples_select(json));
-                                sampleCodeCache[sampleLang] = html;
+                                // only cache HTML that contains sample codes
+                                // failed api call returns object
+                                if (Array.isArray(json)){
+                                    sampleCodeCache[sampleLang] = html;
+                                }
                             });
                         }
                     }
