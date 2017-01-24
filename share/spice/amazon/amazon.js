@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_amazon = function(api_result) {
 
-        if (!api_result || !api_result.results || !api_result.results.length) {
+        if (!api_result || !api_result.results || !api_result.results.length || api_result.results.length < 2) {
             return Spice.failed('products');
         }
 
