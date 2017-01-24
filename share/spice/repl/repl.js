@@ -161,6 +161,7 @@
                 },
                 onShow: function () {
 
+                    // Ensure this only runs once
                     if (hasShown) {
                         return;
                     } else {
@@ -178,7 +179,7 @@
                     var theme = (DDG.settings.get('kae') === 'd') ? "tomorrow_night" : "tomorrow";
                     editor.setTheme("ace/theme/" + theme);
 
-                    // Cache selectors
+                    // Cache jQuery selectors
                     var $result = $("#repl__result"),
                         $submit = $("#repl__submit"),
                         $select = $("#repl__language"),
@@ -186,6 +187,9 @@
                         $samples = $("#repl__samples"),
                         $editor = $("#" + editor_id);
 
+                    // Call SyntaxDB API to get sample code snippets
+                    // -> then pass response to Handlebars template
+                    // -> then store HTML output in local cache
                     function getSamples(sampleLang) {
                         var cachedHTML = sampleCodeCache[sampleLang] || null;
                         if (cachedHTML) {
@@ -211,7 +215,6 @@
                             });
                             $samplesContainer.removeClass('hide');
                         });
-
                     }
 
                     // "Execute" button handler
