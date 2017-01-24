@@ -296,7 +296,11 @@
                     group: 'base',
                     options: {
                         content: Spice.repl.content,
-                        moreAt: true
+                        moreAt: true,
+                        moreText: {
+                            href: 'https://syntaxdb.com',
+                            text: 'Samples from SyntaxDB'
+                        }
                     }
                 }
             });
