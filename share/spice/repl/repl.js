@@ -112,6 +112,8 @@
 
     var syntaxAliases = {
         nodejs: "javascript",
+        cpp11: "cpp",
+        python3: "python"
     };
 
     // Store generated HTML here for language code samples
