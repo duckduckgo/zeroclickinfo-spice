@@ -114,6 +114,9 @@
         nodejs: "javascript",
     };
 
+    // Store generated HTML here for language code samples
+    var sampleCodeCache = {};
+
     function getMode(lang) {
         return modes[lang] || lang;
     }
@@ -184,18 +187,22 @@
                         $editor = $("#" + editor_id);
 
                     function getSamples(sampleLang) {
-                        console.log("GET SAMPLES OUTER");
-                        return $.getJSON('/js/spice/repl_samples/' + sampleLang, function(json) {
-                            console.log("GET SAMPLES INNER");
-                            $samples.html(DDH.repl.samples_select(json));
-                        });
+                        var cachedHTML = sampleCodeCache[sampleLang] || null;
+                        if (cachedHTML) {
+                            $samples.html(cachedHTML);
+                        } else {
+                            return $.getJSON('/js/spice/repl_samples/' + sampleLang, function(json) {
+                                var html = DDH.repl.samples_select(json);
+                                $samples.html(DDH.repl.samples_select(json));
+                                sampleCodeCache[sampleLang] = html;
+                            });
+                        }
                     }
 
                     // Create Samples Dropdown
                     if (hasSamples) {
                         var sampleLang = getSampleLang(codeLang);
-                        getSamples(sampleLang).then(function(){
-                            console.log("SETUP SAMPLES HANDLER");
+                        $.when( getSamples(sampleLang) ).then(function(){
                             $samples.change(function() {
                                 var code = $samples.find("option:selected").data('text') || null;
                                 if (code) {
@@ -209,6 +216,7 @@
 
                     // "Execute" button handler
                     $submit.click(function(){
+                        $result.val("Executing code...");
                         var code = editor.getValue();
                         code = encodeURIComponent(code);
                         var url = [endpoint, codeLang, code].join("/");
@@ -261,7 +269,7 @@
                         var mode = getMode(codeLang);
                         var sampleLang = getSampleLang(codeLang);
                         editor.getSession().setMode("ace/mode/" + mode);
-                        getSamples(sampleLang).then(function(){
+                        $.when( getSamples(sampleLang) ).then(function(){
                             $samplesContainer.removeClass('hide');
                         });
                     });
