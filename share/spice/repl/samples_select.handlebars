@@ -1,0 +1,8 @@
+{{#unless this.code}}
+    <option>Sample Code</option>
+    {{#each this}}
+    <option data-text="{{example}}">{{concept_name}}</option>
+    {{/each}}
+{{else}}
+    <option>None</option>
+{{/unless}}

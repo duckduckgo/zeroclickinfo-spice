@@ -8,11 +8,14 @@
             <div class="frm__field">
                 <label class="frm__label">Programming Language</label>
                 <div class="frm__select">
-                    <select id="repl__language" name="language">
+                    <select id="repl__language">
                         {{#each langs}}
                         <option value="{{val}}" {{is_selected val ../selected}}>{{text}}</option>
                         {{/each}}
                     </select>
+                </div>
+                <div id="repl__samples__container" class="frm__select hide">
+                    <select id="repl__samples"></select>
                 </div>
                 <button id="repl__submit" type="button" class="btn btn--primary pull-right">Execute Code</button>
             </div>

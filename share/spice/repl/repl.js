@@ -77,7 +77,6 @@
     // use "text" mode for unsupported languages
     var modes = {
         c: "c_cpp",
-        coffeescript: "coffee",
         cpp: "c_cpp",
         cpp11: "c_cpp",
         fsharp: "text",
@@ -89,6 +88,7 @@
         // apl: "text",
         // bloop: "text",
         // brainf: "text",
+        // coffeescript: "coffee",
         // emoticon: "text",
         // jest: "text",
         // lolcode: "text",
@@ -98,8 +98,28 @@
         // unlambda: "text"
     };
 
+    var syntaxLangs = {
+        c: "C",
+        cpp: "C++",
+        csharp: "C#",
+        go: "Go",
+        java: "Java",
+        javascript: "JavaScript",
+        python: "Python",
+        ruby: "Ruby",
+        swift: "Swift",
+    };
+
+    var syntaxAliases = {
+        nodejs: "javascript",
+    };
+
     function getMode(lang) {
         return modes[lang] || lang;
+    }
+
+    function getSampleLang(lang) {
+        return syntaxAliases[lang] || lang;
     }
 
     var editorOptions = {
@@ -120,6 +140,7 @@
             codeLang = query.replace(/repl|interpreter|online/g, "").toLowerCase().trim();
 
         codeLang = langAliases[codeLang] || codeLang;
+        var hasSamples = syntaxLangs[codeLang] !== undefined || syntaxAliases[codeLang] !== undefined;
 
         DDG.require("/js/ace/ace.js", function() {
             Spice.add({
@@ -127,13 +148,16 @@
                 name: 'REPL',
                 data: {
                     langs: selectLangs,
-                    selected: codeLang
+                    selected: codeLang,
+                    hasSamples: hasSamples,
+                    samples: undefined
                 },
                 meta: {
                     sourceName: 'repl.it',
                     sourceUrl: 'https://repl.it/languages/' + codeLang
                 },
                 onShow: function () {
+
                     if (hasShown) {
                         return;
                     } else {
@@ -143,7 +167,7 @@
                     // Ace editor setup
                     ace.config.set("basePath", "/js/ace/");
                     var editor = ace.edit(editor_id);
-                    var mode =  getMode(codeLang);
+                    var mode = getMode(codeLang);
                     editor.setOptions(editorOptions);
                     editor.getSession().setMode("ace/mode/" + mode);
 
@@ -155,7 +179,33 @@
                     var $result = $("#repl__result"),
                         $submit = $("#repl__submit"),
                         $select = $("#repl__language"),
+                        $samplesContainer = $("#repl__samples__container"),
+                        $samples = $("#repl__samples"),
                         $editor = $("#" + editor_id);
+
+                    function getSamples(sampleLang) {
+                        console.log("GET SAMPLES OUTER");
+                        return $.getJSON('/js/spice/repl_samples/' + sampleLang, function(json) {
+                            console.log("GET SAMPLES INNER");
+                            $samples.html(DDH.repl.samples_select(json));
+                        });
+                    }
+
+                    // Create Samples Dropdown
+                    if (hasSamples) {
+                        var sampleLang = getSampleLang(codeLang);
+                        getSamples(sampleLang).then(function(){
+                            console.log("SETUP SAMPLES HANDLER");
+                            $samples.change(function() {
+                                var code = $samples.find("option:selected").data('text') || null;
+                                if (code) {
+                                    editor.setValue(code);
+                                }
+                            });
+                            $samplesContainer.removeClass('hide');
+                        });
+
+                    }
 
                     // "Execute" button handler
                     $submit.click(function(){
@@ -205,10 +255,15 @@
 
                     // Select element handler
                     $select.change(function(){
+                        $samplesContainer.addClass('hide');
                         var selectText = $select.find("option:selected").text();
                         codeLang = langs[selectText];
                         var mode = getMode(codeLang);
+                        var sampleLang = getSampleLang(codeLang);
                         editor.getSession().setMode("ace/mode/" + mode);
+                        getSamples(sampleLang).then(function(){
+                            $samplesContainer.removeClass('hide');
+                        });
                     });
 
                     // Stop DDG keybindings, when editor has focus

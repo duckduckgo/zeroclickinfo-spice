@@ -22,6 +22,11 @@ spice alt_to => {
         headers => {
             Authorization => "Basic $encoded_uname_pw"
         }
+    },
+    repl_samples => {
+        to => 'https://syntaxdb.com/api/v1/languages/$1/concepts',
+        is_cached => 1,
+        proxy_cache_valid => '200 30d'
     }
 };
 
