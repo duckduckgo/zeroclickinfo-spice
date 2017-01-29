@@ -1,0 +1,6 @@
+#zero_click_header a.pipl-privacy-link { font-size: 12px; float: right; line-height: 20px; margin-right: 7px; text-transform: capitalize; }
+#zero_click_abstract div.tagline { font-size:15px; }
+#zero_click_abstract ul { padding-left: 0px; }
+#zero_click_abstract ul li { list-style: none; }
+#zero_click_abstract ul.results li { width: 50%; float: left; }
+#zero_click_abstract ul li a img.icon { float: left; margin: 1px 5px 0 0;  }
