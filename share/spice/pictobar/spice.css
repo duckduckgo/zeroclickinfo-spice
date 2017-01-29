@@ -1,0 +1,82 @@
+@font-face {
+	font-family: 'brandon';
+	src: url('http://www.pictobar.com/fonts/brandon_re.ttf');
+}
+
+@charset "UTF-8";
+
+
+
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #336699;
+	text-decoration: none;
+}
+a:visited {
+	color: #336699;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: underline;
+}
+
+p{
+	background: #336699;	
+	height:36px;
+	text-align:center;
+	font-size:18pt;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	color: #fff;
+		
+	border-radius:10px 10px 0px 0px; 
+	-moz-border-radius:10px 10px 0px 0px; 
+	-webkit-border-radius:10px 10px 0px 0px;
+}
+
+.imagecirlce {
+	height: 75px;
+
+	}
+
+	
+.alltable
+{
+	
+	text-align:center;
+	font-style: 'brandon';
+	font-size: 8pt;
+	background: #e8e8e8;
+
+	height: 90px;
+    width: 546px;
+    
+	background: #f1f1f1;
+    
+    border: 0px solid #a4c3ca;
+	
+	-moz-border-radius: 10px 10px 10px 10px;
+	 border-radius: 10px 10px 10px 10px;
+}
+.alltable1
+{
+	text-align:center;
+	font-style: 'brandon';
+	font-size: 10pt;
+
+	height: 90px;
+    width: 546px;
+    
+	background: #f1f1f1;
+    
+    border: 0px;
+	
+	-moz-border-radius: 10px 10px 10px 10px;
+	 border-radius: 10px 10px 10px 10px;
+}
+
+
+
+
