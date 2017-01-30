@@ -25,10 +25,8 @@
 .zci--today_in_history .text {
     clear: both;
     overflow: hidden;
-    height: 8.4em;
+    height: 8em;
     line-height: 1.2em;
-    color: #999;
-    font-size: 1.1em;
 }
 
 .zci--today_in_history .tih__text,
