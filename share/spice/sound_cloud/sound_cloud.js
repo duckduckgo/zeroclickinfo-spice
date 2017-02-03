@@ -29,6 +29,7 @@
                 sourceName: 'SoundCloud',
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
                 sourceIcon: true,
+                autoplay: false,
                 itemType: 'Tracks'
             },
             templates: {
@@ -65,7 +66,7 @@
                     return;
                 }
 
-                var streamURL = '/audio?u=' + o.stream_url + '?client_id=' + SOUNDCLOUD_CLIENT_ID;
+                var streamURL = '/audio/?u=' + o.stream_url + '?client_id=' + SOUNDCLOUD_CLIENT_ID;
 
                 return {
                     image: image,

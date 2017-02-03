@@ -18,11 +18,12 @@
             !data.results[0] ||
             !data.results[0].id
         );
-        var castId = data.results[0].id;
 
         if (hasFailed) {
             return Spice.failed('movies_filmography');
         }
+        
+        var castId = data.results[0].id;
 
         $.getJSON(DETAIL_ENDPOINT + castId, function(api_result) {
             var hasFailed = (

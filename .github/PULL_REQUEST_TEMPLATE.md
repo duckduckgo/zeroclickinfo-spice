@@ -1,30 +1,32 @@
-###### What does your Pull Request do (check all that apply)?
+<!-- Use the appropriate format for your Pull Request title above ^^^^^:
 
-Choose the most relevant items and use the following title template to name
-your Pull Request.
+If this is a bug fix:
+{IA Name}: {Description of change}
 
-- [ ] New Instant Answer: **`New {IA Name} Instant Answer`**
-- [ ] Improvement
-    - [ ] Bug fix: **`{IA Name}: Fix {Issue number or one-line description}`**
-    - [ ] Enhancement: **`{IA Name}: {Description of Improvements}`**
-- [ ] Non–Instant Answer
-    - [ ] Other (Role, Template, Test, Documentation, etc.): **`{SpiceRole/Templates/Tests/Docs}: {Short Description}`**
+If this is a New Instant Answer:
+New {IA Name} Spice
 
-###### Description of changes
+If this is something else:
+{Tests/Docs/Other}: {Short Description}
 
-What changes does this PR introduce? 
-
-###### Related Issues or Discussions 
-
-What issues or discussions (if any) does this PR address? Please provide the issue # or link.
-
-###### People to notify
-
-@mention any relevant people/organizations
+-->
 
 
+## Description of new Instant Answer, or changes
+<!-- What does this new Instant Answer do? What changes does this PR introduce? -->
+
+
+## Related Issues and Discussions
+<!-- Link related issues here to automatically close them when PR is merged -->
+<!-- E.g. "Fixes #1234" -->
+
+
+## People to notify
+<!-- Please @mention any relevant people/organizations here: -->
+
+<!-- DO NOT REMOVE -->
 ---
 
-Instant Answer Page: https://duck.co/ia/view/{{ID}}
-
-[Maintainer](http://docs.duckduckhack.com/maintaining/guidelines.html): @mention
+<!-- The Instant Answer ID can be found by clicking the `?` icon beside the Instant Answer result on DuckDuckGo.com -->
+Instant Answer Page: https://duck.co/ia/view/{ID}
+<!-- FILL THIS IN:                           ^^^^ -->

@@ -19,7 +19,7 @@ triggers query_raw => $trigger_regex;
 
 handle query_raw  => sub {
     return unless $_;
-    s/^.*(${emoji_pattern}).*$/$1/;
+    s/^.*?(${emoji_pattern}).*$/$1/;
     chomp;
     return $_;
 };

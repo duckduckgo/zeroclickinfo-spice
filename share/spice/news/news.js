@@ -6,61 +6,66 @@
             return Spice.failed('news');
         }
 
-        // Words that we have to skip in DDG.isRelevant.
-        var skip = [
-            "news",
-            "headline",
-            "headlines",
-            "latest",
-            "breaking",
-            "update",
-            "s:d",
-            "sort:date"
-        ];
+        var useRelevancy = (DDG.opensearch.installed.experiment === "static_news" && DDG.opensearch.installed.variant === 'a') ? 0 : 1,
+            entityWords = [],
+            goodStories = [],
+            searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim(),
 
-        // Some sources need to be set by us.
-        var setSourceOnStory = function(story) {
-            switch(story.syndicate) {
-            case "Topsy":
-                story.source = story.author || "Topsy";
-                break;
-            case "NewsCred":
-                if(story.source) {
-                    if(story.author) {
-                        story.source = story.source + " by " + story.author;
+         // Some sources need to be set by us.
+            setSourceOnStory = function(story) {
+                switch(story.syndicate) {
+                case "Topsy":
+                    story.source = story.author || "Topsy";
+                    break;
+                case "NewsCred":
+                    if(story.source) {
+                        if(story.author) {
+                            story.source = story.source + " by " + story.author;
+                        }
+                    } else {
+                        story.source = "NewsCred";
                     }
-                } else {
-                    story.source = "NewsCred";
+                    break;
                 }
-                break;
-            }
-        };
+            };
 
-        var entityWords = [];
-        if (Spice.news && Spice.news.entities && Spice.news.entities.length) {
-            for (var j = 0, entity; entity = Spice.news.entities[j]; j++) {
-                var tmpEntityWords = entity.split(" ");
-                for (var k = 0, entityWord; entityWord = tmpEntityWords[k]; k++) {
-                    if (entityWord.length > 3) {
-                        entityWords.push(entityWord);
+       
+        if (useRelevancy) {
+            // Words that we have to skip in DDG.isRelevant.
+            var skip = [
+                "news",
+                "headline",
+                "headlines",
+                "latest",
+                "breaking",
+                "update",
+                "s:d",
+                "sort:date"
+            ];
+
+            if (Spice.news && Spice.news.entities && Spice.news.entities.length) {
+                for (var j = 0, entity; entity = Spice.news.entities[j]; j++) {
+                    var tmpEntityWords = entity.split(" ");
+                    for (var k = 0, entityWord; entityWord = tmpEntityWords[k]; k++) {
+                        if (entityWord.length > 3) {
+                            entityWords.push(entityWord);
+                        }
                     }
                 }
             }
         }
 
         // Check if the title is relevant to the query.
-        var goodStories = [];
         for(var i = 0, story; story = api_result.results[i]; i++) {
-            if (DDG.isRelevant(story.title, skip)) {
+            if (!useRelevancy || DDG.isRelevant(story.title, skip)) {
                 setSourceOnStory(story);
                 story.sortableDate = parseInt(story.date || 0);
                 goodStories.push(story);
-            }
 
             // additional news relevancy for entities. story need only
             // contain one word from one entity to be good. strict indexof
             // check though.
-            else if (entityWords.length > 0) {
+            } else if (entityWords.length > 0) {
                 var storyOk = 0;
                 var tmpStoryTitle = story.title.toLowerCase();
 
@@ -78,11 +83,10 @@
             }
         }
 
-        var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
-
-        if (goodStories < 3) {
+        if (useRelevancy && goodStories < 3) {
             return Spice.failed('news');
         }
+
 
         Spice.add({
             id: 'news',
@@ -90,7 +94,7 @@
             data: goodStories,
             ads: api_result.ads,
             meta: {
-		idField: 'url',
+                idField: 'url',
                 count: goodStories.length,
                 searchTerm: searchTerm,
                 itemType: 'Recent News',
