@@ -54,7 +54,7 @@
 }
 
 .zci--timer a#add_timer_btn:hover {
-    color: #c2c2c2;
+    color: #333;
 }
 
 /* PLAY/PAUSE BTN */
@@ -356,4 +356,14 @@
     font-size: 1.1em;
     font-weight: 600;
     line-height: 43px;
+}
+
+/* CHANGES FOR DARK MODE */
+
+.dark-bg .zci--timer a#add_timer_btn:hover {
+    color: #e6e6e6;
+}
+
+.dark-bg .zci--timer a:hover {
+    color: #dadada;
 }
