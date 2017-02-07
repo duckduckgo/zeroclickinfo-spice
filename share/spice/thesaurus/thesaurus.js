@@ -7,7 +7,7 @@
         }
 
         // Check if user want to find antonym only
-        var searchAntonymOnly = (document.title.indexOf('antonym') > -1);
+        var searchAntonymOnly = (DDG.get_query().indexOf('antonym') > -1);
 
         // Retrieve the word we did a lookup on
         var script = $('[src*="/js/spice/thesaurus/"]')[0];
