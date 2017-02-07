@@ -54,7 +54,7 @@
 }
 
 .zci--timer a#add_timer_btn:hover {
-    color: #333;
+    color: #c2c2c2;
 }
 
 /* PLAY/PAUSE BTN */
@@ -348,7 +348,6 @@
 .is-mobile .zci--timer #add_timer_container {
     height: 45px;
     margin-bottom: 0;
-    background-color: #fafafa;
     border: 1px solid #ddd;
     border-radius: 0.25em;
 }
