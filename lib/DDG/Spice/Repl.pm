@@ -15,13 +15,15 @@ spice call_type => 'self';
 
 spice alt_to => {
     repl_eval => {
-        to => 'https://eval.repl.it/eval?language=$1&code=$2',
+        to => 'http://eval.repl.it/eval',
         from => '([^/]+)/([^/]+)',
         is_cached => 1,
         proxy_cache_valid => '418 1d',
         headers => {
-            Authorization => "Basic $encoded_uname_pw"
-        }
+            Authorization => "Basic $encoded_uname_pw",
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        },
+        post_body => 'language=$1&code=$2'
     },
     repl_samples => {
         to => 'https://syntaxdb.com/api/v1/languages/$1/concepts',
