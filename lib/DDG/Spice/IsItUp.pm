@@ -28,7 +28,7 @@ handle query_lc => sub {
 
     my $query = $_;
 
-    $query =~ $query_regex;
+    return unless $query =~ $query_regex;
 
     $root_url = $2;
 
