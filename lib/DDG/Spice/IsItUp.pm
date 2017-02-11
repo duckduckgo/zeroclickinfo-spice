@@ -21,12 +21,14 @@ my $url_regex         = qr/(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?
 
 my $query_regex = qr/^($query_start_regex)\s?$url_regex\s?($query_end_regex)\?*$/i;
 
-handle query_lc => sub {
+handle remainder => sub {
+
+    return unless $_;
 
     my ($domain, $ascii, $root_url);
     my $publicSuffix = Domain::PublicSuffix->new();
 
-    my $query = $_;
+    my $query = $req->query_lc;
 
     return unless $query =~ $query_regex;
 
