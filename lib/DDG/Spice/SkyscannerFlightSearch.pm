@@ -17,7 +17,7 @@ spice from => '([^/]*)/([^/]*)/([^/]*)/([^/]*)/([^/]*)';
 spice to => 'http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/$1/$3/$2/$4/$5/anytime/anytime?apikey={{ENV{DDG_SPICE_SKYSCANNER_APIKEY}}}';
 spice alt_to => {
     skyscanner_images => {
-        to => 'https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=$1&enhancers=images&nocache=true&apikey={{ENV{DDG_SPICE_SKYSCANNER_IMAGES_APIKEY}}}'
+        to => 'https://gateway.skyscanner.net/travel-api/v1/entities?external_ids=$1&enhancers=images&apikey={{ENV{DDG_SPICE_SKYSCANNER_IMAGES_APIKEY}}}'
     }
 };
 
