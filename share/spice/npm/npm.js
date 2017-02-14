@@ -2,94 +2,51 @@
     "use strict";
     env.ddg_spice_npm = function(api_result){
 
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || api_result.results.length === 0) {
             return Spice.failed('npm');
         }
+        
+        var script = $('[src*="/js/spice/npm/"]')[0];
+        var source = $(script).attr("src");
+        var query = source.match(/npm\/([^\/]*)/)[1];
+
+        // if query still has both items from handle remainder, remove $clean version
+        if (query.indexOf('/' !== -1)) {
+            query = query.split('/')[0];
+        }       
+        
+        
 
         Spice.add({
             id: "npm",
             name: "Software",
-            data: api_result,
+            data: api_result.results,
             meta: {
                 sourceName: "npmjs",
-                sourceUrl: 'http://npmjs.org/package/' + api_result.name
+                itemType: (api_result.results.length === 1) ? 'npm package' : 'npm packages',
+                sourceUrl: 'https://www.npmjs.com/search?q=' + query
             },
             normalize: function(item) {
-                var boxData = [{heading: 'Package Information:'}];
-
-                if (item.author) {
-                    boxData.push({
-                        label: "Author",
-                        value: item.author.name
-                    });
-                }
-
-                if (item.homepage) {
-                    boxData.push({
-                        label: "Project Homepage",
-                        value: item.homepage,
-                        url: item.homepage
-                    });
-                }
-
-                if (item.license) {
-                    boxData.push({
-                        label: "License",
-                        value: item.license
-                    });
-                }
-
-                if (item.repository) {
-                    boxData.push({
-                        label: "Repository",
-                        value: item.repository.url
-                    });
-                }
-
-                if (item.engines) {
-                    boxData.push({
-                        label: "Engines",
-                        value: item.engines.node
-                    });
-                }
-
-                if (item.dist) {
-                    boxData.push({
-                        label: "Source",
-                        value: item.dist.tarball,
-                        url: item.dist.tarball
-                    });
-                }
-
-                if (item.dependencies) {
-                    var dependencies = $.map(item.dependencies, function(val, key) {
-                        return key + " (" + val + ")";
-                    });
-
-                    if (dependencies.length > 0) {
-                        boxData.push({
-                            label: "Dependencies",
-                            value: dependencies.join(", ")
-                        });
-                    }
-                }
-
+                
                 return {
-                    title: item.name + " " + item.version,
-                    subtitle: item.description,
-                    infoboxData: boxData,
+                    title: item.name[0],
+                    subtitle: "version: " + item.version[0],
+                    description: item.description[0],
+                    url: "https://www.npmjs.com/package/" + item.name[0],
+                    rating: item.rating[0].toFixed(2),
+                    author: item.author[0]
                 }
             },
 
             templates: {
                 group: 'text',
+                detail: false,
+                item_detail: false,
                 options: {
-                    content: Spice.npm.content,
-                    moreAt: true,
-                    moreText: {
-                        href: 'https://runkit.com/npm/' + api_result.name,
-                        text: 'Test ' + api_result.name + ' in your browser'
-                    }
+                    footer: Spice.npm.footer
+                },
+                variants: {
+                    tile: 'basic4'
                 }
             }
         });
