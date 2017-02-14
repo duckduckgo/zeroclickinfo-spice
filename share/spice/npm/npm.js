@@ -23,18 +23,20 @@
             data: api_result.results,
             meta: {
                 sourceName: "npmjs",
-                itemType: (api_result.results.length === 1) ? 'npm package' : 'npm packages',
+                itemType: (api_result.total === 1) ? 'npm package' : 'npm packages',
                 sourceUrl: 'https://www.npmjs.com/search?q=' + query
             },
             normalize: function(item) {
                 
+                var author = item.package.author? item.package.author.username : item.package.maintainers.username;
+                
                 return {
-                    title: item.name[0],
-                    subtitle: "version: " + item.version[0],
-                    description: item.description[0],
-                    url: "https://www.npmjs.com/package/" + item.name[0],
-                    rating: item.rating[0].toFixed(2),
-                    author: item.author[0]
+                    title: item.package.name,
+                    subtitle: "version: " + item.package.version,
+                    description: item.package.description,
+                    url: item.package.links.npm,
+                    rating: item.score.final.toFixed(2),
+                    author: author
                 }
             },
 

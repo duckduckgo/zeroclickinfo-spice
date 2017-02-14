@@ -11,7 +11,7 @@ spice proxy_cache_valid => '200 1d';
 triggers startend => 'npm', 'nodejs', 'node package';
 triggers start => 'npm install';
 
-spice to => 'http://npmsearch.com/query?q=$1&fields=name,description,repository,homepage,author,rating,version';
+spice to => 'https://api.npms.io/v2/search?q=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub {
