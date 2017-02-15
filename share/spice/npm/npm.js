@@ -28,7 +28,7 @@
             },
             normalize: function(item) {
                 
-                var author = item.package.author? item.package.author.username : item.package.maintainers.username;
+                var publisher = item.package.publisher.username;
                 
                 return {
                     title: item.package.name,
@@ -36,7 +36,7 @@
                     description: item.package.description,
                     url: item.package.links.npm,
                     rating: item.score.final.toFixed(2),
-                    author: author
+                    publisher: publisher
                 }
             },
 
