@@ -2,18 +2,18 @@
     "use strict"
 
     var query = DDG.get_query();
-    query = query.replace(/sound ?cloud/, "").replace(/\bsc\b/, ""); //replace trigger words from query
+    query = query.replace(/\bsound ?cloud\b/, "").replace(/\bsc\b/, "").trim(); //replace trigger words from query
 
     env.ddg_spice_sound_cloud = function() {
         $.getJSON("/js/spice/sound_cloud_result/" + encodeURIComponent(query), sound_cloud);
     }
 
     function sound_cloud(api_result) {
-            // Blacklist some adult results.
-            skip_ids = {
-                80320921: 1,
-                75349402: 1
-            };
+        // Blacklist some adult results.
+        var skip_ids = {
+            80320921: 1,
+            75349402: 1
+        };
 
         if(!api_result){
             return Spice.failed("sound_cloud");
@@ -65,7 +65,9 @@
                     return;
                 }
 
-                var streamURL = '/js/spice/sound_cloud_stream/' + o.stream_url;
+                var streamURL = '/js/spice/sound_cloud_stream/' + o.stream_url.replace(/https?:\/\//, '');
+
+                console.log(streamURL);
 
                 return {
                     image: image,
