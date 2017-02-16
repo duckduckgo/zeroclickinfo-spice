@@ -3,16 +3,15 @@
 
     var query = DDG.get_query();
     query = query.replace(/sound ?cloud/, "").replace(/\bsc\b/, ""); //replace trigger words from query
-    
-    env.ddg_spice_sound_cloud = function() {        
+
+    env.ddg_spice_sound_cloud = function() {
         $.getJSON("/js/spice/sound_cloud_result/" + encodeURIComponent(query), sound_cloud);
     }
-    
+
     function sound_cloud(api_result) {
-        var SOUNDCLOUD_CLIENT_ID = 'df14a65559c0e555d9f9fd950c2d5b17',
             // Blacklist some adult results.
             skip_ids = {
-                80320921: 1, 
+                80320921: 1,
                 75349402: 1
             };
 
@@ -44,7 +43,7 @@
             },
             normalize: function(o) {
                 if(!o) {
-                    return null;                       
+                    return null;
                 }
 
                 var image = o.artwork_url || o.user.avatar_url;
@@ -66,7 +65,7 @@
                     return;
                 }
 
-                var streamURL = '/audio/?u=' + o.stream_url + '?client_id=' + SOUNDCLOUD_CLIENT_ID;
+                var streamURL = '/js/spice/sound_cloud_stream/' + o.stream_url;
 
                 return {
                     image: image,
@@ -79,6 +78,6 @@
             }
         });
     };
-    
+
     ddg_spice_sound_cloud();
 }(this));
