@@ -15,42 +15,39 @@
             query = query.split('/')[0];
         }       
         
-        
-
-        Spice.add({
-            id: "npm",
-            name: "Software",
-            data: api_result.results,
-            meta: {
-                sourceName: "npmjs",
-                itemType: (api_result.total === 1) ? 'npm package' : 'npm packages',
-                sourceUrl: 'https://www.npmjs.com/search?q=' + query
-            },
-            normalize: function(item) {
-                
-                var publisher = item.package.publisher.username;
-                
-                return {
-                    title: item.package.name,
-                    subtitle: "version: " + item.package.version,
-                    description: item.package.description,
-                    url: item.package.links.npm,
-                    rating: item.score.final.toFixed(2),
-                    publisher: publisher
-                }
-            },
-
-            templates: {
-                group: 'text',
-                detail: false,
-                item_detail: false,
-                options: {
-                    footer: Spice.npm.footer
+    DDG.require('moment.js', function(moment) {
+            Spice.add({
+                id: "npm",
+                name: "Software",
+                data: api_result.results,
+                meta: {
+                    sourceName: "npmjs",
+                    itemType: (api_result.total === 1) ? 'npm package' : 'npm packages',
+                    sourceUrl: 'https://www.npmjs.com/search?q=' + query
                 },
-                variants: {
-                    tile: 'basic4'
+                normalize: function(item) {
+                    
+                    return {
+                        title: item.package.name,
+                        subtitle: "version: " + item.package.version + ' | ' + item.package.publisher.username,
+                        description: item.package.description,
+                        url: item.package.links.npm,
+                        lastUpdated: moment(item.package.date).fromNow()
+                    }
+                },
+
+                templates: {
+                    group: 'text',
+                    detail: false,
+                    item_detail: false,
+                    options: {
+                        footer: Spice.npm.footer
+                    },
+                    variants: {
+                        tile: 'basic4'
+                    }
                 }
-            }
+            });
         });
     };
 }(this));
