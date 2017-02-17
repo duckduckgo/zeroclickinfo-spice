@@ -67,8 +67,6 @@
 
                 var streamURL = '/js/spice/sound_cloud_stream/' + o.stream_url.replace(/https?:\/\//, '');
 
-                console.log(streamURL);
-
                 return {
                     image: image,
                     hearts: o.likes_count || 0,
