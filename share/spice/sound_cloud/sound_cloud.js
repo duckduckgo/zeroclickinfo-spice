@@ -65,7 +65,7 @@
                     return;
                 }
 
-                var streamURL = '/js/spice/sound_cloud_stream/' + o.stream_url.replace(/https?:\/\//, '');
+                var streamURL = '/sc_audio/' + o.stream_url;
 
                 return {
                     image: image,

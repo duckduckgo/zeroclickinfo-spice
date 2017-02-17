@@ -9,9 +9,6 @@ spice call_type => 'self';
 spice alt_to => {
 	sound_cloud_result => {
 		to => 'https://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=35&filter=streamable'
-	},
-	sound_cloud_stream => {
-		to => 'https://duckduckgo.com/audio/?u=https://$1?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}'
 	}
 };
 
