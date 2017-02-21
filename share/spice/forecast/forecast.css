@@ -18,13 +18,11 @@
 .fe_icon {
 	display: block;
 }
-	.dark-header .fe_icon { display: none; }
 	
 .fe_icon--alt {
 	display: none;
 	opacity: 0.81;
 }
-	.dark-header .fe_icon--alt { display: block; }
 	
 .fe_icon--alert {
 	font-size: 16px;
@@ -287,3 +285,7 @@
 .dark-bg a#fe_temp_switch:hover {
     color: #c2c2c2;
 }
+
+.dark-bg .fe_icon { display: none; }
+
+.dark-bg .fe_icon--alt { display: block; }
