@@ -274,3 +274,16 @@
 #fe_temp_switch .is-active {
 	font-weight: bold;
 }
+
+/*
+    Dark mode specific changes
+*/
+
+.dark-bg .fe_label a:hover {
+    color: #dadada;
+    text-decoration: underline;
+}
+
+.dark-bg a#fe_temp_switch:hover {
+    color: #c2c2c2;
+}
