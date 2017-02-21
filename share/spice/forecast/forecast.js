@@ -165,6 +165,7 @@
           height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
           top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
         };
+        dailyObj[i].daysourceUrl = 'https://darksky.net/'+api_result.latitude+','+api_result.longitude+'/'+tmp_date.format("YYYY-MM-DD");
 
         if (i == 0) {
             dailyObj[i].day = 'Today';
@@ -341,14 +342,17 @@
     };
 
     // If there is celsius or fahrenheit mentioned in the query, do use that
-    // unit of measurement. If the metric setting is enabled and the API
-    // returned temps in F, switch to 'C':
+    // unit of measurement. If the metric setting is enabled or the user's
+    // region is not USA and the API returned temps in F, switch to 'C':
     var uom_in_query = DDG.get_query().match(/\b(celsius|fahrenheit)\b/);
     if (uom_in_query) {
         uom = (uom_in_query[1] === 'celsius') ? 'C' : 'F';
         updateUnitOfMeasure();
     } else if (!DDG.settings.isDefault('kaj')) {
         uom = DDG.settings.get('kaj') === 'm' ? 'C' : 'F';
+        updateUnitOfMeasure();
+    } else if (!DDG.settings.isDefault('kl')) {
+        uom = DDG.settings.get('kl') !== 'us-en' ? 'C' : 'F';
         updateUnitOfMeasure();
     } else {
         updateTempSwitch(uom);
