@@ -58,7 +58,7 @@
                     spice.data = {
                         "record_data": {
                             "Hash": api_result.hash,
-                            "Date Time": moment(api_result.time).format('MMM DD YYYY, h:mm:ss a'),
+                            "Date Time": moment(api_result.created_at).format('MMM DD YYYY, h:mm:ss a'),
                             "Confirmations": api_result.confirmations,
                             "Size": (api_result.size / 1024.0).toFixed(2) + " KB",
                             "Total Input": formatBtc(api_result.inputs_value),
@@ -69,7 +69,7 @@
                         }
                     };
 
-                    spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/transactions/" + api_result.address;
+                    spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/transactions/" + api_result.hash;
                     break;
 
                 case "blocks":
