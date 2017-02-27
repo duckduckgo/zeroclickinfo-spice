@@ -8,8 +8,8 @@ use warnings;
 spice is_cached => 1;
 spice proxy_cache_valid => '200 1d';
 
-triggers startend => 'npm', 'nodejs', 'node js', 'node package';
-triggers start => 'npm install';
+triggers startend => 'npm', 'npm node', 'node npm', 'nodejs', 'node js', 'node package';
+triggers start => 'npm install', 'node install';
 
 spice to => 'https://api.npms.io/v2/search?q=$1';
 spice wrap_jsonp_callback => 1;
