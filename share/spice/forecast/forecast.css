@@ -277,15 +277,6 @@
     Dark mode specific changes
 */
 
-.dark-bg .fe_label a:hover {
-    color: #dadada;
-    text-decoration: underline;
-}
-
-.dark-bg a#fe_temp_switch:hover {
-    color: #c2c2c2;
-}
-
 .dark-bg .fe_icon { display: none; }
 
 .dark-bg .fe_icon--alt { display: block; }
