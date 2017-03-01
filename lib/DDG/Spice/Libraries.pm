@@ -1,4 +1,4 @@
-package DDG::Spice::LibrariesIO;
+package DDG::Spice::Libraries;
 # ABSTRACT: Show a summary of the searched CPAN module.
 
 use strict;
