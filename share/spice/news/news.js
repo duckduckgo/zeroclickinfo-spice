@@ -6,7 +6,7 @@
             return Spice.failed('news');
         }
 
-        var useRelevancy = (DDG.opensearch.installed.experiment === "static_news" && DDG.opensearch.installed.variant === 'a') ? 0 : 1,
+        var useRelevancy = 1,
             entityWords = [],
             goodStories = [],
             searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim(),
