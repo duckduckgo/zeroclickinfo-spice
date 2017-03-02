@@ -1,33 +1,26 @@
 (function (env) {
     "use strict";
     
-    const api_key = "226b0da728d94d782063c1820f9649db";
+    const api_key = {{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}};
 
-    env.ddg_spice_libraries_io = function(api_result){
+    env.ddg_spice_libraries = function(api_result){
 
         if (!api_result || api_result.error || api_result.results.length === 0) {
-            return Spice.failed('libraries_io');
+            return Spice.failed('libraries');
         }
         
-        var script = $('[src*="/js/spice/libraries_io/"]')[0];
+        var script = $('[src*="/js/spice/libraries/"]')[0];
         var source = $(script).attr("src");
-        var query = source.match(/libraries_io\/([^\/]*)/)[1];
-
-        // if query still has both items from handle remainder, remove $clean version
-        if (query.indexOf('/' !== -1)) {
-            query = query.split('/')[0];
-        }
-// Project search:       
-// GET https://libraries.io/api/search?q=grunt&api_key=226b0da728d94d782063c1820f9649db
+        var query = source.match(/libraries\/([^\/]*)/)[1];
 
     DDG.require('moment.js', function(moment) {
             Spice.add({
-                id: "Libraries.io",
+                id: "libraries",
                 name: "Software",
-                data: api_result.results,
+                data: api_result,
                 meta: {
-                    sourceName: "Libraries.io",
-                    itemType: (api_result.total === 1) ? 'libraries_io repo' : 'libraries_io repos',
+                    sourceName: "Libraries",
+                    itemType: (api_result.total === 1) ? 'libraries repo' : 'libraries repos',
                     sourceUrl: 'https://libraries.io/api/search?q=' + query + "&api_key=" + api_key
                 },
                 normalize: function(item) {
@@ -47,7 +40,7 @@
                     detail: false,
                     item_detail: false,
                     options: {
-                        footer: Spice.libraries_io.footer
+                        footer: Spice.libraries.footer
                     },
                     variants: {
                         tile: 'basic4'
