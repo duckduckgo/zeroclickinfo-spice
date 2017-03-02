@@ -11,7 +11,7 @@
         
         var script = $('[src*="/js/spice/libraries/"]')[0];
         var source = $(script).attr("src");
-        var query = source.match(/libraries\/([^\/]*)/)[1];
+        var query = source.match(/elm\/([^\/]*)/)[1];
 
     DDG.require('moment.js', function(moment) {
             Spice.add({
@@ -20,7 +20,6 @@
                 data: api_result,
                 meta: {
                     sourceName: "Libraries",
-                    itemType: (api_result.total === 1) ? 'libraries repo' : 'libraries repos',
                     sourceUrl: 'https://libraries.io/api/search?q=' + query + "&api_key=" + api_key
                 },
                 normalize: function(item) {
@@ -35,10 +34,11 @@
                     }
                 },
 
+                console.log("item :", item)
                 templates: {
                     group: 'text',
-                    detail: false,
-                    item_detail: false,
+                    detail: true,
+                    item_detail: true,
                     options: {
                         footer: Spice.libraries.footer
                     },
