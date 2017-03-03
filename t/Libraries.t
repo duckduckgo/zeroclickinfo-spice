@@ -8,7 +8,7 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::Libraries )],
     'perl next' => test_spice(
-        '/js/spice/libraries/wordpress%20plugins',
+        '/js/spice/libraries/wordpress%20woocommerce',
         caller => 'DDG::Spice::Libraries'
     ),
     'underscore.js bind' => test_spice(
@@ -16,7 +16,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Libraries',
     ),
     'php print_r' => test_spice(
-        '/js/spice/libraries/go%20math',
+        '/js/spice/libraries/go%20glog',
         caller => 'DDG::Spice::Libraries',
     ),
 );

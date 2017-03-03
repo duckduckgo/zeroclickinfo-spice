@@ -30,28 +30,41 @@
         Spice.add({
             id: 'libraries',
             name: 'Software',
-            data: api_result.results,
+            data: api_result,
             meta: {
                 search_term: libraries_query,
+                total: api_result.length,
                 sourceName: 'libraries.io',
+                itemType: "Libraries.io Repos",
                 sourceUrl: 'https://libraries.io/api/search?q=' + libraries_query + '&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}'       
             },
-            templates: {
+            templates:{
                 group: 'text',
                 detail: false,
                 item_detail: false,
-
                 variants: {
-                    tile: '2line',
-                    tileSnippet: 'small'
+                    tile: 'basic1',
+                    tileTitle: '1line',
+                    tileFooter: '2line',
+                    tileSnippet: 'large'
+                },
+                options: {
+                    footer: Spice.ruby_gems.footer
                 }
             },
+            sort_fields: {
+                downloads: function(a, b) {
+                    return a.downloads > b.downloads ? -1 : 1;
+                }
+            },
+            sort_default: 'downloads',
             normalize: function(item) {
                 if (item.name && item.description) {
                     return {
                         title: item.name,
-                        subtitle: item.description,
-                        url: item.homepage
+                        subtitle: item.platform,
+                        description: item.description,
+                        url: item.repository_url
                     }
                 }
             }
