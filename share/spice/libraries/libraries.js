@@ -7,14 +7,14 @@
             'go', 
             'elm', 
             'wordpress', 
-            'atom'
-            'homebrew'
-            'elm'
-            'scala'
-            'dart'
-            'groovy'
-            'emacs'
-            'pypi'
+            'atom',
+            'homebrew',
+            'elm',
+            'scala',
+            'dart',
+            'groovy',
+            'emacs',
+            'pypi',
             'bower'
         ], 1, 0);
     }
