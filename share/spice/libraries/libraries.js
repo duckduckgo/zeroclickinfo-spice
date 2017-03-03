@@ -21,23 +21,6 @@
 
     var libraries_query = search_items.filter(use_this);
 
-    function formatTitle(result) {
-        var formatted_title = result.name;
-        if (result.displayname && result.displayname !== '') {
-            formatted_title += ' (' + result.displayname + ')';
-        }
-        return formatted_title;
-    }
-
-    function formatSubtitle(result) {
-        var formatted_subtitle = null;
-        if (result.namespace && result.namespace !== '') {
-            formatted_subtitle = result.namespace;
-        }
-        return formatted_subtitle;
-    }
-
-
     env.ddg_spice_libraries = function(api_result) {
         
         if(!api_result) {
@@ -63,33 +46,24 @@
             return Spice.failed('libraries');
         }
 
-        result.title = formatTitle(result);
-        result.subtitle = formatSubtitle(result);
-
         Spice.add({
             id: 'libraries',
             name: 'Answer',
-            data: result,
+            //data: result,
+            data: api_result.results,
             meta: {
                 sourceUrl: 'https://libraries.io/api/search?q=' + libraries_query + '&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}',
                 sourceName: 'libraries.io'
             },
             normalize: function(item) {
-                var subtitleArray = [];
-                if (item.subtitle) {
-                    subtitleArray.push(item.subtitle);
-                }
-                if (item.url && item.url !== '') {
-                    subtitleArray.push({
-                        href: item.url,
-                        text: "Reference"
-                    });
-                }
-                return {
-                    title: item.title,
-                    subtitle: subtitleArray
-                };
-            },
+                    return {
+                        name: item.name,
+                        platform: item.platform,
+                        description: item.description,
+                        url: item.homepage,
+                        latest: item.latest_release_number
+                    }
+                },
             templates: {
                 group: 'text',
                 options: {
