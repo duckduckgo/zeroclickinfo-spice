@@ -12,7 +12,7 @@ $words =~ s/\n//g;
 
 spice to => 'https://libraries.io/api/search?q=$1';
 spice is_cached => 1;
-spice proxy_cache_valid => "200 7d";
+spice proxy_cache_valid => "418 1d";
 
 handle query_raw => sub {
     if (m/$words/i){

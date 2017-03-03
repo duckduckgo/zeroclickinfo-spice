@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
     
-    const api_key = {{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}};
+    var api_key = ;
 
     env.ddg_spice_libraries = function(api_result){
 
@@ -20,7 +20,7 @@
                 data: api_result,
                 meta: {
                     sourceName: "Libraries",
-                    sourceUrl: 'https://libraries.io/api/search?q=' + query + "&api_key=" + api_key
+                    sourceUrl: 'https://libraries.io/api/search&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}?q=' + query
                 },
                 normalize: function(item) {
                     
