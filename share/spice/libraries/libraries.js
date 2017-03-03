@@ -28,7 +28,6 @@
                         description: item.description,
                         url: item.homepage,
                         latest: item.latest_release_number
-                        lastUpdated: item.latest_release_published_at
                     }
                 },
 
