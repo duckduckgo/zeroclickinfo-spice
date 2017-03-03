@@ -1,7 +1,5 @@
 (function (env) {
     "use strict";
-    
-    var api_key = ;
 
     env.ddg_spice_libraries = function(api_result){
 
