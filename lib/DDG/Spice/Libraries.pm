@@ -11,8 +11,7 @@ my $words = join "|", @triggers;
 $words =~ s/\n//g;
 
 spice to => 'https://libraries.io/api/search?q=$1&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}';
-spice is_cached => 1;
-spice proxy_cache_valid => "418 1d";
+spice wrap_jsonp_callback => 1;
 
 handle query_raw => sub {
     if (m/$words/i){
