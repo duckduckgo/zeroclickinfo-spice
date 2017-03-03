@@ -28,7 +28,7 @@
                         description: item.description,
                         url: item.homepage,
                         latest: item.latest_release_number
-                        lastUpdated: moment(item.latest_release_published_at).fromNow()
+                        lastUpdated: item.latest_release_published_at
                     }
                 },
 
