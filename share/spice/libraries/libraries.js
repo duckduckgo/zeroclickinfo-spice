@@ -49,15 +49,15 @@
                     tileSnippet: 'large'
                 },
                 options: {
-                    footer: Spice.ruby_gems.footer
+                    footer: Spice.libraries.footer
                 }
             },
             sort_fields: {
-                downloads: function(a, b) {
-                    return a.downloads > b.downloads ? -1 : 1;
+                stars: function(a, b) {
+                    return a.stars > b.stars ? -1 : 1;
                 }
             },
-            sort_default: 'downloads',
+            sort_default: 'stars',
             normalize: function(item) {
                 if (item.name && item.description) {
                     return {
@@ -65,6 +65,7 @@
                         subtitle: item.platform,
                         description: item.description,
                         url: item.repository_url
+                        latest_release: item.latest_release_number
                     }
                 }
             }
