@@ -1,6 +1,5 @@
 go
 wordpress
-clojars
 atom
 homebrew
 elm
