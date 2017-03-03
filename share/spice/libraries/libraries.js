@@ -64,7 +64,7 @@
                         title: item.name,
                         subtitle: item.platform,
                         description: item.description,
-                        url: item.repository_url
+                        url: item.repository_url,
                         latest_release: item.latest_release_number
                     }
                 }
