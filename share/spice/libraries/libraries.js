@@ -34,9 +34,7 @@
             meta: {
                 search_term:libraries_query,
                 sourceName: "libraries.io",
-                sourceUrl: 'https://libraries.io/api/search \
-                &api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}?q=' \
-                + libraries_query
+                sourceUrl: 'https://libraries.io/api/search&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}?q=' + libraries_query
             },
             templates: {
                 group: 'text',
