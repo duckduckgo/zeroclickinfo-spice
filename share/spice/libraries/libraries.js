@@ -30,8 +30,6 @@
                         latest: item.latest_release_number
                     }
                 },
-
-                console.log("item :", item)
                 templates: {
                     group: 'text',
                     detail: true,
