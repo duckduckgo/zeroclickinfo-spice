@@ -15,10 +15,6 @@ spice is_cached => 1;
 spice proxy_cache_valid => "200 7d";
 
 handle query_raw => sub {
-        return if exists $skip_queries{lc($_)};
-
-    # make sure there is more to the
-    # query besides the trigger itself
     if (m/$words/i){
         my $query = $_;
         s/$words//ig;
