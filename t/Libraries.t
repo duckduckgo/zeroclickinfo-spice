@@ -16,7 +16,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Libraries',
     ),
     'php print_r' => test_spice(
-        '/js/spice/libraries/go%20get%20math',
+        '/js/spice/libraries/go%20math',
         caller => 'DDG::Spice::Libraries',
     ),
 );
