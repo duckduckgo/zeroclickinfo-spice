@@ -63,11 +63,18 @@
 	bottom: 0.25em;
 	left: 1.25em;
 	right: 1.25em;
+	margin-bottom: 1em;
 }
 	.fe_summary {
 		overflow: hidden;
 		max-height: 2.6em;
 		display: block;
+		text-overflow: ellipsis;
+	}
+	.fe_current__bottom .fe_summary {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 	.fe_summary h6,
 	.fe_current__bottom h6 {
@@ -141,9 +148,6 @@
 	.fe_day .fe_summary {
 		margin-top: 1em;
 		max-height: 5.4em;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
 	}
 
 	.fe_alert {
@@ -167,21 +171,13 @@
 .fe_current-wrap--mob .fe_current-wrap {
 	margin-top: 0.5em;
 }
-.fe_current-wrap--mob .fe_currently .fe_topline {
-	padding-bottom: 0.5em;
-	margin-bottom: 0.5em;
-}
-	.fe_current-wrap--mob .fe_currently .fe_topline:after {
-		border-bottom-color: #aeaeae;
-		border-bottom-color: rgba(100,100,100,0.25);
-	}
 
-	.fe_current-wrap--mob .fe_current__bottom {
-		margin-top: 1.25em;
-		margin-bottom: 1em;
-		position: static;
-		font-size: 1em;
-	}
+.fe_current-wrap--mob .fe_current__bottom {
+	margin-top: 1.25em;
+	margin-bottom: 1em;
+	position: static;
+	font-size: 1em;
+}
 
 .fe_meta {
 	padding-top: 0.125em;
