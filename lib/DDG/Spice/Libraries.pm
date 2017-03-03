@@ -14,18 +14,12 @@ spice to => 'https://libraries.io/api/search?q=$1&api_key={{ENV{DDG_SPICE_LIBRAR
 spice is_cached => 1;
 spice proxy_cache_valid => "418 1d";
 
-# handle query_raw => sub {
-#     if (m/$words/i){
-#         my $query = $_;
-#         s/$words//ig;
-#         return $query if length $_ > 1;
-#     }
-#     return;
-# };
-
-handle remainder => sub {
-
-    return $_ if $_;
+handle query_raw => sub {
+    if (m/$words/i){
+        my $query = $_;
+        s/$words//ig;
+        return $query if length $_ > 1;
+    }
     return;
 };
 
