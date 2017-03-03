@@ -27,48 +27,32 @@
             return Spice.failed('libraries');
         }
 
-        var data = api_result.results;
-
-        if(!data.length || data.length === 0) {
-            return Spice.failed('libraries');
-        }
-
-        var result;
-        for (var i = 0; i < data.length; i++) {
-            var checkRelevancy = [data[i].name, data[i].displayname, data[i].namespace].join(" ");
-            if (DDG.isRelevant(checkRelevancy, [], 2)) {
-                result = data[i];
-                break;
-            }
-        }
-
-        if (!result) {
-            return Spice.failed('libraries');
-        }
-
         Spice.add({
             id: 'libraries',
-            name: 'Answer',
-            //data: result,
+            name: 'Software',
             data: api_result.results,
             meta: {
-                sourceUrl: 'https://libraries.io/api/search?q=' + libraries_query + '&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}',
-                sourceName: 'libraries.io'
+                search_term: libraries_query,
+                sourceName: 'libraries.io',
+                sourceUrl: 'https://libraries.io/api/search?q=' + libraries_query + '&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}'       
             },
-            normalize: function(item) {
-                    return {
-                        name: item.name,
-                        platform: item.platform,
-                        description: item.description,
-                        url: item.homepage,
-                        latest: item.latest_release_number
-                    }
-                },
             templates: {
                 group: 'text',
-                options: {
-                    content: Spice.search_code.content,
-                    moreAt: true
+                detail: false,
+                item_detail: false,
+
+                variants: {
+                    tile: '2line',
+                    tileSnippet: 'small'
+                }
+            },
+            normalize: function(item) {
+                if (item.name && item.description) {
+                    return {
+                        title: item.name,
+                        subtitle: item.description,
+                        url: item.homepage
+                    }
                 }
             }
         });
