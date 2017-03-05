@@ -7,15 +7,15 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Libraries )],
-    'perl next' => test_spice(
+    'wordpress woocommerce' => test_spice(
         '/js/spice/libraries/wordpress%20woocommerce',
         caller => 'DDG::Spice::Libraries'
     ),
-    'underscore.js bind' => test_spice(
+    'elm elm-html' => test_spice(
         '/js/spice/libraries/elm%20elm-html',
         caller => 'DDG::Spice::Libraries',
     ),
-    'php print_r' => test_spice(
+    'go glog' => test_spice(
         '/js/spice/libraries/go%20glog',
         caller => 'DDG::Spice::Libraries',
     ),

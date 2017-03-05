@@ -5,6 +5,7 @@
     function use_this(search_query) {
         return DDG.isRelevant(search_query, [
             'go', 
+            'go get',
             'elm', 
             'wordpress', 
             'atom',
@@ -14,6 +15,7 @@
             'dart',
             'groovy',
             'emacs',
+            'swiftpm',
             'pypi',
             'bower'
         ], 1, 0);
@@ -36,7 +38,7 @@
                 total: api_result.length,
                 sourceName: 'libraries.io',
                 itemType: "Libraries.io Repos",
-                sourceUrl: 'https://libraries.io/api/search?q=' + libraries_query + '&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}'       
+                sourceUrl: 'https://libraries.io/api/search?q=' + libraries_query       
             },
             templates:{
                 group: 'text',
@@ -53,20 +55,20 @@
                 }
             },
             sort_fields: {
-                stars: function(a, b) {
-                    return a.stars > b.stars ? -1 : 1;
+                rank: function(a, b) {
+                    return a.rank > b.rank ? -1 : 1;
                 }
             },
-            sort_default: 'stars',
+            sort_default: 'rank',
             normalize: function(item) {
                 if (item.name && item.description) {
                     return {
                         title: item.name,
                         subtitle: item.platform,
                         description: item.description,
-                        url: item.repository_url,
+                        url: item.package_manager_url,
                         latest_release: item.latest_release_number,
-                        stars: item.stars
+                        rank: item.rank
                     }
                 }
             }

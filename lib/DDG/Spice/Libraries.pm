@@ -10,16 +10,24 @@ triggers startend => @triggers;
 my $words = join "|", @triggers;
 $words =~ s/\n//g;
 
-spice to => 'https://libraries.io/api/search?q=$1&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}';
+# spice to => 'https://libraries.io/api/search?q=$1&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}';
+# spice wrap_jsonp_callback => 1;
+
+# handle query_raw => sub {
+#     if (m/$words/i){
+#         my $query = $_;
+#         s/$words//ig;
+#         return $query if length $_ > 1;
+#     }
+#     return;
+# };
+spice from => '(.+)/(.+)';
+spice to => 'https://libraries.io/api/search?platforms=$1&q=$2&api_key={{ENV{DDG_SPICE_LIBRARIES_IO_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
-handle query_raw => sub {
-    if (m/$words/i){
-        my $query = $_;
-        s/$words//ig;
-        return $query if length $_ > 1;
-    }
-    return;
+handle remainder_lc => sub {
+    return unless $_;
+    return $req->matched_trigger, $_;
 };
 
 1;

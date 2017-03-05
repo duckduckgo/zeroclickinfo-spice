@@ -5,6 +5,8 @@ homebrew
 elm
 scala
 dart
+swiftpm
+go get
 groovy
 emacs
 pypi
