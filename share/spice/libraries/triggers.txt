@@ -1,12 +1,13 @@
 go
+go get
 wordpress
+wp
 atom
-homebrew
 elm
+eml-package
 scala
 dart
 swiftpm
-go get
 groovy
 emacs
 pypi

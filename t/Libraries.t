@@ -11,6 +11,10 @@ ddg_spice_test(
         '/js/spice/libraries/wordpress/woocommerce',
         caller => 'DDG::Spice::Libraries'
     ),
+    'wp jetpack' => test_spice(
+        '/js/spice/libraries/wp/jetpack',
+        caller => 'DDG::Spice::Libraries',
+    ),
     'elm elm-html' => test_spice(
         '/js/spice/libraries/elm/elm-html',
         caller => 'DDG::Spice::Libraries',

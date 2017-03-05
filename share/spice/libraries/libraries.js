@@ -7,10 +7,10 @@
             'go', 
             'go get',
             'elm', 
-            'wordpress', 
+            'elm-package',
+            'wordpress',
+            'wp'
             'atom',
-            'homebrew',
-            'elm',
             'scala',
             'dart',
             'groovy',
