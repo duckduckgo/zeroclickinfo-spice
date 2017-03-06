@@ -2,27 +2,6 @@
     "use strict";
     var search_items = DDG.get_query().split(" ");
 
-    // function use_this(search_query) {
-    //     return DDG.isRelevant(search_query, [
-    //         'go', 
-    //         'go get',
-    //         'elm', 
-    //         'elm-package',
-    //         'wordpress',
-    //         'wp'
-    //         'atom',
-    //         'scala',
-    //         'dart',
-    //         'groovy',
-    //         'emacs',
-    //         'swiftpm',
-    //         'pypi',
-    //         'bower'
-    //     ], 1, 0);
-    // }
-
-    // var libraries_query = search_items.filter(use_this);
-
     env.ddg_spice_libraries = function(api_result) {
         
         if(!api_result) {
@@ -34,12 +13,10 @@
             name: 'Software',
             data: api_result,
             meta: {
-                //search_term: libraries_query,
                 search_term: search_items,
                 total: api_result.length,
                 sourceName: 'libraries.io',
                 itemType: "Libraries.io Repos",
-                //sourceUrl: 'https://libraries.io/api/search?q=' + libraries_query
                 sourceUrl: 'https://libraries.io/api/search?q=' + search_items       
             },
             templates:{
