@@ -26,7 +26,7 @@ foreach my $currency (@currencies){
 
 # Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
-my $into_qr = qr/\s(?:en|in|=|to|in ?to|to)\s/i;
+my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
@@ -133,23 +133,23 @@ sub getLocalCurrency {
 handle query_lc => sub {
 
     if(/$guard/) {
-               
-        my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || $3 || '', $2, $4 || '', $5 || '', $6 || '' , $7 || '', $8 || '');               
-        
-        
+
+        my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || $3 || '', $2, $4 || '', $5 || '', $6 || '' , $7 || '', $8 || '');
+
+
         if ($from eq '' && $fromSymbol) {
             $from = $currencyCodes->{ord($fromSymbol)};
         }
-        
-        if ($to eq '' && $toSymbol) { 
+
+        if ($to eq '' && $toSymbol) {
             $to = $currencyCodes->{ord($toSymbol)};
         }
 
         my $styler = number_style_for($amount);
         return unless $styler;
-        
+
         # only convert $amount if exists
-        if ($cardinal ne '' && $amount ne '') { 
+        if ($cardinal ne '' && $amount ne '') {
             $amount = $styler->for_computation($amount);
 
             if ($cardinal =~ /(hundred )/i)  { $amount *= 100 }

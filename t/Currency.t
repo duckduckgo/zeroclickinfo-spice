@@ -272,6 +272,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '5 USD = ? AUD' => test_spice(
+        '/js/spice/currency/5/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # Requirement for space between unit and currency
     '5m usd to aud' => test_spice(
@@ -328,16 +334,17 @@ ddg_spice_test(
 
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
-    '499 cny = ? usd' => undef,
-    'convert religion' => undef,
-    'what is a cow' => undef,
-    'usda' => undef,
-    'usda loans' => undef,
+
     # We don't want to trigger on date-looking things.
     'euro 2016' => undef,
     # Doesn't trigger with ficticious currencies
     '2 british houses to australian dollars' => undef,
     'what is 1 euro in canadian donuts' => undef,
+    # Irellevant queries
+    'convert religion' => undef,
+    'what is a cow' => undef,
+    'usda' => undef,
+    'sda loans' => undef,
 );
 
 done_testing;
