@@ -244,7 +244,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    
+
     # Support slash format e.g AUD/USD
     'aud/usd' => test_spice(
         '/js/spice/currency/1/aud/usd',
@@ -265,7 +265,14 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    
+
+    '5 USD = AUD' => test_spice(
+        '/js/spice/currency/5/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
     # Requirement for space between unit and currency
     '5m usd to aud' => test_spice(
         '/js/spice/currency/5000000/usd/aud',
@@ -313,12 +320,12 @@ ddg_spice_test(
     'mars' => undef,
     'kaud' => undef,
     'baud' => undef,
-    
+
     'k aud' => undef,
     'm aud' => undef,
     'b aud' => undef,
     't aud' => undef,
-    
+
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
     '499 cny = ? usd' => undef,
