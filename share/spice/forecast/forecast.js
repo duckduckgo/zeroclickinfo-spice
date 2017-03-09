@@ -120,7 +120,7 @@
       }
 
       if(f.currently.precipProbability) {
-        currentObj.precipitation = 'Precipitation: ' + Math.round(f.currently.precipProbability * 100) + '%';
+        currentObj.precipitation = 'Chance of Precipitation: ' + Math.round(f.currently.precipProbability * 100) + '%';
       }
 
       return currentObj;
@@ -341,14 +341,17 @@
     };
 
     // If there is celsius or fahrenheit mentioned in the query, do use that
-    // unit of measurement. If the metric setting is enabled and the API
-    // returned temps in F, switch to 'C':
+    // unit of measurement. If the metric setting is enabled or the user's
+    // region is not USA and the API returned temps in F, switch to 'C':
     var uom_in_query = DDG.get_query().match(/\b(celsius|fahrenheit)\b/);
     if (uom_in_query) {
         uom = (uom_in_query[1] === 'celsius') ? 'C' : 'F';
         updateUnitOfMeasure();
     } else if (!DDG.settings.isDefault('kaj')) {
         uom = DDG.settings.get('kaj') === 'm' ? 'C' : 'F';
+        updateUnitOfMeasure();
+    } else if (!DDG.settings.isDefault('kl')) {
+        uom = DDG.settings.get('kl') !== 'us-en' ? 'C' : 'F';
         updateUnitOfMeasure();
     } else {
         updateTempSwitch(uom);

@@ -12,27 +12,6 @@ use_ok('DDG::Spice::Maps::Maps');
 
 ddg_spice_test(
     [qw( DDG::Spice::Maps::Maps )],
-    'map of paris' => test_spice(
-        '/js/spice/maps/maps/paris',
-        call_type => 'include',
-        caller => 'DDG::Spice::Maps::Maps',
-        is_cached => 0,
-    ),
-    'new york map' => test_spice(
-        '/js/spice/maps/maps/new%20york',
-        call_type => 'include',
-        caller => 'DDG::Spice::Maps::Maps',
-        is_cached => 0,
-    ),
-    DDG::Request->new(
-        query_raw => "current location",
-        location => test_location("de")
-        ) => test_spice(
-        '/js/spice/maps/maps/M%C3%B6nchengladbach%2C%20Germany',
-        call_type => 'include',
-        caller => 'DDG::Spice::Maps::Maps',
-        is_cached => 0,
-    ),
     'directions to florida' => test_spice(
         '/js/spice/maps/maps/florida',
         call_type => 'include',
