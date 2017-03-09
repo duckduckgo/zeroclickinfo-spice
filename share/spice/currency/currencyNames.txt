@@ -117,7 +117,7 @@ pyg,paraguayan guarani,paraguay guarani,
 qar,qatari riyal,qatar riyal,
 ron,romanian new leu,romania new leu,
 rsd,serbian dinar,serbia dinar,
-rub,russia ruble,russian ruble,
+rub,russia ruble,russian ruble,ruble
 rwf,rwandan franc,rwanda franc,
 sar,saudi arabian riyal,saudi arabia riyal,
 sbd,solomon islander dollar,solomon islands dollar,
