@@ -65,7 +65,7 @@
                     return;
                 }
 
-                var streamURL = '/sc_audio/?u=' + o.stream_url;
+                var streamURL = '/sc_audio/?u=' + DDG.toHTTP(o.stream_url);
 
                 return {
                     image: image,

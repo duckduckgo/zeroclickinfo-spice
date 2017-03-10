@@ -1,13 +1,17 @@
 package DDG::Spice::Npm;
-# ABSTRACT: Returns package information from npm package manager's registry.
+# ABSTRACT: Search npm for package information
 
 use strict;
 use DDG::Spice;
+use warnings;
 
-triggers startend => 'npm', 'nodejs';
-triggers start => 'npm install';
+spice is_cached => 1;
+spice proxy_cache_valid => '200 1d';
 
-spice to => 'http://registry.npmjs.org/$1/latest';
+triggers startend => 'npm', 'npm node', 'node npm', 'nodejs', 'node js', 'node package';
+triggers start => 'npm install', 'node install';
+
+spice to => 'https://api.npms.io/v2/search?q=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub {
