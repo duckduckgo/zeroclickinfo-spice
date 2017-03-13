@@ -139,7 +139,6 @@ handle query_lc => sub {
         my $amount = $+{amount};
         my $from = $+{from} || '';
         my $cardinal = $+{cardinal} || '';
-        my $alt_amount = $+{alt_amount} || '';
         my $to = $+{to} || '';
         my $toSymbol = $+{toSymbol} || '';
         
@@ -167,19 +166,9 @@ handle query_lc => sub {
             return; # if cardinal provided but no amount return
         }
 
-        # If two amounts are available, exit early. It's ambiguous.
-        # We use the length function to check if it's an empty string or not.
-        if(length($amount) && length($alt_amount)) {
-            return;
-        }
         # Case where the first amount is available.
-        elsif(length($amount)) {
+        if(length($amount)) {
             return checkCurrencyCode($amount, $from, $to);
-        }
-        # Case where the second amount is available.
-        # We switch the $from and $to here.
-        elsif(length($alt_amount)) {
-            return checkCurrencyCode($alt_amount, $to, $from);
         }
         # Case where neither of them are available.
         else {
