@@ -34,7 +34,7 @@ my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)
 my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/;
 my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
 
-my $guard = qr/^$question_prefix(?:(?:$amount_qr\s?(?:$from_qr))|(?:$from_qr\s?$amount_qr))\s?(?:$into_qr|$vs_qr|\/|\s)?(?<alt_amount>$number_re*)\s?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?(?:$into_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?(?:s)?\??$/i;
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
 

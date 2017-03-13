@@ -51,7 +51,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     'euro 400 jpy' => test_spice(
-        '/js/spice/currency/400/jpy/eur',
+        '/js/spice/currency/400/eur/jpy',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
@@ -312,7 +312,25 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-
+    # check for placing currency type before amount
+    'CHF 2.95 in eur' => test_spice(
+        '/js/spice/currency/2.95/chf/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'euro 400' => test_spice(
+        '/js/spice/currency/400/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'what is rub 400 in us dollars?' => test_spice(
+        '/js/spice/currency/400/rub/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
