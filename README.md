@@ -5,7 +5,7 @@ We're a community of open source developers from around the world, contributing 
 
 
 ## How to contribute
-- [**Create new Spice Instant Answers, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-spice/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
+- [**Create new Spice Instant Answers, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-spice/issues")
     - **Note**: Spices are written in Perl (back-end) and JavaScript (front-end). They can also typically use CSS, and [Handlebars](http://handlebarsjs.com) Templates.
 - [**Visit DuckDuckGo**](https://duckduckhack.com/#get-help) to learn more about the Programming Mission, and how you can help!
 
