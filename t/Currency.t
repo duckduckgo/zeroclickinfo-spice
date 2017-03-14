@@ -115,6 +115,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Query using rubles instead of rub
+    '500 rubles in dollars' => test_spice(
+        '/js/spice/currency/500/rub/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '200 euros in ruble' => test_spice(
+        '/js/spice/currency/200/eur/rub',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # Queries that have "convert" in them.
     'convert 200 cad into usd' => test_spice(
         '/js/spice/currency/200/cad/usd',
