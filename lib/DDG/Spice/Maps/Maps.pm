@@ -1,5 +1,5 @@
 package DDG::Spice::Maps::Maps;
-# ABSTRACT: Map of current cocation
+# ABSTRACT: Map of current location
 
 use strict;
 use Text::Trim;
@@ -41,4 +41,3 @@ handle query_lc => sub {
 };
 
 1;
-
