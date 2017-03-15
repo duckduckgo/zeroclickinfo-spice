@@ -21,8 +21,19 @@ ddg_spice_test(
         '/js/spice/geometry/',
         call_type => 'self',
         caller => 'DDG::Spice::Geometry'
+    ),
+    'volume of sphere' => test_spice(
+        '/js/spice/geometry',
+        call_type => 'self',
+        caller => 'DDG::Spice::Geometry'
+    ),
+    'area of square with size = 5' => test_spice(
+        '/js/spice/geometry',
+        call_type => 'self',
+        caller => 'DDG::Spice::Geometry'
     )
 );
 
 done_testing;
+
 
