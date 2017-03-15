@@ -115,6 +115,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Query using rubles instead of rub
+    '500 rubles in dollars' => test_spice(
+        '/js/spice/currency/500/rub/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '200 euros in ruble' => test_spice(
+        '/js/spice/currency/200/eur/rub',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # Queries that have "convert" in them.
     'convert 200 cad into usd' => test_spice(
         '/js/spice/currency/200/cad/usd',
@@ -244,7 +257,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    
+
     # Support slash format e.g AUD/USD
     'aud/usd' => test_spice(
         '/js/spice/currency/1/aud/usd',
@@ -265,7 +278,20 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    
+
+    '5 USD = AUD' => test_spice(
+        '/js/spice/currency/5/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '5 USD = ? AUD' => test_spice(
+        '/js/spice/currency/5/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
     # Requirement for space between unit and currency
     '5m usd to aud' => test_spice(
         '/js/spice/currency/5000000/usd/aud',
@@ -313,24 +339,25 @@ ddg_spice_test(
     'mars' => undef,
     'kaud' => undef,
     'baud' => undef,
-    
+
     'k aud' => undef,
     'm aud' => undef,
     'b aud' => undef,
     't aud' => undef,
-    
+
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
-    '499 cny = ? usd' => undef,
-    'convert religion' => undef,
-    'what is a cow' => undef,
-    'usda' => undef,
-    'usda loans' => undef,
+
     # We don't want to trigger on date-looking things.
     'euro 2016' => undef,
     # Doesn't trigger with ficticious currencies
     '2 british houses to australian dollars' => undef,
     'what is 1 euro in canadian donuts' => undef,
+    # Irellevant queries
+    'convert religion' => undef,
+    'what is a cow' => undef,
+    'usda' => undef,
+    'sda loans' => undef,
 );
 
 done_testing;

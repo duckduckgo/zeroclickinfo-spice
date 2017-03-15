@@ -120,7 +120,7 @@
       }
 
       if(f.currently.precipProbability) {
-        currentObj.precipitation = 'Precipitation: ' + Math.round(f.currently.precipProbability * 100) + '%';
+        currentObj.precipitation = 'Chance of Precipitation: ' + Math.round(f.currently.precipProbability * 100) + '%';
       }
 
       return currentObj;
