@@ -4,7 +4,6 @@ package DDG::Spice::Geometry;
 use DDG::Spice;
 
 triggers startend => 'geometry', 'formula', 'calc';
-triggers start => 'area of', 'perimeter of', 'volume of', 'diagonal of', 'surface area of';
 
 spice call_type => 'self';
 
