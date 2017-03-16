@@ -378,8 +378,8 @@
                 class: "stroke"
             }],
             pairs: {
-                volume: [0, 2],
-                surface: [1, 0]
+                volume: [0, 0],
+                surface: [1, 2]
             },
             getParameter: function(query){
                 var r = getParameter(query, "radius|r");
@@ -405,20 +405,17 @@
                 }
             }],
             svg: [{
-                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
+                path: "M 0,20 a 30 10 0 0 1 120,0 v 80 a 30 10 0 0 1 -120,0 v -80",
                 class: "fill"
             }, {
-                path: "M 0,60 a 30 10 0 0 1 120,0",
-                class: "stroke backface"
+                path: "M 0,20 h 60 v 80",
+                class: "stroke special"
             }, {
-                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
-                class: "fill"
-            }, {
-                path: "M 0,60 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 a 25 25 0 0 0 120,0",
+                path: "M 0,20 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 v 80 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 m 120,0 v -80",
                 class: "stroke"
             }],
             pairs: {
-                volume: [0, 2],
+                volume: [0, 0],
                 surface: [1, 0]
             },
             getParameter: function(query){
@@ -447,20 +444,20 @@
                 }
             }],
             svg: [{
-                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
+                path: "M 0,100 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 l 60 -80 l 60 80 a 30 10 0 0 0 -120,0",
                 class: "fill"
             }, {
-                path: "M 0,60 a 30 10 0 0 1 120,0",
-                class: "stroke backface"
+                path: "M 0,100 h 60 v -80",
+                class: "stroke special"
             }, {
-                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
+                path: "M 0,100 l 60 -80 l 60 80 a 30 10 0 0 0 -120,0",
                 class: "fill"
             }, {
-                path: "M 0,60 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 a 25 25 0 0 0 120,0",
+                path: "M 0,100 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 l 60 -80 l 60 80",
                 class: "stroke"
             }],
             pairs: {
-                volume: [0, 2],
+                volume: [0, 0],
                 surface: [1, 0]
             },
             getParameter: function(query){
@@ -475,7 +472,7 @@
                 return null;
             },
             parameterNames: ["r", "h", "l"]
-        }   
+        }    
     };
 
     env.ddg_spice_geometry = function(){
