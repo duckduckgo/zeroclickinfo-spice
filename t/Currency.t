@@ -305,6 +305,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '1 459 000 RUB to USD' => test_spice(
+        '/js/spice/currency/1459000/rub/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # check if the currency is detected from the location
     # when you don't specify the target currency
     DDG::Request->new(
