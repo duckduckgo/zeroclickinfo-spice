@@ -1,15 +1,22 @@
 DDG.require('maps',function(){
     ddg_spice_maps_maps = function(response) {
-
         if (!response || !response.features || !response.features.length) { return Spice.failed('maps_maps'); }
         // TEMP: disable relevancy and pass all results through
         // for map module experiment:
         if (DDG.opensearch.installed.experiment === 'map_module' && DDG.opensearch.installed.variant === 'a') {
+            // In order to properly fall back to the old maps IA for medium signal queries,
+            // this needs to only return one item for medium signals.
+            var features;
+            if (DDG.duckbar.futureSignals[0].from === "maps_maps" && DDG.duckbar.futureSignals[0].signal === "medium") {
+                features = response.features[0];
+            } else {
+                features = response.features;
+            }
             // if top result returned doesn't have high relevance,
             // the rest won't either so spice should fail.
             if (response.features[0].relevance > 0.7) {
                 return Spice.add({
-                    data: response.features,
+                    data: features,
                     id: 'maps_maps',
                     name: 'maps',
                     model: 'Place'
