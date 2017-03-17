@@ -15,7 +15,7 @@ spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
-my $query_start_regex = qr/(?:is|isitup|isitdown|is it up|is it down|status of|)/;
+my $query_start_regex = qr/(?:is\s|isitup|isitdown|is it up|is it down|status of|)/;
 my $query_end_regex   = qr/(?:up|down|working|online|status|up right now|)/;
 my $url_regex         = qr/(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)/;
 
