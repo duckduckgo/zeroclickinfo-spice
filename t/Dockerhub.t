@@ -9,17 +9,23 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Dockerhub)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/dockerhub/query',
+
+    'docker redis' => test_spice(
+        '/js/spice/dockerhub/redis',
         call_type => 'include',
         caller => 'DDG::Spice::Dockerhub'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'wordpress dockerhub' => test_spice(
+        '/js/spice/dockerhub/wordpress',
+        call_type => 'include',
+        caller => 'DDG::Spice::Dockerhub'
+    ),
+    'docker hub duckpan' => test_spice(
+        '/js/spice/dockerhub/duckpan',
+        call_type => 'include',
+        caller => 'DDG::Spice::Dockerhub'
+    )
+    
 );
 
 done_testing;

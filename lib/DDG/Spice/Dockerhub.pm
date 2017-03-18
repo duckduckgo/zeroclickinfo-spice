@@ -1,31 +1,29 @@
 package DDG::Spice::Dockerhub;
-
-# ABSTRACT: Write an abstract here
-
-# Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
-# to instant answer development
+# ABSTRACT: Search for Docker Hub images
 
 use DDG::Spice;
 use strict;
 use warnings;
 
-# Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
 spice is_cached => 1;
-spice proxy_cache_valid => '200 1d'; # defaults to this automatically
+spice proxy_cache_valid => '200 1d';
+spice wrap_jsonp_callback => 1;
+spice to => 'https://index.docker.io/v1/search?q=$1';
 
-spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
+triggers startend => [
+    'docker', 
+    'docker.com', 
+    'dockerhub', 
+    'docker hub', 
+    'docker image', 
+    'docker images',
+    'docker container',
+    'docker containers'
+];
 
-# API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
-spice to => 'http://example.com/search/$1';
-
-# Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => 'triggerword', 'trigger phrase';
-
-# Handle statement
 handle remainder => sub {
-
-    # Query is in $_ or @_, depending on the handle you chose...if you
-    # need to do something with it before returning
+    
+    return $_ if $_;
     return \$_;
 };
 
