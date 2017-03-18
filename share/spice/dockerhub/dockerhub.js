@@ -7,8 +7,6 @@
         if (!api_result || api_result.error || api_result.results === 0) {
             return Spice.failed('dockerhub');
         }
-        
-        console.log(api_result.results);
 
         // Render the response
         Spice.add({
