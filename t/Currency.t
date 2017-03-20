@@ -13,12 +13,6 @@ ddg_spice_test(
     [
         'DDG::Spice::Currency'
     ],
-    'canada dollar' => test_spice(
-        '/js/spice/currency/1/cad/cad',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     '400 euro' => test_spice(
         '/js/spice/currency/400/eur/usd',
         call_type => 'include',
@@ -350,6 +344,15 @@ ddg_spice_test(
     'm aud' => undef,
     'b aud' => undef,
     't aud' => undef,
+    
+    # standalone currencys
+    'canadian dollar' => undef,
+    'US dollar' => undef,
+    'Irl' => undef,
+    'usd' => undef,
+    'gbp' => undef,
+    'EUR' => undef,
+    'CaD' => undef,
 
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
