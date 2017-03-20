@@ -65,3 +65,9 @@
     color: #808080;
     font-size: 0.8em;
 }
+
+.dark-bg #zci--geometry-svg .stroke {
+    stroke: white;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
