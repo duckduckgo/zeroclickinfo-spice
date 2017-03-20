@@ -477,11 +477,9 @@
                     svg = $("#zci--geometry-svg"),
                     svgNodes = svg.children(),
                     content = svg.parent();
-                
+
                 for(var i in pairs)
-                {
                     bindHoverPair(formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]], formulas[i].color);
-                }
                 
                 //wait for stylesheet
                 $(window).load(function(){
