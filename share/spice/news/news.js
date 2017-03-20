@@ -57,7 +57,7 @@
 
         // Check if the title is relevant to the query.
         for(var i = 0, story; story = api_result.results[i]; i++) {
-            if (!useRelevancy || DDG.isRelevant(story.title, skip)) {
+            if (!story.use_relevancy || !useRelevancy || DDG.isRelevant(story.title, skip)) {
                 setSourceOnStory(story);
                 story.sortableDate = parseInt(story.date || 0);
                 goodStories.push(story);
