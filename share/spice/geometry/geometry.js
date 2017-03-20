@@ -441,7 +441,9 @@
                 data.formulas = [data.formulas[i]];
                 //cleanup pairs
                 //find right pair and remove others
-                pairs = [[0, pairs[data.formulas[0].name][1]]];
+                var tmp = pairs[data.formulas[0].name][1];
+                pairs = {}
+                pairs[data.formulas[0].name] = [0, tmp];
                 break;
             }
         }
@@ -476,11 +478,9 @@
                     svgNodes = svg.children(),
                     content = svg.parent();
                 
-                var tmp = 0;
                 for(var i in pairs)
                 {
-                    bindHoverPair(formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]], data.formulas[tmp].color);
-                    tmp++;
+                    bindHoverPair(formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]], formulas[i].color);
                 }
                 
                 //wait for stylesheet
