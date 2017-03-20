@@ -146,9 +146,7 @@ handle query_lc => sub {
         }
         
         # if only a currency symbol is present, then bail.
-        if ($amount eq '' && $to eq '' && exists($currHash{$from})) {
-            return;
-        }
+        return if ($amount eq '' && $to eq '' && exists($currHash{$from}));
 
         my $styler = number_style_for($amount);
         return unless $styler;
