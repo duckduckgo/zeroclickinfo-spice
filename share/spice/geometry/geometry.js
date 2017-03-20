@@ -438,13 +438,8 @@
                 //cleanup formulas
                 data.formulas = [data.formulas[i]];
                 //cleanup pairs
-                for(j = 0, k = pairs.length; j < k; ++j){
-                    //find the right pair
-                    if(pairs[j][0] === i){
-                        pairs = [[0, pairs[j][1]]];
-                        break;
-                    }
-                }
+                //find right pair and remove others
+                pairs = [[0, pairs[data.formulas[0].name][1]]];
                 break;
             }
         }
@@ -478,10 +473,14 @@
                     svg = $("#zci--geometry-svg"),
                     svgNodes = svg.children(),
                     content = svg.parent();
-
+                
+                var tmp = 0;
                 for(var i in pairs)
-                    bindHoverPair(formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]], formulas[i].color);
-
+                {
+                    bindHoverPair(formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]], data.formulas[tmp].color);
+                    tmp++;
+                }
+                
                 //wait for stylesheet
                 $(window).load(function(){
                     //set the height of the svg to the same like the content, but 150 as maximal value
