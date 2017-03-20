@@ -146,7 +146,7 @@ handle query_lc => sub {
         }
         
         # if only a currency symbol is present, then bail.
-        if ($amount eq '' && $to eq '') {
+        if ($amount eq '' && $to eq '' && exists($currHash{$from})) {
             return;
         }
 
