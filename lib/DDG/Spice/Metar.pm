@@ -7,7 +7,7 @@ package DDG::Spice::Metar;
 use DDG::Spice;
 use Geo::ICAO qw{ :airport };
 
-spice to => 'http://avwx.rest/api/metar.php?station=$1&format=JSON&options=info,translate';
+spice to => 'https://avwx.rest/api/metar/$1?options=info,translate'; 
 spice proxy_cache_valid => "418 1d"; # Do not cache responses.
 spice wrap_jsonp_callback => 1;
 
