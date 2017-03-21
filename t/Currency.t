@@ -350,6 +350,13 @@ ddg_spice_test(
     'm aud' => undef,
     'b aud' => undef,
     't aud' => undef,
+    
+    # standalone symbols
+    'Irl' => undef,
+    'usd' => undef,
+    'gbp' => undef,
+    'EUR' => undef,
+    'CaD' => undef,
 
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
