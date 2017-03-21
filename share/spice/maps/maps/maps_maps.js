@@ -7,7 +7,7 @@ DDG.require('maps',function(){
             // In order to properly fall back to the old maps IA for medium signal queries,
             // this needs to only return one item for medium signals.
             var features;
-            if (DDG.duckbar.futureSignals[0].from === "maps_maps" && DDG.duckbar.futureSignals[0].signal === "medium") {
+            if (DDG.duckbar.futureSignals[0].from === "maps_maps" && DDG.duckbar.futureSignals[0].signal !== "high") {
                 features = response.features[0];
             } else {
                 features = response.features;
