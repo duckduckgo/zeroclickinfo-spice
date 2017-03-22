@@ -350,6 +350,46 @@
             },
             parameterNames: ["a", "b", "c"]
         },
+        hemisphere : {
+            formulas: [{
+                name: "volume",
+                html: "2/3&pi;r<sup>3</sup>",
+                calc: function(r){
+                    return 2 / 3 * Math.PI * r * r * r;
+                }
+            }, {
+                name: "surface",
+                html: "3&pi;r<sup>2</sup>",
+                calc: function(r){
+                    return 3 * Math.PI * r * r;
+                }
+            }],
+            svg: [{
+                path: "M 0,80 a 30 10 0 0 0 120,0 a 25 25 0 0 0 -120,0 ",
+                class: "fill"
+            }, {
+                path: "M 0,80 a 30 10 0 0 1 120,0 ",
+                class: "stroke backface"
+            }, {
+                path: "M 0,80 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 ",
+                class: "fill"
+            }, {
+                path: "M 0,80 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 ",
+                class: "stroke"
+            }],
+            pairs: {
+                volume: [0, 2],
+                surface: [1, 0]
+            },
+            getParameter: function(query){
+                var r = getParameter(query, "radius|r");
+                if(r !== null) return r;
+                r = getParameter(query, "diameter|d");
+                if(r !== null) return r / 2;
+                return null;
+            },
+            parameterNames: ["r"]
+        },
         sphere : {
             formulas: [{
                 name: "volume",
