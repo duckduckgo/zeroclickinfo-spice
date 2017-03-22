@@ -1,29 +1,21 @@
 DDG.require('maps',function(){
     ddg_spice_maps_maps = function(response) {
         if (!response || !response.features || !response.features.length) { return Spice.failed('maps_maps'); }
-        // TEMP: disable relevancy and pass all results through
-        // for map module experiment:
-        if (DDG.opensearch.installed.experiment === 'map_module' && DDG.opensearch.installed.variant === 'a') {
-            // In order to properly fall back to the old maps IA for medium signal queries,
-            // this needs to only return one item for medium signals.
-            var features;
-            if (DDG.duckbar.futureSignals[0].from === "maps_maps" && DDG.duckbar.futureSignals[0].signal !== "high") {
-                features = response.features[0];
-            } else {
-                features = response.features;
-            }
+
+        // if user is in map module experiment, and signal is high
+        if (DDG.opensearch.installed.experiment === 'map_module' && DDG.opensearch.installed.variant === 'a' && DDG.duckbar.futureSignals[0].from === "maps_maps" && DDG.duckbar.futureSignals[0].signal === "high") {
             // if top result returned doesn't have high relevance,
             // the rest won't either so spice should fail.
-            if (response.features[0].relevance > 0.7) {
-                return Spice.add({
-                    data: features,
-                    id: 'maps_maps',
-                    name: 'maps',
-                    model: 'Place'
-                });
-            } else {
+            if (response.features[0].relevance < 0.7) {
                 return Spice.failed('maps_maps');
             }
+
+            return Spice.add({
+                data: response.features,
+                id: 'maps_maps',
+                name: 'maps',
+                model: 'Place'
+            });
         }
 
         // Mapbox sends back a bunch of places, just want the first one for now
