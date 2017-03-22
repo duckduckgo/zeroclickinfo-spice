@@ -55,10 +55,9 @@
                 this.classList.remove("hover");
             });
             if(svgNode.is(".fill"))
-                svgNode.css("fill", "transparent");
+                svgNode.css("fill", "");
             if(svgNode.is(".stroke")) {
-                if(DDG.settings.get('kae') === 'd') svgNode.css("stroke", "#fff");
-                else svgNode.css("stroke", "#000");
+                svgNode.css("stroke", "");
             }
         }
         formulaNode = $(formulaNode);
