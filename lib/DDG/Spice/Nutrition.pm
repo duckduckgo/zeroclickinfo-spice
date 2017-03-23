@@ -8,6 +8,7 @@ my $attribute_regex = qr/(?^:(?^:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?
 my $question_regex = qr/(?:how|what)?\s?(?:'s |is |are |many |much )?(?:the |there )?(?:total |amount of |number of )?/;
 
 triggers any => 'calories';
+triggers start => 'calories in', 'total calories in', 'number of calories';
 spice wrap_jsonp_callback => 1;
 
 # update for v2 (natural language): https://developer.nutritionix.com/docs/v2
@@ -20,8 +21,8 @@ spice headers => {
 };
 spice post_body => 'query=$1';
 
-handle query => sub {
-    # return the full query
+handle remainder => sub {
+    # return the remainder of the query
     return unless $_;
 };
 

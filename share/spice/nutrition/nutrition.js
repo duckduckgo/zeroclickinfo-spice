@@ -17,6 +17,8 @@
             foods: []
         };
         
+        // this function generates the data structure that is pushed to the
+        // front-end
         function generateData() {
        
             for(var i = 0 ; i < api_data.length ; i++) {
@@ -30,14 +32,19 @@
         function generateSubtitle() {
             var subtitle = "Calories in ";
             var foods_length = data.foods.length;
+          
+            if( foods_length === 1 ) {
+                subtitle += data.foods[0].serving_qty + " " + data.foods[0].food_name;
+            } else {
+                for( var i = 0 ; i < foods_length ; i++ ) {
+                    if(i === foods_length - 1) {
+                        subtitle += "and " + data.foods[i].serving_qty + " " + data.foods[i].food_name;
+                    } else {
+                        subtitle += data.foods[i].serving_qty + " " + data.foods[i].food_name + ", ";                    
+                    }
+                } // for
+            } // if
             
-            for( var i = 0 ; i < foods_length ; i++ ) {
-                if(i === foods_length - 1) {
-                    subtitle += "and " + data.foods[i].serving_qty + " " + data.foods[i].food_name;
-                } else {
-                    subtitle += data.foods[i].serving_qty + " " + data.foods[i].food_name + ", ";                    
-                }
-            }
             return subtitle;
         }// generateSubtitle
         
