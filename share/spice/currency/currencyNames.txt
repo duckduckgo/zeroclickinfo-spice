@@ -11,7 +11,7 @@ azn,azerbaijani new manat,azerbaijan new manat,
 bam,bosnian convertible marka,bosnia and herzegovina convertible marka,
 bbd,barbadian dollar,bajan dollar,barbados dollar,
 bdt,bangladeshi taka,bangladesh taka,taka,
-bgn,bulgarian lev,bulgaria lev,
+bgn,bulgarian lev,bulgaria lev,lev
 bhd,bahraini dinar,bahrain dinar,
 bif,burundian franc,burundi franc,
 bmd,bermudian dollar,bermuda dollar,
