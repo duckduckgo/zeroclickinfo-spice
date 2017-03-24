@@ -311,6 +311,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Testing addition of shortened version of lev
+    '5m usd to lev' => test_spice(
+        '/js/spice/currency/5000000/usd/bgn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '600 levs in rubles' => test_spice(
+        '/js/spice/currency/600/bgn/rub',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # check if the currency is detected from the location
     # when you don't specify the target currency
     DDG::Request->new(
