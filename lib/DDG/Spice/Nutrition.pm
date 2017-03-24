@@ -4,9 +4,6 @@ package DDG::Spice::Nutrition;
 use strict;
 use DDG::Spice;
 
-my $attribute_regex = qr/(?^:(?^:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?:ohydrate)?s)|holesterol)|p(?:olyunsaturated fat|rotein)|trans(?: fat(?:ty acid)?|-fat)|s(?:aturated fat|odium|ugar)|monounsaturated fat|dietary fiber|f(?:iber|at)|vitamin [ac]|kcals|iron)))/;
-my $question_regex = qr/(?:how|what)?\s?(?:'s |is |are |many |much )?(?:the |there )?(?:total |amount of |number of )?/;
-
 triggers any => 'calories';
 triggers start => 'calories in', 'total calories in', 'number of calories';
 spice wrap_jsonp_callback => 1;

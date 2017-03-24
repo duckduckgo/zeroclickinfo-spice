@@ -48,13 +48,25 @@
             return subtitle;
         }// generateSubtitle
         
+        
+        // builds the source url using the common query hack
+        function buildSourceURL() {
+            // Get original query.
+            var url = 'https://www.nutritionix.com/natural-demo?q=',
+                script = $('[src*="/js/spice/nutrition/"]')[0],
+                source = $(script).attr("src"),
+                query = source.match(/nutrition\/([^\/]+)/)[1];   
+            
+            return url + query;
+        }
+        
         Spice.add({
             id: 'nutrition',
             name: 'Nutrition',
             data: generateData(),
             meta: {
                 sourceName: 'Nutritionix',
-                sourceUrl: 'https://www.nutritionix.com/natural-demo?q=' + DDG.get_query()
+                sourceUrl: buildSourceURL()
             },
             normalize: function(item) {
                 return {
