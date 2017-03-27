@@ -37,6 +37,7 @@
                     footer: Spice.sound_cloud.footer
                 }
             },
+            view: 'GridTiles',
             relevancy: {
                 dup: 'url'
             },
