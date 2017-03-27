@@ -12,8 +12,7 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'https://api.packagetrackr.com/ddg/v1/track/simple?n=$1&api_key={{ENV{DDG_SPICE_PACKAGETRACKR_API_KEY}}}';
 
-my $carriers_list = LoadFile(share('carriers.yml'));
-my @carriers = sort { length $b <=> length $a } @$carriers_list;
+my @carriers = sort { length $b <=> length $a } @{LoadFile(share('carriers.yml'))};
 my $triggers_re = qr/package|track(ing)?|num(ber)?|shipping status|\#/ix;
 my $carriers_re = join "|", @carriers;
 my $strip_re = qr/$triggers_re|$carriers_re/i;
