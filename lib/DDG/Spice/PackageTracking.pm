@@ -1,5 +1,6 @@
 package DDG::Spice::PackageTracking;
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 use YAML::XS 'LoadFile';
@@ -15,18 +16,41 @@ my $carriers = LoadFile(share('carriers.yml'));
 my @triggers = ('package', 'track package', 'shipping status', 'package tracking', 'track');
 my $triggers_re = join "|", @triggers;
 my $carriers_re = join "|", @$carriers;
+my $tracking_re = qr/package|track(?:ing|)|num(?:ber|)|\#/i;
+my $strip_re = qr/$triggers_re|$carriers_re/;
 
-triggers startend => @$carriers, @triggers;
+# Package words
+triggers query_lc => qr/^($triggers_re .+|.+ $triggers_re)$/;
 
-handle remainder_lc => sub {
-    return unless $_;
-    s/\b$triggers_re\b//g;
-    s/\b$carriers_re\b//g;
+# Carrier names
+triggers query_lc => qr/^($carriers_re .+|.+ $carriers_re)$/;
+
+# UPS
+triggers query_nowhitespace_nodash => qr/(1Z[0-9A-Z]{16})/i;
+
+# Fedex
+triggers query_nowhitespace_nodash => qr/^([\d]{9,}).*?$|
+                                         ^(\d*?)([\d]{15})$
+                                        /xi;
+
+# USPS
+triggers query_nowhitespace_nodash => qr/
+                                         ^([\d]{9,})$|
+                                         ^([a-z]{2}\d{9}us)$|
+                                         ^([\d]{20,30})$
+                                        /xi;
+
+handle query_lc => sub {
+
+    # strip words
+    s/$strip_re//g;
     trim($_);
+    return unless $_;
     # remainder should be numeric or alphanumeric, not alpha
     return if m/^[a-z\s]+$/;
     # ignore us zipcodes
     return if m/^[0-9]{5}+$/;
+    # remainder should be at least 6 characters long
     return unless m/^[a-z0-9\-]{6,}$/;
     return $_;
 };
