@@ -6,25 +6,16 @@ use strict;
 use warnings;
 
 spice is_cached => 1;
-spice proxy_cache_valid => '200 1d';
+spice proxy_cache_valid => '200 1h';
 spice wrap_jsonp_callback => 1;
 spice to => 'https://index.docker.io/v1/search?q=$1';
 
-triggers startend => [
-    'docker', 
-    'docker.com', 
-    'dockerhub', 
-    'docker hub', 
-    'docker image', 
-    'docker images',
-    'docker container',
-    'docker containers'
-];
+triggers startend => 'docker', 'dockerhub', 'docker hub';
+triggers end => 'docker image';
 
 handle remainder => sub {
-    
-    return $_ if $_;
-    return \$_;
+    return unless $_;
+    return $_;
 };
 
 1;
