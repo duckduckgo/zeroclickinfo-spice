@@ -324,6 +324,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # testing addition of sterling and pound sterling
+    '5 sterling to usd' => test_spice(
+        '/js/spice/currency/5/gbp/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '5k usd in pound sterling' => test_spice(
+        '/js/spice/currency/5000/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # check if the currency is detected from the location
     # when you don't specify the target currency
     DDG::Request->new(
