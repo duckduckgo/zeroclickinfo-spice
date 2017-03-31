@@ -24,8 +24,8 @@ spice alt_to => {
 	}
 };
 
-spice upstream_timeouts => +{ connect => '100ms',
-                              send => '100ms',
+spice upstream_timeouts => +{ connect => '200ms',
+                              send => '200ms',
                               read => '500ms' };
 
 triggers startend => (
