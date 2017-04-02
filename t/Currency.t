@@ -337,6 +337,25 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # testing addition of yuan
+    '1 yuan to usd' => test_spice(
+        '/js/spice/currency/1/cny/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1k usd in yuan' => test_spice(
+        '/js/spice/currency/1000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1m usd in yuan' => test_spice(
+        '/js/spice/currency/1000000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # check if the currency is detected from the location
     # when you don't specify the target currency
     DDG::Request->new(
