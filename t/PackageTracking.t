@@ -83,9 +83,32 @@ ddg_spice_test(
         caller => 'DDG::Spice::PackageTracking'
     ),
 
+    # Parcelforce / Royal Mail
+    'parcelforce track PBTM8041434001' => test_spice(
+        '/js/spice/package_tracking/PBTM8041434001',
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+    'royal mail track parcel QE001331410GB' => test_spice(
+        '/js/spice/package_tracking/QE001331410GB',
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+    'PBTM8237263001' => test_spice(
+        '/js/spice/package_tracking/PBTM8237263001',
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+
     # Bad Queries
     70000000000000000001 => undef,
     'what is 70000000000000000000' => undef,
+    'luhn 1234554651' => undef,
+    'KB2553549' => undef,
+    '0000 0000 0000' => undef,
+
+    # Too long
+    'fedex 123456789 123456789 123456789 1234' => undef,
 
     # Too short
     'usps 12345' => undef,

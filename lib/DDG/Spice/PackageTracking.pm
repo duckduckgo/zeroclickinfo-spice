@@ -13,9 +13,14 @@ spice wrap_jsonp_callback => 1;
 spice to => 'https://api.packagetrackr.com/ddg/v1/track/simple?n=$1&api_key={{ENV{DDG_SPICE_PACKAGETRACKR_API_KEY}}}';
 
 my @carriers = sort { length $b <=> length $a } @{LoadFile(share('carriers.yml'))};
-my $triggers_re = qr/package|track(ing)?|num(ber)?|shipping status|\#/ix;
+my $triggers_re = qr/package|parcel|track(ing)?|num(ber)?|shipping status|\#/ix;
 my $carriers_re = join "|", @carriers;
-my $strip_re = qr/$triggers_re|$carriers_re/i;
+my $strip_re = qr/$carriers_re|$triggers_re/ix;
+
+
+### Regex triggers for queries containing carrier names or words related to pacakge tracking
+# Carrier names
+triggers query_nowhitespace_nodash => qr/$carriers_re/ix;
 
 # Package words
 triggers query_nowhitespace_nodash => qr/$triggers_re/i;
@@ -46,11 +51,32 @@ triggers query_nowhitespace_nodash => qr/
                                         ^\d{20,30}$
                                         /xi;
 
+# Parcelforce
+# Source: http://www.parcelforce.com/help-and-advice/sending-worldwide/tracking-number-formats
+# Note:   May need to restrict pattern #3 if overtriggering
+#         https://github.com/duckduckgo/zeroclickinfo-goodies/issues/3900
+triggers query_nowhitespace_nodash => qr/
+                                        ^[A-Z]{2}\d{7}$|
+                                        ^[A-Z]{4}\d{10}$|
+                                        ^[A-Z]{2}\d{9}[A-Z]{2}$|
+                                        ^\d{12}$
+                                        /xi;
+
+
 handle query_nowhitespace_nodash => sub {
     # strip words
     s/$strip_re//ixg;
     trim($_);
+
     return unless $_;
+
+    # ignore Microsoft knowledge base codes and Luhn Check queries
+    # e.g. KB2553549
+    return if m/^kb|luhn/i;
+
+    # ignore strings of same number (e.g. 0000 0000 0000)
+    return if m/^(\d)\1+$/;
+
     # remainder should be numeric or alphanumeric, not alpha
     return if m/^[A-Z]+$/i;
 
