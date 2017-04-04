@@ -87,14 +87,16 @@ ddg_spice_test(
     70000000000000000001 => undef,
     'what is 70000000000000000000' => undef,
 
+    # Too short
+    'usps 12345' => undef,
 
     # TODO: Display input form prompting for tracking number?
     'fedex package tracking' => undef,
+    'fedex package tracker' => undef,
     'package tracking' => undef,
     'package tracking online' => undef,
 
     'fedex' => undef,
-    'fedex website' => undef,
     'fedex website' => undef
 );
 

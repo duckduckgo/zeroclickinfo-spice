@@ -20,22 +20,30 @@ my $strip_re = qr/$triggers_re|$carriers_re/i;
 # Package words
 triggers query_nowhitespace_nodash => qr/$triggers_re/i;
 
-# Carrier names
-triggers query_nowhitespace_nodash => qr/$carriers_re/i;
+### Regex triggers for queries only containing a tracking number
 
 # UPS
-triggers query_nowhitespace_nodash => qr/(1Z[0-9A-Z]{16})/i;
+# Soure: https://www.ups.com/content/ca/en/tracking/help/tracking/tnh.html
+# To Do: Some additional formats exist
+triggers query_nowhitespace_nodash => qr/
+                                        ^1Z[0-9A-Z]{16}$|
+                                        ^\d{9,12}$|
+                                        ^T\d{10}$
+                                        /xi;
 
 # Fedex
-triggers query_nowhitespace_nodash => qr/^([\d]{9,}).*?$|
-                                         ^(\d*?)([\d]{15})$
+# Source: https://www.trackingex.com/fedex-tracking.html
+#         https://www.trackingex.com/fedexuk-tracking.html
+#         https://www.trackingex.com/fedex-poland-domestic-tracking.html
+triggers query_nowhitespace_nodash => qr/
+                                        ^\d{12,22}$
                                         /xi;
 
 # USPS
 triggers query_nowhitespace_nodash => qr/
-                                         ^([\d]{9,})$|
-                                         ^([a-z]{2}\d{9}us)$|
-                                         ^([\d]{20,30})$
+                                        ^\d{9,30}$|
+                                        ^[A-Z]{2}\d{9}US$|
+                                        ^\d{20,30}$
                                         /xi;
 
 handle query_nowhitespace_nodash => sub {
@@ -45,8 +53,10 @@ handle query_nowhitespace_nodash => sub {
     return unless $_;
     # remainder should be numeric or alphanumeric, not alpha
     return if m/^[A-Z]+$/i;
-    # remainder should be at least 6 characters long
-    return unless m/^[A-Z0-9]{6,}$/i;
+
+    # remainder should be 6-30 characters long
+    return unless m/^[A-Z0-9]{6,30}$/i;
+
     return $_;
 };
 
