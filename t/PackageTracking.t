@@ -121,6 +121,7 @@ ddg_spice_test(
     '800-781-2677' => undef,
     '800 781-2677' => undef,
     '518 407 5448' => undef,
+    '1234567890' => undef,
     'ups building 2 worldport' => undef,
     'ups building 2 worldport address' => undef,
 

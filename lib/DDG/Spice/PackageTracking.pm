@@ -15,6 +15,7 @@ spice to => 'https://api.packagetrackr.com/ddg/v1/track/simple?n=$1&api_key={{EN
 my @carriers = sort { length $b <=> length $a } @{LoadFile(share('carriers.yml'))};
 my $triggers_re = qr/(package|parcel)|track(ing)?( num(ber)?)?|shipping status/i;
 my $carriers_re = join "|", @carriers;
+
 # allow carrier names without spaces (e.g royal mail OR royalmail)
 $carriers_re =~ s/ /\\s*/g;
 my $strip_re = qr/\b(?:$carriers_re|$triggers_re)\b/i;
@@ -36,7 +37,8 @@ triggers query_lc => qr/^$triggers_re .+|.+ $triggers_re$/i;
 triggers query_nowhitespace => qr/^
                                 (?:
                                     1Z[0-9A-Z]{16} |
-                                    \d{9,12} |
+                                    \d{9} |
+                                    \d{12} |
                                     T\d{10}
                                 )
                                 $/xi;
@@ -55,7 +57,7 @@ triggers query_nowhitespace => qr/^
                                 (?:
                                     (94001|92055|94073|93033|92701|92088|92021)\d{17} |
                                     82\d{8} |
-                                    [A-Z]\d{9}US
+                                    [A-Z]{2}\d{9}US
                                 )
                                 $/xi;
 
