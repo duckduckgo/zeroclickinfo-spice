@@ -21,6 +21,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
+    'C11422907783469 tracking number' => test_spice(
+        '/js/spice/package_tracking/C11422907783469',
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
     'ontrac C11422907783469' => test_spice(
         '/js/spice/package_tracking/C11422907783469',
         call_type => 'include',
@@ -106,6 +111,18 @@ ddg_spice_test(
     'luhn 1234554651' => undef,
     'KB2553549' => undef,
     '0000 0000 0000' => undef,
+    '213-298-3781' => undef,
+    '1-989-560-5363' => undef,
+    '0409 427 893' => undef,
+    '04961 9424600' => undef,
+    '1-800-240-1371' => undef,
+    '1 800 539-2968' => undef,
+    '1 800 539 2968' => undef,
+    '800-781-2677' => undef,
+    '800 781-2677' => undef,
+    '518 407 5448' => undef,
+    'ups building 2 worldport' => undef,
+    'ups building 2 worldport address' => undef,
 
     # Too long
     'fedex 123456789 123456789 123456789 1234' => undef,
