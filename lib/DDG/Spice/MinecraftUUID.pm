@@ -32,6 +32,9 @@ handle remainder => sub {
     # We return here, because a name must consist of 3-16 characters
     return if length($_) < 3 || length($_) > 16;
     
+    # We return here, because no special characters are allowed except the underscore
+    return if $_ =~ /[^A-Za-z0-9_]/g;
+    
     return $_;
 };
 

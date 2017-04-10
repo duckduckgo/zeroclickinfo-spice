@@ -11,29 +11,25 @@
         if (!api_result || api_result.error || !api_result.id) {
             return Spice.failed('minecraft_uuid');
         }
+        
+        console.log(api_result);
 
         // Render the response
         Spice.add({
             id: 'minecraft_uuid',
-
-            // Customize these properties
             name: 'Minecraft',
-            data: api_result,
             meta: {
-                sourceName: 'NameMC',
-                sourceUrl: 'https://namemc.com/profile/' + api_result.id
+                sourceName: 'Minecraft Username Converter',
+                sourceUrl: 'https://mcuuid.net/?q=' + api_result.id
             },
-            normalize: function(item) {
-                return {
-                    // customize as needed for your chosen template
-                    uuid: addHyphens(item.id),
-                    name: item.name
-                };
+            data: {
+                uuid: addHyphens(api_result.id),
+                name: api_result.name
             },
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.minecraft_uuid.content,
+                    title_content: Spice.minecraft_uuid.title_content,
                     moreAt: true
                 }
             }
