@@ -2,23 +2,21 @@ package DDG::Spice::MinecraftUUID;
 
 # ABSTRACT: Converts the name of a Minecraft account into a unique id
 
-# Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
-# to instant answer development
-
 use DDG::Spice;
 use strict;
 use warnings;
 
-# Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
+# Caching - We cache the response, because the account name can only be changed every 30 days
 spice is_cached => 1;
 spice proxy_cache_valid => '200 204 1d';
 
+# The Mojang API does not provide a JSONP support, that's why we activate this
 spice wrap_jsonp_callback => 1;
 
-# API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
+# More information about the API: http://wiki.vg/Mojang_API#Username_-.3E_UUID_at_time
 spice to => 'https://api.mojang.com/users/profiles/minecraft/$1';
 
-# Triggers - https://duck.co/duckduckhack/spice_triggers
+# Triggers
 triggers any => 'minecraft uuid', 'mcuuid';
 
 # Handle statement
