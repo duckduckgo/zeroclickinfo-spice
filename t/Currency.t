@@ -13,6 +13,24 @@ ddg_spice_test(
     [
         'DDG::Spice::Currency'
     ],
+    '50 pesos to $' => test_spice(
+        '/js/spice/currency/50/mxn/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'peso' => test_spice(
+        '/js/spice/currency/1/mxn/mxn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1 peso to usd' => test_spice(
+        '/js/spice/currency/1/mxn/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ), 
     'canada dollar' => test_spice(
         '/js/spice/currency/1/cad/cad',
         call_type => 'include',
