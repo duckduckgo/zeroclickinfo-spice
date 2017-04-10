@@ -9,9 +9,6 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::MinecraftUUID)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
     'mcuuid Notch' => test_spice(
         '/js/spice/minecraft_uuid/Notch',
         call_type => 'include',
@@ -34,6 +31,8 @@ ddg_spice_test(
     'mcuuid No' => undef,
     'mcuuid NotchNotchNotchNotch' => undef,
     'mcuuid Notch_ pls' => undef,
+    'mcuuid ###??##' => undef,
+    'mcuuid N?tc&' => undef,
     'mcuuid' => undef,
 );
 
