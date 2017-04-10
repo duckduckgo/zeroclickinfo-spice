@@ -13,22 +13,22 @@ ddg_spice_test(
     # - primary_example_queries
     # - secondary_example_queries
     'mcuuid Notch' => test_spice(
-        '/js/spice/minecraft_uuid/query',
+        '/js/spice/minecraft_uuid/Notch',
         call_type => 'include',
         caller => 'DDG::Spice::MinecraftUUID'
     ),
     'minecraft uuid Notch' => test_spice(
-        '/js/spice/minecraft_uuid/query',
+        '/js/spice/minecraft_uuid/Notch',
         call_type => 'include',
         caller => 'DDG::Spice::MinecraftUUID'
     ),
     'Minecraft UUID Notch' => test_spice(
-        '/js/spice/minecraft_uuid/query',
+        '/js/spice/minecraft_uuid/Notch',
         call_type => 'include',
         caller => 'DDG::Spice::MinecraftUUID'
     ),
     'Minecraft UUID Jeb_' => test_spice(
-        '/js/spice/minecraft_uuid/query',
+        '/js/spice/minecraft_uuid/Jeb_',
         caller => 'DDG::Spice::MinecraftUUID'
     ),
     'mcuuid No' => undef,
