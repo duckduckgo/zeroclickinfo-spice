@@ -128,6 +128,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '500 roubles in dollars' => test_spice(
+        '/js/spice/currency/500/rub/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '200 euros in rouble' => test_spice(
+        '/js/spice/currency/200/eur/rub',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # Queries that have "convert" in them.
     'convert 200 cad into usd' => test_spice(
         '/js/spice/currency/200/cad/usd',
@@ -395,7 +407,7 @@ ddg_spice_test(
     'm aud' => undef,
     'b aud' => undef,
     't aud' => undef,
-    
+
     # standalone symbols
     'Irl' => undef,
     'usd' => undef,
