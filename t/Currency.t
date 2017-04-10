@@ -105,6 +105,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '1 malaysian rupee to uk pounds' => test_spice(
+        '/js/spice/currency/1/myr/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '100 uk pound in malaysian rupees' => test_spice(
+       '/js/spice/currency/100/gbp/myr',
+       call_type => 'include',
+       caller => 'DDG::Spice::Currency',
+       is_cached => 0
+    ), 
     # Queries with no space between the number and the currency.
     '100cad' => test_spice(
         '/js/spice/currency/100/cad/usd',
