@@ -27,7 +27,7 @@
                 // If the holiday being queried for has already past in the given year requery for the following year
                 var currentDate = moment();
                 var holidayDate = moment(holiday.o[0].d);
-                if (currentDate.isAfter(holidayDate)) {                    
+                if (currentDate.isAfter(holidayDate, 'day')) {                    
                     $.getScript('/js/spice/holiday/' + country + '/' + query + '/' + holidayDate.add(1, 'years').format('YYYY') + '/0');
                     return;
                 }                    

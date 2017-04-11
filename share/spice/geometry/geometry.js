@@ -55,9 +55,10 @@
                 this.classList.remove("hover");
             });
             if(svgNode.is(".fill"))
-                svgNode.css("fill", "transparent");
-            if(svgNode.is(".stroke"))
-                svgNode.css("stroke", "#000");
+                svgNode.css("fill", "");
+            if(svgNode.is(".stroke")) {
+                svgNode.css("stroke", "");
+            }
         }
         formulaNode = $(formulaNode);
         svgNode = $(svgNode);
@@ -350,6 +351,46 @@
             },
             parameterNames: ["a", "b", "c"]
         },
+        hemisphere : {
+            formulas: [{
+                name: "volume",
+                html: "2/3&pi;r<sup>3</sup>",
+                calc: function(r){
+                    return 2 / 3 * Math.PI * r * r * r;
+                }
+            }, {
+                name: "surface",
+                html: "3&pi;r<sup>2</sup>",
+                calc: function(r){
+                    return 3 * Math.PI * r * r;
+                }
+            }],
+            svg: [{
+                path: "M 0,80 a 30 10 0 0 0 120,0 a 25 25 0 0 0 -120,0 ",
+                class: "fill"
+            }, {
+                path: "M 0,80 a 30 10 0 0 1 120,0 ",
+                class: "stroke backface"
+            }, {
+                path: "M 0,80 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 ",
+                class: "fill"
+            }, {
+                path: "M 0,80 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 ",
+                class: "stroke"
+            }],
+            pairs: {
+                volume: [0, 2],
+                surface: [1, 0]
+            },
+            getParameter: function(query){
+                var r = getParameter(query, "radius|r");
+                if(r !== null) return r;
+                r = getParameter(query, "diameter|d");
+                if(r !== null) return r / 2;
+                return null;
+            },
+            parameterNames: ["r"]
+        },
         sphere : {
             formulas: [{
                 name: "volume",
@@ -438,13 +479,10 @@
                 //cleanup formulas
                 data.formulas = [data.formulas[i]];
                 //cleanup pairs
-                for(j = 0, k = pairs.length; j < k; ++j){
-                    //find the right pair
-                    if(pairs[j][0] === i){
-                        pairs = [[0, pairs[j][1]]];
-                        break;
-                    }
-                }
+                //find right pair and remove others
+                var tmp = pairs[data.formulas[0].name][1];
+                pairs = {}
+                pairs[data.formulas[0].name] = [0, tmp];
                 break;
             }
         }
@@ -481,7 +519,7 @@
 
                 for(var i in pairs)
                     bindHoverPair(formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]], formulas[i].color);
-
+                
                 //wait for stylesheet
                 $(window).load(function(){
                     //set the height of the svg to the same like the content, but 150 as maximal value

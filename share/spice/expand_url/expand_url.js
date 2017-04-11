@@ -9,7 +9,7 @@
             query = source.match(/expand_url\/([^\/]+)/)[1];
 
         // Check if there are any errors.
-        if (!api_result.org_url || api_result.error) {
+        if (!api_result.success) {
             return Spice.failed('expand_url');
         }
 
@@ -21,8 +21,8 @@
             name: "Answer",
             data: api_result,
             meta: {
-                sourceUrl: "http://untiny.me/",
-                sourceName: "Untiny"
+                sourceUrl: "https://unshorten.me",
+                sourceName: "unshorten.me"
             },
             templates: {
                 group: 'text',
