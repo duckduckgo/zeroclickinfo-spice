@@ -11,7 +11,7 @@ DDG.require('maps',function(){
             if (response.features[0].relevance < 0.6 && !(response.features[0].place_name && DDG.isRelevant(response.features[0].place_name.toLowerCase(), skipArray))) {
                 return Spice.failed('maps_maps');
             }
-            console.log("spice.add");
+
             return Spice.add({
                 data: response.features,
                 id: 'maps_maps',
