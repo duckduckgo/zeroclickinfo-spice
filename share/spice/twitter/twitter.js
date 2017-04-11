@@ -39,6 +39,20 @@
                 if (item.location) {
                     subtitle.push(item.location);
                 }
+                var follow_cnt = "Followers: ";
+                if(item.followers_count >= 1000000000) {
+                    follow_cnt += ((item.followers_count/1000000000).toFixed(2)).toString() + " B";
+                }
+                else if(item.followers_count >= 1000000) {
+                    follow_cnt += ((item.followers_count/1000000).toFixed(2)).toString() + " M";
+                }
+                else if(item.followers_count >= 1000) {
+                    follow_cnt += ((item.followers_count/1000).toFixed(2)).toString() + " K";
+                }
+                else {
+                    follow_cnt += item.followers_count.toString();
+                }
+                subtitle.push(follow_cnt);
 
                 return {
                     image: bigger_picture(item.profile_image),
