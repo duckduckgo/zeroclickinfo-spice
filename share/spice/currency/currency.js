@@ -25,7 +25,7 @@
     };
     
     // Currencies with non-standard decimal points. (Standard is 2 eg. 10.46)
-    var currency_nonstandard_decimal = {
+    var decimal_places = {
         "xbt": 8
     };
     
@@ -105,12 +105,8 @@
             // If it does, only show the standard number digits after the decimal place for a given currency.
             symbol = symbol.toLowerCase();
             if(/\./.test(x.toString())) {
-                if (symbol in currency_nonstandard_decimal) {
-                    // For currencies with non-standard decimal points, it also trims redundant zeros.
-                    x = parseFloat(x.toFixed(currency_nonstandard_decimal[symbol]));
-                } else {
-                    x = x.toFixed(2);
-                }
+                var precision = decimal_places[symbol] || 2;
+                x = x.toFixed(precision);
             }
         
             return DDG.commifyNumber(x);
