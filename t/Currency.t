@@ -13,6 +13,24 @@ ddg_spice_test(
     [
         'DDG::Spice::Currency'
     ],
+    '50 pesos to $' => test_spice(
+        '/js/spice/currency/50/mxn/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'peso' => test_spice(
+        '/js/spice/currency/1/mxn/mxn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1 peso to usd' => test_spice(
+        '/js/spice/currency/1/mxn/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ), 
     'canada dollar' => test_spice(
         '/js/spice/currency/1/cad/cad',
         call_type => 'include',
@@ -68,6 +86,25 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # using currency keyword
+    'amd currency' => test_spice(
+        '/js/spice/currency/1/amd/amd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '2 ruble currency in yen' => test_spice(
+        '/js/spice/currency/2/rub/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '20 usd currency in mexican peso currency' => test_spice(
+        '/js/spice/currency/20/usd/mxn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # using cardinals instead of zeros
     '4.5 billion us dollar to euro' => test_spice(
         '/js/spice/currency/4500000000/usd/eur',
@@ -87,6 +124,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '1 malaysian rupee to uk pounds' => test_spice(
+        '/js/spice/currency/1/myr/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '100 uk pound in malaysian rupees' => test_spice(
+       '/js/spice/currency/100/gbp/myr',
+       call_type => 'include',
+       caller => 'DDG::Spice::Currency',
+       is_cached => 0
+    ), 
     # Queries with no space between the number and the currency.
     '100cad' => test_spice(
         '/js/spice/currency/100/cad/usd',
@@ -123,6 +172,18 @@ ddg_spice_test(
         is_cached => 0
     ),
     '200 euros in ruble' => test_spice(
+        '/js/spice/currency/200/eur/rub',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 roubles in dollars' => test_spice(
+        '/js/spice/currency/500/rub/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '200 euros in rouble' => test_spice(
         '/js/spice/currency/200/eur/rub',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
@@ -311,6 +372,51 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Testing addition of shortened version of lev
+    '5m usd to lev' => test_spice(
+        '/js/spice/currency/5000000/usd/bgn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '600 levs in rubles' => test_spice(
+        '/js/spice/currency/600/bgn/rub',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # testing addition of sterling and pound sterling
+    '5 sterling to usd' => test_spice(
+        '/js/spice/currency/5/gbp/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '5k usd in pound sterling' => test_spice(
+        '/js/spice/currency/5000/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # testing addition of yuan
+    '1 yuan to usd' => test_spice(
+        '/js/spice/currency/1/cny/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1k usd in yuan' => test_spice(
+        '/js/spice/currency/1000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1m usd in yuan' => test_spice(
+        '/js/spice/currency/1000000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # check if the currency is detected from the location
     # when you don't specify the target currency
     DDG::Request->new(
@@ -350,7 +456,7 @@ ddg_spice_test(
     'm aud' => undef,
     'b aud' => undef,
     't aud' => undef,
-    
+
     # standalone symbols
     'Irl' => undef,
     'usd' => undef,
