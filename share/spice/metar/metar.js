@@ -12,13 +12,15 @@
             data: api_result,
             meta: {
                 sourceName: "Aviation Weather REST API",
-                sourceUrl: "http://avwx.rest"
+                sourceUrl: "https://avwx.rest"
             },
             normalize: function(item) {
                 var airport_desc = [item["Info"]["City"], 
                                     item["Info"]["Country"]];
-                if (item["Info"]["Name"] != "") // Name is empty for some places.
-                    airport_desc.unshift(item["Info"]["Name"]);
+                
+                if (item["Info"]["Name"] !== "") {
+                  airport_desc.unshift(item["Info"]["Name"]); // Name is empty for some places.  
+                } 
                 
                 var interpreted_data = [
                         {label: "Time of Observation", 
@@ -39,9 +41,13 @@
                          value: item["Flight-Rules"]}
                     ];
                 
-                if (item["Translations"]["Other"] != "") {
+                if (item["Translations"]["Other"] !== "") {
                     interpreted_data.push({label: "Other Remarks", 
                                           value: item["Translations"]["Other"]});
+                }
+                
+                if (item["Raw-Report"].indexOf('$') !== -1) {
+                    interpreted_data.unshift({label: "Maintenance Check Indicator", value: "On"});
                 }
                 
                 return {
