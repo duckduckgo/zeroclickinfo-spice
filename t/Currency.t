@@ -86,6 +86,25 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # using currency keyword
+    'amd currency' => test_spice(
+        '/js/spice/currency/1/amd/amd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '2 ruble currency in yen' => test_spice(
+        '/js/spice/currency/2/rub/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '20 usd currency in mexican peso currency' => test_spice(
+        '/js/spice/currency/20/usd/mxn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # using cardinals instead of zeros
     '4.5 billion us dollar to euro' => test_spice(
         '/js/spice/currency/4500000000/usd/eur',

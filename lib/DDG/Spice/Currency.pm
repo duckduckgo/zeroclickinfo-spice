@@ -31,9 +31,10 @@ my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
 my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)).' ';
+my $keyword_qr = qr/\s?currency\s?/i;
 
 
-my $guard = qr/^$question_prefix(\p{Currency_Symbol})?\s?($number_re*)\s?(\p{Currency_Symbol})?\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\/|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix(\p{Currency_Symbol})?\s?($number_re*)\s?(\p{Currency_Symbol})?\s?($cardinal_re)?\s?($currency_qr)?(?:s)?($keyword_qr)?(?:$into_qr|$vs_qr|\/|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?($keyword_qr)?\??$/i;
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
 
@@ -134,7 +135,7 @@ handle query_lc => sub {
 
     if(/$guard/) {
 
-        my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || $3 || '', $2, $4 || '', $5 || '', $6 || '' , $7 || '', $8 || '');
+        my ($fromSymbol, $amount, $cardinal, $from, $currencyKeyword, $alt_amount, $to, $toSymbol) = ($1 || $3 || '', $2, $4 || '', $5 || '', $6 || '', $7 || '', $8 || '', $9 || '');
 
 
         if ($from eq '' && $fromSymbol) {
@@ -145,8 +146,8 @@ handle query_lc => sub {
             $to = $currencyCodes->{ord($toSymbol)};
         }
         
-        # if only a currency symbol is present, then bail.
-        return if ($amount eq '' && $to eq '' && exists($currHash{$from}));
+        # if only a currency symbol is present without "currency" keyword, then bail.
+	return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
 
         my $styler = number_style_for($amount);
         return unless $styler;
