@@ -1,14 +1,9 @@
 package DDG::Spice::IPLStandings;
-
-# ABSTRACT: Write an abstract here
-
-# Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
-# to instant answer development
+# ABSTRACT: returns the indian premier league point table.
 
 use DDG::Spice;
 use strict;
 use warnings;
-use Data::Dumper;
 
 spice is_cached => 1;
 spice proxy_cache_valid => '200 5m';
