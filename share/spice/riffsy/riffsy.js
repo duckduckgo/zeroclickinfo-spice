@@ -15,7 +15,7 @@
             data: api_result.results,
             view: 'Images',
             meta: {
-                sourceName: 'Riffsy',
+                sourceName: 'Tenor',
                 sourceUrl: api_result.weburl,
             },
             normalize: function(item) {
