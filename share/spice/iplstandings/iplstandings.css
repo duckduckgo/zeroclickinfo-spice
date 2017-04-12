@@ -1,0 +1,28 @@
+.zci--iplstandings .zci__table {
+    margin-bottom: 2px;
+}
+
+.zci--iplstandings .zci__table__tr {
+    border-bottom: 1px solid #dedede;
+}
+
+.zci--iplstandings .zci__table__tr:last-of-type {
+    border-bottom: none;
+}
+
+.zci--iplstandings .zci__table__tr td {
+    padding: 2px 0;
+}
+    .is-mobile .zci--iplstandings .zci__table__tr td {
+        font-size: 75%;
+    }
+
+.zci--iplstandings .zci__table__tr th,
+.zci--iplstandings .zci__table__tr td {
+    padding-right: 15px;
+}
+    .is-mobile .zci--iplstandings .zci__table__tr th,
+    .zci--iplstandings .zci__table__tr td {
+        padding-right: 10px;
+    }
+
