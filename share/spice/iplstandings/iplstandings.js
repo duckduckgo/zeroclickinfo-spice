@@ -1,8 +1,3 @@
-
-var icons = {
-    'SRH':''
-}
-
 (function (env) {
     "use strict";
 
