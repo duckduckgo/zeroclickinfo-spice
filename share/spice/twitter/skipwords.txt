@@ -7,5 +7,9 @@ company
 about
 signup
 login
-app
+app(s)?
 download
+make
+open
+help
+setting(s)?

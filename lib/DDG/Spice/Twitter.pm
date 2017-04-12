@@ -6,7 +6,11 @@ use DDG::Spice;
 
 spice to => 'https://duckduckgo.com/tw.js?user=$1&callback={{callback}}&current=1';
 spice proxy_cache_valid => '200 1h';
-triggers query => qr/^(?:twitter\s)?@([a-z0-9_]+)$|^twitter\s([a-z0-9_]+)$|^([a-z0-9_]+)\s(?:twitter)?$|^@([a-z0-9_]+)\s(?:twitter)?$/i;
+
+my $grammar = qr/(?:on)?(?:at)?/io;
+my $other = qr/(?:user)?(?:account)?(?:id)?/io;
+
+triggers query => qr/^(?:twitter\s)?(?:$other\s)?@([a-z0-9_]+)$|^twitter\s(?:$other\s)?([a-z0-9_]+)$|^([a-z0-9_]+)\s(?:$other\s)?(?:$grammar\s)?(?:twitter)$|^@([a-z0-9_]+)\s(?:$other\s)?(?:$grammar\s)?(?:twitter)?$/i;
 
 # skip words from file
 my $skip = join "|", share('skipwords.txt')->slurp(chomp => 1);

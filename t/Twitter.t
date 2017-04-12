@@ -25,20 +25,20 @@ ddg_spice_test(
         caller => 'DDG::Spice::Twitter',
     ),
     
-    'twitter @nibnalin' => test_spice(
-        '/js/spice/twitter/nibnalin',
+    'twitter account @duckduckgo' => test_spice(
+        '/js/spice/twitter/duckduckgo',
         call_type => 'include',
         caller => 'DDG::Spice::Twitter',
     ),
     
-    '@nibnalin twitter' => test_spice(
-        '/js/spice/twitter/nibnalin',
+    '@duckduckgo on twitter' => test_spice(
+        '/js/spice/twitter/duckduckgo',
         call_type => 'include',
         caller => 'DDG::Spice::Twitter',
     ),
     
-    'nibnalin twitter' => test_spice(
-        '/js/spice/twitter/nibnalin',
+    'duckduckgo id at twitter' => test_spice(
+        '/js/spice/twitter/duckduckgo',
         call_type => 'include',
         caller => 'DDG::Spice::Twitter',
     ),
@@ -53,7 +53,10 @@ ddg_spice_test(
     'twitter search' => undef,
     'twitter app' => undef,
     'search twitter' => undef,
-    '@random string' => undef
+    '@random string' => undef,
+    'account settings twitter' => undef,
+    'twitter settings' => undef,
+    'make account twitter' => undef
 );
 
 done_testing;
