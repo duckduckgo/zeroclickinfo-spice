@@ -8,8 +8,20 @@ DDG.require('maps',function(){
         if (DDG.opensearch.installed.experiment === 'map_module' && DDG.opensearch.installed.variant === 'a') {
             // if top result returned doesn't have high relevance,
             // the rest won't either so spice should fail.
-            if (response.features[0].relevance < 0.6 && !(response.features[0].place_name && DDG.isRelevant(response.features[0].place_name.toLowerCase(), skipArray))) {
-                return Spice.failed('maps_maps');
+            if (response.features[0].relevance < 0.6) {
+                if ((response.features[0].place_name && DDG.isRelevant(response.features[0].place_name.toLowerCase(), skipArray))) {
+                    // if relevance < .6 but DDG.isRelevant returns true,
+                    // only allow first result through (since isRelevant
+                    // only looks at the first result)
+                    response.features = [response.features[0]];
+                } else {
+                    return Spice.failed('maps_maps');
+                }
+            } else {
+                // filter out results with < 0.6 relevance
+                response.features = response.features.filter(function(el) {
+                    return el.relevance > 0.6;
+                });
             }
 
             return Spice.add({
