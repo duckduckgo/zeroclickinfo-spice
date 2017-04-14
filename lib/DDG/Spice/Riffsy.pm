@@ -1,6 +1,6 @@
 package DDG::Spice::Riffsy;
 
-# ABSTRACT: Search Riffsy (http://www.riffsy.com) for animated GIFs.
+# ABSTRACT: Search Tenor (https://www.tenor.co/) for animated GIFs. Note: Previously called Riffsy.
 use DDG::Spice;
 use utf8;
 
