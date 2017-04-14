@@ -21,7 +21,7 @@
             name: "Answer",
             data: api_result,
             meta: {
-                sourceUrl: "https://unshorten.me",
+                sourceUrl: "https://unshorten.me?url=" + decodeURIComponent(query),
                 sourceName: "unshorten.me"
             },
             templates: {
