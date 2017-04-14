@@ -28,7 +28,8 @@ DDG.require('maps',function(){
                 data: response.features,
                 id: 'maps_maps',
                 name: 'maps',
-                model: 'Place'
+                model: 'Place',
+                allowMultipleCalls: true
             });
         }
 
