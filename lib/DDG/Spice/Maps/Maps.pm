@@ -20,6 +20,11 @@ my @all_triggers = ('directions');
 # - "directions from leeds to skipton uk" (matches "skipton uk")
 my $directions_qr = qr/^(\w+\s)?directions.*\bto\b/;
 
+spice upstream_timeouts => +{ connect => '100ms',
+                              send => '100ms',
+                              read => '1000ms'
+                          }
+
 triggers any => @all_triggers;
 
 handle query_lc => sub {
