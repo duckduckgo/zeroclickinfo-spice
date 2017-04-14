@@ -23,7 +23,7 @@ my $directions_qr = qr/^(\w+\s)?directions.*\bto\b/;
 spice upstream_timeouts => +{ connect => '100ms',
                               send => '100ms',
                               read => '1000ms'
-                          }
+                          };
 
 triggers any => @all_triggers;
 
