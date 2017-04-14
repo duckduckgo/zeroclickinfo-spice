@@ -20,6 +20,13 @@
 
         var details_url = "https://www.packagetrackr.com/track/" + [api_result.c, api_result.n].join("/");
 
+        var carrier = carriers[api_result.c];
+        if (!carrier) {
+            return Spice.failed('package_tracking');
+        }
+        var carrierName = carrier.name;
+        var carrierUrl = carrier.url || false;
+
         DDG.require('moment.js', function() {
             Spice.add({
                 id: "package_tracking",
@@ -58,7 +65,11 @@
                     group: 'icon',
                     options: {
                         content: 'record',
-                        moreAt: true
+                        moreAt: true,
+                        moreText: carrierUrl ? {
+                            href: carrierUrl.replace("{{code}}", api_result.n),
+                            text: "Track via " + carrierName
+                        } : false
                     },
                     variants: {
                         iconImage: 'medium'
@@ -75,51 +86,78 @@
     };
 
     var carriers = {
-        "a1-international": "A1 International",
-        "aramex-express": "Aramex Express",
-        "australia-post": "Australia Post",
-        "canada-post": "Canada Post",
-        "ceva": "CEVA",
-        "china-ems": "China EMS",
-        "china-post": "China Post",
-        "dhl": "DHL",
-        "dhl-express": "DHL Express",
-        "dhl-ecommerce-us": "DHL eCommerce US",
-        "dhl-deutsche-post": "Deutsche Post DHL",
-        "dpd-de": "DPD Germany",
-        "dynamex": "Dynamex",
-        "ensenda": "Ensenda",
-        "fedex": "FedEx",
-        "fedex-express": "FedEx Express",
-        "fedex-freight": "FedEx Freight",
-        "fedex-smart-post": "FedEx SmartPost",
-        "gso": "GSO",
-        "hongkong-post": "Hongkong Post",
-        "india-post": "India Post",
-        "japan-post": "Japan Post",
-        "lasership": "LaserShip",
-        "prestige": "Prestige",
-        "ontrac": "OnTrac",
-        "osm": "OSM",
-        "parcelforce": "Parcelforce",
-        "post-danmark": "Post Danmark",
-        "posten-norge": "Posten Norge",
-        "postnord-sverige": "PostNord Sverige",
-        "purolator": "Purolator",
-        "royal-mail": "Royal Mail",
-        "spee-dee": "Spee Dee Delivery",
-        "thailand-post": "Thailand Post",
-        "tnt": "TNT",
-        "tnt-express": "TNT Express",
-        "tnt-express-uk": "TNT Express UK",
-        "toll-priority": "Toll Priority",
-        "ups": "UPS",
-        "ups-packages": "UPS Packages",
-        "ups-freight": "UPS Freight",
-        "ups-mail-innovations": "UPS Mail Innovations",
-        "postal": "Global Postal",
-        "usps": "USPS",
-        "yodel": "Yodel Domestic",
-        "yrc": "YRC Freight"
+        "a1-international": { name: "A1 International" },
+        "aramex-express": { name: "Aramex Express" },
+        "australia-post": { name: "Australia Post" },
+        "canada-post": { name: "Canada Post" },
+        "ceva": { name: "CEVA" },
+        "china-ems": { name: "China EMS" },
+        "china-post": { name: "China Post" },
+        "dhl": { name: "DHL" },
+        "dhl-express": { name: "DHL Express" },
+        "dhl-ecommerce-us": { name: "DHL eCommerce US" },
+        "dhl-deutsche-post": { name: "Deutsche Post DHL" },
+        "dpd-de": { name: "DPD Germany" },
+        "dynamex": { name: "Dynamex" },
+        "ensenda": { name: "Ensenda" },
+        "fedex": {
+            name: "FedEx",
+            url: 'https://www.fedex.com/apps/fedextrack/?tracknumbers={{code}}&action=track'
+        },
+        "fedex-express": {
+            name: "FedEx",
+            url: 'https://www.fedex.com/apps/fedextrack/?tracknumbers={{code}}&action=track'
+        },
+        "fedex-freight": {
+            name: "FedEx",
+            url: 'https://www.fedex.com/apps/fedextrack/?tracknumbers={{code}}&action=track'
+        },
+        "fedex-smart-post": {
+            name: "FedEx",
+            url: 'https://www.fedex.com/apps/fedextrack/?tracknumbers={{code}}&action=track'
+        },
+        "gso": { name: "GSO" },
+        "hongkong-post": { name: "Hongkong Post" },
+        "india-post": { name: "India Post" },
+        "japan-post": { name: "Japan Post" },
+        "lasership": { name: "LaserShip" },
+        "prestige": { name: "Prestige" },
+        "ontrac": { name: "OnTrac" },
+        "osm": { name: "OSM" },
+        "parcelforce": { name: "Parcelforce" },
+        "post-danmark": { name: "Post Danmark" },
+        "posten-norge": { name: "Posten Norge" },
+        "postnord-sverige": { name: "PostNord Sverige" },
+        "purolator": { name: "Purolator" },
+        "royal-mail": { name: "Royal Mail" },
+        "spee-dee": { name: "Spee Dee Delivery" },
+        "thailand-post": { name: "Thailand Post" },
+        "tnt": { name: "TNT" },
+        "tnt-express": { name: "TNT Express" },
+        "tnt-express-uk": { name: "TNT Express UK" },
+        "toll-priority": { name: "Toll Priority" },
+        "ups": {
+            name: "UPS",
+            url: "https://wwwapps.ups.com/WebTracking/processInputRequest?TypeOfInquiryNumber=T&InquiryNumber1={{code}}"
+        },
+        "ups-packages": {
+            name: "UPS",
+            url: "https://wwwapps.ups.com/WebTracking/processInputRequest?TypeOfInquiryNumber=T&InquiryNumber1={{code}}"
+        },
+        "ups-freight": {
+            name: "UPS",
+            url: "https://wwwapps.ups.com/WebTracking/processInputRequest?TypeOfInquiryNumber=T&InquiryNumber1={{code}}"
+        },
+        "ups-mail-innovations": {
+            name: "UPS",
+            url: "https://wwwapps.ups.com/WebTracking/processInputRequest?TypeOfInquiryNumber=T&InquiryNumber1={{code}}"
+        },
+        "postal": { name: "Global Postal" },
+        "usps": {
+            name: "USPS",
+            url: "https://tools.usps.com/go/TrackConfirmAction.action?tLabels={{code}}"
+        },
+        "yodel": { name: "Yodel Domestic" },
+        "yrc": { name: "YRC Freight" }
     };
 }(this));
