@@ -67,7 +67,7 @@
                         content: 'record',
                         moreAt: true,
                         moreText: carrierUrl ? {
-                            href: carrierUrl.replace("{{code}}", api_result.n),
+                            href: carrierUrl.replace("{{code}}", encodeURIComponent(api_result.n)),
                             text: "Track via " + carrierName
                         } : false
                     },
