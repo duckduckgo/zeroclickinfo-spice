@@ -124,7 +124,10 @@
         "prestige": { name: "Prestige" },
         "ontrac": { name: "OnTrac" },
         "osm": { name: "OSM" },
-        "parcelforce": { name: "Parcelforce" },
+        "parcelforce": {
+            name: "Parcelforce",
+            url: "http://www.parcelforce.com/track-trace?trackNumber={{code}}"
+        },
         "post-danmark": { name: "Post Danmark" },
         "posten-norge": { name: "Posten Norge" },
         "postnord-sverige": { name: "PostNord Sverige" },
