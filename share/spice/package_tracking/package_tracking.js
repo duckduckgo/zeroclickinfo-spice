@@ -18,13 +18,12 @@
                 break;
         }
 
-        var details_url = "https://www.packagetrackr.com/track/" + [api_result.c, api_result.n].join("/");
+        var details_url = "https://www.packagetrackr.com/track/" + [api_result.c, api_result.n].join("/"),
+            carrier = carriers[api_result.c];
 
-        var carrier = carriers[api_result.c];
         if (!carrier) {
             return Spice.failed('package_tracking');
         }
-        var carrierName = carrier.name;
         var carrierUrl = carrier.url || false;
 
         DDG.require('moment.js', function() {
@@ -68,7 +67,7 @@
                         moreAt: true,
                         moreText: carrierUrl ? {
                             href: carrierUrl.replace("{{code}}", encodeURIComponent(api_result.n)),
-                            text: "Track via " + carrierName
+                            text: "Track via " + carrier.name
                         } : false
                     },
                     variants: {
