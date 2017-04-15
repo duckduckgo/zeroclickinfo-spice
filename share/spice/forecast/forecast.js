@@ -165,6 +165,7 @@
           height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
           top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
         };
+        dailyObj[i].daysourceUrl = 'https://darksky.net/'+api_result.latitude+','+api_result.longitude+'/'+tmp_date.format("YYYY-MM-DD");
 
         if (i == 0) {
             dailyObj[i].day = 'Today';
