@@ -1,0 +1,7 @@
+#spice_songkick_artists .songkick-artist {
+  margin: 4px 0;
+}
+
+#spice_songkick_artists .songkick-artist:first-child {
+  margin-top: 0;
+}
