@@ -1,0 +1,18 @@
+<p>{{#if ended}}
+Was available 
+{{else}}
+Available
+{{/if}}
+on {{network}}{{#if country}} in {{country}}{{/if}}
+{{#if is_daily}}
+	at {{air_time}} daily
+{{else}}
+	{{#if air_day}}
+		at {{air_time}} on {{air_day}}s
+	{{/if}}
+{{/if}}.</p>
+{{#each genres}}
+<a href="http://trakt.tv/shows/popular/{{this}}" class="btn btn--primary">
+	{{this}}
+</a>
+{{/each}}
