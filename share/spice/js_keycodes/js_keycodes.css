@@ -1,0 +1,33 @@
+.zci--js_keycodes table {
+    background-color: #fafafa;
+}
+
+.zci--js_keycodes tr {
+    border-bottom: 1px solid #dedede;
+}
+
+.zci--js_keycodes tr:last-of-type {
+    border-bottom: none;
+}
+
+.zci--js_keycodes th {
+    font-weight: bold;
+}
+
+.zci--js_keycodes th,
+.zci--js_keycodes td {
+    padding: 2px 15px;
+}
+
+.zci--js_keycodes th.with-separator,
+.zci--js_keycodes td.with-separator {
+    border-right: 1px solid #dedede;
+}
+
+.zci--js_keycodes .keycode-input {
+    display: block;
+}
+
+.zci--js_keycodes .show-keycodes {
+    margin: 1em 0;
+}

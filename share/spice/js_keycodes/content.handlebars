@@ -1,0 +1,26 @@
+{{#if result}}
+<p class="keycode-result">The keycode for <code>{{result.key}}</code> is: {{result.code}}</p>
+{{else}}
+<p class="keycode-result">Press a key in the textbox to check its keycode:</p>
+<input type="text" class="keycode-input"/>
+{{/if}}
+<p><em>Some keycodes vary based on the user's browser, OS and keyboard. You may want to doublecheck the values at the MDN link below.</em></p>
+<a class="btn btn--primary show-keycodes" href="#">Show all codes</a>
+
+{{! hidden when the page first renders }}
+<table class="is-hidden all-keycodes">
+    <tr>
+        <th>Key name</th>
+        <th class="with-separator">Code</th>
+        <th>Key name</th>
+        <th class="with-separator">Code</th>
+        <th>Key name</th>
+        <th>Code</th>
+    </tr>
+{{#each codes}}
+    {{#tr}}
+        <td>{{key}}</td>
+        <td {{{separator}}}>{{code}}</td>
+    {{/tr}}
+{{/each}}
+</table>
