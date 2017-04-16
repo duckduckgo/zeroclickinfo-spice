@@ -1,0 +1,13 @@
+.zci--lastfm_artist_album .tile__body {
+    padding-bottom: 0.5em;
+}
+
+.zci--lastfm_artist_album .tile__title {
+    height: 1.25em;
+    margin-bottom: 0 !important;
+    white-space: nowrap;
+}
+
+.zci--lastfm_artist_album .tile__media--pr .tile__media__img {
+    width: 80%;
+}
