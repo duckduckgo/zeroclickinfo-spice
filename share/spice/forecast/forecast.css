@@ -195,7 +195,7 @@
 	padding-left: 0.6em;
 	white-space: nowrap;
 	overflow: hidden;
-	overflow-x: auto;
+	/*overflow-x: auto;*/
 	min-height: 150px;
 	-webkit-overflow-scrolling: touch;
 	margin-bottom: -0.5em;
