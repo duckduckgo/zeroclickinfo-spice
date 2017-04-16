@@ -1,0 +1,17 @@
+#zero_click_wrapper #ddg_traffic_stats_graph {
+  height: 400px;
+  width: 636px;
+}
+
+#zero_click_wrapper #ddg_traffic_stats_graph_annotations p {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#zero_click_wrapper #ddg_traffic_stats_graph_annotations .inner {
+  display: none;
+}
+
+#zero_click_wrapper #ddg_traffic_stats_graph .dygraph-axis-label.dygraph-axis-label-y {
+  font-size: 10px;
+}
