@@ -1,0 +1,11 @@
+<div class="tx-clr--dk">
+    Artist: <span class="tx-clr--dk2">{{artist.name}}</span>
+</div>
+{{#if album.title}}
+<div class="tx-clr--dk">
+    Album:  <span class="tx-clr--dk2">{{album.title}}</span>
+</div>
+{{/if}}
+<div class="tx-clr--dk">
+    Listen: {{#listen artist.name name}}<a href="{{bang}}">{{title}}</a>{{/listen}}
+</div>
