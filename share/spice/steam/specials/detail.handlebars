@@ -1,0 +1,31 @@
+<div class="detail__media  detail__media--specials">
+{{#each ss}}
+    <a href="{{path_thumbnail}}"><img src="{{imageProxy this.path_thumbnail}}" height="110" width="160" class="screenshots"></a>
+{{/each}}
+</div>
+<div class="detail__body  detail__body--specials">
+    <div class="detail__body__content">
+        <h5 class="game__title"><a href="{{url}}">{{name}}</a></h5> 
+            {{#if metacritic}} 
+                <div class="metascore__container">
+                    <div class="metascore__text">Metascore: </div>
+                    <div class="metascorebox" style="background-color:{{coloreval metacritic.score}};">
+                        <div class="metascorebox__content">{{metacritic.score}}</div>
+                    </div>
+                </div>
+            {{/if}}
+    <div class="detail__content">
+        <p>
+            {{#if genre}}
+                <span class="key__color">Genre:</span> {{genre}} <br>
+                    <span class="key__color">Supported Platforms: </span>Windows: {{booleval platforms.windows}}  
+                <span class="detail__separator"> | </span>
+                    Mac: {{booleval platforms.mac}}    
+                <span class="detail__separator"> | </span>
+                    Linux: {{booleval platforms.linux}} <br>  
+            {{/if}}
+            <span class="key__color">Original price: </span>${{convertToDollars initial}} <br> <span class="key__color">Final price: </span>${{convertToDollars final}} <br> <span class="discount">Savings: {{discount_percent}}%</span>
+        </p>
+    </div>
+</div>
+</div>
