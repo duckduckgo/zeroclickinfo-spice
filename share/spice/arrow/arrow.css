@@ -1,0 +1,9 @@
+//changed to octopart css
+.zci--arrow .btn__datasheet {
+    margin-right: 2px;
+    background-color: #e5e5e5;
+}
+
+.is-mobile .zci--arrow .detail__body.detail__body--pr {
+    padding-top: 1em;
+}
