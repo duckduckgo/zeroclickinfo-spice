@@ -42,9 +42,13 @@ var ddg_spice_dictionary = {
     $el: null,
 
     render: function(definitions) {
-        var word = definitions[0].word;
+        var word = definitions[0].word,
+            q = DDG.get_query(),
+            r = new RegExp(word, 'i');
 
-        var q = DDG.get_query();
+        if (!q.match(r)) {
+            return Spice.failed('dictionary_definition');
+        }
 
         Spice.add({
             id: 'dictionary_definition',
