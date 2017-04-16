@@ -1,0 +1,11 @@
+.zci--is_gdexpander input.tag {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    line-height: 1;
+    font-size: 1.25em;
+    vertical-align: middle;
+    width: 20em;
+}
