@@ -1,0 +1,24 @@
+.zci--mbta .tile {
+    min-width: 15em;
+}
+
+.zci--mbta .tile--mbta {
+    text-align: center;
+    width: 13em;
+}
+
+.is-mobile .zci--mbta .tile--mbta {
+    width: 12.25em;
+}
+
+.tile--mbta .mbta__time {
+    font-size: 2.3em;
+    color: #333;
+    font-weight: 300;
+}
+
+.tile--mbta .mbta__details {
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
