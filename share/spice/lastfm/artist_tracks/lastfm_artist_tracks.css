@@ -1,0 +1,5 @@
+.zci--lastfm_artist_tracks .tile__title {
+    height: 1.25em;
+    margin-bottom: 0 !important;
+    white-space: nowrap;
+}
