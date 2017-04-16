@@ -1,0 +1,8 @@
+.captext {
+	 text-transform: capitalize;
+}
+
+td {
+	padding: 20px;
+	vertical-align: top;
+}

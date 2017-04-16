@@ -1,0 +1,47 @@
+<table class='bigtable'>
+	<tr>
+		<td>
+			<h3>
+				#{{national_id}} - {{name}}
+			</h3>
+		</td>
+		<td>
+			<h5>
+				Type
+			</h5>
+		</td>
+		<td>
+			<h5>
+				Abilities
+			</h5>
+		</td>
+		<td>
+			<h5>Base Stats</h5>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="http://pokeapi.co/media/img/{{national_id}}.png">
+		</td>
+		<td>
+			{{#each types}}
+				<p class='captext'><b>{{name}}</b></p>
+			{{/each}}
+		</td>
+		<td>
+			{{#each abilities}}
+				<p class='captext'><b>{{name}}</b></p>
+			{{/each}}
+		</td>
+		<td>
+			<table id='basestats'>
+			<tr><td><b>HP</b></td><td>{{hp}}</td></tr>
+			<tr><td><b>Attack</b></td><td>{{attack}}</td></tr>
+			<tr><td><b>Defense</b></td><td>{{defense}}</td></tr>
+			<tr><td><b>Special Attack</b></td><td>{{sp_atk}}</td></tr>
+			<tr><td><b>Special Defense</b></td><td>{{sp_def}}</td></tr>
+			<tr><td><b>Speed</b></td><td>{{speed}}</td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
