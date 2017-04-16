@@ -1,0 +1,37 @@
+#spice_lobbying table {
+    width:100%;
+    margin:5px;
+}
+
+#spice_lobbying th {
+    vertical-align:bottom;
+    text-align:left;
+    font-size:83.3%;
+    font-style:italic;
+    padding-left:3px;
+}
+
+#spice_lobbying td {
+    padding:2px;
+    padding-right: 4px;
+}
+
+#spice_lobbying .hiddenRows {
+    display: none;
+}
+
+/* hide the type column on small screens */
+@media screen and (max-width: 600px){
+    #spice_lobbying td.lobbying_type {display: none;}
+    #spice_lobbying th.lobbying_type {display: none;}
+    #spice_lobbying td { padding:1px; padding-right: 2px;}
+
+}
+
+/* hide the lobbying column on even smaller screens */
+@media screen and (max-width: 400px){
+    #spice_lobbying td.lobbying_amt {display: none;}
+    #spice_lobbying th.lobbying_amt {display: none;}
+    #spice_lobbying td { padding:1px; padding-right: 2px;}
+
+}
