@@ -1,0 +1,27 @@
+#spice_dogecoin .spice_pane {
+    display: inline-block;
+    width: 43%;
+    vertical-align: top;
+    padding: 2.2% 2% 2.2% 4%;
+    margin: 0.5%;
+    background-color: #F5F5F5;
+    float: left;
+    border-radius: 3px;
+}
+
+#spice_dogecoin .spice_pane span {
+    font-weight: bold;    
+}
+
+#spice_dogecoin .spice_pane_right {
+    float: right;
+}
+
+#spice_dogecoin span.title {
+    font-size: 15px;
+    padding-right: 15%
+}
+
+#spice_dogecoin span.price {
+    font-size: 20px;
+}
