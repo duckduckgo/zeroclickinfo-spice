@@ -1,0 +1,20 @@
+.tile--gfy_cat .tile--gfy_cat__section {
+    display:inline-table;
+    margin-left:1em;
+}
+.tile--gfy_cat .tile--gfy_cat__section .tile--gfy_cat__rating {
+    min-width: 5em;
+    max-width: 10em;
+}
+.tile--gfy_cat .tile--gfy_cat__section .tile--gfy_cat__rating .tile--gfy_cat__rating_background {
+    background-color: #ddd;
+    height: 0.2em;
+    margin: 0.4em 0;
+}
+.tile--gfy_cat .tile--gfy_cat__section .tile--gfy_cat__rating .tile--gfy_cat__rating_text{
+    margin-left: 1em;
+}
+.tile--gfy_cat .tile--gfy_cat__section .tile--gfy_cat__rating .tile--gfy_cat__rating_background .tile--gfy_cat__rating_likes {
+    height: 100%;
+    background-color: #de5833;
+}
