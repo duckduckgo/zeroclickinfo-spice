@@ -1,0 +1,10 @@
+	<p>
+		<img class="ri" src="/iu/?u={{{makeImage id image}}}" />
+		{{#iterateBadges badges}}
+			<img src="{{{badge this}}}" class="badge" alt="{{{this}}}" title="{{{this}}}" />
+		{{/iterateBadges}}
+		{{#if rankingValue}}
+		<span>{{{format rankingValue}}}</span>
+		{{/if}}
+	</p>
+	<span>{{{condense title maxlen="50"}}}</span>

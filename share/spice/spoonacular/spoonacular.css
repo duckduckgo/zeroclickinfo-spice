@@ -1,0 +1,22 @@
+#spice_spoonacular #ddgcarousel li.ddgc_item img.ri {
+  margin: 0px;  
+  float: left;
+}
+
+#spice_spoonacular #ddgcarousel li.ddgc_item img.badge {
+  float: left;
+}
+
+
+#spice_spoonacular #ddgcarousel li.ddgc_item p {
+  position: relative;
+}
+
+#spice_spoonacular #ddgcarousel li.ddgc_item p > span {
+  position: absolute;
+  top: 68px;
+  width: 80px;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 11px;
+}
