@@ -1,34 +1,43 @@
-.brainy__quote--container {
+.zci--brainy_quote .container {
     overflow: hidden;
-    margin-left: -2.8em;
+    margin-left: 0.02em;
+    font-size: 1.5em;
+    font-weight: 300;
+
 }
 
-.brainy__quote {
-    quotes: "“" "”";
-    font-size: 1.5em;
+.zci--brainy_quote .left__quote {
+    margin-top: -0.25em;
+    margin-right: 0.1em;
+    margin-left: -0.5em;
+    float: left;
+    font-size: 5.5em;
     font-weight: 300;
 }
 
-.zci--brainy_quote .zci__body {
-    margin-left: -2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    padding-left: 2.8em;
-}
 
-.brainy__quote:before {
-    color: #D4D4D4;
-    content: open-quote;
-    float: left;
-    font-size: 4em;
+.zci--brainy_quote .right__quote {
+    color: #d0d0d0;
     margin-top: -0.25em;
-    margin-right: 0.1em;
+    margin-left: 0.1em;
+    font-size: 4em;
+    position: absolute;
 }
 
-.brainy__attribution {
+.zci--brainy_quote .subcontainer {
+    float: left;
+    max-width: 80%;
+}
+
+.zci--brainy_quote .zci__body {
+    padding-bottom: 0.5em;
+}
+
+.zci--brainy_quote .attribution {
     color: #999;
     float: left;
-    margin-top: 5px;
+    margin-top: 0.25em;
+    margin-bottom: 0.5em;
 }
 
 .zci--brainy_quote .zci__content.chomp {
