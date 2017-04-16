@@ -1,0 +1,77 @@
+/*
+    Document   : zeroclickinfo-spice/share/spice/hotels/hotels.css
+    Created on : 2015-02-17 01:13 PM
+    Author     : mirceasoaica
+    Description:
+    Purpose of the stylesheet follows.
+    To change this template use Tools | Templates.
+*/
+
+root {
+    display: block;
+}
+
+.hotels-container h5 {
+    color: #000;
+}
+
+.hotels-container a {
+    color: #1168CE;
+}
+
+.hotels-container a:hover {
+    text-decoration: underline;
+}
+
+.hotels-container .hotel {
+    float: left;
+    width: 290px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.hotels-container .hotel p {
+    line-height: 18px;
+    font-size: 13px;
+    color: #000;
+}
+
+.hotels-container p.title {
+    color: #000;
+    font-size: 16px;
+    padding: 0;
+}
+
+.hotels-container .hotel .img {
+    width: 100px;
+    float: left;
+    padding: 0 10px 5px 0;
+}
+
+.hotels-container p.price {
+    display: block;
+    clear: both;
+}
+
+.hotels-container p.price .from {
+    color: #000;
+    font-size: 13px;
+}
+
+.hotels-container p.price .price {
+    color: #000;
+    font-size: 20px;
+}
+
+.hotels-container span.hotel-star {
+    display: inline-block;
+    background: url(http://www.treep.io/assets/images/star.png) no-repeat top left;
+    background-size: contain;
+    width: 10px;
+    height: 10px;
+    margin-bottom: 3px;
+}
+
+.hotels-container span.stars-block {
+    display: inline-block;
+}
