@@ -1,0 +1,46 @@
+.tile--ufc  .tile__media__img {
+    margin-top: 20px;
+}
+
+.tile--ufc  .tile__title {
+    text-align: center;
+    font-weight: 400;
+    display: table-cell;
+    width: 210px;
+    height: 1.5em;
+}
+
+.tile--ufc .tile__body {
+    padding-bottom: 20px;
+}
+
+.tile--ufc .tile__title__main {
+    max-height: 2.5em;
+    overflow: hidden;
+    display: block;
+}
+
+.tile--ufc tile__body.has-foot {
+    padding-bottom: 4.37em;
+}
+
+.tile--ufc .tile__media {
+    height: 10em;
+}
+
+.tile--ufc .tile__body {
+    padding: 0em;
+}
+
+.tile--ufc .tile__foot {
+    max-height: 3.5em;
+    position: relative;
+}
+
+.tile--ufc .tile__body.has-foot {
+    padding-bottom: 1em;
+}
+
+.tile--ufc .info {
+    text-align: center;
+}
