@@ -1,0 +1,19 @@
+/*
+  A few basics
+*/
+
+.zci--graphical_calculator .graphical-calculator--display svg.function-plot {
+  background-color: #f7f7f7;  /* $silver-light from DDG palette */
+}
+
+.zci--graphical_calculator .graphical-calculator--display g.axis text {
+     font: 1.4em sans-serif;
+}
+
+.zci--graphical_calculator .graphical-calculator--display g.inner-tip text {
+     font-size: 1.5em;
+}
+
+.zci--graphical_calculator .graphical-calculator--display text.title {
+  font-size: 2em;
+}
