@@ -1,0 +1,57 @@
+# news sites
+msnbc: http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml
+nyt: http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
+ny times: http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
+nytimes: http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
+the times: http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
+new york times: http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
+bbc: http://feeds.bbci.co.uk/news/rss.xml
+google news: http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&topic=h&num=10&output=rss
+cbc: http://www.cbc.ca/cmlink/1.394
+cbc news: http://www.cbc.ca/cmlink/1.394
+rt: http://www.rt.com/rss/news/
+sky news: http://feeds.skynews.com/feeds/rss/home.xml
+abc news: http://feeds.abcnews.com/abcnews/topstories
+e online: http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml
+eonline: http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml
+today: http://feeds.nbcnews.com/feeds/todaytopstories
+today news: http://feeds.nbcnews.com/feeds/todaytopstories
+
+# regions
+boston news: http://feeds.boston.com/boston/topstories
+ny daily news: http://feeds.nydailynews.com/nydnrss
+ny post: http://nypost.com/feed
+nypost: http://nypost.com/feed
+new york post: http://nypost.com/feed
+the post: http://nypost.com/feed
+chicago news: http://www.huffingtonpost.com/feeds/verticals/chicago/news.xml
+chicago tribune: http://www.chicagotribune.com/news/local/breaking/rss2.0.xml
+
+# generic queries:
+celebrity: http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml
+celebrity news: http://syndication.eonline.com/syndication/feeds/rssfeeds/topstories.xml
+
+# topic sites
+engadget: http://www.engadget.com/rss.xml
+hacker news: https://news.ycombinator.com/rss
+boingboing: http://boingboing.net/feed
+538: http://fivethirtyeight.com/features/feed/
+fivethirtyeight: http://fivethirtyeight.com/features/feed/
+
+# other
+clickhole: http://www.clickhole.com/feeds/rss
+
+# people
+nate silver: http://fivethirtyeight.com/contributors/nate-silver/feed/
+
+# these don't work with x.js
+#huffington: http://feeds.huffingtonpost.com/huffingtonpost/LatestNews
+#huffington post: http://feeds.huffingtonpost.com/huffingtonpost/LatestNews
+#the huffington post: http://feeds.huffingtonpost.com/huffingtonpost/LatestNews
+# fox news: http://feeds.feedburner.com/foxnews/latest
+#cbs news: http://www.cbsnews.com/rss/
+#usa today: http://www.usatoday.com/rss/
+#reuters: http://www.reuters.com/tools/rss
+#sf news: http://www.sfgate.com/rss/
+#bay area news: http://www.sfgate.com/rss/
+#san francisco news: http://www.sfgate.com/rss/
