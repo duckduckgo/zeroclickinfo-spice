@@ -1,0 +1,39 @@
+<div style="line-height:2 !important;">
+
+    <h2>{{title}} - {{description}}</h2>
+
+    <div>
+        <h3>Description</h3>
+
+        <code>
+            {{synopsis}}
+        </code>
+    </div>
+
+     {{#if params}}
+        <div>
+            <h3>Parameters</h3>
+
+            {{#each params}}
+                <b style="color:#369;">{{key}}</b>: {{value}}
+
+                <br />
+            {{/each}}
+        </div>
+    {{/if}}
+
+    <div>
+        <h3>Returned value</h3>
+
+        <p>
+            {{return}}
+        </p>
+    </div>
+
+    <br />
+
+    <div>
+        <a href="{{url}}" target="_new" alt="{{ref}}">View more at php.net</a>
+    </div>
+
+</div>
