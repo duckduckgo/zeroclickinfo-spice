@@ -93,6 +93,15 @@
             color: "#4495D4"
         }
     };
+    
+    function isGeneric(query){
+        for(var key in formulas){
+            if(query.match(key)){
+                return false;
+            }
+        }
+        return true;
+    }
 
     var shapes = {
         square: {
@@ -463,8 +472,10 @@
         parameter = shape.getParameter(query);
         if(DDG.isNumber(parameter)) //force array
             parameter = [parameter];
-
-        //loop through all formulas of this shape
+        
+        //loop through all formulas of this shape, or until we find a 
+        //formula for the current shape that is in the search string
+        var found_formula = false;
         for(i = 0, l = data.formulas.length; i < l; ++i){
             //get the formula symbol, color and format the name
             data.formulas[i].symbol = formulas[data.formulas[i].name].symbol;
@@ -476,6 +487,7 @@
 
             //if the formula is in the search string, print only this formula
             if(query.match(data.formulas[i].name, "i")){
+                found_formula = true;
                 //cleanup formulas
                 data.formulas = [data.formulas[i]];
                 //cleanup pairs
@@ -486,7 +498,10 @@
                 break;
             }
         }
-
+        //if the query is not generic fails if search string asks for a formula that does not belong to the shape
+        if(found_formula == false && isGeneric(query) == false)
+            return Spice.failed("geometry");
+        
         //if parameter(s) is / are defined print their values
         if(parameter !== null){
             data.parameter = [];
