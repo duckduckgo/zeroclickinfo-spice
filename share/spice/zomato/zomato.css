@@ -1,0 +1,6 @@
+.zci--zomato .tile--loc .tile__media__img {
+    max-width: 100% !important;
+}
+.zci--zomato .tile .tile__foot .stars .star:after {
+    color: #cb202d;
+}
