@@ -23,10 +23,14 @@ triggers startend => (
     "word cluster",
     "word graph",
     "twinword",
-    "levelpump"
+    "visual thesaurus"
 );
 
 triggers start => (
+    "another words for",
+    "another word for",
+    "synonyms for",
+    "synonym for",
     "similar to",
     "relate to",
     "related to",
