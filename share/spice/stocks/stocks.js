@@ -13,6 +13,14 @@
                 id: 'stocks',
                 name: 'Stock',
                 data: api_result,
+                signal: function (){
+                   var exceptions = ['irc', 'guid']
+                      for each (var x in exceptions)
+                        if (!DDG.get_query().search(x)){
+                            return 'low';
+                        }
+                            return 'high';
+                        }, 
                 meta: {
                     sourceName: 'NASDAQ',
                     sourceUrl: url
