@@ -1,8 +1,12 @@
 .zci--in_theaters .tomato--icon {
-    padding: 4px;
     position: relative;
     top: 10px;
     max-width: 26px;
+}
+
+.in_theaters--runtime{
+    display: block;
+    margin-top: 20px;
 }
 
 .zci--in_theaters .c-detail__title {
@@ -30,6 +34,7 @@
     display: block;
 	font-size: 0.9em;
 	padding-top: 1.5em;
+    padding-bottom: 20px;
 }
 	.zci--in_theaters .c-product__subtitle .movie--runtime {
 		padding-top: 0.5em;
@@ -42,6 +47,7 @@
 .zci--in_theaters .movie--critics_score {
     display: block;
     font-size: 1.3em;
+    margin-top: 20px;
 }
 
 .zci--in_theaters .movie--critics_score img {
@@ -57,6 +63,9 @@
 
 .zci--in_theaters .copyright {
     font-size: 0.9em;
+    margin-top: 20px;
+    margin-bottom: -27px;
+    display: block;
 }
 
 .zci--in_theaters .c-product__media,
