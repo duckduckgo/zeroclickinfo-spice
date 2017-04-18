@@ -23,16 +23,14 @@
                 return {
                     // customize as needed for your chosen template
                     title: item.name,
-                    subtitle: item.name,
-                    targetUrl: item.name
+                    description: item.name,
+                    url: "https://scad.ai"
                 };
             },
             templates: {
-                group: 'your-template-group',
-                options: {
-                    content: Spice.mo.content,
-                    moreAt: true
-                }
+                group: 'text',
+                item_detail: false,
+                detail: false       
             }
         });
     };

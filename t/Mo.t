@@ -17,9 +17,13 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Mo'
     ),
+    'learn more about artificial intelligence' => test_spice(
+        '/js/spice/mo?query=artificial+intelligence',
+        caller => 'DDG::Spice::Mo'
+    ),
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'learn more about ddo1' => undef,
 );
 
 done_testing;
