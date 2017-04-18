@@ -13,12 +13,12 @@ ddg_spice_test(
     # - primary_example_queries
     # - secondary_example_queries
     'learn more about engineering' => test_spice(
-        '/js/spice/mo?query=engineering',
+        '/js/spice/mo/engineering',
         call_type => 'include',
         caller => 'DDG::Spice::Mo'
     ),
     'learn more about artificial intelligence' => test_spice(
-        '/js/spice/mo?query=artificial+intelligence',
+        '/js/spice/mo/artificial+intelligence',
         caller => 'DDG::Spice::Mo'
     ),
     # Try to include some examples of queries on which it might
