@@ -18,12 +18,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Mo'
     ),
     'learn more about artificial intelligence' => test_spice(
-        '/js/spice/mo/artificial+intelligence',
+        '/js/spice/mo/artificial%20intelligence',
         caller => 'DDG::Spice::Mo'
-    ),
+    )
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
-    'learn more about ddo1' => undef,
+    #'learn more about ddo1' => undef,
 );
 
 done_testing;
