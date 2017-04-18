@@ -1,5 +1,5 @@
+{{#if isCurrent}}
 <div class="tile tile--s" data-link="{{meta.sourceUrl}}">
-    {{#if isCurrent}}
     <div class="fe_currently  text--secondary{{#if alerts}}  alert{{/if}}">
 		<h5 class="fe_label  text--primary"><a href="{{{meta.sourceUrl}}}">Right Now:</a></h5>
 		<div class="fe_current-wrap">
@@ -17,7 +17,9 @@
 			</div>
 		</div>
     </div>
-    {{else}}
+</div>
+{{else}}
+<div class="tile tile--s" data-link="{{daysourceUrl}}">
         <div class="fe_day  text--secondary">
               <span class="fe_icon-wrap fe_icon-wrap--daily">
                   {{{forecast_icon icon}}}
