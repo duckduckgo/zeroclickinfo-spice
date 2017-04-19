@@ -28,6 +28,7 @@
         sourceName: "airnowapi.org",
         sourceUrl: 'http://www.airnow.gov/?action=airnow.local_city&zipcode=' + zip,
       },
+      signal: 'high',
       normalize: function(item){
         return {
           title: locationString,
