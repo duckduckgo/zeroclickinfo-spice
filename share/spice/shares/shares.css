@@ -1,0 +1,47 @@
+.sf__shares .sf__header {
+    font-size: 1.4em;
+    line-height: 1.2em;
+    font-weight: 400;
+    margin-bottom: .25em;
+    color: #000;
+}
+
+.sf__shares .sf__content > div {
+    margin-bottom: 3px;
+}
+
+.sf__shares .sf__content .sf__split {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.sf__shares .sf__content .sf__data_row {
+  font-size: 14px;
+}
+
+.sf__shares .sf__content .sf__numbers_row {
+  font-size: 20px;
+  color: #000;
+  font-weight: 500;
+}
+
+.sf__shares .sf__content .sf__info_row {
+  font-size: 14px;
+}
+
+.sf__content .sf__arrow {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border-style: solid;
+}
+
+.sf__content .sf__arrow-up {
+  border-width: 0 6px 12px 6px;
+  border-color: transparent transparent #60ae50 transparent;
+}
+
+.sf__content .sf__arrow-down {
+  border-width: 12px 6px 0 6px;
+  border-color: #c9481c transparent transparent transparent;
+}
