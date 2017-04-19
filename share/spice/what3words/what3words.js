@@ -1,14 +1,24 @@
 (function (env) {
     "use strict";
     env.ddg_spice_what3words = function (api_result) {
-
-        if (!api_result || !api_result.geometry) {
+        if (!api_result) {
             return Spice.failed('what3words');
         }
+        else if (api_result.status.code == 300 && api_result.status.message === "Invalid or non-existent 3 word address"){
+            // Grab 3 word address from query
+            var query = DDG.get_query()
+            console.log(query)
+            var three_word_re = /[a-z][a-z]+\.[a-z]+\.[a-z]+/;
+            var address = query.match(three_word_re)[0]
+        }
+        else {
+            var success = 'yes'
+        }
+        
+        if (success == 'yes') {
+            var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
 
-        var location =  encodeURIComponent( api_result.geometry.lng + "," + api_result.geometry.lat );
-
-        DDG.require('maps', function () {
+            DDG.require('maps', function () {
 
             // Call ArcGIS API to get City + Country for location
             $.getJSON('/js/spice/what3words_arcgis/' + location, function(data) {
@@ -56,10 +66,60 @@
                         }
                     }
                 });
+            }).fail(function() {
+                    consose.log("error");
             });
+            
         });
-    };
-
+        }
+        else {
+            DDG.require('maps', function () {
+                // the object returned when the api cannot match the three word phrase
+                $.getJSON('/js/spice/what3words_standard_blend/' + address, function(data) {
+                    var item;
+                    // built-in flags use 'uk' instead of 'gb' that standardblend uses
+                    for (item in data.blends) {
+                        if (data.blends[item].country == 'gb'){
+                            data.blends[item].country = 'uk'
+                        }
+                    }
+                    Spice.add({
+                        id: 'what3words',
+                        name: 'Standardblend',
+                        model: 'Place',
+                        view: 'Places',
+                        meta: {
+                            itemType: 'suggestions',
+                            searchTerm: address
+                        },
+                        templates: {
+                            group: 'text',
+                            variants: {
+                                tile: 'video'
+                            }
+                        },
+                        data: data.blends,
+                        normalize: function(item){
+                            return {
+                                name: item.words,
+                                lat: item.geometry.lat,
+                                lon: item.geometry.lng,
+                                title: item.words,
+                                description: 'near ' + item.place + ', ' + country_map[item.country],
+                                displayLatLon: item.geometry.lat + '\xB0, ' + item.geometry.lng + '\xB0',
+                                place: item.place,
+                                icon: DDG.settings.region.getLargeIconURL(item.country)
+                                }
+                            }
+                        });
+                   
+                    
+                }).fail(function() {
+                    console.log("error");
+                });
+            });
+        };
+    }
     // Get full country name for given ISO-3166 code
     function getCountryName (code) {
         return country_map[code] || "";
@@ -317,6 +377,23 @@
         "ESH": "Western Sahara",
         "YEM": "Yemen",
         "ZMB": "Zambia",
-        "ZWE": "Zimbabwe"
+        "ZWE": "Zimbabwe",
+        "ca": "Canada",
+        "cn": "China",
+        "dk": "Denmark",
+        "uk": "England",
+        "fr": "France",
+        "de": "Germany",
+        "it": "Italy",
+        "jp": "Japan",
+        "kz": "Kazakhstan",
+        "nl": "Netherlands",
+        "ru": "Russia",
+        "sp": "Spain",
+        "se": "Sweden",
+        "uk": "UK",
+        "us": "USA",
+        'au': 'Australia',
+        'nz': 'New Zealand'
     };
 }(this));
