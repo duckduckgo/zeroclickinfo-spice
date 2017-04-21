@@ -7,10 +7,11 @@ use DDG::Spice;
 my $attribute_regex = qr/(?^:(?^:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?:ohydrate)?s)|holesterol)|p(?:olyunsaturated fat|rotein)|trans(?: fat(?:ty acid)?|-fat)|s(?:aturated fat|odium|ugar)|monounsaturated fat|dietary fiber|f(?:iber|at)|vitamin [ac]|kcals|iron)))/;
 my $question_regex = qr/(?:how|what)?\s?(?:'s |is |are |many |much )?(?:the |there )?(?:total |amount of |number of )?/;
 
-# List of fruits
+# List of fruits, vegetables, meat, animal products, other
 my @fruits = share('fruits.txt')->slurp;
+my @vegetables = share('vegetables.txt')->slurp;
 
-my @triggers = (@fruits);
+my @triggers = (@fruits, @vegetables);
 triggers any => @triggers;
 
 # brand_id is hard coded to USDA for now. Eventually could support searches across brands (i.e. packaged goods or restaurants, but requires multiple
@@ -30,9 +31,9 @@ handle query_lc => sub {
         return $1 if $1;
     }
     
-    # check for matching fruits, vegetables, meat,
+    # check for matching fruits, vegetables, animal products, meat, ...
     if ( grep( /^$_$/, @triggers ) ) {
-       return $_;
+        return $_;
     }
     
     return;
