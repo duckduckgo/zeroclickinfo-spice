@@ -16,11 +16,12 @@
             id: 'mo',
 
             // Customize these properties
-            name: 'Learn with Mo',
+            name: 'Answer',
             data: api_result.results,
             meta: {
-                sourceName: 'Mo | Powered by SCAD AI',
+                sourceName: 'Mo',
                 sourceUrl: 'https://scad.ai',
+                total: api_result.results,
                 itemType: 'Learning Resources',
                 searchTerm: decodeURIComponent(query)
             },
