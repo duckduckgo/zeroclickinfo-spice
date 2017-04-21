@@ -13,7 +13,7 @@ use warnings;
 spice is_cached => 1;
 spice proxy_cache_valid => '200 1d'; # defaults to this automatically
 
-spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
+spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 
 # Using the endpoint for learning searches
 # API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
