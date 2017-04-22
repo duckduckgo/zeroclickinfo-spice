@@ -8,15 +8,17 @@ my $attribute_regex = qr/(?^:(?^:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?
 my $question_regex = qr/(?:how|what)?\s?(?:'s |is |are |many |much )?(?:the |there )?(?:total |amount of |number of )?/;
 
 # measurement triggers
-my @measurement_triggers = qw(calories cals);
+my @measurement_triggers = qw(calories kcals cals);
 
 # List of fruits, vegetables, meat, animal products triggers
-my @fruits = share('fruits.txt')->slurp;
-my @vegetables = share('vegetables.txt')->slurp;
+my @fruits = share('fruits.txt')->slurp; # source https://simple.wikipedia.org/wiki/List_of_fruits
+my @vegetables = share('vegetables.txt')->slurp; # source https://simple.wikipedia.org/wiki/List_of_vegetables
 my @meat = share('meat.txt')->slurp;
 my @animal_products = share('animal_products.txt')->slurp;
 my @fish = share('fish.txt')->slurp;
-my @food_triggers = (@fruits, @vegetables, @meat, @animal_products, @fish);
+my @seafood = share('seafood.txt')->slurp;
+my @otherfood = share('otherfood.txt')->slurp;
+my @food_triggers = (@fruits, @vegetables, @meat, @animal_products, @fish, @seafood, @otherfood);
 
 my @triggers = (@measurement_triggers, @food_triggers);
 triggers any => @triggers;
