@@ -136,14 +136,14 @@ handle query_lc => sub {
 
     if(/$guard/) {
 
-        my $fromSymbol = $+{fromSymbol} || ''; 
+        my $fromSymbol = $+{fromSymbol} || '';
         my $amount = $+{amount};
         my $from = $+{from} || '';
         my $cardinal = $+{cardinal} || '';
         my $to = $+{to} || '';
         my $toSymbol = $+{toSymbol} || '';
         my $currencyKeyword = $+{currencyKeyword} || '';
-        
+
         if ($from eq '' && $fromSymbol) {
             $from = $currencyCodes->{ord($fromSymbol)};
         }
@@ -151,7 +151,7 @@ handle query_lc => sub {
         if ($to eq '' && $toSymbol) {
             $to = $currencyCodes->{ord($toSymbol)};
         }
-        
+
         # if only a currency symbol is present without "currency" keyword, then bail.
 	return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
 

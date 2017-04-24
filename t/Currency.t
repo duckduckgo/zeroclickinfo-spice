@@ -36,7 +36,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
-    ), 
+    ),
     'canada dollar' => test_spice(
         '/js/spice/currency/1/cad/cad',
         call_type => 'include',
@@ -154,7 +154,7 @@ ddg_spice_test(
        call_type => 'include',
        caller => 'DDG::Spice::Currency',
        is_cached => 0
-    ), 
+    ),
     # Queries with no space between the number and the currency.
     '100cad' => test_spice(
         '/js/spice/currency/100/cad/usd',
