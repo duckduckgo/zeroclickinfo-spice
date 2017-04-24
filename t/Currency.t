@@ -13,6 +13,12 @@ ddg_spice_test(
     [
         'DDG::Spice::Currency'
     ],
+    '1 usd to won' => test_spice(
+        '/js/spice/currency/1/usd/krw',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     '50 pesos to $' => test_spice(
         '/js/spice/currency/50/mxn/usd',
         call_type => 'include',
