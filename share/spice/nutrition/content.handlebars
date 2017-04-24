@@ -1,21 +1,19 @@
-<h1 class="nutrition__header  zci__header">
-    <span class="nutrition__amount">{{currentPortion.amount}}{{uom}}</span>
-	{{#if label}}
-    	<span class="nutrition__measurement">{{label}}</span>
-	{{/if}}
-</h1>
-<div class="zci__content">
-    {{#if portions}}
-        <div class="nutrition__portion  frm__select">
-            <select class="nutrition__portion__dropdown">
-                {{#each portions}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/each}}
-            </select>
-        </div>
-    {{else}}
-        {{#if currentPortion}}
-            <div class="nutrition__portion">{{currentPortion.name}}</div>
-        {{/if}}
-    {{/if}}
-</div>
+<table class="zci__table zci--nutrition">
+    <tr class="zci__table__tr record__row  ">
+        <th></th>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <th>Calories</th>
+        <th>Weight</th>
+    </tr>
+    {{!-- dump the data object below --}}
+    {{#each foods}}
+    <tr class="zci__table__tr record__row">
+        <td>{{ food_name }}</td>
+        <td>{{ serving_qty }}</td>
+        <td>{{ serving_unit }}</td>
+        <td>{{ nf_calories }}</td>
+        <td>{{ serving_weight_grams }}</td>
+    </tr>
+    {{/each}}
+</table>

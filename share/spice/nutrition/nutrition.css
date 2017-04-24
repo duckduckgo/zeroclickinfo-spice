@@ -1,7 +1,16 @@
-.nutrition__header.zci__header {
-    font-size: 1.75em;
-    font-weight: normal;
+.zci--nutrition tr {
+    border-bottom: 1px solid #dedede;
 }
-.nutrition__portion.frm__select {
-    margin-left: -2px;
+
+.zci--nutrition tr:last-of-type {
+    border-bottom: none;
+}
+
+.zci--nutrition td {
+    padding:2px 0;
+}
+
+.zci--nutrition th,
+.zci--nutrition td {
+    padding-right: 15px;
 }

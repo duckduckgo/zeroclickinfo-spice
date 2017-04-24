@@ -1,137 +1,87 @@
 (function (env) {
-    'use strict';
-    env.ddg_spice_nutrition = function(api_result) {
+    "use strict";
 
-        if (!api_result || !api_result.hits || !api_result.hits.length || api_result.max_score < 1) {
+    env.ddg_spice_nutrition = function(api_result) {
+        
+        // checks to make sure that there is an api response, it's error free 
+        // and contains items to parse.
+        if (!api_result || api_result.error || api_result.foods < 1) {
             return Spice.failed('nutrition');
         }
-
-        var fieldToTerms = {
-                nf_calories: { terms: ['calories','cals'], label: 'Calories' },
-                nf_calories_from_fat: { terms: ['calories from fat','cals from fat','fat calories'], label: 'Calories' },
-                nf_total_fat: { terms: ['fat'], uom: 'g' },
-                nf_saturated_fat: { terms: ['saturated fat'], uom: 'g' },
-                nf_monounsaturated_fat: { terms: ['monounsaturated fat'], uom: 'g' },
-                nf_polyunsaturated_fat: { terms: ['polyunsaturated fat'], uom: 'g' },
-                nf_trans_fatty_acid: { terms: ['trans fat','trans-fat','trans fatty acid'], uom: 'g' },
-                nf_cholesterol: { terms: ['cholesterol'], uom: 'mg' },
-                nf_sodium: { terms: ['sodium'], uom: 'mg' },
-                nf_total_carbohydrate: { terms: ['carbohydrates','carbs'], uom: 'g' },
-                nf_dietary_fiber: { terms: ['fiber','dietary fiber'], uom: 'g' },
-                nf_sugars: { terms: ['sugar'], uom: 'g' },
-                nf_protein: { terms: ['protein'], uom: 'g' },
-                nf_vitamin_a_dv: { terms: ['vitamin a'], uom: '%', label:'Daily Value' },
-                nf_vitamin_c_dv: { terms: ['vitamin c'], uom: '%', label: 'Daily Value' },
-                nf_calcium_dv: { terms: ['calcium'], uom: '%', label: 'Daily Value' },
-                nf_iron_dv: { terms: ['iron'], uom: '%', label: 'Daily Value' }
-            },
-
-            script = $('[src*="/js/spice/nutrition/"]')[0],
-            source = $(script).attr('src'),
-            matches = source.match(/nutrition\/([^\/]+)\/?(.*)/),
-            foodItem = decodeURIComponent(matches[1]),
-
-            stripRegex = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
-
-            getMeasurementInfo = function(searchTerm) {
-                var field, fieldInfo, term, i, bestMatch;
-                for (field in fieldToTerms) {
-                    fieldInfo = fieldToTerms[field];
-                    for (i = 0; i < fieldInfo.terms.length; i++) {
-                        term = fieldInfo.terms[i];
-                        if (searchTerm.match(term) && (!bestMatch || bestMatch.term.length < term.length)) {
-                            bestMatch = {
-                                term: term,
-                                uom: fieldInfo.uom,
-                                label: fieldInfo.label,
-                                id: field
-                            };
-                        }
-                    }
-                }
-
-                return bestMatch;
-            },
-
-            // search term w/o any beginning text
-            tmpTerm = DDG.get_query().toLowerCase().replace(stripRegex, ''),
-
-            measurementInfo = getMeasurementInfo(tmpTerm);
-
-        if (!measurementInfo || !foodItem) { return Spice.failed('nutrition'); }
-
-        // figure out the food item (what should be left):
-        var portions = [],
-
-            // dom refs that will get assigned onShow:
-            boundToDropDown, $amount, $portion;
-
-        for (var i=0; i<api_result.hits.length; i++) {
-            var item = api_result.hits[i].fields,
-                regex = new RegExp(foodItem, 'i');
-
-            if (DDG.stringsRelevant(item.item_name, foodItem, [], 3) && regex.test(item.item_name)) {
-
-                // if there's already portitions in the array, and the item isn't
-                // found until after the first comma, don't show it.
-                // This handles cases where things like "Baby Food, banana flavored" come back
-                // from the api when searching for just "banana".
-                if (portions.length) {
-                    var splitPortionName = item.item_name.split(','),
-                        firstStr = splitPortionName[0];
-
-                    if (!regex.test(firstStr)) {
-                        continue;
-                    }
-                }
-
-                portions.push({
-                    id: portions.length,
-                    name: item.item_name,
-                    amount: item[measurementInfo.id]
-                });
-            }
+        
+        var api_data = api_result.foods;
+        
+        // the global data object pushed to the front end
+        var data = {
+            calories: 0,
+            foods: []
         };
-
-        // if no portions are relevant, then bail:
-        if (!portions.length) { return Spice.failed('nutrition'); }
-
+        
+        // this function generates the data structure that is pushed to the
+        // front-end
+        function generateData() {
+       
+            for(var i = 0 ; i < api_data.length ; i++) {
+                data.calories += api_data[i].nf_calories;
+                data.foods.push(api_data[i]);
+            } 
+            
+            return data;
+        } // generateData
+        
+        function generateSubtitle() {
+            var subtitle = "Calories in ";
+            var foods_length = data.foods.length;
+          
+            if( foods_length === 1 ) {
+                subtitle += data.foods[0].serving_qty + " " + data.foods[0].food_name;
+            } else {
+                for( var i = 0 ; i < foods_length ; i++ ) {
+                    if(i === foods_length - 1) {
+                        subtitle += "and " + data.foods[i].serving_qty + " " + data.foods[i].food_name;
+                    } else {
+                        subtitle += data.foods[i].serving_qty + " " + data.foods[i].food_name + ", ";                    
+                    }
+                } // for
+            } // if
+            
+            return subtitle;
+        }// generateSubtitle
+        
+        
+        // builds the source url using the common query hack
+        function buildSourceURL() {
+            // Get original query.
+            var url = 'https://www.nutritionix.com/natural-demo?q=',
+                script = $('[src*="/js/spice/nutrition/"]')[0],
+                source = $(script).attr("src"),
+                query = source.match(/nutrition\/([^\/]+)/)[1];   
+            
+            return url + query;
+        }
+        
         Spice.add({
             id: 'nutrition',
             name: 'Nutrition',
-            data: {
-                uom: measurementInfo.uom,
-                label: measurementInfo.label,
-                portions: portions.length > 1 && portions,
-                currentPortion: portions[0]
-            },
+            data: generateData(),
             meta: {
                 sourceName: 'Nutritionix',
-                sourceUrl: 'http://nutritionix.com/search?q=' + foodItem
+                sourceUrl: buildSourceURL()
             },
-            templates: {
-                group: 'base',
+            normalize: function(item) {
+                return {
+                    title: item.calories,
+                    subtitle: generateSubtitle()
+                };
+            },
+           templates: {
+                group: 'text',
                 options: {
                     content: Spice.nutrition.content,
                     moreAt: true
                 }
             },
-            onShow: function() {
-                // bind to the drop down (if not already bound)
-                if (!boundToDropDown && portions.length > 1) {
-                    var $el = Spice.getDOM('nutrition');
-
-                    $amount = $el.find('.nutrition__amount');
-                    $portion = $el.find('.nutrition__portion__dropdown');
-
-                    $portion.change(function() {
-                        var portionId = $portion.val();
-                        $amount.text(portions[portionId].amount + (measurementInfo.uom || ''));
-                    });
-
-                    boundToDropDown = true;
-                }
-            }
         });
+        
     };
 }(this));
