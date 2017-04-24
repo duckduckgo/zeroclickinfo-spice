@@ -111,6 +111,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # using value keyword
+    'bitcoin value' => test_spice(
+        '/js/spice/currency/1/xbt/xbt',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '2 ruble value in yen' => test_spice(
+        '/js/spice/currency/2/rub/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # using cardinals instead of zeros
     '4.5 billion us dollar to euro' => test_spice(
         '/js/spice/currency/4500000000/usd/eur',
