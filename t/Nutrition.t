@@ -26,6 +26,16 @@ ddg_spice_test(
         '/js/spice/nutrition/tofu',
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
+    ),
+    'banana' => test_spice(
+        '/js/spice/nutrition/banana',
+        call_type => 'include',
+        caller => 'DDG::Spice::Nutrition',
+    ),
+    'steak' => test_spice(
+        '/js/spice/nutrition/steak',
+        call_type => 'include',
+        caller => 'DDG::Spice::Nutrition',
     )
 );
 

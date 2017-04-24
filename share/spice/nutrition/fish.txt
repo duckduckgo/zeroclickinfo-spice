@@ -1,0 +1,77 @@
+anchovy
+basa
+bass striped bass
+black cod
+sablefish
+blowfish
+bluefish
+bombay duck
+bream
+brill
+butter fish
+catfish
+cod
+pacific cod
+atlantic cod
+dogfish
+dorade
+eel
+flounder
+grouper
+haddock
+hake
+halibut
+herring
+ilish
+john dory
+kingfish
+lamprey
+lingcod
+mackerel
+mahi mahi
+monkfish
+mullet
+orange roughy
+parrott fish
+patagonian toothfish
+chilean sea bass
+pike
+pilchard
+pollock
+pomfret
+pompano
+sablefish
+salmon
+sanddab
+pacific sanddab
+sardine
+sea bass
+shad
+alewife
+american shad
+shark
+skate
+smelt
+snakehead
+snapper
+rockfish
+rock cod
+pacific snapper
+sole
+sprat
+sturgeon
+surimi
+swordfish
+tilapia
+tilefish
+trout
+rainbow trout
+tuna
+albacore tuna
+yellowfin tuna
+bigeye tuna
+bluefin tuna
+turbot
+wahoo
+whitefish
+whiting
