@@ -419,8 +419,8 @@
                 class: "stroke"
             }],
             pairs: {
-                volume: [0, 2],
-                surface: [1, 0]
+                volume: [0, 0],
+                surface: [1, 2]
             },
             getParameter: function(query){
                 var r = getParameter(query, "radius|r");
@@ -430,7 +430,90 @@
                 return null;
             },
             parameterNames: ["r"]
-        }
+        },
+        cylinder : {
+            formulas: [{
+                name: "volume",
+                html: "&pi;r<sup>2</sup>h",
+                calc: function(r, h){
+                    return Math.PI * r * r * h;
+                }
+            }, {
+                name: "surface",
+                html: "2&pi;r(h + r)",
+                calc: function(r, h){
+                    return 2 * Math.PI * r * (h + r);
+                }
+            }],
+            svg: [{
+                path: "M 0,20 a 30 10 0 0 1 120,0 v 80 a 30 10 0 0 1 -120,0 v -80",
+                class: "fill"
+            }, {
+                path: "M 0,20 h 60 v 80",
+                class: "stroke special"
+            }, {
+                path: "M 0,20 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 v 80 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 m 120,0 v -80",
+                class: "stroke"
+            }],
+            pairs: {
+                volume: [0, 0],
+                surface: [1, 0]
+            },
+            getParameter: function(query){
+                var r = getParameter(query, "radius|r");
+                var h = getParameter(query, "height|h");
+                if(r !== null) return r;
+                if(h !== null) return h;
+                r = getParameter(query, "diameter|d");
+                if(r !== null) return r / 2;
+                return null;
+            },
+            parameterNames: ["r", "h"]
+        },
+        cone : {
+            formulas: [{
+                name: "volume",
+                html: "1/3&pi;r<sup>2</sup>h",
+                calc: function(r, h){
+                    return 1 / 3 * Math.PI * r * r * h;
+                }
+            }, {
+                name: "surface",
+                html: "&pi;r(l + r)",
+                calc: function(r, l){
+                    return Math.PI * r * (l + r);
+                }
+            }],
+            svg: [{
+                path: "M 0,100 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 l 60 -80 l 60 80 a 30 10 0 0 0 -120,0",
+                class: "fill"
+            }, {
+                path: "M 0,100 h 60 v -80",
+                class: "stroke special"
+            }, {
+                path: "M 0,100 l 60 -80 l 60 80 a 30 10 0 0 0 -120,0",
+                class: "fill"
+            }, {
+                path: "M 0,100 a 30 10 0 0 0 120,0 a 30 10 0 0 0 -120,0 l 60 -80 l 60 80",
+                class: "stroke"
+            }],
+            pairs: {
+                volume: [0, 0],
+                surface: [1, 0]
+            },
+            getParameter: function(query){
+                var r = getParameter(query, "radius|r");
+                var l = getParameter(query, "slant height|l");
+                if(r !== null) return r;
+                if(l !== null) return l;
+                var h = getParameter(query, "height|h");
+                if(h !== null) return Math.sqrt(l * l - r * r);
+                r = getParameter(query, "diameter|d");
+                if(r !== null) return r / 2;
+                return null;
+            },
+            parameterNames: ["r", "h", "l"]
+        }    
     };
 
     env.ddg_spice_geometry = function(){
