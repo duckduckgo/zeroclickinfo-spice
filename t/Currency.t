@@ -13,6 +13,12 @@ ddg_spice_test(
     [
         'DDG::Spice::Currency'
     ],
+    '1 usd to won' => test_spice(
+        '/js/spice/currency/1/usd/krw',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     '50 pesos to $' => test_spice(
         '/js/spice/currency/50/mxn/usd',
         call_type => 'include',
@@ -30,7 +36,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
-    ), 
+    ),
     'canada dollar' => test_spice(
         '/js/spice/currency/1/cad/cad',
         call_type => 'include',
@@ -105,6 +111,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # using value keyword
+    'bitcoin value' => test_spice(
+        '/js/spice/currency/1/xbt/xbt',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '2 ruble value in yen' => test_spice(
+        '/js/spice/currency/2/rub/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # using cardinals instead of zeros
     '4.5 billion us dollar to euro' => test_spice(
         '/js/spice/currency/4500000000/usd/eur',
@@ -135,7 +154,7 @@ ddg_spice_test(
        call_type => 'include',
        caller => 'DDG::Spice::Currency',
        is_cached => 0
-    ), 
+    ),
     # Queries with no space between the number and the currency.
     '100cad' => test_spice(
         '/js/spice/currency/100/cad/usd',
