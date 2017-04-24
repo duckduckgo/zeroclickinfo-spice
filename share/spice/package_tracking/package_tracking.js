@@ -24,21 +24,24 @@
         if (!carrier) {
             return Spice.failed('package_tracking');
         }
-        var carrierUrl = carrier.url || false;
+        var carrierUrl = false;
+        if (carrier.url) {
+            carrierUrl = carrier.url.replace("{{code}}", encodeURIComponent(api_result.n));
+        }
 
         DDG.require('moment.js', function() {
             Spice.add({
                 id: "package_tracking",
                 name: "Answer",
                 meta: {
-                    sourceName: "Packagetrackr",
-                    sourceUrl: details_url
+                    sourceName: carrierUrl ? carrier.name : "Packagetrackr",
+                    sourceUrl: carrierUrl || details_url
                 },
                 data: api_result,
                 normalize: function (data) {
 
                     var obj = {
-                        url: details_url,
+                        url: carrierUrl || details_url,
                         title: data.status_description.replace(/\.$/, ""),
                         subtitle: [
                             "Updated: " + moment(data.progress_at).fromNow(),
@@ -66,8 +69,8 @@
                         content: 'record',
                         moreAt: true,
                         moreText: carrierUrl ? {
-                            href: carrierUrl.replace("{{code}}", encodeURIComponent(api_result.n)),
-                            text: "Track via " + carrier.name
+                            href: details_url,
+                            text: "Data from Packagetrackr"
                         } : false
                     },
                     variants: {
