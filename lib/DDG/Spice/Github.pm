@@ -19,7 +19,7 @@ spice proxy_cache_valid => '200 1d';
 
 handle query_lc => sub {
     s/^github\s*|\s+github$//;
-    if ($_ eq "" || m/\bjobs\b|\bstatus\b/) {
+    if ($_ eq "" || m/\bjobs\b|\bstatus\b|\bissue\b/) {
         return;
     }
 
@@ -38,7 +38,7 @@ handle query_lc => sub {
         # These is no separate language parameter for the query to
         # Github. You specify language as a part of the raw query string
         # passed to the api like on the web form interface.
-        return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
+        return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$|^issue\b|\bissue$/;
     }
 };
 1;
