@@ -37,6 +37,12 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
     )
+
+    # bad queries
+    'apple tree' => undef,
+    'how to spell pork in french' => undef,
+    'how do tor onion sites work' => undef
+
 );
 
 done_testing;
