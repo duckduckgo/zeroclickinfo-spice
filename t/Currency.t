@@ -111,8 +111,14 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    # using value keyword
+    # using value, price keyword
     'bitcoin value' => test_spice(
+        '/js/spice/currency/1/xbt/xbt',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'bitcoin price' => test_spice(
         '/js/spice/currency/1/xbt/xbt',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
