@@ -2,8 +2,6 @@
     "use strict";
 
     env.ddg_spice_github_issues = function(api_result) {
-        
-        console.log(api_result);
 
         if (!api_result || !api_result.meta || api_result.meta.status !== 200 || !api_result.data || !api_result.data.items || !api_result.data.items.length) {
           return Spice.failed('github_issues');
