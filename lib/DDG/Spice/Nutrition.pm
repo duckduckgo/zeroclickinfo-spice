@@ -32,11 +32,11 @@ spice wrap_jsonp_callback => 1;
 handle query_lc => sub {
 
     # check for matching fruits, vegetables, animal products, meat, ...
-    return $_ if exists $food_triggers{$_};
+    return $_ if defined $food_triggers{$_};
 
     # check for queries like "how many calories are in a cucumber"
     if (/^$question_regex$attribute_regex\s?(?:are |contained |is )?(?:there )?(?:in )?(?:a |an )?(.+?)(?:\?)?$/) {
-        return $1;
+        return $1 if $1;
     }
 
     # for queries like "cucumber calories" or "tofu how much protein"
