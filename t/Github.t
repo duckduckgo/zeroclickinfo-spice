@@ -17,7 +17,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Github'
     ),
-    'rails invalid authenticity github issue' => undef,
     'github status' => undef,
     'github' => undef,
     'github ' => undef
