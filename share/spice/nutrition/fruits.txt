@@ -5,19 +5,23 @@ banana
 bilberry
 blackberry
 blackcurrant
+blood orange
 blueberry
 boysenberry
-currant
-cherry
+cantaloupe
 cherimoya
+cherry
+clementine
 cloudberry
 coconut
 cranberry
 cucumber
+currant
 custard apple
 damson
 date
 dragonfruit
+dried plum
 durian
 elderberry
 feijoa
@@ -25,10 +29,10 @@ fig
 goji berry
 gooseberry
 grape
-raisin
 grapefruit
 guava
 honeyberry
+honeydew
 huckleberry
 jabuticaba
 jackfruit
@@ -39,54 +43,50 @@ kiwifruit
 kumquat
 lemon
 lime
-loquat
 longan
+loquat
 lychee
+mandarine
 mango
 marionberry
 melon
-cantaloupe
-honeydew
-watermelon
 miracle fruit
 mulberry
-nectarine
 nance
+nectarine
 olive
 orange
-blood orange
-clementine
-mandarine
-tangerine
 papaya
 passionfruit
 peach
 pear
 persimmon
 physalis
+pineapple
 plantain
 plum
-prune
-dried plum
-pineapple
 plumcot
 pluot
 pomegranate
 pomelo
+prune
 purple mangosteen
 quince
-raspberry
-salmonberry
+raisin
 rambutan
+raspberry
 redcurrant
-salal berry
 salak
+salal berry
+salmonberry
 satsuma
+solanum quitoense
 soursop
 star fruit
-solanum quitoense
 strawberry
 tamarillo
 tamarind
+tangerine
 ugli fruit
+watermelon
 yuzu

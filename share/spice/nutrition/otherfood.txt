@@ -1,11 +1,10 @@
-tofu
 bread
-honey
-noodle
 chips
 chocolate
 donuts
 gnocchi
-icecream
-ice-cream
+honey
 ice cream
+icecream
+noodle
+tofu

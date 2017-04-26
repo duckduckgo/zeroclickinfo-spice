@@ -1,10 +1,9 @@
-egg
-eggs
-cheese
-milk
 ayran
-yogurt
 butter
 buttermilk
+cheese
 cream
+egg
+milk
 quark
+yogurt
