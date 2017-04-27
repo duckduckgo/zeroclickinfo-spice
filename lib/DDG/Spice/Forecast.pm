@@ -17,7 +17,7 @@ spice proxy_cache_valid => "200 30m";
 
 spice upstream_timeouts => +{ connect => '50ms',
                               send => '50ms',
-                              read => '100ms' };
+                              read => '200ms' };
 
 
 my @locs = qw (city region_name country_name );
