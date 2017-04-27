@@ -92,6 +92,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '499 lei to euro' => test_spice(
+        '/js/spice/currency/499/ron/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '499 usd to leu' => test_spice(
+        '/js/spice/currency/499/usd/ron',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # using currency keyword
     'amd currency' => test_spice(
         '/js/spice/currency/1/amd/amd',
