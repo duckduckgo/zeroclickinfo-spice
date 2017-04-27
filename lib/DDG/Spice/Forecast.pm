@@ -15,9 +15,9 @@ spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
-spice upstream_timeouts => +{ connect => '50ms',
-                              send => '50ms',
-                              read => '200ms' };
+#spice upstream_timeouts => +{ connect => '50ms',
+#                              send => '50ms',
+#                              read => '200ms' };
 
 
 my @locs = qw (city region_name country_name );
