@@ -31,10 +31,16 @@
             },
             normalize: function(item) {
                 var poster_image = '';
+                var rating = '';
+                var url = "https://kitsu.io/anime/" + item.attributes.slug
+
                 if (item.attributes.posterImage.small) {
                     poster_image = DDG.toHTTP(item.attributes.posterImage.small);
                 }
-                var url = "https://kitsu.io/anime/" + item.attributes.slug
+
+                if (item.attributes.averageRating) {
+                    rating = parseFloat((item.attributes.averageRating / 20).toFixed(1));
+                }
 
                 return {
                     img: poster_image,
@@ -43,7 +49,7 @@
                     heading: item.attributes.canonicalTitle,
                     title: item.attributes.canonicalTitle,
                     abstract: item.attributes.synopsis,
-                    rating: item.attributes.averageRating,
+                    rating: rating,
                     url: url
                 };
             },
