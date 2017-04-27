@@ -9,9 +9,8 @@ spice to => 'http://kitsu.io/api/edge/manga?filter[text]=$1&page[limit]=20&field
 triggers startend => 'manga', 'kitsu';
 spice wrap_jsonp_callback => 1;
 
-my @stops = ("wallpaper", "girl", "freak", "eye", "game", "news", "network",
-    "character", "couple", "cat", "cosplay", "chibi", "creator", "art",
-    "avatar", "picture");
+my @stops = ("wallpaper", "news", "character", "couple", "creator", "art",
+	"avatar", "picture");
 my $stops_qr = join "|", @stops;
 
 handle remainder => sub {

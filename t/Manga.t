@@ -25,10 +25,10 @@ ddg_spice_test(
         caller => 'DDG::Spice::Manga'
     ),
     'good manga to read' => undef,
-    'manga eyes' => undef,
+    'manga news' => undef,
     'manga wallpapers' => undef,
     'manga couples' => undef,
-    'manga cosplay' => undef
+    'manga creator' => undef
 );
 
 done_testing;
