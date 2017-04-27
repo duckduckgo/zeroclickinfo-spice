@@ -36,7 +36,15 @@ ddg_spice_test(
         '/js/spice/nutrition/steak',
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
-    )
+    ),
+
+    # bad queries
+    'apple tree' => undef,
+    'how to spell pork in french' => undef,
+    'how do tor onion sites work' => undef,
+    'duck duck' => undef,
+    'calories' => undef,
+
 );
 
 done_testing;

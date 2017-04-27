@@ -1,18 +1,22 @@
+albacore tuna
+alewife
+american shad
 anchovy
+atlantic cod
 basa
 bass striped bass
+bigeye tuna
 black cod
-sablefish
 blowfish
+bluefin tuna
 bluefish
 bombay duck
 bream
 brill
 butter fish
 catfish
+chilean sea bass
 cod
-pacific cod
-atlantic cod
 dogfish
 dorade
 eel
@@ -32,31 +36,30 @@ mahi mahi
 monkfish
 mullet
 orange roughy
+pacific cod
+pacific sanddab
+pacific snapper
 parrott fish
 patagonian toothfish
-chilean sea bass
 pike
 pilchard
 pollock
 pomfret
 pompano
+rainbow trout
+rock cod
+rockfish
 sablefish
 salmon
 sanddab
-pacific sanddab
 sardine
 sea bass
 shad
-alewife
-american shad
 shark
 skate
 smelt
 snakehead
 snapper
-rockfish
-rock cod
-pacific snapper
 sole
 sprat
 sturgeon
@@ -65,13 +68,9 @@ swordfish
 tilapia
 tilefish
 trout
-rainbow trout
 tuna
-albacore tuna
-yellowfin tuna
-bigeye tuna
-bluefin tuna
 turbot
 wahoo
 whitefish
 whiting
+yellowfin tuna
