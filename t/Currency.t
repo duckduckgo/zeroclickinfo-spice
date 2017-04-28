@@ -481,6 +481,87 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # check for exchange rate, conversion rate, conversion, converter, value of and price of as keyword
+    'bitcoin exchange rate' => test_spice(
+        '/js/spice/currency/1/xbt/xbt',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'us dollar conversion rate' => test_spice(
+        '/js/spice/currency/1/usd/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'bitcoin converter' => test_spice(
+        '/js/spice/currency/1/xbt/xbt',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'value of inr' => test_spice(
+        '/js/spice/currency/1/inr/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'price of bitcoin' => test_spice(
+        '/js/spice/currency/1/xbt/xbt',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd conversion' => test_spice(
+        '/js/spice/currency/1/usd/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # check for types of the form currency name to currency name exchange rate/conversion rate/price/conversion
+    'usd to inr exchange rate' => test_spice(
+        '/js/spice/currency/1/usd/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'inr to cny conversion' => test_spice(
+        '/js/spice/currency/1/inr/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd to cny price' => test_spice(
+        '/js/spice/currency/1/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 cny to usd conversion rate' => test_spice(
+        '/js/spice/currency/500/cny/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '5k usd to yuan converter' => test_spice(
+        '/js/spice/currency/5000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # check for queries of types convert currency currency name to currency name
+    'convert currency 5k usd to inr' => test_spice(
+        '/js/spice/currency/5000/usd/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'conversion 5k usd to yuan' => test_spice(
+        '/js/spice/currency/5000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
