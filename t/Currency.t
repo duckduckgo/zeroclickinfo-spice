@@ -562,6 +562,20 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # check aliases for mexican peso and gbp
+    'convert 5k usd to mex peso' => test_spice(
+        '/js/spice/currency/5000/usd/mxn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'conversion 5k usd to uk' => test_spice(
+        '/js/spice/currency/5000/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    
 
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
