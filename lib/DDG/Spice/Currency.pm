@@ -153,7 +153,7 @@ handle query_lc => sub {
         }
 
         # if only a currency symbol is present without "currency" keyword, then bail.
-	    return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
+        return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
         
         # for edge cases that we don't want to trigger on
         return if $from eq 'mop' && $to eq 'top';
