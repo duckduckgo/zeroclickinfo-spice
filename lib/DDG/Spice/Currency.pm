@@ -153,7 +153,7 @@ handle query_lc => sub {
         }
 
         # if only a currency symbol is present without "currency" keyword, then bail.
-	return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
+	    return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
 
         my $styler = number_style_for($amount);
         return unless $styler;
