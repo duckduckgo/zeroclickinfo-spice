@@ -42,10 +42,7 @@
                 group: 'text',
                 options: {
                     content: Spice.npm.content,
-                    moreAt: true,
-                    moreText: {
-                        href: 'https://www.npmjs.com/package/' + query
-                    }
+                    moreAt: true
                 }
             }
             
