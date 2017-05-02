@@ -24,6 +24,20 @@
                 return "No website provided";
             }
         }
+        
+        function getFollowers(item) {
+            var follow_cnt = "Followers: ";
+            if(item.followers_count >= 1000000) {
+                follow_cnt += ((item.followers_count/1000000).toPrecision(3)).toString() + " M";
+            }
+            else if(item.followers_count >= 1000) {
+                follow_cnt += ((item.followers_count/1000).toPrecision(3)).toString() + " K";
+            }
+            else {
+                follow_cnt += item.followers_count.toString();
+            }
+            return follow_cnt;
+        }
 
         Spice.add({
             id: 'twitter',
@@ -39,20 +53,7 @@
                 if (item.location) {
                     subtitle.push(item.location);
                 }
-                var follow_cnt = "Followers: ";
-                if(item.followers_count >= 1000000000) {
-                    follow_cnt += ((item.followers_count/1000000000).toPrecision(3)).toString() + " B";
-                }
-                else if(item.followers_count >= 1000000) {
-                    follow_cnt += ((item.followers_count/1000000).toPrecision(3)).toString() + " M";
-                }
-                else if(item.followers_count >= 1000) {
-                    follow_cnt += ((item.followers_count/1000).toPrecision(3)).toString() + " K";
-                }
-                else {
-                    follow_cnt += item.followers_count.toString();
-                }
-                subtitle.push(follow_cnt);
+                subtitle.push(getFollowers(item));
 
                 return {
                     image: bigger_picture(item.profile_image),
