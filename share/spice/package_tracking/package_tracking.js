@@ -56,7 +56,7 @@
                         if (value) {
                             if (text === "Delivered") {
                                 text = "Delivered on";
-                                dateFormat = 'ddd, MMM D, YYYY, h:mm A';
+                                dateFormat += ', h:mm A';
                             }
 
                             obj.record_data[text] = moment(value).utc().format(dateFormat);
