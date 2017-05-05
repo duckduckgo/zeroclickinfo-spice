@@ -7,15 +7,11 @@
         }
 
         var logo = api_result.c;
-
-        switch (logo) {
-            case 'ups-packages':
-                logo = 'ups';
-                break;
-
-            case 'fedex-express':
-                logo = 'fedex';
-                break;
+        if (/^ups-.+/.test(logo)) {
+            logo = 'ups';
+        }
+        else if (/^fedex-.+/.test(logo)) {
+            logo = 'fedex';
         }
 
         var details_url = "https://www.packagetrackr.com/track/" + [api_result.c, api_result.n].join("/"),
