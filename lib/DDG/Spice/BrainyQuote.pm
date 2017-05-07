@@ -12,7 +12,7 @@ spice wrap_jsonp_callback => 1;
 handle remainder => sub {
     # Convert queries such as J.R.R. Tolkien to J. R. R. Tolkien.
     # We're doing this because the first one is rejected by BrainyQuote.
-    if(/^\w\.\w/) {
+    if (/^\w\.\w/) {
         s/\./\. /g;
     }
 
@@ -29,7 +29,12 @@ handle remainder => sub {
     }
 
 
-    return $_ if $_;
+    if ($req->query_lc =~ m/quotes/ || $req->query_lc =~ m/quotations/) {
+	# Write logic here DDG to make 3 calls to the brainy quote api
+        return $_ if $_;
+    } else {
+        return $_ if $_;
+    }
     return;
 };
 
