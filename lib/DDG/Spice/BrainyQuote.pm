@@ -28,13 +28,7 @@ handle remainder => sub {
         }
     }
 
-
-    if ($req->query_lc =~ m/quotes/ || $req->query_lc =~ m/quotations/) {
-	# Write logic here DDG to make 3 calls to the brainy quote api
-        return $_ if $_;
-    } else {
-        return $_ if $_;
-    }
+    return $_ if $_;
     return;
 };
 
