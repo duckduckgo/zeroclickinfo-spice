@@ -9,6 +9,12 @@ triggers startend => 'quote', 'quotes', 'quotation', 'quotations';
 spice to => 'https://www.brainyquote.com/api/ddg?q=$1';
 spice wrap_jsonp_callback => 1;
 
+spice alt_to => {
+    test_endpoint => {
+        to => 'https://www.brainyquote.com/api/ddg?q=$1',
+    }
+};
+
 handle remainder => sub {
     # Convert queries such as J.R.R. Tolkien to J. R. R. Tolkien.
     # We're doing this because the first one is rejected by BrainyQuote.
