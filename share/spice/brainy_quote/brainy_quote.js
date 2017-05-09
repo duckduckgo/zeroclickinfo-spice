@@ -1,6 +1,8 @@
 (function(env) {
     env.ddg_spice_brainy_quote = function(api_result) {
 
+        //function callAPIAndAddAnotherQuoteToTheView(
+
         if (!api_result || api_result.error || api_result.author) {
             return Spice.failed('brainy_quote');
         }
@@ -44,14 +46,53 @@
             })
             */
 
-            // TEMP: Unsure how to access default so endpoint, 
-            // using this second endpoint to make api call
-            $.getJSON("/js/spice/test_endpoint/" + query, function(data) {
-                console.log(data)
-            })
-            .fail(function( jqxhr, textStatus, error ) {
-                var err = textStatus + ", " + error;
-                console.log( "Request Failed: " + err );
+            var threeUniqueQuotesCounter = 1,
+                arrayOfApiResults = [api_result.q]
+
+            var jqxhr;
+            while (threeUniqueQuotesCounter != 3) {
+                // TEMP: Unsure how to access default so endpoint, 
+                // using this second endpoint to make api call
+                jqxhr = $.getJSON("/js/spice/test_endpoint/" + query, function(data) {
+                    //if ($.inArray(data.q)) {
+                     //   break
+                    //}
+                    console.log("in loop.." + data.q);
+                    arrayOfApiResults.push(data.q)
+                })
+                .fail(function( jqxhr, textStatus, error ) {
+                    var err = textStatus + ", " + error;
+                    console.log( "Request Failed: " + err );
+                });
+                threeUniqueQuotesCounter++
+            }
+            console.log("the array is " + arrayOfApiResults)
+
+            jqxhr.done(function() {
+                var spiceObj = {
+                    id: 'brainy_quote',
+                    name: 'Quotations',
+                    data: arrayOfApiResults,
+                    meta: {
+                        sourceName: 'Brainy Quote',
+                        sourceUrl: api_result.source_url
+                    },
+                    signal: 'high',
+                    normalize: function(item) {
+                        return {
+                            person: item, //.header1.replace(/ quote$/, ""),
+                            url: item.source_url
+                        };
+                    },
+                    templates: {
+                        group: 'list',
+                        options: {
+                            content: Spice.brainy_quote.content,
+                            moreAt: true
+                        }
+                    }
+                };
+                Spice.add(spiceObj);
             });
         }
     };
