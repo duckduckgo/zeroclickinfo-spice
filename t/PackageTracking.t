@@ -139,6 +139,12 @@ ddg_spice_test(
 
     'fedex' => undef,
     'fedex website' => undef
+    
+    # Invalid query containing isbn
+    'isbn 9780134494326' => undef
+    '9780073380957 Isbn' => undef
+    'ISBN 1490564098'  => undef
+    '0394800133 isbn' => undef
 );
 
 done_testing;
