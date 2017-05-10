@@ -1,6 +1,6 @@
 DDG.require('maps',function(){
     ddg_spice_maps_maps = function(response) {
-        var skipArray = [ "directions", "map", "maps", "st", "street", "ave", "avenue", "dr", "drive", "pl", "place", "apt", "suite" ];
+        var skipArray = [ "directions", "map", "maps", "st", "street", "ave", "avenue", "dr", "drive", "pl", "place", "apt", "suite", "latitude", "longitude" ];
 
         if (!response || !response.features || !response.features.length) { return Spice.failed('maps_maps'); }
 
