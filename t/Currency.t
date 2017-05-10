@@ -575,8 +575,38 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # check for currency calculator and currency converter queries
+    'usd to cad currency converter' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd to cad currency conversion' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '4 cad to usd currency calculator' => test_spice(
+        '/js/spice/currency/4/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd to cad calculator' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'calculate 1 cad to usd' => test_spice(
+        '/js/spice/currency/1/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     
-
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
     # Other types of conversion
