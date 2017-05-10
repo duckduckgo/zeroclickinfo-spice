@@ -1,5 +1,12 @@
 (function(env) {
     "use strict";
+
+    // The exchange rate
+    var exchange_rate = {
+        from_currency: undefined,
+        to_currency: undefined,
+        rate: undefined,
+    }
     
     // Currencies that we don't have flags for.
     var currency2country_extra = {
@@ -60,11 +67,15 @@
            !api_result.topConversions.length || api_result.topConversions.length === 0) {
             return Spice.failed('currency');
         }
-        
+
         var results = [];
         var mainConv = api_result.conversion;
         var topCovs = api_result.topConversions;
         var templates = {};
+
+        // caches the retrieved information in the UI
+        exchange_rate.rate = +$(mainConv["conversion-rate"].split(" ")).get(-2);
+        
 
         if(mainConv["from-currency-symbol"] !== mainConv["to-currency-symbol"]) {
             // Flag the input to get different output
