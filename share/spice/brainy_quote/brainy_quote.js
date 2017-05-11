@@ -37,38 +37,29 @@
                 }
             });
 	} else {
-            // Write retrival logic to make multiple calls to api
-            // and display results in a list
-
             // Construct the original api call
             var script = $('[src*="/js/spice/brainy_quote/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/brainy_quote\/([^\/]+)/)[1]
+            query = source.match(/brainy_quote\/([^\/]+)/)[1];
 
-            /*
-            $.getJSON("/js/spice/brainy_quote/" + query, function(data) {
-                console.log(data)
-            })
-            */
 
-            var threeUniqueQuotesCounter = 1,
-                arrayOfApiResults = [api_result];
+            // Call the api until we obtain three quotes
+            var quotesCounter = 1,
+                apiResultsArray = [api_result];
 
             var jqxhr;
-            while (threeUniqueQuotesCounter != 3) {
-                // TEMP: Unsure how to access default so endpoint, 
-                // using this second endpoint to make api call
+            while (quotesCounter != 3) {
+                // TODO: Using secondary endpoint (which is identical to primary 
+                // endpoint) to make orignal api call 
                 jqxhr = $.getJSON("/js/spice/test_endpoint/" + query, function(data) {
-                    //if ($.inArray(data.q)) {
-                     //   break
-                    //}
-                    arrayOfApiResults.push(data);
+                    // TODO: Only add the quote if it is unique
+                    apiResultsArray.push(data);
                 })
                 .fail(function( jqxhr, textStatus, error ) {
                     var err = textStatus + ", " + error;
                     console.log( "Request Failed: " + err );
                 });
-                threeUniqueQuotesCounter++;
+                quotesCounter++;
             }
 
             jqxhr.done(function() {
@@ -76,7 +67,7 @@
                     id: 'brainy_quote',
                     name: 'Quotations',
                     data: {
-                        list: arrayOfApiResults 
+                        list: apiResultsArray 
                     },
                     meta: {
                         sourceName: 'Brainy Quote',

@@ -27,7 +27,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::BrainyQuote',
     ),
 
-    # Where is the logic to 'HTMLify' the remainder?
     'quote benjamin franklin' => test_spice(
         '/js/spice/brainy_quote/benjamin%20franklin',
         call_type => 'include',
