@@ -1,7 +1,12 @@
 (function(env) {
     env.ddg_spice_brainy_quote = function(api_result) {
 
-        //function callAPIAndAddAnotherQuoteToTheView(
+        Handlebars.registerHelper("getAuthor", function (arg1, arg2) {
+            if (arg1 == null && arg2 == null) {
+                return;
+            }
+            return arg1 == null ? arg2.replace(/ quote$/, "") : arg1;
+        });
 
         if (!api_result || api_result.error || api_result.author) {
             return Spice.failed('brainy_quote');
@@ -47,7 +52,7 @@
             */
 
             var threeUniqueQuotesCounter = 1,
-                arrayOfApiResults = [api_result]
+                arrayOfApiResults = [api_result];
 
             var jqxhr;
             while (threeUniqueQuotesCounter != 3) {
@@ -57,23 +62,21 @@
                     //if ($.inArray(data.q)) {
                      //   break
                     //}
-                    arrayOfApiResults.push(data)
+                    arrayOfApiResults.push(data);
                 })
                 .fail(function( jqxhr, textStatus, error ) {
                     var err = textStatus + ", " + error;
                     console.log( "Request Failed: " + err );
                 });
-                threeUniqueQuotesCounter++
+                threeUniqueQuotesCounter++;
             }
 
             jqxhr.done(function() {
-                console.log("arrayOfApiResults: " + JSON.stringify(arrayOfApiResults));
-
                 var spiceObj = {
                     id: 'brainy_quote',
                     name: 'Quotations',
                     data: {
-                        list:  arrayOfApiResults 
+                        list: arrayOfApiResults 
                     },
                     meta: {
                         sourceName: 'Brainy Quote',
