@@ -47,7 +47,7 @@
             */
 
             var threeUniqueQuotesCounter = 1,
-                arrayOfApiResults = [api_result.q]
+                arrayOfApiResults = [api_result]
 
             var jqxhr;
             while (threeUniqueQuotesCounter != 3) {
@@ -57,8 +57,7 @@
                     //if ($.inArray(data.q)) {
                      //   break
                     //}
-                    console.log("in loop.." + data.q);
-                    arrayOfApiResults.push(data.q)
+                    arrayOfApiResults.push(data)
                 })
                 .fail(function( jqxhr, textStatus, error ) {
                     var err = textStatus + ", " + error;
@@ -66,28 +65,25 @@
                 });
                 threeUniqueQuotesCounter++
             }
-            console.log("the array is " + arrayOfApiResults)
 
             jqxhr.done(function() {
+                console.log("arrayOfApiResults: " + JSON.stringify(arrayOfApiResults));
+
                 var spiceObj = {
                     id: 'brainy_quote',
                     name: 'Quotations',
-                    data: arrayOfApiResults,
+                    data: {
+                        list:  arrayOfApiResults 
+                    },
                     meta: {
                         sourceName: 'Brainy Quote',
                         sourceUrl: api_result.source_url
                     },
                     signal: 'high',
-                    normalize: function(item) {
-                        return {
-                            person: item, //.header1.replace(/ quote$/, ""),
-                            url: item.source_url
-                        };
-                    },
                     templates: {
                         group: 'list',
                         options: {
-                            content: Spice.brainy_quote.content,
+                            list_content: Spice.brainy_quote.list_content,
                             moreAt: true
                         }
                     }
