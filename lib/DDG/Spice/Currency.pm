@@ -33,7 +33,7 @@ my $number_re = number_style_regex();
 my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)).' ';
 my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/;
 my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
-my $keyword_qr = qr/(?:\s?(?<currencyKeyword>(?:((currency|value|price)(\sconversion|\sconverter|\scalculator)?)|(conversion|converter|calculator)|(exchange|conversion)\srate)|(value|price)\s?of)\s?)/i;
+my $keyword_qr = qr/(?:(?<currencyKeyword>(?:((currency|value|price)(\sconversion|\sconverter|\scalculator)?)|(conversion|converter|calculator)|(exchange|conversion)\srate)|(value|price)\s?of)\s?)/i;
 
 my $guard = qr/^$question_prefix\s?$keyword_qr?(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?\s?$keyword_qr?\??$/i;
 
