@@ -74,6 +74,43 @@ triggers query_nowhitespace => qr/^
                                 )
                                 $/xi;
 
+## CanadaPost
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    [\d]{9,} |
+                                    [A-Z]{2}\d{9}CA)
+                                )
+                                $/xi;
+
+## DHL
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    \d{9,} |
+                                    \d{10} |
+                                )
+                                $/xi;
+
+##HKDK
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    [a-z]{2}\d{9}(?:hk|dk)
+                                )
+                                $/xi;
+
+## IPS
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    E[MA]\d{9}(?:IN|HR)
+                                )
+                                $/xi;
+
+## LaserShip
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    l[a-z]\d{8}
+                                )
+                                $/xi;
+
 handle query => sub {
 
     # remove trigger words & carrier names
