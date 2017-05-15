@@ -12,9 +12,8 @@ my $other = qr/user|account|id/;
 
 triggers query_lc => qr/^(?:twitter\s)?(?:$other\s)?@([a-z0-9_]+)$/i;
 triggers query_lc => qr/^twitter\s(?:$other\s)?([a-z0-9_]+)$/i;
-triggers query_lc => qr/^([a-z0-9_]+)\s(?:$other\s)?(?:$grammar\s)?(?:twitter)$/i;
-triggers query_lc => qr/^@([a-z0-9_]+)\s(?:$other\s)?(?:$grammar\s)?twitter?$/i;
-
+triggers query_lc => qr/^([a-z0-9_]+)(?:'s)?\s(?:$other\s)?(?:$grammar\s)?(?:twitter)(?:\s$other)?$/i;
+triggers query_lc => qr/^@([a-z0-9_]+)(?:'s)?\s(?:$other\s)?(?:$grammar\s)?twitter?(?:\s$other)?$/i;
 
 # skip words from file
 my $skip = join "|", share('skipwords.txt')->slurp(chomp => 1);
