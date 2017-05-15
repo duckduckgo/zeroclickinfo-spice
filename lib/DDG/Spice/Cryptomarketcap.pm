@@ -10,27 +10,32 @@ use warnings;
 spice is_cached => 1;
 spice proxy_cache_valid => '200 1d';
 
-spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
+spice wrap_jsonp_callback => 1;
 
-# API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
 spice to => 'https://api.coinmarketcap.com/v1/ticker/$1';
 
-# Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => 'market cap', 'marketcap', 'volume';
+triggers any => 'market cap', 'marketcap', 'volume', 'price', 'rank', 'supply', 'total supply', 'volume 24h', 'volume usd', 'price usd';
 
-# Handle statement
-handle remainder => sub {
+handle remainder_lc => sub {
 
-    my $table = LoadFile(share("coins.yml"));
+    return if $_ eq '';
     
-    if(grep(/^$_$/i, values(%$table))) {
-        return lc $_;
+    my $value=$_;
+    my $f='';
+
+    my $table = LoadFile(share('coins.yml'));
+
+    if(grep(/^$value$/i, values(%$table))) {
+        $f = $value;
     }
-    if(grep(/^$_$/i, keys(%$table))) {
-        return lc $$table{lc $_};
+    elsif(grep(/^$value$/i, keys(%$table))) {
+        $f = $$table{$value};
     }
 
-    return;
+    $f =~ s/\s/-/g;
+    
+    return if $f eq '';
+    return $f;
 };
 
 1;

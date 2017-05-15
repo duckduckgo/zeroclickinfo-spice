@@ -4,25 +4,32 @@
     var parseNumber = function(n) {
         return n.split('.')[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
-    
+    var parsePrice = function(n) {
+        var s = n.split('.');
+        if(s.length == 2)
+            return parseNumber(s[0])+"."+s[1];
+        else
+            return parseNumber(s[0]);
+    }
+
     env.ddg_spice_cryptomarketcap = function(api_result) {
 
-        
-        // Validate the response (customize for your Spice)
-
-        var firstEl = api_result.pop();
-        if (!api_result || firstEl['error']) {
+        if (!api_result) {
             return Spice.failed('cryptomarketcap');
         }
-        console.log(firstEl);
+        var firstEl = api_result.pop();
         
-        var priceChange = firstEl['percent_change_24h'];
-        var priceChDis = "+ ";
+        if (firstEl['error']) {
+            return Spice.failed('cryptomarketcap');
+        }
+
+        var priceChange = firstEl['percent_change_24h'],
+            priceChDis = "↑  ";
         if(priceChange.substring(0, 1) === "-") {
             priceChange = priceChange.substring(1, priceChange.length);
-            priceChDis = "- &xdtri; &bigtriangledown;"
+            priceChDis = "↓ ";
         } 
-        priceChDis += priceChange + "% in 24h";
+        priceChDis += priceChange + "%";
         
         // Render the response
         Spice.add({
@@ -36,7 +43,7 @@
                 return {
                     title: firstEl['name']+" ("+firstEl['symbol']+")",
                     image: 'https://files.coinmarketcap.com/static/img/coins/128x128/'+firstEl['id']+'.png',
-                    img_m: 'https://files.coinmarketcap.com/static/img/coins/128x128/'+firstEl['id']+'.png',
+                    img_m: 'https://files.coinmarketcap.com/static/img/coins/128x128/'+firstEl['id']+'.png'
                 };
             },
             templates: {
@@ -44,13 +51,13 @@
                 options: {
                     content: "record",
                     moreAt: true,
-                    item: "basic_image_item
+                    item: "basic_image_item"
                 }
             },
             data: {
                 record_data: {
                     'title': firstEl['name']+" ("+firstEl['symbol']+")",
-                    'Price': firstEl['price_usd']+" USD   ("+priceChDis+")",
+                    'Price': parsePrice(firstEl['price_usd'])+" USD     ( "+priceChDis+" )",
                     'Market cap': parseNumber(firstEl['market_cap_usd'])+" USD",
                     'Total supply': parseNumber(firstEl['total_supply'])+" "+firstEl['symbol'],
                     'Volume (24h)': parseNumber(firstEl['24h_volume_usd'])+" USD",
