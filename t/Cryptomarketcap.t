@@ -12,14 +12,28 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/cryptomarketcap/query',
+    'ethereum price' => test_spice(
+        '/js/spice/cryptomarketcap/ethereum',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptomarketcap'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+	'btc market cap' => test_spice(
+        '/js/spice/cryptomarketcap/bitcoin',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptomarketcap'
+    ),
+	'ethereum classic rank' => test_spice(
+        '/js/spice/cryptomarketcap/ethereum-classic',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptomarketcap'
+    ),
+	'melon volume' => test_spice(
+        '/js/spice/cryptomarketcap/melon',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptomarketcap'
+    ),
+    'bitcoin total supply' => undef,
+    'ethereum volume usdollars' => undef
 );
 
 done_testing;

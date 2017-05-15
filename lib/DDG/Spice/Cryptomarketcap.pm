@@ -14,7 +14,7 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'https://api.coinmarketcap.com/v1/ticker/$1';
 
-triggers any => 'market cap', 'marketcap', 'volume', 'price', 'rank', 'supply', 'total supply', 'volume 24h', 'volume usd', 'price usd';
+triggers any => 'market cap', 'marketcap', 'volume', 'price', 'rank', 'supply', 'available supply', 'volume 24h', 'volume usd', 'price usd';
 
 handle remainder_lc => sub {
 

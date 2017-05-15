@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-
+	
     var parseNumber = function(n) {
         return n.split('.')[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
@@ -59,11 +59,11 @@
                     'title': firstEl['name']+" ("+firstEl['symbol']+")",
                     'Price': parsePrice(firstEl['price_usd'])+" USD     ( "+priceChDis+" )",
                     'Market cap': parseNumber(firstEl['market_cap_usd'])+" USD",
-                    'Total supply': parseNumber(firstEl['total_supply'])+" "+firstEl['symbol'],
+                    'Available supply': parseNumber(firstEl['available_supply'])+" "+firstEl['symbol'],
                     'Volume (24h)': parseNumber(firstEl['24h_volume_usd'])+" USD",
                     'Rank': firstEl['rank']
                 },
-                record_keys: ["Price", "Market cap", "Total supply", "Volume (24h)", "Rank"]
+                record_keys: ["Price", "Market cap", "Available supply", "Volume (24h)", "Rank"]
             }
         });
     };
