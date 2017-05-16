@@ -7,8 +7,9 @@
                 <div class="zci--currency-group">
                     <section class="zci--currency-first-part">
                         <img src="{{fromFlag}}" class="flag-img" alt="Flag of {{fromCurrencySymbol}}">
-                        <input class="zci--currency-amount text--primary" data-original="{{from-amount}}" data-processed="{{amount}}" value="{{amount}}" />
-                        <span class="zci--currency-symbol">{{fromCurrencySymbol}}</span>
+                        <input class="zci--currency-amount" id="zci--currency-amount-left" data-original="{{from-amount}}" data-processed="{{amount}}" value="{{amount}}" />
+                        <select class="zci--currency-symbol" id="zci--currency-symbol-left">
+                        </select>
                     </section>
 
                     <span class="zci--currency-equal">=</span>
@@ -16,11 +17,11 @@
 
                 <section class="zci--currency-second-part">
                     <img src="{{toFlag}}" class="flag-img" alt="Flag of {{toCurrencySymbol}}">
-                    <span class="zci--currency-amount text--primary" data-original="{{converted-amount}}" data-processed="{{convertedAmount}}">{{convertedAmount}}</span>
-                    <span class="zci--currency-symbol">{{toCurrencySymbol}}</span>
+                    <input class="zci--currency-amount" id="zci--currency-amount-right" />
+                    <select class="zci--currency-symbol" id="zci--currency-symbol-right">
+                    </select>
                 </section>
             </div>
-                
 
             <div class="zci--currency-ratesinfo">
                 <div>{{rate}}</div>

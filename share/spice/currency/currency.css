@@ -112,6 +112,7 @@
     font-size: 2.7em;
     font-weight: bold;
     padding: 0 0.1em 0 0.2em;
+    width: 5em;
 }
 
     .is-mobile .zci--currency-amount {
@@ -124,8 +125,10 @@
 
 .zci--currency-symbol {
     display: inline-block;
-    font-size: 0.8em;
     vertical-align: top;
+    height: 2.4em;
+    font-size: 1.5em;
+    margin-top: .3em;
 }
 
     .is-mobile .zci--currency-symbol {
