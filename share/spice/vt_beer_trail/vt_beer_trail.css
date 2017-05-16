@@ -1,0 +1,160 @@
+/* Styles For Tiles */
+
+.zci--vt_beer_trail .tile__description.opt {
+    display: block !important;
+    margin-bottom: 0px;
+}
+
+/* A Sprite here for the logos in the tiles would be cool, let's see what DDH thinks! */
+.zci--vt_beer_trail .tile__media--b-i {
+    height: 11rem
+}
+
+.zci--vt_beer_trail .tile__media__img {
+    margin-top: 1rem;
+}
+
+/* Styles For Detail */
+
+.zci--vt_beer_trail .detail__pane--img {
+    float: left;
+    width: 15%;
+    margin-right: 3em;
+    margin-top: 2rem;
+}
+
+.zci--vt_beer_trail .detail__pane--info {
+    float: left;
+    width: 30%;
+    margin-right: 3em;
+    margin-top: 2rem;
+}
+
+.zci--vt_beer_trail .detail__pane--header {
+    line-height: 24px;
+}
+
+.zci--vt_beer_trail .detail__pane--address {
+    margin-top: 1rem;
+    padding: 0px;
+}
+
+.zci--vt_beer_trail .detail__pane--social {
+    margin-top: 1rem;
+    max-height: 50px;
+    line-height: 48px;
+}
+
+.zci--vt_beer_trail .detail__pane--map {
+    float: left;
+    width: 400px;
+    height: 200px;
+    margin-top: 2rem;
+}
+
+/* Sprites */
+
+/* Link Wrapper For Each Icon */
+
+.zci--vt_beer_trail .detail__pane--social--link {
+    display: inline-block;
+    height:48px;
+    width: 48px;
+    border: .1em solid transparent;
+    border-radius: 50%;
+    /*No vendor prefixes per DDG Style Guide */
+    transition: background-color 0.3s ease-in, border 0.3s ease-in;
+}
+
+.zci--vt_beer_trail .detail__pane--social--link:hover {
+    background-color: rgb(209, 209, 209);
+    border: 0.1em solid rgba(55, 55, 55, 0.4);
+}
+
+.zci--vt_beer_trail .detail__pane--icon {
+    display: block;
+}
+
+/* Icon Elements. Will DDG be OK pulling in sprite image from external resource? */
+.zci--vt_beer_trail .detail__pane--icon--site, 
+.zci--vt_beer_trail .detail__pane--icon--twitter, 
+.zci--vt_beer_trail .detail__pane--icon--facebook, 
+.zci--vt_beer_trail .detail__pane--icon--google, 
+.zci--vt_beer_trail .detail__pane--icon--vbt {
+    background-image: url('http://vtbeertrail.com/images/social/social-sprite.png');
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+.zci--vt_beer_trail .detail__pane--icon--site {
+    background-position: 0px -96px;
+    height: 48px;
+    width: 48px;
+}
+
+.zci--vt_beer_trail .detail__pane--icon--twitter {
+    background-position: 0px -144px;
+    height: 48px;
+    width: 48px;
+}
+
+.zci--vt_beer_trail .detail__pane--icon--facebook {
+    background-position: 0px 0px;
+    height: 48px;
+    width: 48px;
+}
+
+.zci--vt_beer_trail .detail__pane--icon--google {
+    background-position: 0px -48px;
+    height: 48px;
+    width: 48px;
+}
+
+.zci--vt_beer_trail .detail__pane--icon--vbt {
+    background-position: 0px -192px;
+    height: 48px;
+    width: 48px;
+}
+
+/* Styles For Mobile Detail */
+
+.zci--vt_beer_trail .detail__pane--img--mobile {
+    float: left;
+    width: 15%;
+    margin: 3rem 1em 0px;
+}
+
+.zci--vt_beer_trail .detail__pane--info--mobile {
+    float: left;
+    width: 70%;
+    margin-top: 3rem;
+}
+
+.zci--vt_beer_trail .detail__pane--header--mobile {
+    line-height: 24px;
+}
+
+.zci--vt_beer_trail .detail__pane--address--mobile {
+    margin-top: 0px;
+    font-size: 11px;
+}
+
+.zci--vt_beer_trail .detail__pane--social--mobile {
+    margin-top: 1rem;
+    line-height: 48px;
+}
+
+.zci--vt_beer_trail .detail__pane--social--link--mobile {
+    display: inline-block;
+    height:48px;
+    width: 48px;
+    border: .1em solid transparent;
+    border-radius: 50%;
+    /*No vendor prefixes per DDG Style Guide */
+    transition: background-color 0.3s ease-in, border 0.3s ease-in;
+}
+
+.zci--vt_beer_trail .detail__pane--map--mobile {
+    float: left;
+    margin-bottom: 3rem;
+}

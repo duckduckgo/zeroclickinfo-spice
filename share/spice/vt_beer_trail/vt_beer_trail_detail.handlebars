@@ -1,0 +1,37 @@
+
+<img src="{{imageProxy brewerImageBig}}" alt="{{name}} Logo" class="detail__pane--img" />
+
+<div class="detail__pane--info">
+    <h3 class="detail__pane--header">{{name}}</h3>
+    <p class="detail__pane--address">{{address}}</p>
+    <p class="detail__pane--address">{{description}}, {{zip}}</p>
+    
+    <div class="detail__pane--social">
+        {{#if url}}
+            <a href="{{url}}" target="_blank" class="detail__pane--social--link" title="Brewery Web Site">
+                <i class="detail__pane--icon detail__pane--icon--site"></i>
+            </a>
+        {{/if}}
+        {{#if twitter}}
+            <a href="{{twitter}}" target="_blank" class="detail__pane--social--link" title="Brewery Twitter Page">
+                <i class="detail__pane--icon detail__pane--icon--twitter"></i>
+            </a>
+        {{/if}}
+        {{#if facebook}}
+            <a href="{{facebook}}" target="_blank" class="detail__pane--social--link" title="Brewery Facebook Page">
+                <i class="detail__pane--icon detail__pane--icon--facebook"></i>
+            </a>
+        {{/if}}
+        {{#if googleplus}}
+            <a href="{{googleplus}}" target="_blank" class="detail__pane--social--link" title="Brewery GooglePlus page">
+                <i class="detail__pane--icon detail__pane--icon--google"></i>
+            </a>
+        {{/if}}
+        <a href="{{meta.sourceUrl}}/#!/{{selector}}" target="_blank" class="detail__pane--social--link" title="Hi-Res Map & Local Resources">
+            <i class="detail__pane--icon detail__pane--icon--vbt"></i>
+        </a>
+    </div>
+    
+</div>
+
+<img src="{{imageProxy mapImage}}" alt="{{name}} Location" class="detail__pane--map" title="Lo-Res Map, Gives An Idea At Least"/>
