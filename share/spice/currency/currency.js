@@ -1,6 +1,8 @@
 (function(env) {
     "use strict";
 
+    var initialized = false;
+
     // We hardcode the currency symbols here for 2 reasons rather than read it in
     // 1. To vastly mitigate the risk of (very probable) runtime errors
     // 2. Slight performance betterment
@@ -177,24 +179,21 @@
         "ZWD",
     ]
 
-    var initialized = false;
-
-    var $currency_input_left,
+    //
+    // The various jQuery objects representing the zci--currency UI
+    // 
+    var $flag_image_left,
+        $flag_image_right,
+        $currency_input_left,
         $currency_input_right,
         $left_select,
         $right_select,
-        $selects;
+        $selects,
+        $more_at_link_normal,
+        $more_at_link_charts,
+        $to_from_label,
+        $from_to_label;
 
-    // The exchange rate
-    var Converter = {
-        from_currency: undefined,
-        to_currency: undefined,
-
-        // the rates
-        rate: undefined,
-        inverseRate: undefined,
-    }
-    
     // Currencies that we don't have flags for.
     var currency2country_extra = {
         "xaf": true,
@@ -223,29 +222,150 @@
         "xbt": 8
     };
     
-    // Resize the size of the outer container if the content of the inner container
-    // overflows.
-    function resize() {        
-        var resultHeight = $(".zci--currency-result").outerHeight();
-        
-        if(resultHeight > 65) {
-            $(".zci--currency-container").css("height", "9em");
-        } else {
-            $(".zci--currency-container").css("height", "5em");
-        }
-    }
-    
-    // Change the look of the mobile view if the content overflows.
-    function resizeMobile() {
-        var tileHeight = $(".zci--currency .tile--s").outerHeight();
 
-        if(tileHeight > 155) {
-            $(".zci--currency .tile--s").addClass("large").removeClass("small");
-        } else {
-            $(".zci--currency .tile--s").addClass("small").removeClass("large");
-        }
-    }
-    
+    // Currency Converter
+    var Converter = {
+
+        from_currency: undefined,
+        to_currency: undefined,
+        rate: undefined,
+        inverseRate: undefined,
+
+        //
+        // Retrieves conversion info from JSONP payload
+        //
+
+        getConversionRate: function(payload) {
+            return +$(payload["conversion-rate"].split(" ")).get(-2);
+        },
+
+        getInverseConversionRate: function(payload) {
+            return +$(payload["conversion-inverse"].split(" ")).get(-2);
+        },
+
+        getFromCurrencyName: function(payload) {
+            return payload["from-currency-symbol"];
+        },
+
+        getToCurrencyName: function(payload) {
+            return payload["to-currency-symbol"];
+        },
+
+        getConversionLabel: function(payload) {
+            return payload["conversion-rate"];
+        },
+
+        getInverseConversionLabel: function(payload) {
+            return payload["conversion-inverse"]
+        },
+
+        //
+        // Calculates the rates
+        //
+
+        calculateRate: function() {
+            if($currency_input_left.val() !== '' && /\d+/.test($currency_input_left.val())) {
+                var left_input = $currency_input_left.val()
+                var rightval = parseFloat(left_input) * Converter.rate;
+                $currency_input_right.val(
+                    DDG.commifyNumber(rightval.toFixed(2))
+                );
+            } else {
+                $currency_input_right.val("");
+            }
+        },
+
+        calculateInverseRate: function() {
+            if($currency_input_right.val() !== '' && /\d+/.test($currency_input_right.val())) {
+                var right_input = $currency_input_right.val()
+                var leftval = parseFloat(right_input) * Converter.inverseRate;
+                $currency_input_left.val(
+                    DDG.commifyNumber(leftval.toFixed(2))
+                );
+            } else {
+                $currency_input_left.val("");
+            }
+        },
+
+        getRatesFromAPI: function() {
+
+            var from = $left_select.val();
+            var to = $right_select.val();
+
+            // We'll flip the currencies if the user tries to compare the same symbol
+            if (from === to) {
+                from = Converter.to_currency;
+                to = Converter.from_currency;
+                $right_select.val(to);
+            }
+
+            var endpoint = "/js/spice/currency/1/" + from + "/" + to;
+            $.get(endpoint, function(payload) {
+
+                // jsonp is returned from the API so we have to alter the contents
+                var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
+                response = response.conversion;
+                Converter.resetConverter(response);
+
+            });
+        },
+
+        //
+        // Resets the converter based on new info
+        //
+
+        resetConverter: function(json) {
+            // gets the to/from currencies
+            Converter.from_currency = Converter.getFromCurrencyName(json);
+            Converter.to_currency = Converter.getToCurrencyName(json);
+            
+            // gets the conversion rates
+            Converter.rate = Converter.getConversionRate(json)
+            Converter.inverseRate = Converter.getInverseConversionRate(json);
+
+            // resets the Currency image
+            $flag_image_left.attr("src", Converter.currency_image(Converter.from_currency));
+            $flag_image_right.attr("src", Converter.currency_image(Converter.to_currency));
+
+            Converter.calculateRate();
+            Converter.setMoreAtLinks();
+
+            var conv1 = Converter.getConversionLabel(json);
+            var conv2 = Converter.getInverseConversionLabel(json);
+            Converter.setInformationLabels(conv1, conv2);
+        },
+
+        //
+        // Sets Link / Information Labels
+        //
+
+        setInformationLabels: function(conv1, conv2) {
+            $to_from_label.text(conv1);
+            $from_to_label.text(conv2);
+        },
+
+        setMoreAtLinks: function() {
+            // the url strings
+            var more_at_url = "http://www.xe.com/currencyconverter/convert/?Amount=1&From=" + Converter.from_currency + "&To=" + Converter.to_currency;
+            var chart_url = "http://www.xe.com/currencycharts/?from=" + Converter.from_currency + "&to=" + Converter.to_currency;
+            $more_at_link_normal.attr("href", more_at_url);
+            $more_at_link_charts.attr("href", chart_url);
+        },
+
+        // Get the flag image.
+        currency_image: function(symbol) {
+            symbol = symbol.toLowerCase();
+            if(symbol in currency2country_extra) {
+                return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
+            }
+            
+            symbol = symbol.slice(0, 2);
+            symbol = symbol in currency2country_translate ? currency2country_translate[symbol] : symbol;
+            return DDG.settings.region.getLargeIconURL(symbol);
+        },
+
+    } // Converter
+
     env.ddg_spice_currency = function(api_result) {
 
         // Check if there are any errors in the response.
@@ -261,8 +381,8 @@
         var templates = {};
 
         // caches the retrieved information in the UI
-        Converter.rate = +$(mainConv["conversion-rate"].split(" ")).get(-2);
-        Converter.inverseRate = +$(mainConv["conversion-inverse"].split(" ")).get(-2);
+        Converter.rate = Converter.getConversionRate(mainConv)
+        Converter.inverseRate = Converter.getInverseConversionRate(mainConv);
         
         if(mainConv["from-currency-symbol"] !== mainConv["to-currency-symbol"]) {
             // Flag the input to get different output
@@ -284,32 +404,7 @@
         var xeDate = timestr[0];
         var xeTime = timestr[1].match(/\d{2}\:\d{2}\b/);
         var liveUrl = 'http://www.xe.com/currencyconverter/convert/?Amount=1&From=' + mainConv["from-currency-symbol"] + '&To=' + mainConv["to-currency-symbol"];
-        
-        // Get the flag image.
-        function currency_image(symbol) {
-            symbol = symbol.toLowerCase();
-            if(symbol in currency2country_extra) {
-                return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
-            }
-            
-            symbol = symbol.slice(0, 2);
-            symbol = symbol in currency2country_translate ? currency2country_translate[symbol] : symbol;
-            return DDG.settings.region.getLargeIconURL(symbol);
-        }
-        
-        // Add commas to the numbers for display.
-        function formatNumber(x, symbol) {
-            // Check if the number has a decimal point.
-            // If it does, only show the standard number digits after the decimal place for a given currency.
-            symbol = symbol.toLowerCase();
-            if(/\./.test(x.toString())) {
-                var precision = decimal_places[symbol] || 2;
-                x = x.toFixed(precision);
-            }
-        
-            return DDG.commifyNumber(x);
-        }
-        
+
         var templateObj = {
             detail: Spice.currency.detail,
             detail_mobile: Spice.currency.detail_mobile,
@@ -321,46 +416,6 @@
         if(results.length > 1) {
             templateObj.detail = false;
             templateObj.detail_mobile = false;
-        }
-
-        function calculateRate() {
-            if($currency_input_left.val() !== '') {
-                var left_input = $currency_input_left.val()
-                var rightval = parseFloat(left_input) * Converter.rate;
-                $currency_input_right.val(
-                    DDG.commifyNumber(rightval.toFixed(2))
-                );
-            } else {
-                $currency_input_right.val("");
-            }
-        }
-
-        function calculateInverseRate() {
-            if($currency_input_right.val() !== '') {
-                var right_input = $currency_input_right.val()
-                var leftval = parseFloat(right_input) * Converter.inverseRate;
-                $currency_input_left.val(
-                    DDG.commifyNumber(leftval.toFixed(2))
-                );
-            } else {
-                $currency_input_left.val("");
-            }
-        }
-
-        function getRatesFromAPI() {
-            var url;
-            var response;
-
-            var from = $("select#zci--currency-symbol-left").val();
-            var to = $("select#zci--currency-symbol-right").val();
-            url = "/js/spice/currency/1/" + from + "/" + to;
-
-            console.log("Getting info from " + url);
-            $.getScript(url, function(data) {
-                // TODO: Only add the quote if it is unique
-                console.log(data);
-            })
-
         }
         
         // Set favicon
@@ -388,13 +443,13 @@
                 return {
                     fromCurrencySymbol: item["from-currency-symbol"],
                     toCurrencySymbol: item["to-currency-symbol"],
-                    amount: formatNumber(+item["from-amount"], item["from-currency-symbol"]),
-                    convertedAmount: formatNumber(+item["converted-amount"], item["to-currency-symbol"]),
+                    amount: +item["from-amount"],
+                    convertedAmount: +item["converted-amount"],
                     rate: item["conversion-rate"],
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
-                    fromFlag: currency_image(item["from-currency-symbol"]),
-                    toFlag: currency_image(item["to-currency-symbol"]),
+                    fromFlag: Converter.currency_image(item["from-currency-symbol"]),
+                    toFlag: Converter.currency_image(item["to-currency-symbol"]),
                     currencyName: item["to-currency-name"],
                     liveUrl: liveUrl,
                     xeTime: xeTime,
@@ -405,22 +460,19 @@
             templates: templateObj,
             onShow: function() {
 
-                // The desktop template depends on a JS function that manages the
-                // size of the container.
-                if(!is_mobile) {
-                    $(window).on('load', resize);
-                    $(window).resize(resize);
-                } else {
-                    $(window).on('load', resizeMobile);
-                    $(window).resize(resizeMobile);
-                }
-
                 if(!initialized) {
-                    $currency_input_left = $("#zci--currency-amount-left");
-                    $currency_input_right = $("#zci--currency-amount-right");
-                    $left_select = $("select#zci--currency-symbol-left");
-                    $right_select = $("select#zci--currency-symbol-right");
-                    $selects = $("select.zci--currency-symbol");
+                    var $currency = $("#zci-currency");
+                    $flag_image_right = $currency.find("#flag-img-right");
+                    $flag_image_left = $currency.find("#flag-img-left");
+                    $currency_input_left = $currency.find("#zci--currency-amount-left");
+                    $currency_input_right = $currency.find("#zci--currency-amount-right");
+                    $left_select = $currency.find("select#zci--currency-symbol-left");
+                    $right_select = $currency.find("select#zci--currency-symbol-right");
+                    $selects = $currency.find("select.zci--currency-symbol");
+                    $more_at_link_normal = $currency.find(".zci__more-at");
+                    $more_at_link_charts = $currency.find(".zci__more-at--info");
+                    $to_from_label = $currency.find("#to-from-label");
+                    $from_to_label = $currency.find("#from-to-label");
 
                     // apends all the currency names to the selects
                     for( var i = 0 ; i < currencies.length ; i ++ ) {
@@ -438,42 +490,38 @@
                     $right_select.val(Converter.to_currency);
                 }
 
-                // console.log(DDG.get_asset_path('currency', 'currencyNames.txts'));
-
                 /**
                  * When the user clicks on the field we select
                  */
-                $currency_input_left.click(function() {
+                $currency_input_left.click(function(_e) {
                     var tmp = $currency_input_left.val().replace(/,/g, '');
                     $currency_input_left.val(tmp);
                     this.select();
                 });
 
-                $currency_input_right.click(function() {
+                $currency_input_right.click(function(_e) {
                     var tmp = $currency_input_right.val().replace(/,/g, '');
                     $currency_input_right.val(tmp);
                     this.select();
                 });
 
                 $currency_input_left.keyup(function(_e) {
-                    calculateRate();
+                    Converter.calculateRate();
                 });
 
                 $currency_input_right.keyup(function(_e) {
-                    calculateInverseRate();
+                    Converter.calculateInverseRate();
                 });
 
                 $selects.change(function(_e) {
-                    getRatesFromAPI();
+                    Converter.getRatesFromAPI();
                 });
 
-                // convert on the first pass
+                // Perform conversion on the first pass
                 if(!initialized) {
-                    calculateRate();
+                    Converter.calculateRate();
+                    initialized = true;
                 }
-
-                // set the flag to true... no more set ups
-                initialized = true;
 
             }
         });

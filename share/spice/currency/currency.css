@@ -1,10 +1,28 @@
-/* Tile view */
+.zci--currency .zci--currency-container {
+    margin-bottom: 1em;
+}
 
 .zci--currency .btn--container {
     position: absolute;
     display: none;
     top: 0.4em;
     right: 0.5em;
+}
+
+.zci--currency .frm__select {
+    vertical-align: bottom;
+    min-width: 4em;
+    min-height: 3.5em;
+    font-size: 1.1em;
+    padding-bottom: .35em;
+    margin-left: -5px;
+}
+
+.zci--currency .frm__input {
+    vertical-align: bottom;
+    border-color: #c9c9c9;
+    font-size: 1.9em;
+    width: 7em;
 }
 
 .zci--currency .btn--container .ddgsi {
@@ -100,12 +118,8 @@
 .zci--currency-result img {
     height: 32px;
     margin-top: 1em;
-    vertical-align: -2px;
+    vertical-align: -5px;
     width: 32px;
-}
-
-.zci--currency-container {
-    height: 5em;
 }
 
 .zci--currency-amount {
@@ -127,7 +141,7 @@
     display: inline-block;
     vertical-align: top;
     height: 2.4em;
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-top: .3em;
 }
 
@@ -162,6 +176,12 @@
 .zci--currency-equal {
     font-size: 2em;
     margin: 0 0.5em;
+}
+
+@media screen and (max-width:768px) {
+    .zci--currency-equal {
+        display: none;
+    }
 }
 
     .is-mobile .zci--currency-equal .horizontal {

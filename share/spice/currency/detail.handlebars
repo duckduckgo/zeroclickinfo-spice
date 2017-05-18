@@ -6,26 +6,30 @@
             <div class="zci--currency-result" data-link="{{xeUrl}}">
                 <div class="zci--currency-group">
                     <section class="zci--currency-first-part">
-                        <img src="{{fromFlag}}" class="flag-img" alt="Flag of {{fromCurrencySymbol}}">
-                        <input class="zci--currency-amount" id="zci--currency-amount-left" data-original="{{from-amount}}" data-processed="{{amount}}" value="{{amount}}" />
-                        <select class="zci--currency-symbol" id="zci--currency-symbol-left">
-                        </select>
+                        <img src="{{fromFlag}}" class="flag-img" id="flag-img-left" alt="Flag of {{fromCurrencySymbol}}">
+                        <input class="zci--currency-amount frm__input" id="zci--currency-amount-left" data-original="{{from-amount}}" data-processed="{{amount}}" value="{{amount}}" />
+                        <div class="frm__select">
+                            <select class="zci--currency-symbol frm__select" id="zci--currency-symbol-left">
+                            </select>
+                        </div>
                     </section>
 
                     <span class="zci--currency-equal">=</span>
                 </div>
 
                 <section class="zci--currency-second-part">
-                    <img src="{{toFlag}}" class="flag-img" alt="Flag of {{toCurrencySymbol}}">
-                    <input class="zci--currency-amount" id="zci--currency-amount-right" />
-                    <select class="zci--currency-symbol" id="zci--currency-symbol-right">
-                    </select>
+                    <img src="{{toFlag}}" class="flag-img" id="flag-img-right" alt="Flag of {{toCurrencySymbol}}">
+                    <input class="zci--currency-amount frm__input" id="zci--currency-amount-right" />
+                    <div class="frm__select">
+                        <select class="zci--currency-symbol frm__select" id="zci--currency-symbol-right">
+                        </select>
+                    </div>
                 </section>
             </div>
 
             <div class="zci--currency-ratesinfo">
-                <div>{{rate}}</div>
-                <div>{{inverseRate}}</div> 
+                <div id="to-from-label">{{rate}}</div>
+                <div id="from-to-label">{{inverseRate}}</div> 
             </div>
         </div>
 
