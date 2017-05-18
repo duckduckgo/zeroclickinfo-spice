@@ -9,7 +9,7 @@ my $blockTriggers = '^(?:bitcoin block|btc block)?\s*(0{8}[a-fA-F0-9]{56})$';
 
 triggers query_raw => qr/$addressTriggers|$txTriggers|$blockTriggers/;
 
-spice to => 'https://api.biteasy.com/v2/btc/mainnet/$1/$2?api_key={{ENV{DDG_SPICE_BITEASY_APIKEY}}}';
+spice to => 'https://btc.blockr.io/api/v1/$1/info/$2';
 
 spice from => '(.*)/(.*)';
 
@@ -22,9 +22,9 @@ handle query_raw => sub {
     #remove trigger words
     s/(b[a-z]{0,7})\s(transaction|block|address)\s+|//g; 
     # switch api endpoints based on query
-    return "addresses", $_ if m/$addressTriggers/; 
-    return "blocks", $_ if m/$blockTriggers/;
-    return "transactions", $_ if m/$txTriggers/;
+    return "address", $_ if m/$addressTriggers/; 
+    return "block", $_ if m/$blockTriggers/;
+    return "tx", $_ if m/$txTriggers/;
 };
 
 1;
