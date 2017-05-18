@@ -1,0 +1,11 @@
+beef
+chicken
+deer
+duck
+goat
+goose
+horse
+lamb
+pork
+sheep
+steak

@@ -24,6 +24,11 @@
         'gb': 'uk'
     };
     
+    // Currencies with non-standard decimal points. (Standard is 2 eg. 10.46)
+    var decimal_places = {
+        "xbt": 8
+    };
+    
     // Resize the size of the outer container if the content of the inner container
     // overflows.
     function resize() {        
@@ -95,11 +100,13 @@
         }
         
         // Add commas to the numbers for display.
-        function formatNumber(x) {
+        function formatNumber(x, symbol) {
             // Check if the number has a decimal point.
-            // If it does, only show the first two digits after the decimal place.
+            // If it does, only show the standard number digits after the decimal place for a given currency.
+            symbol = symbol.toLowerCase();
             if(/\./.test(x.toString())) {
-                x = x.toFixed(2);   
+                var precision = decimal_places[symbol] || 2;
+                x = x.toFixed(precision);
             }
         
             return DDG.commifyNumber(x);
@@ -140,8 +147,8 @@
                 return {
                     fromCurrencySymbol: item["from-currency-symbol"],
                     toCurrencySymbol: item["to-currency-symbol"],
-                    amount: formatNumber(+item["from-amount"]),
-                    convertedAmount: formatNumber(+item["converted-amount"]),
+                    amount: formatNumber(+item["from-amount"], item["from-currency-symbol"]),
+                    convertedAmount: formatNumber(+item["converted-amount"], item["to-currency-symbol"]),
                     rate: item["conversion-rate"],
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],

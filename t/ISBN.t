@@ -101,6 +101,12 @@ ddg_spice_test(
     'isbn lookup 42' => undef,
     # not triggered (because remainder after cleanup is not purely a number)
     'isbn lookup Germany 7-1 Brazil' => undef,
+
+    # phone numbers
+    '951-383-4565' => undef,
+    '302-212-1326' => undef,
+    '210 294 2260' => undef,
+    '971 208 9355' => undef,
 );
 
 done_testing;

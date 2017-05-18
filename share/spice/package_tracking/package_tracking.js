@@ -7,15 +7,11 @@
         }
 
         var logo = api_result.c;
-
-        switch (logo) {
-            case 'ups-packages':
-                logo = 'ups';
-                break;
-
-            case 'fedex-express':
-                logo = 'fedex';
-                break;
+        if (/^ups-.+/.test(logo)) {
+            logo = 'ups';
+        }
+        else if (/^fedex-.+/.test(logo)) {
+            logo = 'fedex';
         }
 
         var details_url = "https://www.packagetrackr.com/track/" + [api_result.c, api_result.n].join("/"),
@@ -24,25 +20,28 @@
         if (!carrier) {
             return Spice.failed('package_tracking');
         }
-        var carrierUrl = carrier.url || false;
+        var carrierUrl = false;
+        if (carrier.url) {
+            carrierUrl = carrier.url.replace("{{code}}", encodeURIComponent(api_result.n));
+        }
 
         DDG.require('moment.js', function() {
             Spice.add({
                 id: "package_tracking",
                 name: "Answer",
                 meta: {
-                    sourceName: "Packagetrackr",
-                    sourceUrl: details_url
+                    sourceName: carrierUrl ? carrier.name : "Packagetrackr",
+                    sourceUrl: carrierUrl || details_url
                 },
                 data: api_result,
                 normalize: function (data) {
 
+                    var status = statusCodes[data.status_code];
+
                     var obj = {
                         url: details_url,
-                        title: data.status_description.replace(/\.$/, ""),
-                        subtitle: [
-                            "Updated: " + moment(data.progress_at).fromNow(),
-                        ],
+                        title: status,
+                        subtitle: data.status_description.toLowerCase() === status.toLowerCase() ? false : data.status_description,
                         image: DDG.get_asset_path('package_tracking', logo + '.png'),
                         record_data: {
                             "Tracking number": data.n,
@@ -52,8 +51,15 @@
 
                     $.each(dates, function(property, text){
                         var value = data[property];
-                        if (value){
-                            obj.record_data[text] = moment(value).format('lll');
+                        var dateFormat = 'ddd, MMM D, YYYY';
+
+                        if (value) {
+                            if (text === "Delivered") {
+                                text = "Delivered on";
+                                dateFormat += ', h:mm A';
+                            }
+
+                            obj.record_data[text] = moment(value).utc().format(dateFormat);
                         }
                     });
 
@@ -66,8 +72,8 @@
                         content: 'record',
                         moreAt: true,
                         moreText: carrierUrl ? {
-                            href: carrierUrl.replace("{{code}}", encodeURIComponent(api_result.n)),
-                            text: "Track via " + carrier.name
+                            href: details_url,
+                            text: "Data from Packagetrackr"
                         } : false
                     },
                     variants: {
@@ -82,6 +88,29 @@
         shipped_at: "Shipped on",
         est_delivery_at: "Scheduled delivery",
         act_delivery_at: "Delivered"
+    };
+
+    var statusCodes = {
+        NA: "N/A",
+        PD: "Pending",
+        IR: "Information Received",
+        AP: "At Pickup",
+        AF: "Arrived at Facility",
+        AC: "At Customs Clearance",
+        TP: "Tendered to Partner",
+        IT: "In Transit",
+        DS: "Delivery Scheduled",
+        OD: "Out for Delivery",
+        DA: "Delivery Attempt",
+        WP: "Will Pickup",
+        RS: "Return to Shipper",
+        DL: "Delivered",
+        DE: "Delivery Exception",
+        SU: "Stop Updating",
+        EX: "Expired",
+        IU: "Information Updated",
+        VD: "Voided",
+        TF: "Track Failed",
     };
 
     var carriers = {
