@@ -346,8 +346,8 @@
 
         setMoreAtLinks: function() {
             // the url strings
-            var more_at_url = "http://www.xe.com/currencyconverter/convert/?Amount=1&From=" + Converter.from_currency + "&To=" + Converter.to_currency;
-            var chart_url = "http://www.xe.com/currencycharts/?from=" + Converter.from_currency + "&to=" + Converter.to_currency;
+            var more_at_url = "https://www.xe.com/currencyconverter/convert/?Amount=1&From=" + Converter.from_currency + "&To=" + Converter.to_currency;
+            var chart_url = "https://www.xe.com/currencycharts/?from=" + Converter.from_currency + "&to=" + Converter.to_currency;
             $more_at_link_normal.attr("href", more_at_url);
             $more_at_link_charts.attr("href", chart_url);
         },
