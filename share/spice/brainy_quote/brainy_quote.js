@@ -11,17 +11,20 @@
         if (!api_result || api_result.error || api_result.author) {
             return Spice.failed('brainy_quote');
         }
+
+        var spiceObj = {
+            id: 'brainy_quote',
+            name: 'Quotations',
+            meta: {
+                sourceName: 'Brainy Quote',
+                sourceUrl: api_result.source_url
+            },
+            signal: 'high',
+        };
 	
 	if (!DDG.get_query().match(/quotes|quotations/)) {
-            Spice.add({
-                id: 'brainy_quote',
-                name: 'Quotations',
+            $.extend(spiceObj, {
                 data: api_result,
-                meta: {
-                    sourceName: 'Brainy Quote',
-                    sourceUrl: api_result.source_url
-                },
-                signal: 'high',
                 normalize: function(item) {
                     return {
                         person: item.header1.replace(/ quote$/, ""),
@@ -36,6 +39,7 @@
                     }
                 }
             });
+            Spice.add(spiceObj);
 	} else {
             // Construct the original api call
             var script = $('[src*="/js/spice/brainy_quote/"]')[0],
@@ -63,17 +67,10 @@
             }
 
             jqxhr.done(function() {
-                var spiceObj = {
-                    id: 'brainy_quote',
-                    name: 'Quotations',
+                $.extend(spiceObj, {
                     data: {
-                        list: apiResultsArray 
+                        list: apiResultsArray
                     },
-                    meta: {
-                        sourceName: 'Brainy Quote',
-                        sourceUrl: api_result.source_url
-                    },
-                    signal: 'high',
                     templates: {
                         group: 'list',
                         options: {
@@ -81,7 +78,7 @@
                             moreAt: true
                         }
                     }
-                };
+                });
                 Spice.add(spiceObj);
             });
         }
