@@ -154,6 +154,9 @@ handle query_lc => sub {
 
         # if only a currency symbol is present without "currency" keyword, then bail.
         return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
+        
+        # for edge cases that we don't want to trigger on
+        return if $req->query_lc eq 'mop tops' or $req->query_lc eq 'mop top';
 
         my $styler = number_style_for($amount);
         return unless $styler;
