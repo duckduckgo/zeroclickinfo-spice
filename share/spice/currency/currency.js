@@ -498,13 +498,11 @@
                 $currency_input_left.click(function(_e) {
                     var tmp = $currency_input_left.val().replace(/,/g, '');
                     $currency_input_left.val(tmp);
-                    this.select();
                 });
 
                 $currency_input_right.click(function(_e) {
                     var tmp = $currency_input_right.val().replace(/,/g, '');
                     $currency_input_right.val(tmp);
-                    this.select();
                 });
 
                 $currency_input_left.keyup(function(e) {

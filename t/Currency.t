@@ -494,6 +494,20 @@ ddg_spice_test(
         is_cached => 0
     ),
 
+    # language based queries
+    'currency converter' => test_spice(
+        '/js/spice/currency/100/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'convert currencies' => test_spice(
+        '/js/spice/currency/100/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
     # Other types of conversion
