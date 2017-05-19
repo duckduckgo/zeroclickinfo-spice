@@ -222,7 +222,6 @@
         "xbt": 8
     };
     
-
     // Currency Converter
     var Converter = {
 
@@ -264,8 +263,9 @@
         //
 
         calculateRate: function() {
-            if($currency_input_left.val() !== '' && /\d+/.test($currency_input_left.val())) {
-                var left_input = $currency_input_left.val()
+            if($currency_input_left.val() !== '') {
+                var left_input = $currency_input_left.val();
+                left_input = left_input.replace(/,/g, '');
                 var rightval = parseFloat(left_input) * Converter.rate;
                 $currency_input_right.val(
                     DDG.commifyNumber(rightval.toFixed(2))
@@ -276,8 +276,9 @@
         },
 
         calculateInverseRate: function() {
-            if($currency_input_right.val() !== '' && /\d+/.test($currency_input_right.val())) {
+            if($currency_input_right.val() !== '') {
                 var right_input = $currency_input_right.val()
+                right_input = right_input.replace(/,/g, '');
                 var leftval = parseFloat(right_input) * Converter.inverseRate;
                 $currency_input_left.val(
                     DDG.commifyNumber(leftval.toFixed(2))
@@ -297,6 +298,7 @@
                 from = Converter.to_currency;
                 to = Converter.from_currency;
                 $right_select.val(to);
+                $left_select.val(from);
             }
 
             var endpoint = "/js/spice/currency/1/" + from + "/" + to;
@@ -505,7 +507,7 @@
                     this.select();
                 });
 
-                $currency_input_left.keyup(function(_e) {
+                $currency_input_left.keyup(function(e) {
                     Converter.calculateRate();
                 });
 
