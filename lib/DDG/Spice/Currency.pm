@@ -137,7 +137,7 @@ sub getLocalCurrency {
 handle query_lc => sub {
 
     # returns for plain language queries such as 'currency converter'
-    if(/$lang_qr/) {
+    if($_ =~ qr/currency conver(ter|sions?)/i) {
         my $from = getLocalCurrency();
         my $to = 'usd';
 

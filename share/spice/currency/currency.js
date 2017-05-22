@@ -192,12 +192,6 @@
         $to_from_label,
         $from_to_label;
     
-    // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
-    // We need this hash so that we know that "gbp" will get the "uk" asset.
-    var currency2country_translate = {
-        'gb': 'uk'
-    };
-    
     // Currencies with non-standard decimal points. (Standard is 2 eg. 10.46)
     var decimal_places = {
         "xbt": 8
