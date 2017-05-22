@@ -262,7 +262,7 @@
                 right_input = right_input.replace(/,/g, '');
                 var leftval = parseFloat(right_input) * Converter.inverseRate;
                 $currency_input_left.val(
-                    DDG.commifyNumber(leftval.toFixed(2))
+                    leftval.toFixed(2)
                 );
             } else {
                 $currency_input_left.val("");

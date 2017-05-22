@@ -100,10 +100,17 @@ sub checkCurrencyCode {
         return;
     }
 
-    # If we don't get a currency to convert to, e.g., the user types in "usd"
-    # we set them to be the same thing. This will trigger our tile view.
+    # If we don't get a currency to convert to, e.g., the user types in "400 usd"
+    # we set them to be the same thing.
     if($to eq '') {
-        return;
+        my $local_currency = getLocalCurrency();
+
+        if($from ne $local_currency) {
+            $to = $local_currency;
+        }
+        else {
+            $to = $from eq 'usd' ? 'eur' : 'usd';
+        }
     }
 
     return $normalized_number, $from, $to;
@@ -129,7 +136,8 @@ sub getLocalCurrency {
 
 handle query_lc => sub {
 
-    if($_ =~ $lang_qr) {
+    # returns for plain language queries such as 'currency converter'
+    if(/$lang_qr/) {
         my $from = getLocalCurrency();
         my $to = 'usd';
 
