@@ -409,7 +409,6 @@
 
         var templateObj = {
             detail: Spice.currency.detail,
-            detail_mobile: Spice.currency.detail_mobile,
             item: Spice.currency.item,
             item_detail: false
         };
@@ -417,7 +416,6 @@
         // We need to disable the detail view when we're showing the tiles.
         if(results.length > 1) {
             templateObj.detail = false;
-            templateObj.detail_mobile = false;
         }
         
         // Set favicon
