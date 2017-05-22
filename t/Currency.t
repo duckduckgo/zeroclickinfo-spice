@@ -532,6 +532,9 @@ ddg_spice_test(
     'what is a cow' => undef,
     'usda' => undef,
     'sda loans' => undef,
+    
+    # edge cases that we don't want to trigger
+    'mop tops' => undef,
 );
 
 done_testing;

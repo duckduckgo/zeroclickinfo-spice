@@ -5,7 +5,7 @@ use DDG::Spice;
 
 triggers start => "http", "https", "expand", "expandurl", "unshorten", "untiny";
 
-spice to => 'https://unshorten.me/json/$1?key={{ENV{DDG_SPICE_UNSHORTEN_ME_KEY}}}';
+spice to => 'https://unshorten.me/json/$1?key={{ENV{DDG_SPICE_UNSHORTEN_ME_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle query => sub {

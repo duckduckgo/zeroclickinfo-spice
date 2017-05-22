@@ -41,7 +41,7 @@
                     var obj = {
                         url: details_url,
                         title: status,
-                        subtitle: data.status_description === status ? false : data.status_description,
+                        subtitle: data.status_description.toLowerCase() === status.toLowerCase() ? false : data.status_description,
                         image: DDG.get_asset_path('package_tracking', logo + '.png'),
                         record_data: {
                             "Tracking number": data.n,
