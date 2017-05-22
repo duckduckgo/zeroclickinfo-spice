@@ -182,9 +182,7 @@
     //
     // The various jQuery objects representing the zci--currency UI
     // 
-    var $flag_image_left,
-        $flag_image_right,
-        $currency_input_left,
+    var $currency_input_left,
         $currency_input_right,
         $left_select,
         $right_select,
@@ -193,23 +191,6 @@
         $more_at_link_charts,
         $to_from_label,
         $from_to_label;
-
-    // Currencies that we don't have flags for.
-    var currency2country_extra = {
-        "xaf": true,
-        "xag": true,
-        "xau": true,
-        "xbt": true,
-        "xcd": true,
-        "xdr": true,
-        "xof": true,
-        "xpd": true,
-        "xpf": true,
-        "xpt": true,
-        "ggp": true,
-        "jep": true,
-        "sar": true
-    };
     
     // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
     // We need this hash so that we know that "gbp" will get the "uk" asset.
@@ -325,10 +306,6 @@
             Converter.rate = Converter.getConversionRate(json)
             Converter.inverseRate = Converter.getInverseConversionRate(json);
 
-            // resets the Currency image
-            $flag_image_left.attr("src", Converter.currency_image(Converter.from_currency));
-            $flag_image_right.attr("src", Converter.currency_image(Converter.to_currency));
-
             Converter.calculateRate();
             Converter.setMoreAtLinks();
 
@@ -352,18 +329,6 @@
             var chart_url = "https://www.xe.com/currencycharts/?from=" + Converter.from_currency + "&to=" + Converter.to_currency;
             $more_at_link_normal.attr("href", more_at_url);
             $more_at_link_charts.attr("href", chart_url);
-        },
-
-        // Get the flag image.
-        currency_image: function(symbol) {
-            symbol = symbol.toLowerCase();
-            if(symbol in currency2country_extra) {
-                return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
-            }
-            
-            symbol = symbol.slice(0, 2);
-            symbol = symbol in currency2country_translate ? currency2country_translate[symbol] : symbol;
-            return DDG.settings.region.getLargeIconURL(symbol);
         },
 
     } // Converter
@@ -413,11 +378,6 @@
             item_detail: false
         };
         
-        // We need to disable the detail view when we're showing the tiles.
-        if(results.length > 1) {
-            templateObj.detail = false;
-        }
-        
         // Set favicon
         var icon = ((DDG.is3x || DDG.is2x) ? DDG.get_asset_path('currency',"assets/xe.png") : "http://www.xe.com/favicon.ico");
         
@@ -448,8 +408,6 @@
                     rate: item["conversion-rate"],
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
-                    fromFlag: Converter.currency_image(item["from-currency-symbol"]),
-                    toFlag: Converter.currency_image(item["to-currency-symbol"]),
                     currencyName: item["to-currency-name"],
                     liveUrl: liveUrl,
                     xeTime: xeTime,
@@ -462,8 +420,6 @@
 
                 if(!initialized) {
                     var $currency = $("#zci-currency");
-                    $flag_image_right = $currency.find("#flag-img-right");
-                    $flag_image_left = $currency.find("#flag-img-left");
                     $currency_input_left = $currency.find("#zci--currency-amount-left");
                     $currency_input_right = $currency.find("#zci--currency-amount-right");
                     $left_select = $currency.find("select#zci--currency-symbol-left");

@@ -25,37 +25,14 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    'peso' => test_spice(
-        '/js/spice/currency/1/mxn/mxn',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
+    'peso' => undef,
     '1 peso to usd' => test_spice(
         '/js/spice/currency/1/mxn/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    'canada dollar' => test_spice(
-        '/js/spice/currency/1/cad/cad',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    '400 euro' => test_spice(
-        '/js/spice/currency/400/eur/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     # using k for thousand
-    '4k euro' => test_spice(
-        '/js/spice/currency/4000/eur/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     'convert 4.000.000k euro to usd' => test_spice(
         '/js/spice/currency/4000000000/eur/usd',
         call_type => 'include',
@@ -105,12 +82,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     # using currency keyword
-    'amd currency' => test_spice(
-        '/js/spice/currency/1/amd/amd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
+    'amd currency' => undef,
     '2 ruble currency in yen' => test_spice(
         '/js/spice/currency/2/rub/jpy',
         call_type => 'include',
@@ -124,18 +96,6 @@ ddg_spice_test(
         is_cached => 0
     ),
     # using value, price keyword
-    'bitcoin value' => test_spice(
-        '/js/spice/currency/1/xbt/xbt',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    'bitcoin price' => test_spice(
-        '/js/spice/currency/1/xbt/xbt',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     '2 ruble value in yen' => test_spice(
         '/js/spice/currency/2/rub/jpy',
         call_type => 'include',
@@ -172,20 +132,6 @@ ddg_spice_test(
        call_type => 'include',
        caller => 'DDG::Spice::Currency',
        is_cached => 0
-    ),
-    # Queries with no space between the number and the currency.
-    '100cad' => test_spice(
-        '/js/spice/currency/100/cad/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    # Queries with no space between the formatted number and the currency.
-    '100,000cad' => test_spice(
-        '/js/spice/currency/100000/cad/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
     ),
     # Query with everything smushed together.
     '200cadusd' => test_spice(
@@ -455,34 +401,10 @@ ddg_spice_test(
         is_cached => 0
     ),
     # check if the currency is detected from the location
-    # when you don't specify the target currency
-    DDG::Request->new(
-        query_raw => "300 bgn",
-        location => test_location("de")
-    ) => test_spice(
-        '/js/spice/currency/300/bgn/eur',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    DDG::Request->new(
-        query_raw => "6008 usd",
-        location => test_location("my")
-    ) => test_spice(
-        '/js/spice/currency/6008/usd/myr',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
+    # when you don't specify the target Currency
     # check for placing currency type before amount
     'CHF 2.95 in eur' => test_spice(
         '/js/spice/currency/2.95/chf/eur',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    'euro 400' => test_spice(
-        '/js/spice/currency/400/eur/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
@@ -493,20 +415,15 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-
-    # language based queries
-    'currency converter' => test_spice(
-        '/js/spice/currency/100/usd/eur',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    'convert currencies' => test_spice(
-        '/js/spice/currency/100/usd/eur',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
+    
+    # should no longer work since deprecating the tile view
+    'canada dollar' => undef,
+    '400 euro' => undef,
+    '4k euro' => undef,
+    'bitcoin value' => undef,
+    'bitcoin price' => undef,
+    '100cad' => undef,
+    '100,000cad' => undef,
 
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,

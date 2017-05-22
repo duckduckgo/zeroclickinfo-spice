@@ -102,16 +102,7 @@ sub checkCurrencyCode {
     # If we don't get a currency to convert to, e.g., the user types in "usd"
     # we set them to be the same thing. This will trigger our tile view.
     if($to eq '') {
-        my $local_currency = getLocalCurrency();
-
-        if($normalized_number == 1) {
-            $to = $from;
-        } elsif ($local_currency) {
-            $to = $local_currency;
-        } else {
-            # if we can't get the user's location, just default to USD/EUR
-            $to = $from eq 'usd' ? 'eur' : 'usd';
-        }
+        return;
     }
 
     return $normalized_number, $from, $to;
