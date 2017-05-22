@@ -7,6 +7,8 @@ with 'DDG::SpiceRole::NumberStyler';
 use Text::Trim;
 use YAML::XS qw(LoadFile);
 
+use Data::Dumper;
+
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;
@@ -25,6 +27,7 @@ foreach my $currency (@currencies){
 }
 
 # Define the regexes here.
+my $langTriggers = qr/currency converter/;
 my $currency_qr = join('|', @currTriggers);
 my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
@@ -134,7 +137,9 @@ sub getLocalCurrency {
 
 handle query_lc => sub {
 
-    if(/$guard/) {
+    # if the query matches one of the lang queries, we will default to
+    # 100 usd to eur
+    if (/$guard/) {
 
         my $fromSymbol = $+{fromSymbol} || '';
         my $amount = $+{amount};
@@ -150,6 +155,10 @@ handle query_lc => sub {
 
         if ($to eq '' && $toSymbol) {
             $to = $currencyCodes->{ord($toSymbol)};
+        }
+
+        if($_ =~ $langTriggers) {
+            return checkCurrencyCode('100', 'usd', 'eur');
         }
 
         # if only a currency symbol is present without "currency" keyword, then bail.
