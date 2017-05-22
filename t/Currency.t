@@ -400,7 +400,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    # check if the currency is detected from the location
     # when you don't specify the target Currency
     # check for placing currency type before amount
     'CHF 2.95 in eur' => test_spice(
@@ -415,7 +414,39 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    
+    ## lang based triggers
+    'currency converter' => test_spice(
+        '/js/spice/currency/100/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'currency conversion' => test_spice(
+        '/js/spice/currency/100/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # generic lang queries with location detection
+    DDG::Request->new(
+        query_raw => "currency converter",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/currency/100/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "currency converter",
+        location => test_location("my")
+    ) => test_spice(
+        '/js/spice/currency/100/myr/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
     # should no longer work since deprecating the tile view
     'canada dollar' => undef,
     '400 euro' => undef,
