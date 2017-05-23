@@ -36,7 +36,7 @@ my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)
 my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/;
 my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
 my $keyword_qr = qr/(?:\s?(?<currencyKeyword>(?:currency|value|price))\s?)/i;
-my $lang_qr = qr/currency conver(ter|sions?)/i;
+my $lang_qr = qr/convert currency|currency conver(ter|sions?)/i;
 
 my $guard = qr/^$question_prefix(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?$keyword_qr?\??$/i;
 
@@ -137,7 +137,7 @@ sub getLocalCurrency {
 handle query_lc => sub {
 
     # returns for plain language queries such as 'currency converter'
-    if($_ =~ qr/currency conver(ter|sions?)/i) {
+    if(m/$lang_qr/) {
         my $from = getLocalCurrency();
         my $to = 'usd';
 
@@ -145,12 +145,12 @@ handle query_lc => sub {
             $to = 'eur';
         }
 
-        return checkCurrencyCode(100, $from, $to);
+        return checkCurrencyCode(1, $from, $to);
     }
     
     # if the query matches one of the lang queries, we will default to
     # 100 usd to eur
-    if (/$guard/) {
+    if (m/$guard/) {
 
         my $fromSymbol = $+{fromSymbol} || '';
         my $amount = $+{amount};
