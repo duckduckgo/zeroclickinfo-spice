@@ -437,19 +437,6 @@
                     $right_select.val(Converter.to_currency);
                 }
 
-                /**
-                 * When the user clicks on the field we select
-                 */
-                $currency_input_left.click(function(_e) {
-                    var tmp = $currency_input_left.val().replace(/,/g, '');
-                    $currency_input_left.val(tmp);
-                });
-
-                $currency_input_right.click(function(_e) {
-                    var tmp = $currency_input_right.val().replace(/,/g, '');
-                    $currency_input_right.val(tmp);
-                });
-
                 $currency_input_left.keyup(function(e) {
                     Converter.calculateRate();
                 });

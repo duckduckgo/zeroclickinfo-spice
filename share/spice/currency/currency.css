@@ -9,20 +9,39 @@
     right: 0.5em;
 }
 
-.zci--currency .frm__select {
-    vertical-align: bottom;
-    min-width: 4em;
-    min-height: 3.5em;
-    font-size: 1.1em;
-    padding-bottom: .35em;
-    margin-left: -5px;
+@media screen and (min-width: 60em) {
+    .zci--currency .frm__select {
+        vertical-align: bottom;
+        min-width: 4em;
+        min-height: 3.5em;
+        font-size: 1.1em;
+        padding-bottom: .35em;
+        margin-left: -5px;
+    }
+
+    .zci--currency .frm__input {
+        vertical-align: bottom;
+        border-color: #c9c9c9;
+        font-size: 1.9em;
+        width: 7em;
+    }
 }
 
-.zci--currency .frm__input {
-    vertical-align: bottom;
-    border-color: #c9c9c9;
-    font-size: 1.9em;
-    width: 7em;
+@media screen and (max-width: 60em) {
+    .zci--currency .frm__select {
+        width: 20%;
+        min-height: 3.5em;
+        font-size: 1.1em;
+        padding-bottom: .35em;
+        margin-bottom: 10px;
+    }
+
+    .zci--currency .frm__input {
+        border-color: #c9c9c9;
+        font-size: 1.95em;
+        width: 80%;
+        margin-bottom: 10px;
+    }
 }
 
 .zci--currency .btn--container .ddgsi {
@@ -40,8 +59,6 @@
 .zci--currency .highlight .btn--container {
     display: inline;
 }
-
-/* Desktop view */
 
 .zci--currency section {
     display: inline-block;
@@ -63,7 +80,7 @@
 }
 
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 60em) {
     .zci--currency-ratesinfo {
         border-left: 1px solid #d0d0d0;
         margin-top: 1.5em;
@@ -72,7 +89,7 @@
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 60em) {
     .zci--currency-ratesinfo {
         border-top: 1px solid #d0d0d0;
         padding-top: 1em;
@@ -102,12 +119,14 @@
     margin-top: .3em;
 }
 
-.zci--currency-equal {
-    font-size: 2em;
-    margin: 0 0.5em;
+@media screen and (min-width: 60em) {
+    .zci--currency-equal {
+        font-size: 2em;
+        margin: 0 0.5em;
+    }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 60em) {
     .zci--currency-equal {
         display: none;
     }
@@ -136,7 +155,7 @@
     font-size: 1em;
 }
 
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width: 60em) {
     .zci--currency-result {
         font-size: 0.9em;
     }
