@@ -192,11 +192,6 @@
         $to_from_label,
         $from_to_label;
     
-    // Currencies with non-standard decimal points. (Standard is 2 eg. 10.46)
-    var decimal_places = {
-        "xbt": 8
-    };
-    
     // Currency Converter
     var Converter = {
 
@@ -242,8 +237,9 @@
                 var left_input = $currency_input_left.val();
                 left_input = left_input.replace(/,/g, '');
                 var rightval = parseFloat(left_input) * Converter.rate;
+                var decimals = Converter.to_currency === "XBT" ? 8 : 2;
                 $currency_input_right.val(
-                    rightval.toFixed(2)
+                    rightval.toFixed(decimals)
                 );
             } else {
                 $currency_input_right.val("");
@@ -255,8 +251,9 @@
                 var right_input = $currency_input_right.val()
                 right_input = right_input.replace(/,/g, '');
                 var leftval = parseFloat(right_input) * Converter.inverseRate;
+                var decimals = Converter.from_currency === "XBT" ? 8 : 2;
                 $currency_input_left.val(
-                    leftval.toFixed(2)
+                    leftval.toFixed(decimals)
                 );
             } else {
                 $currency_input_left.val("");
