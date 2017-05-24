@@ -26,17 +26,7 @@
         }
         
         function getFollowers(item) {
-            var follow_cnt = "Followers: ";
-            if(item.followers_count >= 1000000) {
-                follow_cnt += ((item.followers_count/1000000).toPrecision(3)).toString() + " M";
-            }
-            else if(item.followers_count >= 1000) {
-                follow_cnt += ((item.followers_count/1000).toPrecision(3)).toString() + " K";
-            }
-            else {
-                follow_cnt += item.followers_count.toString();
-            }
-            return follow_cnt;
+            return "Followers: " + DDG.abbrevNumber(item.followers_count);
         }
 
         Spice.add({
