@@ -73,8 +73,9 @@
 }
 
 .zci--currency .frm--bottom .frm__select select {
-    width: 100%;
+    width: 100% !important;
     height: 3em !important;
+    padding-right: 1.5em;
 }
 
 .zci--currency .equals-sign {
