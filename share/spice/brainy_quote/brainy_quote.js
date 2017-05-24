@@ -5,7 +5,8 @@
             if (arg2 === undefined) {
                 return;
             }
-            return arg1 === undefined ? arg2.replace(/ quote$/, "") : arg1;
+
+            return arg1 || arg2.replace(/ quote$/, "");
         });
 
         if (!api_result || api_result.error || api_result.author) {
@@ -47,13 +48,11 @@
             query = source.match(/brainy_quote\/([^\/]+)/)[1];
 
 
-            // Call the api until we obtain three quotes
+            // Call the api twice more to obtain three quotes
             var apiResultsArray = [api_result];
 
-            // FIXME: Using secondary endpoint (which is identical to primary 
-            // endpoint) to make orignal api call 
-            var endpoint = "/js/spice/test_endpoint/" + query; 
-            $.when( $.getJSON(endpoint), $.getJSON(endpoint) ).done( function(result1, result2) {
+            var endpoint = "/js/spice/fetch_brainy_quote/" + query; 
+            $.when($.getJSON(endpoint), $.getJSON(endpoint)).done(function(result1, result2) {
                 // TODO: Check for quote uniqueness
                 apiResultsArray.push(result1[0], result2[0]);
 

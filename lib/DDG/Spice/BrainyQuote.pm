@@ -10,7 +10,7 @@ spice to => 'https://www.brainyquote.com/api/ddg?q=$1';
 spice wrap_jsonp_callback => 1;
 
 spice alt_to => {
-    test_endpoint => {
+    fetch_brainy_quote => {
         to => 'https://www.brainyquote.com/api/ddg?q=$1',
     }
 };
