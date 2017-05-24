@@ -7,6 +7,8 @@ with 'DDG::SpiceRole::NumberStyler';
 use Text::Trim;
 use YAML::XS qw(LoadFile);
 
+use Data::Dumper;
+
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;
@@ -34,10 +36,12 @@ my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)
 my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/;
 my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
 my $keyword_qr = qr/(?:\s?(?<currencyKeyword>(?:currency|value|price))\s?)/i;
+my $lang_qr = qr/convert currency|currency conver(ter|sions?)/i;
 
 my $guard = qr/^$question_prefix(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?$keyword_qr?\??$/i;
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
+triggers query_lc => $lang_qr;
 
 spice from => '([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.xe.com/tmi/xe-output.php?amount=$1&from=$2&to=$3&appid={{ENV{DDG_SPICE_CURRENCY_APIKEY}}}';
@@ -96,17 +100,15 @@ sub checkCurrencyCode {
         return;
     }
 
-    # If we don't get a currency to convert to, e.g., the user types in "usd"
-    # we set them to be the same thing. This will trigger our tile view.
+    # If we don't get a currency to convert to, e.g., the user types in "400 usd"
+    # we set them to be the same thing.
     if($to eq '') {
         my $local_currency = getLocalCurrency();
 
-        if($normalized_number == 1) {
-            $to = $from;
-        } elsif ($local_currency) {
+        if($from ne $local_currency) {
             $to = $local_currency;
-        } else {
-            # if we can't get the user's location, just default to USD/EUR
+        }
+        else {
             $to = $from eq 'usd' ? 'eur' : 'usd';
         }
     }
@@ -134,7 +136,21 @@ sub getLocalCurrency {
 
 handle query_lc => sub {
 
-    if(/$guard/) {
+    # returns for plain language queries such as 'currency converter'
+    if(m/$lang_qr/) {
+        my $from = getLocalCurrency();
+        my $to = 'usd';
+
+        if($from eq $to) {
+            $to = 'eur';
+        }
+
+        return checkCurrencyCode(1, $from, $to);
+    }
+    
+    # if the query matches one of the lang queries, we will default to
+    # 100 usd to eur
+    if (m/$guard/) {
 
         my $fromSymbol = $+{fromSymbol} || '';
         my $amount = $+{amount};
