@@ -68,7 +68,7 @@
                     plaintext = $("<p>" + html + "</p>").text();
 
                 return {
-                    canExpand: plaintext.length > 150 && !is_mobile,
+                    canExpand: plaintext.length > 150 && !DDG.device.isMobile,
                     text: html,
                     year: wiki_to_html(item.wikiYear)
                 };

@@ -65,7 +65,7 @@
 
       currentObj.isCurrent = 1;
       // If the next-hour summary is interesting enough (and we're not on mobile), use that instead
-      if(!is_mobile && f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
+      if(!DDG.device.isMobile && f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
         current_summary = f.minutely.summary;
       }
 
@@ -169,7 +169,7 @@
 
         if (i == 0) {
             dailyObj[i].day = 'Today';
-        } else if (is_mobile) {
+        } else if (DDG.device.isMobile) {
             dailyObj[i].day = tmp_date.format("ddd").toUpperCase();
         } else {
             dailyObj[i].day = tmp_date.format("dddd");
@@ -219,7 +219,7 @@
       }
 
       // structure the data differently for mobile and desktop views
-      if (is_mobile) {
+      if (DDG.device.isMobile) {
         spiceData = weatherData;
       } else {
         spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
@@ -326,7 +326,7 @@
       }
 
       //insert the new temps in the html
-      var day_class = is_mobile ? '.fe_day--bar' : '.fe_day';
+      var day_class = DDG.device.isMobile ? '.fe_day--bar' : '.fe_day';
 
       $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
       $(day_class).each(function(i){

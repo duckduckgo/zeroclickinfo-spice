@@ -67,7 +67,7 @@
                 data: articles,
                 meta: {
                     primaryText: 'Missing children in ' + decodedQuery,
-                    sourceName: is_mobile ? 'NCMEC' : 'National Center for Missing & Exploited Children',
+                    sourceName: DDG.device.isMobile ? 'NCMEC' : 'National Center for Missing & Exploited Children',
                     sourceUrl: 'http://www.missingkids.com',
                     count: articles.length
                 },

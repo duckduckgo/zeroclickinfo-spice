@@ -37,7 +37,7 @@
                         if (term !== word) {
                             infoboxData.push({
                                 label: DDG.capitalizeWords(term),
-                                url: window.location.origin + '/?q=ud+' + term + '&ia=dictionary' + kurl
+                                url: window.location.origin + '/?q=ud+' + term + '&ia=dictionary' + DDG.settings.queryStringAppend
                             });
                         }
                     }

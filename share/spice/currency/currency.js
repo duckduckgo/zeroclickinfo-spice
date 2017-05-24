@@ -165,7 +165,7 @@
             onShow: function() {
                 // The desktop template depends on a JS function that manages the
                 // size of the container.
-                if(!is_mobile) {
+                if(!DDG.device.isMobile) {
                     $(window).on('load', resize);
                     $(window).resize(resize);
                 } else {

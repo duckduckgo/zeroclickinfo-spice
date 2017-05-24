@@ -38,7 +38,7 @@
             }
 
             if(item.ingredients && item.ingredients.length){
-                var searchTermContainsRecipe = rq.match(/recipe/i),
+                var searchTermContainsRecipe = query_encoded.match(/recipe/i),
                     len = item.ingredients.length;
 
                 m.ingredientString = item.ingredients.join(", ");
