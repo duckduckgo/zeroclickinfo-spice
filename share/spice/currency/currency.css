@@ -1,162 +1,92 @@
-.zci--currency .zci--currency-container {
+.zci--currency .zci__body {
+    margin: 0;
+    box-sizing: border-box;
+    padding-left: 0;
+    width: 80%;
+}
+
+.zci--currency #subtitle {
+    margin: 0.4em 0 1.2em 0;
+}
+
+.zci--currency #zci__more-at {
+    margin: 1.1em 0 0.2em 0;
+}
+
+.zci--currency  .shadow {
+    box-shadow: 1px 1px 5px 0 #e5e5e5;
+}
+
+.dark-bg .zci--currency .shadow {
+    box-shadow: none;
+}
+
+.zci--currency .frm--top .frm__select {
+    width: 100%;
+}
+
+.zci--currency .frm--top .frm__select--bottom {
+    width: 100% !important;
+}
+
+.zci--currency .frm--top {
     margin-bottom: 1em;
 }
 
-.zci--currency .btn--container {
-    position: absolute;
-    display: none;
-    top: 0.4em;
-    right: 0.5em;
+.zci--currency .frm--bottom > div {
+    float: left;
 }
 
-@media screen and (min-width: 60em) {
-    .zci--currency .frm__select {
-        vertical-align: bottom;
-        min-width: 4em;
-        min-height: 3.5em;
-        font-size: 1.1em;
-        padding-bottom: .35em;
-        margin-left: -5px;
-    }
-
-    .zci--currency .frm__input {
-        vertical-align: bottom;
-        border-color: #c9c9c9;
-        font-size: 1.9em;
-        width: 7em;
-    }
-}
-
-@media screen and (max-width: 60em) {
-    .zci--currency .frm__select {
-        width: 20%;
-        min-height: 3.5em;
-        font-size: 1.1em;
-        padding-bottom: .35em;
-        margin-bottom: 10px;
-    }
-
-    .zci--currency .frm__input {
-        border-color: #c9c9c9;
-        font-size: 1.95em;
-        width: 80%;
-        margin-bottom: 10px;
-    }
-}
-
-.zci--currency .btn--container .ddgsi {
-    padding-right: 7px;
-    padding-left: 7px;
-    padding-bottom: 0px;
-    padding-top: 0;
-    font-size: 16px;
-}
-
-.zci--currency .btn--container .ddgsi a:hover {
-    color: inherit;
-}
-
-.zci--currency .highlight .btn--container {
-    display: inline;
-}
-
-.zci--currency section {
-    display: inline-block;
-}
-
-.zci--currency-result {
-    margin: 0.75em 1.5em 0.5em 0em;
-    line-height: 3em;
-    display: inline-block;
-}
-
-.zci--currency-group {
-    white-space: nowrap;
-    display: inline-block;
-}
-
-.zci--currency-second-part {
-    white-space: nowrap;
+.zci--currency .input__wrap {
+    width: 45%;
 }
 
 
-@media screen and (min-width: 60em) {
-    .zci--currency-ratesinfo {
-        border-left: 1px solid #d0d0d0;
-        margin-top: 1.5em;
-        padding-left: 2em;
-        display: inline-block;
-    }
-}
-
-@media screen and (max-width: 60em) {
-    .zci--currency-ratesinfo {
-        border-top: 1px solid #d0d0d0;
-        padding-top: 1em;
-        text-align: center;
-    }
-}
-
-.zci--currency-result img {
-    height: 32px;
-    margin-top: 1em;
-    vertical-align: -5px;
-    width: 32px;
-}
-
-.zci--currency-amount {
-    font-size: 2.7em;
+.zci--currency .frm--bottom .frm__input,
+.zci--currency .frm--bottom .frm__select {
+    display: block;
+    width: 100%;
+    height: 3em;
+    line-height: 3;
+    padding: 0;
     font-weight: bold;
-    padding: 0 0.1em 0 0.2em;
-    width: 5em;
+    text-align: center;
+    border-color: #c9c9c9;
 }
 
-.zci--currency-symbol {
-    display: inline-block;
+.zci--currency .frm--bottom .frm__input {
+    border-bottom: none;
+    border-right: 1px solid #c9c9c9;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 1.8em;
+    line-height: 1.8em;
+    height: 1.8em !important;
+}
+
+.zci--currency .frm--bottom .frm__select {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 2px;
+    border-top-color: #e0e0e0;
+    border-left-color: #c9c9c9;
+}
+
+.zci--currency .frm--bottom .frm__select select {
+    width: 100%;
+    height: 3em !important;
+}
+
+.zci--currency .equals-sign {
+    width: 10%;
     vertical-align: top;
-    height: 2.4em;
-    font-size: 1.3em;
-    margin-top: .3em;
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.8em;
+    height: 1.8em;
 }
 
-@media screen and (min-width: 60em) {
-    .zci--currency-equal {
-        font-size: 2em;
-        margin: 0 0.5em;
-    }
-}
-
-@media screen and (max-width: 60em) {
-    .zci--currency-equal {
-        display: none;
-    }
-}
-
-.zci--currency-link {
-    clear: both;
-    margin-left: 1em;
-    margin-left: 1.3em;
-    padding: 1em 0;
-}
-
-.zci--currency-bar {
-   font-size: 1.2em;
-   padding: 0 0.5em;
-   vertical-align: middle;
-}
-
-.zci--currency-link a {
-    color: #888;
-    font-size: 0.9em;
-}
-
-.zci--currency-link span {
-    color: #888;
-    font-size: 1em;
-}
-
-@media only screen and (max-width: 60em) {
-    .zci--currency-result {
-        font-size: 0.9em;
-    }
+/* Mobile */
+.is-mobile .zci--currency .zci__body {
+    width: 100%;
 }
