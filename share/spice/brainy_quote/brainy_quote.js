@@ -2,10 +2,10 @@
     env.ddg_spice_brainy_quote = function(api_result) {
 
         Handlebars.registerHelper("getAuthor", function (arg1, arg2) {
-            if (arg1 == null && arg2 == null) {
+            if (arg2 === undefined) {
                 return;
             }
-            return arg1 == null ? arg2.replace(/ quote$/, "") : arg1;
+            return arg1 === undefined ? arg2.replace(/ quote$/, "") : arg1;
         });
 
         if (!api_result || api_result.error || api_result.author) {
@@ -21,8 +21,8 @@
             },
             signal: 'high',
         };
-	
-	if (!DDG.get_query().match(/quotes|quotations/)) {
+        
+        if (!DDG.get_query().match(/quotes|quotations/)) {
             $.extend(spiceObj, {
                 data: api_result,
                 normalize: function(item) {
@@ -40,7 +40,7 @@
                 }
             });
             Spice.add(spiceObj);
-	} else {
+        } else {
             // Construct the original api call
             var script = $('[src*="/js/spice/brainy_quote/"]')[0],
             source = $(script).attr("src"),
@@ -48,25 +48,15 @@
 
 
             // Call the api until we obtain three quotes
-            var quotesCounter = 1,
-                apiResultsArray = [api_result];
+            var apiResultsArray = [api_result];
 
-            var jqxhr;
-            while (quotesCounter != 3) {
-                // TODO: Using secondary endpoint (which is identical to primary 
-                // endpoint) to make orignal api call 
-                jqxhr = $.getJSON("/js/spice/test_endpoint/" + query, function(data) {
-                    // TODO: Only add the quote if it is unique
-                    apiResultsArray.push(data);
-                })
-                .fail(function( jqxhr, textStatus, error ) {
-                    var err = textStatus + ", " + error;
-                    console.log( "Request Failed: " + err );
-                });
-                quotesCounter++;
-            }
+            // FIXME: Using secondary endpoint (which is identical to primary 
+            // endpoint) to make orignal api call 
+            var endpoint = "/js/spice/test_endpoint/" + query; 
+            $.when( $.getJSON(endpoint), $.getJSON(endpoint) ).done( function(result1, result2) {
+                // TODO: Check for quote uniqueness
+                apiResultsArray.push(result1[0], result2[0]);
 
-            jqxhr.done(function() {
                 $.extend(spiceObj, {
                     data: {
                         list: apiResultsArray

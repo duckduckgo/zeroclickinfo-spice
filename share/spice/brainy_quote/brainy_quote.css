@@ -53,3 +53,11 @@
 .is-mobile .zci--brainy_quote .brainy__attribution {
     margin-left: 40px;
 }
+
+.zci__body .c-list__items {
+    border-top: none; 
+}
+
+.zci__body .c-list__items li:last-child {
+    border-bottom: none;
+}
