@@ -138,7 +138,13 @@ ddg_spice_test(
     'package tracking online' => undef,
 
     'fedex' => undef,
-    'fedex website' => undef
+    'fedex website' => undef,
+    
+    # Invalid query containing isbn
+    'isbn 9780134494326' => undef,
+    'Isbn9780073380957' => undef,
+    '1490564098 ISBN' => undef,
+    'isbn 0394800133' => undef
 );
 
 done_testing;

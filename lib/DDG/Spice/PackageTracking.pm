@@ -111,6 +111,9 @@ handle query => sub {
 
     # remainder should be 6-30 characters long
     return unless m/^[A-Z0-9]{6,30}$/i;
+    
+    # ignore if isbn is present
+    return if m/isbn/i;
 
     return $_;
 };
