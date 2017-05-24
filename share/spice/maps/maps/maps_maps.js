@@ -1,6 +1,7 @@
 DDG.require('maps',function(){
     ddg_spice_maps_maps = function(response) {
-        var skipArray = [ "directions", "map", "maps", "st", "street", "ave", "avenue", "dr", "drive", "pl", "place", "apt", "suite", "latitude", "longitude" ];
+        var skipArray = [ "directions", "map", "maps", "st", "street", "ave", "avenue", "dr", "drive", "pl", "place", "apt", "suite", "latitude", "longitude", "zip", "code", "postal" ],
+            primaryLocation;
 
         if (!response || !response.features || !response.features.length) { return Spice.failed('maps_maps'); }
 
@@ -12,9 +13,12 @@ DDG.require('maps',function(){
                 return Spice.failed('maps_maps');
             }
             // filter out disambiguations with < 0.6 relevance
+            primaryLocation = response.features.shift();
             response.features = response.features.filter(function(el) {
                 return el.relevance > 0.6;
             });
+
+            response.features.unshift(primaryLocation);
 
             return Spice.add({
                 data: response.features,
