@@ -396,8 +396,8 @@
                     var $currency = $("#zci-currency");
                     $currency_input_left = $currency.find("#zci--currency-amount-left");
                     $currency_input_right = $currency.find("#zci--currency-amount-right");
-                    $left_select = $currency.find("select#zci--currency-symbol-left");
-                    $right_select = $currency.find("select#zci--currency-symbol-right");
+                    $left_select = $currency.find("#zci--currency-symbol-left");
+                    $right_select = $currency.find("#zci--currency-symbol-right");
                     $selects = $currency.find("select.zci--currency-symbol");
                     $more_at_link_normal = $currency.find(".zci__more-at");
                     $more_at_link_charts = $currency.find(".zci__more-at--info");
