@@ -25,10 +25,6 @@
     width: 100%;
 }
 
-.zci--currency .frm--top .frm__select--bottom {
-    width: 100% !important;
-}
-
 .zci--currency .frm--top {
     margin-bottom: 1em;
 }
@@ -73,7 +69,6 @@
 }
 
 .zci--currency .frm--bottom .frm__select select {
-    width: 100% !important;
     height: 3em !important;
     padding-right: 1.5em;
 }
