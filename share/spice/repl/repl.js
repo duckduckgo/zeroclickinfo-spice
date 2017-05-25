@@ -107,23 +107,42 @@
         javascript: "JavaScript",
         python: "Python",
         ruby: "Ruby",
-        swift: "Swift",
+        swift: "Swift"
     };
 
     var syntaxAliases = {
-        nodejs: "javascript",
         cpp11: "cpp",
+        nodejs: "javascript",
         python3: "python"
     };
 
     // Limit sample code to select langauges
     // Other languages have sample code, however they produce errors for various reasons
     var allowCodeSamples = {
+        go: true,
         javascript: true,
         python: true,
         python3: true,
         ruby: true
     };
+
+    var prefillText = {
+        c: "#include \"stdio.h\"\nint main(void) {\n  printf(\"Hello World\\n\");\n  return 0;\n}",
+        cpp: "#include <iostream>\nint main() {\n  std::cout << \"Hello World!\\n\";\n}",
+        cpp11: "#include <iostream>\nint main() {\n  std::cout << \"Hello World!\\n\";\n}",
+        csharp: "using System;\nclass MainClass {\n  public static void Main (string[] args) {\n    Console.WriteLine (\"Hello World\");\n  }\n}",
+        fsharp: "System.Console.WriteLine(\"hello world\")",
+        go: "package main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Hello, World\")\n}",
+        java: "class Main {\n  public static void main(String[] args) {\n  System.out.println(\"hello world\");\n}",
+        javascript: "console.log('Hello world!');",
+        lua: "print(\"Hello World!\")",
+        php: "echo \"Hello World!\";",
+        python: "print('Hello World!')",
+        python3: "print('Hello World!')",
+        ruby: "puts 'Hello World!'",
+        rust: "fn main() {\n  println!(\"Hello World!\");\n}",
+        swift: "print(\"Hello World!\")"
+    }
 
     // Store generated HTML here for language code samples
     var sampleCodeCache = {};
@@ -136,14 +155,35 @@
         return syntaxAliases[lang] || lang;
     }
 
+    function setPrefillText(lang) {
+        var text = prefillText[ getSampleLang(lang) ] || "";
+        editor.setValue(text);
+    }
+
+    // Wrap sample code for proper execution
+    // Commenting out because some code snippets don't need wrapping... (e.g. Golang)
+    // function wrapSampleCode(lang, sampleCode) {
+    //     var wrapText = prefillText[lang] || false;
+    //     if (wrapText) {
+    //         editor.setValue(wrapText);
+    //         editor.find('CODE_HERE', { backwards: true });
+    //         editor.replace(sampleCode);
+    //     } else {
+    //         editor.setValue(sampleCode)
+    //     }
+    // }
+
     var editorOptions = {
         showPrintMargin: false,
         showInvisibles: true,
+        tabSize: 2
     };
+
 
     var hasShown = false,
         editor_id = "repl__editor",
-        endpoint  = "/js/spice/repl_eval/";
+        endpoint  = "/js/spice/repl_eval/",
+        editor;
 
     env.ddg_spice_repl = function() {
 
@@ -181,7 +221,7 @@
 
                     // Ace editor setup
                     ace.config.set("basePath", "/js/ace/");
-                    var editor = ace.edit(editor_id);
+                    editor = ace.edit(editor_id);
                     var mode = getMode(codeLang);
                     editor.setOptions(editorOptions);
                     editor.getSession().setMode("ace/mode/" + mode);
@@ -197,6 +237,9 @@
                         $samplesContainer = $("#repl__samples__container"),
                         $samples = $("#repl__samples"),
                         $editor = $("#" + editor_id);
+
+                    // Prefill textbox
+                    setPrefillText(codeLang);
 
                     // Call SyntaxDB API to get sample code snippets
                     // -> then pass response to Handlebars template
@@ -301,6 +344,7 @@
                                 $samplesContainer.removeClass('hide');
                             });
                         }
+                        setPrefillText(codeLang);
                     });
 
                     // Stop DDG keybindings, when editor has focus
