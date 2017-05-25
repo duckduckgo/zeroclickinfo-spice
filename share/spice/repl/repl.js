@@ -116,6 +116,15 @@
         python3: "python"
     };
 
+    // Limit sample code to select langauges
+    // Other languages have sample code, however they produce errors for various reasons
+    var allowCodeSamples = {
+        javascript: true,
+        python: true,
+        python3: true,
+        ruby: true
+    };
+
     // Store generated HTML here for language code samples
     var sampleCodeCache = {};
 
@@ -145,7 +154,7 @@
             codeLang = query.replace(/repl|interpreter|online/g, "").toLowerCase().trim();
 
         codeLang = langAliases[codeLang] || codeLang;
-        var hasSamples = syntaxLangs[codeLang] !== undefined || syntaxAliases[codeLang] !== undefined;
+        var hasSamples = allowCodeSamples[ getSampleLang(codeLang) ] || false;
 
         DDG.require("/js/ace/ace.js", function() {
             Spice.add({
@@ -287,9 +296,11 @@
                         var mode = getMode(codeLang);
                         var sampleLang = getSampleLang(codeLang);
                         editor.getSession().setMode("ace/mode/" + mode);
-                        $.when( getSamples(sampleLang) ).then(function(){
-                            $samplesContainer.removeClass('hide');
-                        });
+                        if (allowCodeSamples[sampleLang]) {
+                            $.when( getSamples(sampleLang) ).then(function(){
+                                $samplesContainer.removeClass('hide');
+                            });
+                        }
                     });
 
                     // Stop DDG keybindings, when editor has focus
