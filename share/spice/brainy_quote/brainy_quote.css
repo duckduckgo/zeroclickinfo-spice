@@ -54,10 +54,23 @@
     margin-left: 40px;
 }
 
+/* List View */
 .zci__body .c-list__items {
     border-top: none; 
 }
 
 .zci__body .c-list__items li:last-child {
     border-bottom: none;
+}
+
+.zci__body .c-list__content {
+    margin-top: 0;
+}
+
+.zci__main.c-list .zci__body {
+    margin-left: -4.8em;
+}
+
+.zci__body .c-list__content .brainy__quote--container {
+    margin-left: 0em;
 }
