@@ -64,6 +64,7 @@
         'go lang': 'go',
         'golang': 'go',
         'java script': 'nodejs',
+        'javascript': 'nodejs',
         'js es6': 'babel',
         'js': 'nodejs',
         'node.js': 'nodejs',
@@ -134,8 +135,8 @@
         fsharp: "System.Console.WriteLine(\"hello world\")",
         go: "package main\n\nimport \"fmt\"\n\nfunc main() {\n  fmt.Println(\"Hello, World\")\n}",
         java: "class Main {\n  public static void main(String[] args) {\n  System.out.println(\"hello world\");\n}",
-        javascript: "console.log('Hello world!');",
         lua: "print(\"Hello World!\")",
+        nodejs: "console.log('Hello world!');",
         php: "echo \"Hello World!\";",
         python: "print('Hello World!')",
         python3: "print('Hello World!')",
@@ -156,7 +157,7 @@
     }
 
     function setPrefillText(lang) {
-        var text = prefillText[ getSampleLang(lang) ] || "";
+        var text = prefillText[lang] || "";
         editor.setValue(text);
     }
 
