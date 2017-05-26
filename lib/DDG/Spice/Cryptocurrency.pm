@@ -68,6 +68,8 @@ triggers query_lc => qr/$currency_qr/;
 spice from => '([^/]+)/([^/]+)/([^/]*)';
 spice to => 'https://www.cryptonator.com/api/$1/$2?primary=$3';
 spice wrap_jsonp_callback => 1;
+spice is_cached => 0;
+spice proxy_cache_valid => "200 1m";
 
 # This function converts things like "us dollars" to the standard "usd".
 sub getCode {
