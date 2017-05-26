@@ -421,13 +421,8 @@
                     $right_select.val(Converter.to_currency);
                 }
 
-                $currency_input_left.keyup(function(e) {
-                    Converter.calculateRate();
-                });
-
-                $currency_input_right.keyup(function(_e) {
-                    Converter.calculateInverseRate();
-                });
+                $currency_input_left.bind('change keyup mousewheel', Converter.calculateRate);
+                $currency_input_right.bind('change keyup mousewheel', Converter.calculateInverseRate);
 
                 $selects.change(function(_e) {
                     Converter.getRatesFromAPI();
