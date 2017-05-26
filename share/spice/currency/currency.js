@@ -421,6 +421,14 @@
                     $right_select.val(Converter.to_currency);
                 }
 
+                $currency_input_left.change(function(e) {
+                    Converter.calculateRate();
+                });
+
+                $currency_input_right.change(function(_e) {
+                    Converter.calculateInverseRate();
+                });
+
                 $currency_input_left.keyup(function(e) {
                     Converter.calculateRate();
                 });
