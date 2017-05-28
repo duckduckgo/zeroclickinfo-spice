@@ -78,15 +78,16 @@ triggers query_nowhitespace => qr/^
 triggers query_nowhitespace_nodash => qr/^
                                 (?:
                                     [\d]{9,} |
-                                    [A-Z]{2}\d{9}CA)
+                                    [A-Z]{2}\d{9}CA
                                 )
                                 $/xi;
 
 ## DHL
 triggers query_nowhitespace_nodash => qr/^
                                 (?:
-                                    \d{9,} |
                                     \d{10} |
+                                    \[a-zA-Z]{5}d{10} |
+                                    \[a-zA-Z]{3}d{20}
                                 )
                                 $/xi;
 
