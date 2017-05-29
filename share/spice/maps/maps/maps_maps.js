@@ -39,7 +39,7 @@ DDG.require('maps',function(){
         Spice.add({
             data: response,
             id: "maps_maps",
-            name: "maps",
+            name: lp("feedback form", "Maps"),
             model: "Place"
         });
 
