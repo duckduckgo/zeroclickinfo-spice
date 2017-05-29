@@ -425,6 +425,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+				'currency calculator' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # generic lang queries with location detection
     DDG::Request->new(
         query_raw => "currency converter",
@@ -512,37 +518,31 @@ ddg_spice_test(
     ),
     # check for exchange rate, conversion rate, conversion, converter, value of and price of as keyword
     'bitcoin exchange rate' => test_spice(
-        '/js/spice/currency/1/xbt/xbt',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    'us dollar conversion rate' => test_spice(
-        '/js/spice/currency/1/usd/usd',
+        '/js/spice/currency/1/xbt/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
     'bitcoin converter' => test_spice(
-        '/js/spice/currency/1/xbt/xbt',
+        '/js/spice/currency/1/xbt/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
     'value of inr' => test_spice(
-        '/js/spice/currency/1/inr/inr',
+        '/js/spice/currency/1/inr/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
     'price of bitcoin' => test_spice(
-        '/js/spice/currency/1/xbt/xbt',
+        '/js/spice/currency/1/xbt/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
     'usd conversion' => test_spice(
-        '/js/spice/currency/1/usd/usd',
+        '/js/spice/currency/1/usd/eur',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
