@@ -66,7 +66,8 @@ my $guard = qr/^$question_prefix($number_re*?\s+|)($currency_qr)(?:s)?(?:$into_q
 triggers query_lc => qr/$currency_qr/;
 
 spice from => '([^/]+)/([^/]+)/([^/]*)';
-spice to => 'https://www.cryptonator.com/api/$1/$2?primary=$3';
+# spice to => 'https://www.cryptonator.com/api/$1/$2?primary=$3';
+spice to => 'https://api.cryptonator.com/api/full/$2-$3';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 spice proxy_cache_valid => "200 1m";
