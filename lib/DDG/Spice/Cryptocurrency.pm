@@ -1,9 +1,9 @@
 package DDG::Spice::Cryptocurrency;
 # ABSTRACT: Cryptocurrency converter and exchange rate lookup provided by cryptonator.com
 # Borrows from DDG::Spice:Currency
- 
+
 use DDG::Spice;
-with 'DDG::SpiceRole::NumberStyler';
+use DDG::Util::NumberStyler;
 
 # Get all the valid currencies from a text file.
 my @currTriggers;
@@ -97,42 +97,42 @@ sub checkCurrencyCode {
     my $endpoint = '';
     my $query = '';
     my $query2 = '';
-    
+
     # Check if it's a valid number.
     # If it isn't, return early.
     $amount =~ s/\s+$//;
     my $styler = number_style_for($amount);
     return unless $styler;
-    
+
     my $normalized_number = $styler->for_computation($amount);
-    
+
     # Handles queries of the form '1 <cryptocurrency>'
     # Avoids triggering on common queries like '1 gig' or '1 electron'
     # If the cryptocurrency is not in the top currencies list and the query does not include 'coin' then the spice is not triggered
     if ($normalized_number == 1 && !exists($topCurrencies{getCode($from)}) && index($from, 'coin') == -1) {
         return;
     }
-    
+
     # There are cases where people type in "2016 bitcoin", so we don't want to trigger on those queries.
     # The first cryptocoins appeared in 2008, so dates before that could be valid amounts.
     if($normalized_number >= 2008 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
         return;
     }
-    
+
     # Currency values are standardized
     $from = getCode($from) || '';
     $to = getCode($to) || '';
-    
+
     # Return early if we get a query like "btc to btc".
     if($from eq $to) {
         return;
     }
-    
+
     # Return early if we don't get a currency to convert from.
     if($from eq '') {
         return;
     }
-    
+
     # If both currencies are available, use the ticker endpoint
     if (length($from) && length($to)) {
         # Return early if both currencies are in the excluded list
@@ -161,7 +161,7 @@ sub checkCurrencyCode {
 handle query_lc => sub {
     if (/$guard/) {
         my ($amount, $from, $alt_amount, $to) = ($1, $2, $3, $4 || '');
-        
+
         # Exit early if two amounts are given
         if(length($amount) && length($alt_amount)) {
             return;

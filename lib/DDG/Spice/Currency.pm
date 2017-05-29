@@ -3,7 +3,7 @@ package DDG::Spice::Currency;
 
 use strict;
 use DDG::Spice;
-with 'DDG::SpiceRole::NumberStyler';
+use DDG::Util::NumberStyler;
 use Text::Trim;
 use YAML::XS qw(LoadFile);
 
@@ -147,7 +147,7 @@ handle query_lc => sub {
 
         return checkCurrencyCode(1, $from, $to);
     }
-    
+
     # if the query matches one of the lang queries, we will default to
     # 100 usd to eur
     if (m/$guard/) {
@@ -170,7 +170,7 @@ handle query_lc => sub {
 
         # if only a currency symbol is present without "currency" keyword, then bail.
         return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
-        
+
         # for edge cases that we don't want to trigger on
         return if $req->query_lc eq 'mop tops' or $req->query_lc eq 'mop top';
 
