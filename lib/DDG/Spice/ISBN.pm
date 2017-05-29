@@ -12,11 +12,15 @@ spice to            =>      'https://duckduckgo.com/m.js?q=$1&cb={{callback}}';
 spice is_cached     =>      1;
 
 # Look for at least 9 digits, spaces and dashes in a row, possibly ending with an X.
-triggers query_raw => qr/[0-9\s-]{9,}[Xx]?/;
+triggers query_lc => qr/[0-9\s-]{9,}x?/;
 
 my %skip_words = map { uc $_ => 1 } qw( isbn number lookup );    # Appreciate if they tried to give us more context.
 
-handle query_raw => sub {
+handle query_lc => sub {
+
+    #ignore phone numbers
+    return if m/^\d{3}(-|\s)\d{3}(-|\s)\d{4}$/;
+
     my $query_cleaned = join '', (grep { !$skip_words{$_} } map { uc $_ } grep { defined } split /[\s-]/);
 
     return unless (looks_like_isbn($query_cleaned));
