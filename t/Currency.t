@@ -523,7 +523,13 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    'bitcoin converter' => test_spice(
+				'us dollar conversion rate' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+				'bitcoin converter' => test_spice(
         '/js/spice/currency/1/xbt/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
