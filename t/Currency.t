@@ -598,7 +598,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    'conversion 5k usd to uk' => test_spice(
+    'conversion 5k usd to gbp' => test_spice(
         '/js/spice/currency/5000/usd/gbp',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
