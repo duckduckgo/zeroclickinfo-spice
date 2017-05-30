@@ -8,13 +8,13 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [ 'DDG::Spice::Cryptocurrency' ],
     'lite coin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
     '500 ftc' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/500feathercoin/ftc',
+        '/js/spice/cryptocurrency/ticker/ftc-BTC/500',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -44,7 +44,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     '100,000 litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/100000litecoin/ltc',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/100000',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -56,7 +56,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     'convert litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -68,7 +68,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     'litecoin exchange rate' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -149,7 +149,7 @@ ddg_spice_test(
     # Handling the query '1 <cryptocurrency>'. Doesn't trigger unless cryptocurrency is in the top 10 currencies or the cryptocurrency has 'coin' in the name.
     # Should trigger because PPC is in the top 10
     '1 ppc' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1peercoin/ppc',
+        '/js/spice/cryptocurrency/ticker/ppc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
