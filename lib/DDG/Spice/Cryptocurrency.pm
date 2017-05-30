@@ -36,15 +36,11 @@ my @excludedCurrencies = (
 # Top currencies from coinmarketcap.com/currencies/
 my @topCurrencies = (
     'btc',
-    'xrp',
     'ltc',
     'eth',
     'dsh',
     'doge',
     'ppc',
-    'bts',
-    'str',
-    'nxt'
 );
 
 #Define regexes
