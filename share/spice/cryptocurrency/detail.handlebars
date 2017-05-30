@@ -1,34 +1,39 @@
-<div class="zci__main">
+<div class="zci__main zci__main--detail c-base">
     <div class="zci__body">
-        <div class="text--secondary">Market Rates: {{cryptoDate}} at {{cryptoTime}} UTC</div>
+    
+        <!-- DATE LABEL -->
+        <div class="text--secondary" id="subtitle">Market Rates: {{cryptoDate}} at {{cryptoTime}} UTC</div>
 
-        <div class="zci--cryptocurrency-container">
-            <div class="zci--cryptocurrency-result" data-link="{{cryptonatorURL}}">
-                <div class="zci--cryptocurrency-group">
-                    <section class="zci--cryptocurrency-first-part">
-                        <img src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
-                        <span class="zci--cryptocurrency-amount text--primary" data-original="{{queryAmount}}" data-processed="{{amount}}">{{amount}}</span>
-                        <span class="zci--cryptocurrency-symbol">{{fromCurrencySymbol}}</span>
-                    </section>
-
-                    <span class="zci--cryptocurrency-equal">=</span>
+        <!-- LEFT INPUT SECTION -->
+        <div class="frm frm--bottom clearfix">
+            <div class="input__wrap input__wrap--left shadow">
+                <input class="frm__input frm__input--left" id="zci--cryptocurrency-amount-left" data-original="{{from-amount}}" data-processed="{{amount}}" value="{{amount}}">
+                <div class="frm__select">
+                    <select class="frm__select--left zci--cryptocurrency-symbol" id="zci--cryptocurrency-symbol-left">
+                        <optgroup label="Cryptocurrencies" class="crypto"></optgroup>
+                        <optgroup label="Fiat Currencies" class="fiat"></optgroup>
+                    </select>
                 </div>
-
-                <section class="zci--cryptocurrency-second-part">
-                    <img src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
-                    <span class="zci--cryptocurrency-amount text--primary" data-processed="{{convertedAmount}}">{{convertedAmount}}</span>
-                    <span class="zci--cryptocurrency-symbol">{{toCurrencySymbol}}</span>
-                </section>
             </div>
-                
 
-            <div class="zci--cryptocurrency-ratesinfo">
-                <div>{{rate}}</div>
-                <div>{{inverseRate}}</div> 
+            <div class="equals-sign tx-clr--slate">=</div>
+
+            <!-- RIGHT INPUT SECTION -->
+            <div class="input__wrap input__wrap--right shadow">
+                <input class="frm__input frm__input--right" id="zci--cryptocurrency-amount-right" data-processed="{{convertedAmount}}" value="{{convertedAmount}}">
+                <div class="frm__select">
+                    <select class="frm__select--right zci--cryptocurrency-symbol" id="zci--cryptocurrency-symbol-right">
+                        <optgroup label="Cryptocurrencies" class="crypto"></optgroup>
+                        <optgroup label="Fiat Currencies" class="fiat"></optgroup>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <div class="clear"></div>
-        <a href="http://www.cryptonator.com/rates#{{fromCurrencySymbol}}" class="zci__more-at"><img class="zci__more-at__icon" src="//images.duckduckgo.com/iu/?u=http://www.cryptonator.com/ui/img/favicon.png&amp;f=1">More at cryptonator.com</a>
+        <!-- MORE AT LABELS -->
+        <div id="zci__more-at">
+            <a href="{{ more_at }}"><img class="zci__more-at__icon" src="//images.duckduckgo.com/iu/?u=http://www.cryptonator.com/ui/img/favicon.png&amp;f=1">More at Cryptonator.com</a> <span class="zcm__sep"></span>   <span>24hr Change: <span id="js-change-rate"></span></span>
+        </div>
+
     </div>
 </div>

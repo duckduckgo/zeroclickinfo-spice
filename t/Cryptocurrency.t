@@ -8,13 +8,13 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [ 'DDG::Spice::Cryptocurrency' ],
     'lite coin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
     '500 ftc' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/500feathercoin/ftc',
+        '/js/spice/cryptocurrency/ticker/ftc-BTC/500',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -44,7 +44,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     '100,000 litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/100000litecoin/ltc',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/100000',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -56,7 +56,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     'convert litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -68,25 +68,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     'litecoin exchange rate' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    'convert 10,000 kryp into jpy' => test_spice(
-        '/js/spice/cryptocurrency/ticker/kryp-jpy/10000',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    'convert 10,000.55 kryp into jpy' => test_spice(
-        '/js/spice/cryptocurrency/ticker/kryp-jpy/10000.55',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    'What is nxt in ltc?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/nxt-ltc/1',
+        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -117,39 +99,6 @@ ddg_spice_test(
     ),
     'etherium to ltc' => test_spice(
         '/js/spice/cryptocurrency/ticker/eth-ltc/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    # Plural names of coins
-    'What is nxt in litecoins?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/nxt-ltc/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    'Convert KimDotCoins to Litecoins?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/dot-ltc/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-
-    # Edge cases
-    '66 666coin to 66coin?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/666-66/66',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    '666coin to 2015 coin?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/666-2015/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    '666coins to 45 2015 coins' => test_spice(
-        '/js/spice/cryptocurrency/ticker/2015-666/45',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -200,20 +149,13 @@ ddg_spice_test(
     # Handling the query '1 <cryptocurrency>'. Doesn't trigger unless cryptocurrency is in the top 10 currencies or the cryptocurrency has 'coin' in the name.
     # Should trigger because PPC is in the top 10
     '1 ppc' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1peercoin/ppc',
+        '/js/spice/cryptocurrency/ticker/ppc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
     # Should not trigger because diode is not in the top 10 and name does not include coin
     '1 diode' => undef,
-    # Triggers because 'coin' is included in the name
-    '1 apex coin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1apex%20coin/apex',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
 );
 
 done_testing;
