@@ -85,3 +85,9 @@
 .is-mobile .zci--currency .zci__body {
     width: 100%;
 }
+
+/* FireFox Validation hack */
+input:invalid {
+    box-shadow: none;
+}
+
