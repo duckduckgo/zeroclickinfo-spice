@@ -225,12 +225,13 @@
         // appropriate significate figures. For example HUF -> EUR = 0.0032. However,
         // once the conversion to is high enough (1) we will fall back to 2 sig figs.
         getSignificantFigures: function(rate, value, curr) {
-            var decimals;
 
+            // if Bitcoin, keep it at 8
             if(curr === "XBT") {
                 return 8;
             }
 
+            // else we'll set the decimals based on heuristics
             if(rate <= 0.001 && value < 1) {
                 return 6;
             } else if(rate <= 0.01 && value < 1) {
