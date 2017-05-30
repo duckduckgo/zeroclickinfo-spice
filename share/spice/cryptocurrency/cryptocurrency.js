@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
 
-    var initialized = false;
+    var initialized = false; // flag used for setting up ia ui
 
     // the various DOM elements
     var $inputs,
@@ -13,31 +13,35 @@
         $more_link,
         $change_rate;
 
+    // Cryptocurrencies (For Selects)
     var crypto_currencies = [
-        // Cryptocurrencies
-        { symbol: "BTC", name: "Bitcoin", displayed: true },
-        { symbol: "LTC", name: "Litecoin", displayed: true }, 
-        { symbol: "FTC", name: "Feathercoin", displayed: true },
-        { symbol: "BLK", name: "Blackcoin", displayed: true },
-        { symbol: "DASH", name: "Dash", displayed: true },
-        { symbol: "DOGE", name: "Dogecoin", displayed: true },
-        { symbol: "EMC", name: "Emercoin", displayed: true },
-        { symbol: "ETH", name: "Ethereum", displayed: true },
-        { symbol: "XMR", name: "Monero", displayed: true },
-        { symbol: "PPC", name: "Peercoin", displayed: true },
-        { symbol: "XPM", name: "Primecoin", displayed: true },
-        { symbol: "RDD", name: "Reddcoin", displayed: true },
-        { symbol: "ZEC", name: "Zcash", displayed: true },
+
+        { symbol: "BTC", name: "Bitcoin" },
+        { symbol: "LTC", name: "Litecoin" }, 
+        { symbol: "FTC", name: "Feathercoin" },
+        { symbol: "BLK", name: "Blackcoin" },
+        { symbol: "DASH", name: "Dash" },
+        { symbol: "DOGE", name: "Dogecoin" },
+        { symbol: "EMC", name: "Emercoin" },
+        { symbol: "ETH", name: "Ethereum" },
+        { symbol: "XMR", name: "Monero" },
+        { symbol: "NMC", name: "Namecoin" },
+        { symbol: "PPC", name: "Peercoin" },
+        { symbol: "XPM", name: "Primecoin" },
+        { symbol: "RDD", name: "Reddcoin" },
+        { symbol: "ZEC", name: "Zcash" },
     ];
 
+    // Supported fiat currencies (For Selects)
     var fiat_currencies = [
-        // Supported fiat currencies
-        { symbol: "USD", name: "US Dollar", displayed: true },
-        { symbol: "CAD", name: "Canadian Dollar", displayed: true },
-        { symbol: "GBP", name: "UK Pound", displayed: true },
-        { symbol: "EUR", name: "Euro", displayed: true },
-        { symbol: "RUR", name: "Russian Ruble", displayed: true },
-        { symbol: "UAH", name: "Ukrainian Hryvnia", displayed: false },
+
+        { symbol: "USD", name: "US Dollar" },
+        { symbol: "CAD", name: "Canadian Dollar" },
+        { symbol: "GBP", name: "UK Pound" },
+        { symbol: "EUR", name: "Euro" },
+        { symbol: "JPY", name: "Japanese Yen" },
+        { symbol: "RUR", name: "Russian Ruble" },
+        { symbol: "UAH", name: "Ukrainian Hryvnia" },
     ]
 
     var Converter = {
@@ -75,7 +79,9 @@
             }
         },
 
-        // getRatesFromAPI
+        //
+        // Makes a fresh API call and populates the converter object
+        //
         getRatesFromAPI: function() {
 
             var from = $left_select.val(),
@@ -96,30 +102,37 @@
                 Converter.updateMoreAtLink(to, from);
                 Converter.updateChangeRate(payload.ticker.change);
             });
-
         },
 
-        // update more at link
+        //
+        // Update 'More at' hyperlink
+        //
         updateMoreAtLink: function(to, from) {
 
             var more_href = "https://www.cryptonator.com/rates/" + from + "-" + to;
             $more_link.attr("href", more_href)
         },
 
+        //
+        // Update Change (Price Movement) link
+        //
         updateChangeRate: function(change) {
             
             var linkcolor;
             $change_rate.text(change);
-            (parseFloat(change) >= 0) ? linkcolor = "green" : linkcolor = "red";
+            (parseFloat(change) >= 0) ? linkcolor = "#5b9e4d" : linkcolor = "#de5833";
             $change_rate.css('color', linkcolor);
         },
-
     }
 
     env.ddg_spice_cryptocurrency = function(api_result){
 
         // if the api doesn't return anything, then bail
-        if (!api_result) {
+        if (!api_result 
+            && !api_result.ticker 
+            && !api_result.ticker.base 
+            && !api_result.ticker.target 
+            && !api_result.ticker.price) {
             return Spice.failed('cryptocurrency');
         };
 
@@ -127,20 +140,14 @@
             script = $('[src*="/js/spice/cryptocurrency/"]')[0],
             source = decodeURIComponent($(script).attr("src"));
 
-        if (ticker && ticker.base && ticker.target && ticker.price) {
-
-            // Get amount from original query
-            var query = source.match(/\/ticker\/(?:.*)\/(.+)/)[1],
-                queryAmount = parseFloat(query),
-                // Calculate price, rates, and amounts
-                base = ticker.base,
-                target = ticker.target,
-                price = parseFloat(ticker.price),
-                change = ticker.change;
-            }
-        else {
-            Spice.failed('cryptocurrency');
-        }
+        // Get amount from original query
+        var query = source.match(/\/ticker\/(?:.*)\/(.+)/)[1],
+            queryAmount = parseFloat(query),
+            // Calculate price, rates, and amounts
+            base = ticker.base,
+            target = ticker.target,
+            price = parseFloat(ticker.price),
+            change = ticker.change;
 
         DDG.require('moment.js', function(){
             Spice.add({
@@ -166,7 +173,7 @@
                 },
                 onShow: function() {
 
-                    // initialize the dom
+                    // initialize the cryptocurrency ui
                     if(!initialized) {
                         // localized jQuery objects
                         var $currency = $("#zci-cryptocurrency");
@@ -185,44 +192,40 @@
 
                         // apends all the currency names to the selects
                         for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
-                            if(crypto_currencies[i].displayed === true) {
-                                $crypto_group.append(
-                                    "<option value=" 
-                                    + crypto_currencies[i].symbol 
-                                    + ">"
-                                    + crypto_currencies[i].name 
-                                    + "</strong> (" 
-                                    + crypto_currencies[i].symbol 
-                                    + ")" 
-                                    + "</option>"
-                                );
-                            }
+                            $crypto_group.append(
+                                "<option value=" 
+                                + crypto_currencies[i].symbol 
+                                + ">"
+                                + crypto_currencies[i].name 
+                                + "</strong> (" 
+                                + crypto_currencies[i].symbol 
+                                + ")" 
+                                + "</option>"
+                            );
                         }
 
-                        // add fiat currencies to the dropdown
+                        // add fiat currencies to the dropdown as well for convenience
                         for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
-                            if(fiat_currencies[i].displayed === true) {
-                                $fiat_group.append(
-                                    "<option value=" 
-                                    + fiat_currencies[i].symbol 
-                                    + ">"
-                                    + fiat_currencies[i].name 
-                                    + "</strong> (" 
-                                    + fiat_currencies[i].symbol 
-                                    + ")" 
-                                    + "</option>"
-                                );
-                            }
+                            $fiat_group.append(
+                                "<option value=" 
+                                + fiat_currencies[i].symbol 
+                                + ">"
+                                + fiat_currencies[i].name 
+                                + "</strong> (" 
+                                + fiat_currencies[i].symbol 
+                                + ")" 
+                                + "</option>"
+                            );
                         }
 
-                        Converter.rate = parseFloat(api_result.ticker.price);
-
-                        // set the correct values by default
-                        Converter.fromCurrency = api_result.ticker.base;
-                        Converter.toCurrency = api_result.ticker.target;
+                        // Set up the converter object
+                        Converter.rate = parseFloat(price);
+                        Converter.fromCurrency = base;
+                        Converter.toCurrency = target;
                         Converter.updateMoreAtLink(Converter.fromCurrency, Converter.toCurrency);
                         Converter.updateChangeRate(api_result.ticker.change);
 
+                        // set the selects with the correct initial value
                         $left_select.val(api_result.ticker.base);
                         $right_select.val(api_result.ticker.target);
 
@@ -233,6 +236,7 @@
                         Converter.getRatesFromAPI();
                     });
 
+                    // if a user clicks on an intput, we'll update it
                     $inputs.click(function() {
                         this.select();
                     });
@@ -245,6 +249,7 @@
                         Converter.calculateInverseRate();
                     })
 
+                    // set to true so we don't set up the ui again
                     initialized = true;
 
                 }

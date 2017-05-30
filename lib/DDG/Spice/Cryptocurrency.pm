@@ -5,6 +5,8 @@ package DDG::Spice::Cryptocurrency;
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 
+use Data::Dumper;
+
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('cryptocurrencylist.txt')->slurp;
@@ -22,17 +24,12 @@ foreach my $currency (@currencies){
 # These currencies should be handled by DDG::Spice::Currency or DDG::Spice::Bitcoin.
 my @excludedCurrencies = (
     'btc',
-    'aud',
-    'cny',
     'eur',
     'gbp',
-    'hkd',
     'jpy',
-    'nzd',
-    'pln',
     'rur',
-    'sgd',
-    'usd'
+    'usd',
+    'uah',
 );
 
 # Used to filter on queries of the form '1 <cryptocurrency>'
@@ -59,9 +56,6 @@ my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
 
 my $guard = qr/^$question_prefix($number_re*?\s+|)($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?\s+|)($currency_qr)?(?:s)?\??$/i;
-
-# https://www.cryptonator.com/api/secondaries?primary=BTC
-# https://www.cryptonator.com/api/ticker/ltc-ftc
 
 triggers query_lc => qr/$currency_qr/;
 
@@ -150,10 +144,14 @@ sub checkCurrencyCode {
         if (exists($excludedCurrencies{$from})) {
             return;
         }
-        $endpoint = 'secondaries';
-        # API does not return the display name of the currency, so we must include it
-        $query = $normalized_number . $currDisplayName;
-        $query2 = $from;
+
+        if($to eq "") {
+            $to = "BTC";
+        }
+
+        $endpoint = 'ticker';
+        $query = $from . '-' . $to;
+        $query2 = $normalized_number;
     }
     return $endpoint, $query, $query2;
 }
