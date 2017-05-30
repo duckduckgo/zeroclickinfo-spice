@@ -10,7 +10,8 @@
         $left_select,
         $right_select,
         $selects,
-        $more_link;
+        $more_link,
+        $change_rate;
 
     var crypto_currencies = [
         // Cryptocurrencies
@@ -47,6 +48,7 @@
         rate: undefined,
 
         calculateRate: function() {
+
             if($currency_input_left.val() !== '') {
                 var left_input = $currency_input_left.val();
                 left_input = left_input.replace(/,/g, '');
@@ -60,6 +62,7 @@
         },
 
         calculateInverseRate: function() {
+
             if($currency_input_right.val() !== '') {
                 var right_input = $currency_input_right.val()
                 right_input = right_input.replace(/,/g, '');
@@ -90,15 +93,25 @@
             $.get(endpoint, function(payload) {
                 Converter.rate = parseFloat(payload.ticker.price);
                 Converter.calculateRate();
+                Converter.updateMoreAtLink(to, from);
+                Converter.updateChangeRate(payload.ticker.change);
             });
 
-            this.updateMoreAtLink(to, from);
         },
 
         // update more at link
         updateMoreAtLink: function(to, from) {
+
             var more_href = "https://www.cryptonator.com/rates/" + from + "-" + to;
             $more_link.attr("href", more_href)
+        },
+
+        updateChangeRate: function(change) {
+            
+            var linkcolor;
+            $change_rate.text(change);
+            (parseFloat(change) >= 0) ? linkcolor = "green" : linkcolor = "red";
+            $change_rate.css('color', linkcolor);
         },
 
     }
@@ -122,7 +135,8 @@
                 // Calculate price, rates, and amounts
                 base = ticker.base,
                 target = ticker.target,
-                price = parseFloat(ticker.price);
+                price = parseFloat(ticker.price),
+                change = ticker.change;
             }
         else {
             Spice.failed('cryptocurrency');
@@ -167,6 +181,7 @@
                         $right_select = $currency.find("#zci--cryptocurrency-symbol-right");
                         $selects = $currency.find("select");
                         $more_link = $currency.find("#zci__more-at a");
+                        $change_rate = $currency.find("#js-change-rate");
 
                         // apends all the currency names to the selects
                         for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
@@ -206,6 +221,7 @@
                         Converter.fromCurrency = api_result.ticker.base;
                         Converter.toCurrency = api_result.ticker.target;
                         Converter.updateMoreAtLink(Converter.fromCurrency, Converter.toCurrency);
+                        Converter.updateChangeRate(api_result.ticker.change);
 
                         $left_select.val(api_result.ticker.base);
                         $right_select.val(api_result.ticker.target);
