@@ -221,6 +221,26 @@
             return payload["conversion-inverse"]
         },
 
+        // If there is really small exchange rates, then we need to display the
+        // appropriate significate figures. For example HUF -> EUR = 0.0032. However,
+        // once the conversion to is high enough (1) we will fall back to 2 sig figs.
+        getSignificantFigures: function(rate, value, curr) {
+
+            // if Bitcoin, keep it at 8
+            if(curr === "XBT") {
+                return 8;
+            }
+
+            // else we'll set the decimals based on heuristics
+            if(rate <= 0.001 && value < 1) {
+                return 6;
+            } else if(rate <= 0.01 && value < 1) {
+                return 4;
+            } else {
+                return 2;
+            }
+        },
+
         //
         // Calculates the rates
         //
@@ -230,7 +250,7 @@
                 var left_input = $currency_input_left.val();
                 left_input = left_input.replace(/,/g, '');
                 var rightval = parseFloat(left_input) * Converter.rate;
-                var decimals = Converter.to_currency === "XBT" ? 8 : 2;
+                var decimals = Converter.getSignificantFigures(Converter.rate, rightval, Converter.to_currency);
                 $currency_input_right.val(
                     rightval.toFixed(decimals)
                 );
@@ -244,7 +264,7 @@
                 var right_input = $currency_input_right.val()
                 right_input = right_input.replace(/,/g, '');
                 var leftval = parseFloat(right_input) * Converter.inverseRate;
-                var decimals = Converter.from_currency === "XBT" ? 8 : 2;
+                var decimals = Converter.getSignificantFigures(Converter.inverseRate, leftval, Converter.from_currency);
                 $currency_input_left.val(
                     leftval.toFixed(decimals)
                 );
