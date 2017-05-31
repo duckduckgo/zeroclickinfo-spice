@@ -11,8 +11,8 @@ nmc,namecoin,name coin,
 ppc,peercoin,peer coin,
 xpm,primecoin,prime coin,
 rdd,reddcoin,redd coin,
-zec,zcash,z cash
-usd,us dollar,united states dollar,american dollar,america, us
+zec,zcash,z cash,
+usd,us dollar,united states dollar,american dollar,america, us,
 cad,canadian dollar,canada dollar,
 gbp,british pound,united kingdom pound,uk pound,uk pounds,pound,sterling,pound sterling,
 eur,euro,euros,

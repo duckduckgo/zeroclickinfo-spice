@@ -149,7 +149,7 @@ sub checkCurrencyCode {
         $query = $from . '-' . $to;
         $query2 = $normalized_number;
     }
-    # For a single currency, call the secondaries endpoint
+    # For a single currency, fall back to a default value (location or btc)
     else {
         # Return early if the single currency is in the excluded list
         if (exists($excludedCurrencies{$from})) {

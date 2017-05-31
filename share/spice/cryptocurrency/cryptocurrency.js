@@ -190,7 +190,7 @@
                 normalize: function(item) {
                     return {
                         amount: queryAmount,
-                        convertedAmount: (queryAmount * price).toFixed(Converter.getSignificanDigits(target)),
+                        convertedAmount: Number((queryAmount * price).toFixed(Converter.getSignificanDigits(target))).toString(),
                         cryptoTime: moment(item.ticker.timestamp).format("HH:mm"),
                         cryptoDate: moment(item.ticker.timestamp).format("YYYY-DD-MM")
                     };
