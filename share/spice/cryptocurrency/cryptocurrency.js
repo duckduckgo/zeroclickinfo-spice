@@ -50,6 +50,7 @@
         fromCurrency: undefined,
         toCurrency: undefined,
         rate: undefined,
+        cryptoList: [],
 
         calculateRate: function() {
 
@@ -57,8 +58,9 @@
                 var left_input = $currency_input_left.val();
                 left_input = left_input.replace(/,/g, '');
                 var rightval = parseFloat(left_input) * Converter.rate;
+                var decimals = Converter.getSignificanDigits(Converter.toCurrency);
                 $currency_input_right.val(
-                    rightval.toFixed(8)
+                    Number(rightval.toFixed(decimals)).toString()
                 );
             } else {
                 $currency_input_right.val("");
@@ -71,8 +73,9 @@
                 var right_input = $currency_input_right.val()
                 right_input = right_input.replace(/,/g, '');
                 var leftval = parseFloat(right_input) / Converter.rate;
+                var decimals = Converter.getSignificanDigits(Converter.fromCurrency);
                 $currency_input_left.val(
-                    leftval.toFixed(8)
+                    Number(leftval.toFixed(decimals)).toString()
                 );
             } else {
                 $currency_input_left.val("");
@@ -93,6 +96,9 @@
                 to = Converter.fromCurrency;
                 $right_select.val(to);
                 $left_select.val(from);
+            } else {
+                Converter.toCurrency = to;
+                Converter.fromCurrency = from;
             }
 
             var endpoint = "https://api.cryptonator.com/api/full/" + from + "-" + to;
@@ -123,6 +129,24 @@
             (parseFloat(change) >= 0) ? linkcolor = "#5b9e4d" : linkcolor = "#de5833";
             $change_rate.css('color', linkcolor);
         },
+
+
+        // Builds the list of cryptocurrencies for local use
+        generateCryptoList: function() {
+            for (var i = crypto_currencies.length - 1; i >= 0; i--) {
+                Converter.cryptoList.push(crypto_currencies[i].symbol);
+            };
+        },
+
+        // returns the amount of sig figs we need for a number.
+        // crypto = 8, fiat = 2
+        getSignificanDigits: function(currency) {
+            if($.inArray(currency, Converter.cryptoList) > -1) {
+                return 8;
+            } else {
+                return 2;
+            }
+        },
     }
 
     env.ddg_spice_cryptocurrency = function(api_result){
@@ -149,6 +173,9 @@
             price = parseFloat(ticker.price),
             change = ticker.change;
 
+        // seed the object with list of cryptos
+        Converter.generateCryptoList();
+
         DDG.require('moment.js', function(){
             Spice.add({
                 id: "cryptocurrency",
@@ -163,7 +190,7 @@
                 normalize: function(item) {
                     return {
                         amount: queryAmount,
-                        convertedAmount: queryAmount * price,
+                        convertedAmount: (queryAmount * price).toFixed(Converter.getSignificanDigits(target)),
                         cryptoTime: moment(item.ticker.timestamp).format("HH:mm"),
                         cryptoDate: moment(item.ticker.timestamp).format("YYYY-DD-MM")
                     };
@@ -181,7 +208,7 @@
                         var $fiat_group = $("optgroup.fiat");
 
                         // jQuery objects globally accessable
-                        $inputs = $("input");
+                        $inputs = $currency.find("input");
                         $currency_input_left = $currency.find("#zci--cryptocurrency-amount-left");
                         $currency_input_right = $currency.find("#zci--cryptocurrency-amount-right");
                         $left_select = $currency.find("#zci--cryptocurrency-symbol-left");
