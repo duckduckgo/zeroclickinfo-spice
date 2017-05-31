@@ -5,13 +5,16 @@ package DDG::Spice::Cryptocurrency;
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 
-use Data::Dumper;
+use YAML::XS qw(LoadFile);
 
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('cryptocurrencylist.txt')->slurp;
 my %currHash = ();
 my $currDisplayName = '';
+
+# link country codes to a currency symbol
+my $currencyPerCountry = LoadFile share("currencyPerCountry.yml");
 
 foreach my $currency (@currencies){
     chomp($currency);
@@ -41,6 +44,17 @@ my @topCurrencies = (
     'dsh',
     'doge',
     'ppc',
+);
+
+# The currencies that we support in the UI
+my @availableLocalCurrencies = (
+    'usd',
+    'cad',
+    'gbp',
+    'eur',
+    'jpy',
+    'rur',
+    'uah'
 );
 
 #Define regexes
@@ -84,6 +98,7 @@ sub checkCurrencyCode {
     my($amount, $from, $to) = @_;
     my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
     my %topCurrencies = map { $_ => 1 } @topCurrencies;
+    my %availableLocalCurrencies = map {$_ => 1} @availableLocalCurrencies;
     my $endpoint = '';
     my $query = '';
     my $query2 = '';
@@ -141,8 +156,15 @@ sub checkCurrencyCode {
             return;
         }
 
-        if($to eq "") {
-            $to = "BTC";
+        my $local_currency = getLocalCurrency();
+
+        if($to eq '' && exists($availableLocalCurrencies{$local_currency})) {
+            # use local currency if we support it in the ui
+            $to = $local_currency;
+        } 
+        else {
+            # default to btc
+            $to = 'btc';
         }
 
         $endpoint = 'ticker';
@@ -150,6 +172,24 @@ sub checkCurrencyCode {
         $query2 = $normalized_number;
     }
     return $endpoint, $query, $query2;
+}
+
+# get the local currency where the user is
+sub getLocalCurrency {
+    my $local_currency = '';
+
+    if ($loc && $loc->{country_code}) {
+        my $country_code = lc $loc->{country_code};
+
+        $local_currency = $currencyPerCountry->{$country_code} // '';
+
+        # make sure we've got the currency in our list
+        unless (exists $currHash{$local_currency}) {
+            $local_currency = '';
+        }
+    }
+
+    return $local_currency;
 }
 
 handle query_lc => sub {

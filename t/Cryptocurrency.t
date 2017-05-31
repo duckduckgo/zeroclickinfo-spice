@@ -4,21 +4,11 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
+use DDG::Test::Location;
+use DDG::Request;
 
 ddg_spice_test(
     [ 'DDG::Spice::Cryptocurrency' ],
-    'lite coin' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    '500 ftc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ftc-BTC/500',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
     'ltc ftc' => test_spice(
         '/js/spice/cryptocurrency/ticker/ltc-ftc/1',
         call_type => 'include',
@@ -43,32 +33,14 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
-    '100,000 litecoin' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-BTC/100000',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
     'litecoin vs. bitcoin' => test_spice(
         '/js/spice/cryptocurrency/ticker/ltc-btc/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
-    'convert litecoin' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
     'convert litecoin to 30 ftc' => test_spice(
         '/js/spice/cryptocurrency/ticker/ftc-ltc/30',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
-    'litecoin exchange rate' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-BTC/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -99,6 +71,80 @@ ddg_spice_test(
     ),
     'etherium to ltc' => test_spice(
         '/js/spice/cryptocurrency/ticker/eth-ltc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
+    # location dependant tests
+    DDG::Request->new(
+        query_raw => "500 ltc",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-eur/500',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
+        query_raw => "lite coin",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
+        query_raw => "convert litecoin",
+        location => test_location("au")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-btc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
+    # We don't support australian dollars in the ui, so falls back to btc
+    DDG::Request->new(
+        query_raw => "500 ftc",
+        location => test_location("au")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ftc-btc/500',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
+        query_raw => "litecoin exchange rate",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
+        query_raw => "100,000 litecoin",
+        location => test_location("in")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-btc/100000',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
+    # Handling the query '1 <cryptocurrency>'. Doesn't trigger unless cryptocurrency is in the top 10 currencies or the cryptocurrency has 'coin' in the name.
+    # Should trigger because PPC is in the top 10
+    DDG::Request->new(
+        query_raw => "1 ppc",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ppc-usd/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -146,14 +192,13 @@ ddg_spice_test(
     '200 bitcoin waffles to litecoin' => undef,
     'what is 1 euro in crypto donuts' => undef,
 
-    # Handling the query '1 <cryptocurrency>'. Doesn't trigger unless cryptocurrency is in the top 10 currencies or the cryptocurrency has 'coin' in the name.
-    # Should trigger because PPC is in the top 10
-    '1 ppc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ppc-BTC/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-        is_cached => 0
-    ),
+    # some random queries not to trigger on
+    'how much are featercoins' => undef,
+    'buy bitcoins' => undef,
+    'btc to supercoin' => undef,
+    'litecoin to megacoin' => undef,
+    'bitcoin blockchain' => undef,
+
     # Should not trigger because diode is not in the top 10 and name does not include coin
     '1 diode' => undef,
 );
