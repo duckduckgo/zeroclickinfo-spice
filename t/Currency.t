@@ -425,7 +425,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-	'currency calculator' => test_spice(
+    'currency calculator' => test_spice(
         '/js/spice/currency/1/usd/eur',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
