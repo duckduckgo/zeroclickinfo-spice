@@ -28,18 +28,19 @@ foreach my $currency (@currencies){
 
 # Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
-my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to)\s/i;
-my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
+my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to|convert (?:in)?to)\s/i;
+my $vs_qr = qr/\sv(?:ersu|)s?\.?\s/i;
+my $joins_qr = qr/\s(?:and|equals)\.?\s/i;
 my $question_prefix = qr/(?:convert|calculate|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
 my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)).' ';
 my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/;
 my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
 
-my $keyword_qr = qr/(?:(?<currencyKeyword>(?:((currency|value|price)( (conver(sion|ter)|calculator))?)|(conver(sion|ter)|calculator)|(exchange|conversion) rate)|(value|price) of) ?)/i;
-my $guard = qr/^$question_prefix\s?$keyword_qr?(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?\s?$keyword_qr?\??$/i;
+my $keyword_qr = qr/(?:(?<currencyKeyword>(?:((currency|value|price)( (conver(sion|ter)|calculator))?)|(conver(sion|ter)\s?(calc(ulator)?)?|calc(ulator)?)|valuation|(exchange|conversion|valuation)? rates?)|(?:exchanges?)|(value|price) of) ?)/i;
+my $guard = qr/^$question_prefix\s?$keyword_qr?(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$joins_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?\s?$keyword_qr?\??$/i;
 
-my $lang_qr = qr/^(?:convert currency|currency conver(?:ter|sions?)|currency calculator)$/i;
+my $lang_qr = qr/^(?:convert (?:currency|money)|(?:(?:currency|money|foreign) exchange rates?)|(exchange|fx) rates? (calculators?|converters?|today)|(?:currency|money) conver(?:ter|sions?)|currency calculator|(?:exchange|fx) rates?)$/i;
 
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
