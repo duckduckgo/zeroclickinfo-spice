@@ -1,0 +1,20 @@
+<table class="zci__table">
+    <tr class="zci__table__tr">
+        <th>Team</th>
+        <th>M</th>
+        <th>W</th>
+        <th>L</th>
+        <th>NRR</th>
+        <th>Pts</th>
+    </tr>
+    {{#each groups}}    
+    <tr class="zci__table__tr">
+        <td>{{team.fullName}}</td>
+        <td>{{played}}</td>
+        <td>{{won}}</td>
+        <td>{{lost}}</td>
+        <td>{{netRunRate}}</td>
+        <td>{{points}}</td>
+    </tr>
+    {{/each}}
+</table>
