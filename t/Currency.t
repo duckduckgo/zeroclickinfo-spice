@@ -425,7 +425,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-				'currency calculator' => test_spice(
+    'currency calculator' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'fx rates' => test_spice(
         '/js/spice/currency/1/usd/eur',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
@@ -554,6 +566,139 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    'usd to eur converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'pound v euro' => test_spice(
+        '/js/spice/currency/1/gbp/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd vs euro' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1000 euro to cdn' => test_spice(
+        '/js/spice/currency/1000/eur/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'dollar pound exchange' => test_spice(
+        '/js/spice/currency/1/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate euro danish crown' => test_spice(
+        '/js/spice/currency/1/eur/dkk',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'money converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'us cad' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'currency exchange rates' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'dollar and pound' => test_spice(
+        '/js/spice/currency/1/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '40 cad and aud' => test_spice(
+        '/js/spice/currency/40/cad/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '50 euro convert to usd' => test_spice(
+        '/js/spice/currency/50/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 riels to usd' => test_spice(
+        '/js/spice/currency/500/khr/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '70 pounds equals dollars' => test_spice(
+        '/js/spice/currency/70/gbp/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '949 dollar in reals' => test_spice(
+        '/js/spice/currency/949/usd/brl',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'dollar yen valuation' => test_spice(
+        '/js/spice/currency/1/usd/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ), 
+    'euro to au dollars' => test_spice(
+        '/js/spice/currency/1/eur/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate calculator' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate today' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'euros to dollars conversion calculator' => test_spice(
+        '/js/spice/currency/1/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'foreign exchange rates' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
     # check for types of the form currency name to currency name exchange rate/conversion rate/price/conversion
     'usd to inr exchange rate' => test_spice(
         '/js/spice/currency/1/usd/inr',
