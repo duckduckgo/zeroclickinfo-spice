@@ -57,6 +57,10 @@ my @availableLocalCurrencies = (
     'uah'
 );
 
+my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
+my %topCurrencies = map { $_ => 1 } @topCurrencies;
+my %availableLocalCurrencies = map {$_ => 1} @availableLocalCurrencies;
+
 #Define regexes
 my $currency_qr = join('|', @currTriggers);
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
@@ -96,9 +100,6 @@ sub getCode {
 # This function is responsible for processing the input.
 sub checkCurrencyCode {
     my($amount, $from, $to) = @_;
-    my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
-    my %topCurrencies = map { $_ => 1 } @topCurrencies;
-    my %availableLocalCurrencies = map {$_ => 1} @availableLocalCurrencies;
     my $endpoint = '';
     my $query = '';
     my $query2 = '';
@@ -113,8 +114,9 @@ sub checkCurrencyCode {
     
     # Handles queries of the form '1 <cryptocurrency>'
     # Avoids triggering on common queries like '1 gig' or '1 electron'
-    # If the cryptocurrency is not in the top currencies list and the query does not include 'coin' then the spice is not triggered
-    if ($normalized_number == 1 && !exists($topCurrencies{getCode($from)}) && index($from, 'coin') == -1) {
+    # If the cryptocurrency is not in the top currencies list, the query does not include a 'to' currency,
+    # and the query doesn't include 'coin' then don't trigger
+    if ($normalized_number == 1 && $to eq '' && !exists($topCurrencies{getCode($from)}) && index($from, 'coin') == -1) {
         return;
     }
     
@@ -195,9 +197,14 @@ sub getLocalCurrency {
 handle query_lc => sub {
     if (/$guard/) {
         my ($amount, $from, $alt_amount, $to) = ($1, $2, $3, $4 || '');
-        
+
         # Exit early if two amounts are given
         if(length($amount) && length($alt_amount)) {
+            return;
+        }
+        # ignore queries that don't involve a cryptocurrency
+        # these are handled by the Currency Spice
+        elsif (defined $availableLocalCurrencies{$from} && defined $availableLocalCurrencies{$to}) {
             return;
         }
         # Case where only ticker symbol is give.

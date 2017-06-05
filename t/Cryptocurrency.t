@@ -172,12 +172,13 @@ ddg_spice_test(
     # Things that should probably work but it doesn't at the moment.
     'ppc ftc 400' => undef,
     '499 nmc = ? usd' => undef,
+    # Irellevant queries
     'convert religion' => undef,
     'what is a cow' => undef,
     'usda loans' => undef,
 
     # Handled by the Currency Spice.
-    'usd to aud' => undef,
+    'usd to cad' => undef,
     'btc' => undef,
     '500 btc in usd' => undef,
     'canada dollar' => undef,
@@ -185,6 +186,8 @@ ddg_spice_test(
     '499 us dollar to btc' => undef,
     '25 php to gbp' => undef,
     'convert 1021 gbp to cny'  => undef,
+    '1 usd' => undef,
+    '1 usd to cad' => undef,
 
     # We don't want to trigger on date-looking things.
     '2016 feathercoin' => undef,
