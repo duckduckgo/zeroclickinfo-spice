@@ -104,6 +104,75 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
+    
+    # CanadaPost
+    '7316971234436767' => test_spice(
+        "/js/spice/package_tracking/7316971234436767",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+    '2005706113805288' => test_spice(
+        "/js/spice/package_tracking/2005706113805288",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+    '4007693052785226' => test_spice(
+        "/js/spice/package_tracking/4007693052785226",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+    '3129144101026356' => test_spice(
+        "/js/spice/package_tracking/3129144101026356",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+
+    # HKDK
+    'CU123456789DK' => test_spice(
+        "/js/spice/package_tracking/CU123456789DK",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+    'EE123456789HK' => test_spice(
+        "/js/spice/package_tracking/EE123456789HK",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+    ),
+
+    # IPS
+    'EM999999999IN' => test_spice(
+        "/js/spice/package_tracking/EM999999999IN",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+
+    ),
+    'em123456789hr' => test_spice(
+        "/js/spice/package_tracking/em123456789hr",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+
+    ),
+    'EM 999 999 999 IN' => test_spice(
+        "/js/spice/package_tracking/EM999999999IN",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+
+    ),
+
+    # LaserShip
+    'LL12345678' => test_spice(
+        "/js/spice/package_tracking/LL12345678",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+
+    ),
+    'LL 12345678' => test_spice(
+        "/js/spice/package_tracking/LL12345678",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+
+    ),
+
 
     # Bad Queries
     70000000000000000001 => undef,
@@ -121,9 +190,9 @@ ddg_spice_test(
     '800-781-2677' => undef,
     '800 781-2677' => undef,
     '518 407 5448' => undef,
-    '1234567890' => undef,
     'ups building 2 worldport' => undef,
     'ups building 2 worldport address' => undef,
+    '1LS12345678999999999' => undef,
 
     # Too long
     'fedex 123456789 123456789 123456789 1234' => undef,

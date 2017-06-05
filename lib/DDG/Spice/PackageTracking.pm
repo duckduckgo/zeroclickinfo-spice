@@ -74,6 +74,46 @@ triggers query_nowhitespace => qr/^
                                 )
                                 $/xi;
 
+## CanadaPost
+# Source: https://www.canadapost.ca/web/en/kb/details.page?article=learn_about_tracking&cattype=kb&cat=receiving&subcat=tracking
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    [\d]{12} |
+                                    [\d]{16} |
+                                    [A-Z]{2}\d{9}CA
+                                )
+                                $/xi;
+
+## DHL
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    \d{10} |
+                                    \[a-zA-Z]{5}d{10} |
+                                    \[a-zA-Z]{3}d{20}
+                                )
+                                $/xi;
+
+##HKDK
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    [a-z]{2}\d{9}(?:hk|dk)
+                                )
+                                $/xi;
+
+## IPS
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    E[MA]\d{9}(?:IN|HR)
+                                )
+                                $/xi;
+
+## LaserShip
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    l[a-z]\d{8}
+                                )
+                                $/xi;
+
 handle query => sub {
 
     # remove trigger words & carrier names
