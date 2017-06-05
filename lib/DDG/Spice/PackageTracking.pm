@@ -75,9 +75,11 @@ triggers query_nowhitespace => qr/^
                                 $/xi;
 
 ## CanadaPost
+# Source: https://www.canadapost.ca/web/en/kb/details.page?article=learn_about_tracking&cattype=kb&cat=receiving&subcat=tracking
 triggers query_nowhitespace_nodash => qr/^
                                 (?:
-                                    [\d]{9,} |
+                                    [\d]{12} |
+                                    [\d]{16} |
                                     [A-Z]{2}\d{9}CA
                                 )
                                 $/xi;
