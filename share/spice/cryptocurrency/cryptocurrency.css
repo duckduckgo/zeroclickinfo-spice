@@ -20,12 +20,17 @@
     box-shadow: none;
 }
 
-.zci--cryptocurrency .frm--top .frm__select {
-    width: 100%;
+.zci--currency .frm__select:after {
+    height: 100%;
+    width: 30px;
+    margin-top: 0;
+    padding-top: 1.4em;
+    top: 0;
+    right: 0;
+    background-color: #fafafa;
 }
-
-.zci--cryptocurrency .frm--top {
-    margin-bottom: 1em;
+.zci--currency .frm__select:hover:after {
+    background-color: #fff;
 }
 
 .zci--cryptocurrency .frm--bottom > div {
@@ -67,9 +72,21 @@
     border-left-color: #c9c9c9;
 }
 
-.zci--cryptocurrency .frm--bottom .frm__select select {
+.zci--cryptocurrency .frm__select:after {
+    height: 100%;
+    width: 30px;
+    margin-top: 0;
+    padding-top: 1.4em;
+    top: 0;
+    right: 0;
+    background-color: #fafafa;
+}
+.zci--cryptocurrency .frm__select:hover:after {
+    background-color: #fff;
+}
+
+.zci--cryptocurrency .frm__select select {
     height: 3em !important;
-    padding-right: 1.5em;
 }
 
 .zci--cryptocurrency .equals-sign {
