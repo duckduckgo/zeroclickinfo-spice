@@ -1,33 +1,4 @@
-.brainy__quote--container {
-    overflow: hidden;
-    margin-left: -2.8em;
-}
-
-.brainy__quote {
-    quotes: "“" "”";
-    font-size: 1.5em;
-    font-weight: 300;
-}
-
-.zci--brainy_quote .zci__body {
-    margin-left: -2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    padding-left: 2.8em;
-}
-
-.brainy__quote:before {
-    color: #D4D4D4;
-    content: open-quote;
-    float: left;
-    font-size: 4em;
-    margin-top: -0.25em;
-    margin-right: 0.1em;
-}
-
-.brainy__attribution {
-    color: #999;
-    float: left;
+.zci--brainy_quote .brainy__attribution {
     margin-top: 5px;
 }
 
@@ -40,37 +11,15 @@
     padding-left: 0.25em;
 }
 
-.is-mobile .brainy__quote--container {
-    margin-left: 0px;
-    margin-bottom: 0.5em;
-}
-
-.is-mobile .zci--brainy_quote .zci__more-at {
-    margin-left: 40px;
-
-}
-
-.is-mobile .zci--brainy_quote .brainy__attribution {
-    margin-left: 40px;
-}
-
 /* List View */
-.zci__body .c-list__items {
-    border-top: none; 
+.zci--brainy_quote .zci__body .c-list__items {
+    border-top: none;
 }
 
-.zci__body .c-list__items li:last-child {
+.zci--brainy_quote .zci__body .c-list__items li:last-child {
     border-bottom: none;
 }
 
-.zci__body .c-list__content {
+.zci--brainy_quote .zci__body .c-list__content {
     margin-top: 0;
-}
-
-.zci__main.c-list .zci__body {
-    margin-left: -4.8em;
-}
-
-.zci__body .c-list__content .brainy__quote--container {
-    margin-left: 0em;
 }

@@ -1,8 +1,10 @@
 <div class="brainy__quote--container">
-  <div class="brainy__quote">
-    {{ellipsis q 150}}
-  </div>
-  <div class="brainy__attribution">
-    {{getAuthor a header1}}
-  </div>
+    <p class="brainy__quote">
+        {{ellipsis q 150}}
+    </p>
+    {{#if a}}
+    <p class="brainy__attribution tx-clr--grey t-s">
+        {{a}}
+    </p>
+    {{/if}}
 </div>
