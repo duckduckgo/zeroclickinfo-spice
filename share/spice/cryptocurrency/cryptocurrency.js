@@ -17,7 +17,7 @@
     var crypto_currencies = [
 
         { symbol: "BTC", name: "Bitcoin" },
-        { symbol: "LTC", name: "Litecoin" }, 
+        { symbol: "LTC", name: "Litecoin" },
         { symbol: "FTC", name: "Feathercoin" },
         { symbol: "BLK", name: "Blackcoin" },
         { symbol: "DASH", name: "Dash" },
@@ -123,7 +123,7 @@
         // Update Change (Price Movement) link
         //
         updateChangeRate: function(change) {
-            
+
             var linkcolor;
             $change_rate.text(change);
             (parseFloat(change) >= 0) ? linkcolor = "#5b9e4d" : linkcolor = "#de5833";
@@ -152,10 +152,10 @@
     env.ddg_spice_cryptocurrency = function(api_result){
 
         // if the api doesn't return anything, then bail
-        if (!api_result 
-            && !api_result.ticker 
-            && !api_result.ticker.base 
-            && !api_result.ticker.target 
+        if (!api_result
+            && !api_result.ticker
+            && !api_result.ticker.base
+            && !api_result.ticker.target
             && !api_result.ticker.price) {
             return Spice.failed('cryptocurrency');
         };
@@ -195,8 +195,8 @@
                         cryptoDate: moment(item.ticker.timestamp).format("YYYY-DD-MM")
                     };
                 },
-                templates: { 
-                    detail: Spice.cryptocurrency.detail 
+                templates: {
+                    detail: Spice.cryptocurrency.detail
                 },
                 onShow: function() {
 
@@ -215,18 +215,18 @@
                         $right_select = $currency.find("#zci--cryptocurrency-symbol-right");
                         $selects = $currency.find("select");
                         $more_link = $currency.find("#zci__more-at a");
-                        $change_rate = $currency.find("#js-change-rate");
+                        $change_rate = $currency.find(".js-change-rate");
 
                         // apends all the currency names to the selects
                         for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
                             $crypto_group.append(
-                                "<option value=" 
-                                + crypto_currencies[i].symbol 
+                                "<option value="
+                                + crypto_currencies[i].symbol
                                 + ">"
-                                + crypto_currencies[i].name 
-                                + "</strong> (" 
-                                + crypto_currencies[i].symbol 
-                                + ")" 
+                                + crypto_currencies[i].name
+                                + "</strong> ("
+                                + crypto_currencies[i].symbol
+                                + ")"
                                 + "</option>"
                             );
                         }
@@ -234,13 +234,13 @@
                         // add fiat currencies to the dropdown as well for convenience
                         for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
                             $fiat_group.append(
-                                "<option value=" 
-                                + fiat_currencies[i].symbol 
+                                "<option value="
+                                + fiat_currencies[i].symbol
                                 + ">"
-                                + fiat_currencies[i].name 
-                                + "</strong> (" 
-                                + fiat_currencies[i].symbol 
-                                + ")" 
+                                + fiat_currencies[i].name
+                                + "</strong> ("
+                                + fiat_currencies[i].symbol
+                                + ")"
                                 + "</option>"
                             );
                         }
