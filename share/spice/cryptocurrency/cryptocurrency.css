@@ -33,7 +33,8 @@
     background-color: #fff;
 }
 
-.zci--cryptocurrency .frm--bottom > div {
+
+.zci--cryptocurrency .frm > div {
     float: left;
 }
 
@@ -41,9 +42,8 @@
     width: 45%;
 }
 
-
-.zci--cryptocurrency .frm--bottom .frm__input,
-.zci--cryptocurrency .frm--bottom .frm__select {
+.zci--cryptocurrency .frm__input,
+.zci--cryptocurrency .frm__select {
     display: block;
     width: 100%;
     height: 3em;
@@ -54,7 +54,7 @@
     border-color: #c9c9c9;
 }
 
-.zci--cryptocurrency .frm--bottom .frm__input {
+.zci--cryptocurrency .frm__input {
     border-bottom: none;
     border-right: 1px solid #c9c9c9;
     border-bottom-left-radius: 0;
@@ -64,7 +64,7 @@
     height: 1.8em !important;
 }
 
-.zci--cryptocurrency .frm--bottom .frm__select {
+.zci--cryptocurrency .frm__select {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 2px;
