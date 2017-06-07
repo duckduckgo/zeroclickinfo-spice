@@ -196,7 +196,6 @@ ddg_spice_test(
     'hook-ups anime' => undef,
     'ubuntu-server package' => undef,
     'dhl-sendungsverfolgung' => undef,
-    'smart ups 1000 SUA1000 manual' => undef,
 
     ## Bad UPS
     '205495077' => undef,

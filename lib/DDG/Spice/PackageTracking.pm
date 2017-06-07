@@ -148,7 +148,7 @@ handle query => sub {
 
     # Validate likely UPS tracking numbers
     # Skipping \d{12} because that matches other carriers as well
-    if (m/^\d{9}|T\d{10}$/) {
+    if (m/^(\d{9}|T\d{10})$/) {
         return unless is_valid_ups($_);
     }
     # Validate DHL tracking numbers
