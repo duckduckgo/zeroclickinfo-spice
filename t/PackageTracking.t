@@ -104,7 +104,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
-    
+
     # CanadaPost
     '7316971234436767' => test_spice(
         "/js/spice/package_tracking/7316971234436767",
@@ -193,6 +193,24 @@ ddg_spice_test(
     'ups building 2 worldport' => undef,
     'ups building 2 worldport address' => undef,
     '1LS12345678999999999' => undef,
+    'hook-ups anime' => undef,
+    'ubuntu-server package' => undef,
+    'dhl-sendungsverfolgung' => undef,
+    'smart ups 1000 SUA1000 manual' => undef,
+
+    ## Bad UPS
+    '205495077' => undef,
+    '199151188' => undef,
+    '085911287' => undef,
+    'T9999999999' => undef,
+
+    ## Bad DHL
+    '8004045172' => undef,
+    '0957156239' => undef,
+    '8007776116' => undef,
+    '6311245247' => undef,
+    '6263467015' => undef,
+
 
     # Too long
     'fedex 123456789 123456789 123456789 1234' => undef,
@@ -208,7 +226,7 @@ ddg_spice_test(
 
     'fedex' => undef,
     'fedex website' => undef,
-    
+
     # Invalid query containing isbn
     'isbn 9780134494326' => undef,
     'Isbn9780073380957' => undef,

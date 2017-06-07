@@ -146,16 +146,128 @@ handle query => sub {
     # remove spaces/dashes
     s/(\s|-)//g;
 
+    # Validate likely UPS tracking numbers
+    # Skipping \d{12} because that matches other carriers as well
+    if (m/^\d{9}|T\d{10}$/) {
+        return unless is_valid_ups($_);
+    }
+    # Validate DHL tracking numbers
+    elsif (m/^\d{10}$/) {
+        return unless is_valid_dhl($_);
+    }
+
     # ignore repeated strings of single digit (e.g. 0000 0000 0000)
     return if m/^(\d)\1+$/;
 
     # remainder should be 6-30 characters long
     return unless m/^[A-Z0-9]{6,30}$/i;
-    
+
     # ignore if isbn is present
     return if m/isbn/i;
 
     return $_;
 };
+
+
+sub is_valid_dhl {
+    # If a Canada Post package number (2 for exclusively).
+    my $package_number = $_;
+
+    my $checksum   = 0;
+    my @chars      = split( //, $package_number );
+    my $length     = scalar(@chars);
+    my $char_count = 0;
+    my $odd_sum    = 0;
+    my $even_sum   = 0;
+    my $is_valid   = 0;
+
+    foreach my $char (@chars) {
+        $char_count++;
+
+        if ($char_count % 2 == 0) {
+            $even_sum += $char;
+        }
+        else {
+            $odd_sum += $char;
+        }
+    }
+    $even_sum *= 1;
+    $odd_sum  *= 1;
+
+    $checksum = join( '', @chars[ 0 .. $length - 2 ] ) % 7;
+
+    if ($checksum eq $chars[-1]) {
+        $is_valid = 1;
+    }
+
+    return $is_valid;
+};
+
+my %ups_checksum = (
+    'A' => 2,
+    'B' => 3,
+    'C' => 4,
+    'D' => 5,
+    'E' => 6,
+    'F' => 7,
+    'G' => 8,
+    'H' => 9,
+    'I' => 0,
+    'J' => 1,
+    'K' => 2,
+    'L' => 3,
+    'M' => 4,
+    'N' => 5,
+    'O' => 6,
+    'P' => 7,
+    'Q' => 8,
+    'R' => 9,
+    'S' => 0,
+    'T' => 1,
+    'U' => 2,
+    'V' => 3,
+    'W' => 4,
+    'X' => 5,
+    'Y' => 6,
+    'Z' => 7,
+);
+
+sub is_valid_ups {
+    my $package_number = uc $_;
+    my $checksum = 0;
+    my $is_valid = 0;
+    my @chars = split(//, $package_number);
+
+    # Skip 1Z.
+    @chars = @chars[ 2 .. scalar(@chars) - 1 ];
+
+    my $length     = scalar(@chars);
+    my $char_count = 0;
+    my $odd_sum    = 0;
+    my $even_sum   = 0;
+
+    foreach my $char (@chars) {
+        $char_count++;
+
+        my $tmp_num = $char;
+        if ( exists $ups_checksum{$char} ) {
+            $tmp_num = $ups_checksum{$char};
+        }
+
+        if ( $char_count % 2 == 0 ) {
+            $even_sum += $tmp_num;
+        }
+        else {
+            $odd_sum += $tmp_num;
+        }
+    }
+    $even_sum *= 2;
+    $checksum = ( $odd_sum + $even_sum ) % 10;
+
+    if ($checksum eq $chars[-1]) {
+        $is_valid = 1;
+    }
+    return $is_valid;
+}
 
 1;
