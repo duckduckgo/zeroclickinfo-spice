@@ -24,7 +24,7 @@
                     return {
                         problem: data.problemLatex,
                         problemHasLatex: containsLatexChars(data.problemLatex),
-                        solution: data.solutionLatex,
+                        solution: data.solutionLatex.replace(/</g, "\\lt ").replace(/>/g, "\\gt "),
                         solutionHasLatex: containsLatexChars(data.solutionLatex),
                         rendered: false
                     };

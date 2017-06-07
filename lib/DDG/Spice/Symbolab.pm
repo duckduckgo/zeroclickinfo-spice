@@ -171,7 +171,7 @@ spice is_cached => 1;
 spice to => 'https://www.symbolab.com/ddg?query=$1';
 spice wrap_jsonp_callback => 1;
 
-triggers startend => keys %legalWordsFunctions;
+triggers startend => keys %legalWords, keys %legalFunctions;
 handle query_lc => sub {
     return isLegal($_);
 };
