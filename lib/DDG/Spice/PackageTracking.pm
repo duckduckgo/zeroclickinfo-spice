@@ -170,9 +170,7 @@ handle query => sub {
 
 
 sub is_valid_dhl {
-    # If a Canada Post package number (2 for exclusively).
     my $package_number = $_;
-
     my $checksum   = 0;
     my @chars      = split( //, $package_number );
     my $length     = scalar(@chars);
@@ -183,7 +181,6 @@ sub is_valid_dhl {
 
     foreach my $char (@chars) {
         $char_count++;
-
         if ($char_count % 2 == 0) {
             $even_sum += $char;
         }
@@ -191,15 +188,11 @@ sub is_valid_dhl {
             $odd_sum += $char;
         }
     }
+
     $even_sum *= 1;
     $odd_sum  *= 1;
-
     $checksum = join( '', @chars[ 0 .. $length - 2 ] ) % 7;
-
-    if ($checksum eq $chars[-1]) {
-        $is_valid = 1;
-    }
-
+    $is_valid = 1 if ($checksum eq $chars[-1]);
     return $is_valid;
 };
 
@@ -237,10 +230,8 @@ sub is_valid_ups {
     my $checksum = 0;
     my $is_valid = 0;
     my @chars = split(//, $package_number);
-
-    # Skip 1Z.
+    # Skip 1Z
     @chars = @chars[ 2 .. scalar(@chars) - 1 ];
-
     my $length     = scalar(@chars);
     my $char_count = 0;
     my $odd_sum    = 0;
@@ -263,10 +254,7 @@ sub is_valid_ups {
     }
     $even_sum *= 2;
     $checksum = ( $odd_sum + $even_sum ) % 10;
-
-    if ($checksum eq $chars[-1]) {
-        $is_valid = 1;
-    }
+    $is_valid = 1 if ($checksum eq $chars[-1]);
     return $is_valid;
 }
 
