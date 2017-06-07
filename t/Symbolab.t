@@ -637,12 +637,6 @@ ddg_spice_test(
     caller => 'DDG::Spice::Symbolab',
     is_cashed => 1,
   ),
-  "cot(3x) = cos(3x)" => test_spice(
-    '/js/spice/symbolab/cot%283x%29%20%3D%20cos%283x%29',
-    call_type => 'include',
-    caller => 'DDG::Spice::Symbolab',
-    is_cashed => 1,
-  ),
   "derivative of sin(2t)" => test_spice(
     '/js/spice/symbolab/derivative%20of%20sin%282t%29',
     call_type => 'include',
@@ -861,12 +855,6 @@ ddg_spice_test(
   ),
   "integrate x/(sqrt(x^2 - 16))" => test_spice(
     '/js/spice/symbolab/integrate%20x%2F%28sqrt%28x%5E2%20-%2016%29%29',
-    call_type => 'include',
-    caller => 'DDG::Spice::Symbolab',
-    is_cashed => 1,
-  ),
-  "integral ln(cos(x))" => test_spice(
-    '/js/spice/symbolab/integral%20ln%28cos%28x%29%29',
     call_type => 'include',
     caller => 'DDG::Spice::Symbolab',
     is_cashed => 1,
