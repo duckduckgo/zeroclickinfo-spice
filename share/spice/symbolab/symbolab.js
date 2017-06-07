@@ -21,10 +21,11 @@
                     sourceUrl: api_result.solution.url
                 },
                 normalize: function (data) {
+                	data.solutionLatex = data.solutionLatex.replace(/</g, "\\lt ").replace(/>/g, "\\gt ");
                     return {
                         problem: data.problemLatex,
                         problemHasLatex: containsLatexChars(data.problemLatex),
-                        solution: data.solutionLatex.replace(/</g, "\\lt ").replace(/>/g, "\\gt "),
+                        solution: data.solutionLatex,
                         solutionHasLatex: containsLatexChars(data.solutionLatex),
                         rendered: false
                     };
