@@ -88,8 +88,8 @@ triggers query_nowhitespace_nodash => qr/^
 triggers query_nowhitespace_nodash => qr/^
                                 (?:
                                     \d{10} |
-                                    \[a-zA-Z]{5}d{10} |
-                                    \[a-zA-Z]{3}d{20}
+                                    \[a-zA-Z]{5}\d{10} |
+                                    \[a-zA-Z]{3}\d{20}
                                 )
                                 $/xi;
 
@@ -122,7 +122,7 @@ handle query => sub {
     return unless $_;
 
     # remainder should be numeric or alphanumeric, not alpha
-    return if m/^[A-Z]+$/i;
+    return if m/^[A-Z\-\s]+$/i;
 
     # ignore remainder with 2+ words
     return if m/\b[A-Z]+\s+[A-Z]+\b/i;
