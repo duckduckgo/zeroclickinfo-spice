@@ -20,15 +20,8 @@
     box-shadow: none;
 }
 
-.zci--currency .frm--top .frm__select {
-    width: 100%;
-}
-
-.zci--currency .frm--top {
-    margin-bottom: 1em;
-}
-
-.zci--currency .frm--bottom > div {
+.zci--currency .input__wrap,
+.zci--currency .equals-sign {
     float: left;
 }
 
@@ -36,20 +29,18 @@
     width: 45%;
 }
 
-
-.zci--currency .frm--bottom .frm__input,
-.zci--currency .frm--bottom .frm__select {
+.zci--currency .frm__input,
+.zci--currency .frm__select {
     display: block;
     width: 100%;
     height: 3em;
-    line-height: 3;
     padding: 0;
     font-weight: bold;
     text-align: center;
     border-color: #c9c9c9;
 }
 
-.zci--currency .frm--bottom .frm__input {
+.zci--currency .frm__input {
     border-bottom: none;
     border-right: 1px solid #c9c9c9;
     border-bottom-left-radius: 0;
@@ -59,7 +50,7 @@
     height: 1.8em !important;
 }
 
-.zci--currency .frm--bottom .frm__select {
+.zci--currency .frm__select {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 2px;
@@ -67,9 +58,21 @@
     border-left-color: #c9c9c9;
 }
 
-.zci--currency .frm--bottom .frm__select select {
+.zci--currency .frm__select select {
     height: 3em !important;
-    padding-right: 1.5em;
+}
+
+.zci--currency .frm__select:after {
+    height: 100%;
+    width: 30px;
+    margin-top: 0;
+    padding-top: 1.4em;
+    top: 0;
+    right: 0;
+    background-color: #fafafa;
+}
+.zci--currency .frm__select:hover:after {
+    background-color: #fff;
 }
 
 .zci--currency .equals-sign {
@@ -87,7 +90,6 @@
 }
 
 /* FireFox Validation hack */
-input:invalid {
+.zci--currency input:invalid {
     box-shadow: none;
 }
-
