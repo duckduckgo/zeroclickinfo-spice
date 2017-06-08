@@ -1,4 +1,4 @@
-aed,emirati dirham,united arab emirates dirham,
+aed,emirati dirham,united arab emirates dirham,uae dirham,
 afn,afghan afghani,afghanistan afghani,
 all,albanian lek,albania lek,
 amd,armenian dram,armenia dram,
