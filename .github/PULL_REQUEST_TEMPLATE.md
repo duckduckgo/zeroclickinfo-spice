@@ -1,28 +1,39 @@
-<!-- Use the appropriate format for your Pull Request title above ^^^^^:
+<!-- Please add the WIP label if the PR isn't complete. -->
 
-If this is a bug fix:
-{IA Name}: {Description of change}
+**Reviewer:**
 
-If this is a New Instant Answer:
-New {IA Name} Spice
-
-If this is something else:
-{Tests/Docs/Other}: {Short Description}
-
+<!-- Optional fields
+**CC:**
+**Depends on:** 
 -->
 
-
-## Description of new Instant Answer, or changes
-<!-- What does this new Instant Answer do? What changes does this PR introduce? -->
-
-
-## Related Issues and Discussions
-<!-- Link related issues here to automatically close them when PR is merged -->
-<!-- E.g. "Fixes #1234" -->
+## Description:
+<!-- Explain what is being changed, why, etc -->
 
 
-## People to notify
-<!-- Please @mention any relevant people/organizations here: -->
+## Steps to test this PR:
+<!-- List steps to test it manually 
+1. <STEP 1> 
+-->
+
+## Automated tests:
+- [ ] Unit tests
+- [ ] Integration tests
+
+###### Reviewer Checklist:
+- [ ] **Ensure the PR solves the problem**
+- [ ] **Review every line of code**
+- [ ] **Ensure the PR does no harm by testing the changes thoroughly**
+- [ ] **Get help if you're uncomfortable with any of the above!**
+- [ ] Determine if there are any quick wins that improve the implementation
+
+
+###### PR Author Checklist:
+- [ ] Get advice or leverage existing code
+- [ ] Agree on technical approach with reviewer (if the changes are nuanced)
+- [ ] Ensure that there is a testing strategy (and documented non-automated tests)
+- [ ] Ensure there is a documented monitoring strategy (if necessary)
+- [ ] Consider systems implications 
 
 <!-- DO NOT REMOVE -->
 ---
