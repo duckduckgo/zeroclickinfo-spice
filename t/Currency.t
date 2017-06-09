@@ -25,37 +25,13 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    'peso' => test_spice(
-        '/js/spice/currency/1/mxn/mxn',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     '1 peso to usd' => test_spice(
         '/js/spice/currency/1/mxn/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    'canada dollar' => test_spice(
-        '/js/spice/currency/1/cad/cad',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    '400 euro' => test_spice(
-        '/js/spice/currency/400/eur/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     # using k for thousand
-    '4k euro' => test_spice(
-        '/js/spice/currency/4000/eur/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     'convert 4.000.000k euro to usd' => test_spice(
         '/js/spice/currency/4000000000/eur/usd',
         call_type => 'include',
@@ -105,12 +81,6 @@ ddg_spice_test(
         is_cached => 0
     ),
     # using currency keyword
-    'amd currency' => test_spice(
-        '/js/spice/currency/1/amd/amd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     '2 ruble currency in yen' => test_spice(
         '/js/spice/currency/2/rub/jpy',
         call_type => 'include',
@@ -124,18 +94,6 @@ ddg_spice_test(
         is_cached => 0
     ),
     # using value, price keyword
-    'bitcoin value' => test_spice(
-        '/js/spice/currency/1/xbt/xbt',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    'bitcoin price' => test_spice(
-        '/js/spice/currency/1/xbt/xbt',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
     '2 ruble value in yen' => test_spice(
         '/js/spice/currency/2/rub/jpy',
         call_type => 'include',
@@ -172,20 +130,6 @@ ddg_spice_test(
        call_type => 'include',
        caller => 'DDG::Spice::Currency',
        is_cached => 0
-    ),
-    # Queries with no space between the number and the currency.
-    '100cad' => test_spice(
-        '/js/spice/currency/100/cad/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    # Queries with no space between the formatted number and the currency.
-    '100,000cad' => test_spice(
-        '/js/spice/currency/100000/cad/usd',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
     ),
     # Query with everything smushed together.
     '200cadusd' => test_spice(
@@ -454,35 +398,17 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    # check if the currency is detected from the location
-    # when you don't specify the target currency
-    DDG::Request->new(
-        query_raw => "300 bgn",
-        location => test_location("de")
-    ) => test_spice(
-        '/js/spice/currency/300/bgn/eur',
+				#check for uae dirham aliases
+    '1m usd in uae dirham' => test_spice(
+        '/js/spice/currency/1000000/usd/aed',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
-    ),
-    DDG::Request->new(
-        query_raw => "6008 usd",
-        location => test_location("my")
-    ) => test_spice(
-        '/js/spice/currency/6008/usd/myr',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
+    ),				
+    # when you don't specify the target Currency
     # check for placing currency type before amount
     'CHF 2.95 in eur' => test_spice(
         '/js/spice/currency/2.95/chf/eur',
-        call_type => 'include',
-        caller => 'DDG::Spice::Currency',
-        is_cached => 0
-    ),
-    'euro 400' => test_spice(
-        '/js/spice/currency/400/eur/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
@@ -493,7 +419,382 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    ## lang based triggers
+    'currency converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'currency conversion' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'currency calculator' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'fx rates' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # generic lang queries with location detection
+    DDG::Request->new(
+        query_raw => "currency converter",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/currency/1/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "currency converter",
+        location => test_location("my")
+    ) => test_spice(
+        '/js/spice/currency/1/myr/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # no $to specified, departure from tile view
+    DDG::Request->new(
+        query_raw => "100cad",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/currency/100/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # default to usd if not usd
+    '100,000cad' => test_spice(
+        '/js/spice/currency/100000/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # default to eur if usd and no location detected
+    '100,000 usd' => test_spice(
+        '/js/spice/currency/100000/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),  
+    '4k euro' => test_spice(
+        '/js/spice/currency/4000/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "bitcoin value",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/currency/1/xbt/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "bitcoin price",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/currency/1/xbt/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "canada dollar",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/currency/1/cad/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "400 euro",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/currency/400/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # check for exchange rate, conversion rate, conversion, converter, value of and price of as keyword
+    
+    'bitcoin exchange rate' => test_spice(
+        '/js/spice/currency/1/xbt/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'us dollar conversion rate' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'bitcoin converter' => test_spice(
+        '/js/spice/currency/1/xbt/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'value of inr' => test_spice(
+        '/js/spice/currency/1/inr/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'price of bitcoin' => test_spice(
+        '/js/spice/currency/1/xbt/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd conversion' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd to eur converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'pound v euro' => test_spice(
+        '/js/spice/currency/1/gbp/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd vs euro' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1000 euro to cdn' => test_spice(
+        '/js/spice/currency/1000/eur/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'dollar pound exchange' => test_spice(
+        '/js/spice/currency/1/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate euro danish crown' => test_spice(
+        '/js/spice/currency/1/eur/dkk',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'money converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'us cad' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'currency exchange rates' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'dollar and pound' => test_spice(
+        '/js/spice/currency/1/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '40 cad and aud' => test_spice(
+        '/js/spice/currency/40/cad/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '50 euro convert to usd' => test_spice(
+        '/js/spice/currency/50/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 riels to usd' => test_spice(
+        '/js/spice/currency/500/khr/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '70 pounds equals dollars' => test_spice(
+        '/js/spice/currency/70/gbp/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '949 dollar in reals' => test_spice(
+        '/js/spice/currency/949/usd/brl',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'dollar yen valuation' => test_spice(
+        '/js/spice/currency/1/usd/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ), 
+    'euro to au dollars' => test_spice(
+        '/js/spice/currency/1/eur/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate calculator' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'exchange rate today' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'euros to dollars conversion calculator' => test_spice(
+        '/js/spice/currency/1/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'foreign exchange rates' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
+    # check for types of the form currency name to currency name exchange rate/conversion rate/price/conversion
+    'usd to inr exchange rate' => test_spice(
+        '/js/spice/currency/1/usd/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'inr to cny conversion' => test_spice(
+        '/js/spice/currency/1/inr/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd to cny price' => test_spice(
+        '/js/spice/currency/1/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 cny to usd conversion rate' => test_spice(
+        '/js/spice/currency/500/cny/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '5k usd to yuan converter' => test_spice(
+        '/js/spice/currency/5000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # check for queries of types convert currency currency name to currency name
+    'convert currency 5k usd to inr' => test_spice(
+        '/js/spice/currency/5000/usd/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'conversion 5k usd to yuan' => test_spice(
+        '/js/spice/currency/5000/usd/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # check aliases for mexican peso and gbp
+    'convert 5k usd to mex peso' => test_spice(
+        '/js/spice/currency/5000/usd/mxn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'conversion 5k usd to gbp' => test_spice(
+        '/js/spice/currency/5000/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # check for currency calculator and currency converter queries
+    'usd to cad currency converter' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd to cad currency conversion' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '4 cad to usd currency calculator' => test_spice(
+        '/js/spice/currency/4/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'usd to cad calculator' => test_spice(
+        '/js/spice/currency/1/usd/cad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'calculate 1 cad to usd' => test_spice(
+        '/js/spice/currency/1/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
     # Other types of conversion
@@ -532,6 +833,9 @@ ddg_spice_test(
     'what is a cow' => undef,
     'usda' => undef,
     'sda loans' => undef,
+    
+    # edge cases that we don't want to trigger
+    'mop tops' => undef,
 );
 
 done_testing;
