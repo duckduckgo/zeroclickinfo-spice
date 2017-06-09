@@ -6,8 +6,7 @@
             return Spice.failed('brainy_quote');
         }
 
-        var authors = {},
-            title;
+        var title;
 
         // Construct the original api call
         var script = $('[src*="/js/spice/brainy_quote/"]')[0],
@@ -23,16 +22,16 @@
             apiResultsArray.push(result1[0], result2[0]);
 
             // Determine if we have multiple authors
+            var numberOfAuthors = 0;
             $.each(apiResultsArray, function (k, obj) {
                 if (obj.a) {
-                    authors[obj.a] = 1;
+                    numberOfAuthors += 1;
                 }
             });
 
-            console.log(authors);
             var title = "";
 
-            if (authors.length > 1){
+            if (numberOfAuthors > 1){
                 title = "Quotes about " + api_result.header1.replace(/ quote$/, "");
             } else {
                 title = "Quotes by " + api_result.header1.replace(/ quote$/, "");
