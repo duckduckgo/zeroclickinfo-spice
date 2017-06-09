@@ -398,6 +398,13 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+				#check for uae dirham aliases
+    '1m usd in uae dirham' => test_spice(
+        '/js/spice/currency/1000000/usd/aed',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),				
     # when you don't specify the target Currency
     # check for placing currency type before amount
     'CHF 2.95 in eur' => test_spice(
