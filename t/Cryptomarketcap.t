@@ -12,11 +12,6 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'ethereum price' => test_spice(
-        '/js/spice/cryptomarketcap/ethereum',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptomarketcap'
-    ),
 	'btc market cap' => test_spice(
         '/js/spice/cryptomarketcap/bitcoin',
         call_type => 'include',
@@ -29,6 +24,11 @@ ddg_spice_test(
     ),
 	'melon volume' => test_spice(
         '/js/spice/cryptomarketcap/melon',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptomarketcap'
+    ),
+    'eth price' => test_spice(
+        '/js/spice/cryptomarketcap/ethereum',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptomarketcap'
     ),
