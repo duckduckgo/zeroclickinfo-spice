@@ -175,8 +175,10 @@ handle query_lc => sub {
         return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
         
         # for edge cases that we don't want to trigger on
-        return if $req->query_lc eq 'mop tops' or $req->query_lc eq 'mop top';
-
+        return if $req->query_lc eq 'mop tops' 
+               or $req->query_lc eq 'mop top'
+               or $req->query_lc =~ m/tops?\s+?\d+/;
+         
         my $styler = number_style_for($amount);
         return unless $styler;
 
