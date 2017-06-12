@@ -443,6 +443,9 @@
                                 + currencies[i].symbol 
                                 + ">"
                                 + currencies[i].symbol 
+                                + " (" 
+                                + currencies[i].name 
+                                + ")" 
                                 + "</option>"
                             );
                         }
