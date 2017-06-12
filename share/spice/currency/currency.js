@@ -423,17 +423,29 @@
                     $more_at_link_charts = $currency.find(".zci__more-at--info");
 
                     // apends all the currency names to the selects
-                    for( var i = 0 ; i < currencies.length ; i ++ ) {
-                        $selects.append(
-                            "<option value=" 
-                            + currencies[i].symbol 
-                            + ">"
-                            + currencies[i].name 
-                            + "</strong> (" 
-                            + currencies[i].symbol 
-                            + ")" 
-                            + "</option>"
-                        );
+                    if(!DDG.device.isMobile || !DDG.device.isMobileDevice) {
+                        for( var i = 0 ; i < currencies.length ; i ++ ) {
+                            $selects.append(
+                                "<option value=" 
+                                + currencies[i].symbol 
+                                + ">"
+                                + currencies[i].name 
+                                + "(" 
+                                + currencies[i].symbol 
+                                + ")" 
+                                + "</option>"
+                            );
+                        }
+                    } else {
+                        for( var i = 0 ; i < currencies.length ; i ++ ) {
+                            $selects.append(
+                                "<option value=" 
+                                + currencies[i].symbol 
+                                + ">"
+                                + currencies[i].symbol 
+                                + "</option>"
+                            );
+                        }
                     }
 
                     // sets the default
