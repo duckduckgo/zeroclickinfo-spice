@@ -218,31 +218,61 @@
                         $change_rate = $currency.find(".js-change-rate");
 
                         // apends all the currency names to the selects
-                        for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
-                            $crypto_group.append(
-                                "<option value="
-                                + crypto_currencies[i].symbol
-                                + ">"
-                                + crypto_currencies[i].name
-                                + "</strong> ("
-                                + crypto_currencies[i].symbol
-                                + ")"
-                                + "</option>"
-                            );
+                        if(!DDG.device.isMobile || !DDG.device.isMobileDevice) { 
+                            for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
+                                $crypto_group.append(
+                                    "<option value="
+                                    + crypto_currencies[i].symbol
+                                    + ">"
+                                    + crypto_currencies[i].name
+                                    + " ("
+                                    + crypto_currencies[i].symbol
+                                    + ")"
+                                    + "</option>"
+                                );
+                            }
+                        } else {
+                            for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
+                                $crypto_group.append(
+                                    "<option value="
+                                    + crypto_currencies[i].symbol
+                                    + ">"
+                                    + crypto_currencies[i].symbol
+                                    + " ("
+                                    + crypto_currencies[i].name
+                                    + ")"
+                                    + "</option>"
+                                );
+                            }
                         }
 
                         // add fiat currencies to the dropdown as well for convenience
-                        for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
-                            $fiat_group.append(
-                                "<option value="
-                                + fiat_currencies[i].symbol
-                                + ">"
-                                + fiat_currencies[i].name
-                                + "</strong> ("
-                                + fiat_currencies[i].symbol
-                                + ")"
-                                + "</option>"
-                            );
+                        if(!DDG.device.isMobile || !DDG.device.isMobileDevice) { 
+                            for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
+                                $fiat_group.append(
+                                    "<option value="
+                                    + fiat_currencies[i].symbol
+                                    + ">"
+                                    + fiat_currencies[i].name
+                                    + " ("
+                                    + fiat_currencies[i].symbol
+                                    + ")"
+                                    + "</option>"
+                                );
+                            }
+                        } else {
+                            for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
+                                $fiat_group.append(
+                                    "<option value="
+                                    + fiat_currencies[i].symbol
+                                    + ">"
+                                    + fiat_currencies[i].symbol
+                                    + " ("
+                                    + fiat_currencies[i].name
+                                    + ")"
+                                    + "</option>"
+                                );
+                            }
                         }
 
                         // Set up the converter object
