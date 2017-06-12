@@ -1,0 +1,14 @@
+go
+go get
+wordpress
+wp
+atom
+elm
+eml-package
+scala
+dart
+swiftpm
+groovy
+emacs
+pypi
+bower
