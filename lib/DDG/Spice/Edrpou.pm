@@ -15,12 +15,12 @@ spice wrap_jsonp_callback => 1;
 spice to => 'https://edr.data-gov-ua.org/api/companies?where={%22edrpou%22:%22$1%22}';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers startend => "EDRPOU","ЄДРПОУ","ЄДР","edrpou", "єдрпоу", "єдр";
+triggers startend => "ЄДРПОУ","ЄДР","edrpou", "єдрпоу", "єдр";
 
 # Handle statement
 handle remainder => sub {
-    # Trigger if query includes an 8 digit number
-    return $_ if $_ =~ /\d{8}/;
+    # Trigger if query includes number length 5-8
+    return $_ if $_ =~ /^\d{5,8}$/;
     return;
 };
 
