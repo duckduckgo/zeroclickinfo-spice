@@ -19,7 +19,8 @@ triggers startend => "EDRPOU","ЄДРПОУ","ЄДР","edrpou", "єдрпоу", 
 
 # Handle statement
 handle remainder => sub {
-    return $_ if $_;
+    # Trigger if query includes an 8 digit number
+    return $_ if $_ =~ /\d{8}/i;
     return;
 };
 
