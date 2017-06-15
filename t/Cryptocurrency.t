@@ -150,6 +150,107 @@ ddg_spice_test(
         is_cached => 0
     ),
 
+    # language based queries
+    DDG::Request->new(
+        query_raw => "Crypto currency",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "cryptocurrency",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "cryptocurrency",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "crypto currency exchange",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-eur/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "coin exchange",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-eur/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "eth converter",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-eur/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "convert ltc",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-eur/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "ltc calculator",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-eur/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "zcash calculator",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/zec-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "primecoin",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/xpm-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "eth calculator",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/etc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+
     # Malformed queries
     'ltc to ltc' => undef,
     'ltc to' => undef,
