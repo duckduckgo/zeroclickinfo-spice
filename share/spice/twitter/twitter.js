@@ -46,7 +46,7 @@
                     subtitle: subtitle,
                     altSubtitle: getURL(item),
                     url: "https://twitter.com/" + item.user,
-                    description: item.description
+                    description: item.current_status.text
                 };
             },
             templates: {
