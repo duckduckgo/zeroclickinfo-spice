@@ -249,7 +249,7 @@
                         Converter.rate = parseFloat(price);
                         Converter.fromCurrency = base;
                         Converter.toCurrency = target;
-                        Converter.updateMoreAtLink(Converter.fromCurrency, Converter.toCurrency);
+                        Converter.updateMoreAtLink(Converter.toCurrency, Converter.fromCurrency);
                         Converter.updateChangeRate(api_result.ticker.change);
 
                         // set the selects with the correct initial value
