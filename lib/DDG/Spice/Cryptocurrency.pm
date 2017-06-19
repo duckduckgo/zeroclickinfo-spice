@@ -29,6 +29,13 @@ my @excludedCurrencies = (
     'uah',
 );
 
+# Handles ambiguities in the symbol names
+my @nonTriggeringSymbols = (
+    'ftc',
+    'ppc',
+    'nmc',
+);
+
 # Used to filter on queries of the form '1 <cryptocurrency>'
 # Top currencies from coinmarketcap.com/currencies/
 my @topCurrencies = (
@@ -71,8 +78,8 @@ my %availableLocalCurrencies = map {$_ => 1} @availableLocalCurrencies;
 #Define regexes
 my $currency_qr = join('|', @currTriggers);
 my $crypto_qr = join('|', @cryptoTriggers);
-my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
-my $rate_qr = qr/\s(?:rate|exchange|exchange rate|conver(?:sion|ter)|calc(?:ulator)?|price)/i;
+my $question_prefix = qr/(?:convert|current value (?:of)?|what (?:is|are|does)|(?:conversion|exchange|fx) rate\s?(?:for)?|how (?:much|many) (?:is|are))?\s?/;
+my $rate_qr = qr/\s(?:rate|exchange|(?:exchange|fx) rate|conver(?:sion|ter)|calc(?:ulator)?|price)/i;
 my $into_qr = qr/\s(?:en|in|to|in ?to|to|from)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
@@ -232,6 +239,10 @@ handle query_lc => sub {
         # Case where the first amount is available.
         elsif(length($amount)) {
             return checkCurrencyCode($amount, $from, $to);
+        }
+        # Ignore if no amount and a non triggering symbol
+        elsif (grep(/^$from$/, @nonTriggeringSymbols)) {
+            return;
         }
         # Case where the second amount is available.
         elsif(length($alt_amount)) {

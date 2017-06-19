@@ -322,6 +322,24 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
+    DDG::Request->new(
+        query_raw => "current value of feathercoins",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ftc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "exchange rate for namecoins",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/nmc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
 
     # should trigger on anything bitcoin specific
     'btc' => undef,
@@ -405,6 +423,9 @@ ddg_spice_test(
     'cad to php' => undef,
     'eur to eur' => undef,
     'cad to usd' => undef,
+
+    # crypto edge cases
+    'ftc' => undef,
 
 );
 
