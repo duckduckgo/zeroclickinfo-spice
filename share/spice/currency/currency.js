@@ -7,7 +7,7 @@
     // 1. To vastly mitigate the risk of (very probable) runtime errors
     // 2. Slight performance betterment
     var currencies = [
-        { symbol: "AED", name: "UAE Dirham" }, 
+        { symbol: "AED", name: "UAE Dirham" },
         { symbol: "AFN", name: "Afghan Afghani" },
         { symbol: "ALL", name: "Albanian Lek" },
         { symbol: "AMD", name: "Armenian Dram" },
@@ -176,7 +176,7 @@
 
     //
     // The various jQuery objects representing the zci--currency UI
-    // 
+    //
     var $currency_input_left,
         $currency_input_right,
         $left_select,
@@ -184,7 +184,7 @@
         $selects,
         $more_at_link_normal,
         $more_at_link_charts;
-    
+
     // Currency Converter
     var Converter = {
 
@@ -300,7 +300,7 @@
             // gets the to/from currencies
             Converter.from_currency = Converter.getFromCurrencyName(json);
             Converter.to_currency = Converter.getToCurrencyName(json);
-            
+
             // gets the conversion rates
             Converter.rate = Converter.getConversionRate(json)
             Converter.inverseRate = Converter.getInverseConversionRate(json);
@@ -340,10 +340,10 @@
         var timestr = api_result.timestamp;
         var xeDate = timestr.split("T")[0];
         var xeTime = timestr.split("T")[1]; // TODO: this might need corrected but unclear the actual time
-        
+
         // Set favicon
         var icon = ((DDG.is3x || DDG.is2x) ? DDG.get_asset_path('currency',"assets/xe.png") : "http://www.xe.com/favicon.ico");
-        
+
         Spice.add({
             id: 'currency',
             name: 'Currency',
@@ -355,19 +355,25 @@
                 itemType: "Conversions"
             },
             normalize: function(item) {
-                
+
                 return {
+                    subtitle: "Mid-Market Rates: " + xeDate + " at " + xeTime + " UTC",
                     fromCurrencySymbol: item.to,
                     toCurrencySymbol: item.from[0].quotecurrency,
                     amount: item.amount,
-                    xeTime: xeTime,
-                    xeDate: xeDate,
-                    moreAtIcon: icon
+                    // moreAtIcon: icon
                 };
             },
             templates: {
-                detail: Spice.currency.detail,
-                item_detail: false
+                group: 'text',
+                options: {
+                    content: Spice.currency.content,
+                    moreAt: true,
+                    moreText: {
+                        href: '#',
+                        text: 'View Chart'
+                    }
+                }
             },
             onShow: function() {
 
@@ -378,8 +384,8 @@
                     $left_select = $currency.find("#zci--currency-symbol-left");
                     $right_select = $currency.find("#zci--currency-symbol-right");
                     $selects = $currency.find("select.zci--currency-symbol");
-                    $more_at_link_normal = $currency.find("#zci__more-at--exchange");
-                    $more_at_link_charts = $currency.find("#zci__more-at--info");
+                    $more_at_link_normal = $currency.find(".c-base__link");
+                    $more_at_link_charts = $currency.find(".c-base__link--more a");
 
                     // apends all the currency names to the selects
                     for ( var i = 0 ; i < currencies.length ; i ++ ) {
