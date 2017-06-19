@@ -382,17 +382,11 @@
                     $more_at_link_charts = $currency.find("#zci__more-at--info");
 
                     // apends all the currency names to the selects
-                    for( var i = 0 ; i < currencies.length ; i ++ ) {
-                        $selects.append(
-                            "<option value=" 
-                            + currencies[i].symbol 
-                            + ">"
-                            + currencies[i].name 
-                            + "</strong> (" 
-                            + currencies[i].symbol 
-                            + ")" 
-                            + "</option>"
-                        );
+                    for ( var i = 0 ; i < currencies.length ; i ++ ) {
+                        $('<option>', {
+                            value: currencies[i].symbol,
+                            text: currencies[i].name + " (" + currencies[i].symbol + ")"
+                        }).appendTo($selects);
                     }
 
                     // sets the default
