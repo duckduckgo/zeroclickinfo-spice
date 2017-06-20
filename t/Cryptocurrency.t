@@ -170,7 +170,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     DDG::Request->new(
-        query_raw => "cryptocurrency",
+        query_raw => "cryptocurrency converter",
         location => test_location("us")
     ) => test_spice(
         '/js/spice/cryptocurrency/ticker/btc-usd/1',

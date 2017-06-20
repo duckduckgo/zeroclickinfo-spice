@@ -63,9 +63,7 @@ foreach my $currency (@currencies){
     chomp($currency);
     my @currency = split(/,/,$currency);
 
-    if(!grep(/^$currency[0]$/, @availableLocalCurrencies) || !grep(/^$currency[0]$/, @excludedCurrencies)) {
-        push(@cryptoTriggers, @currency);
-    }
+    push(@cryptoTriggers, @currency) unless(grep(/^$currency[0]$/, @availableLocalCurrencies) || grep(/^$currency[0]$/, @excludedCurrencies));
 
     push(@currTriggers, @currency);
     $currHash{$currency[0]} = \@currency;
@@ -88,7 +86,9 @@ my $crypto_triggers = qr/^(?:$crypto_qr)(?:\s$rate_qr)?$/i;
 my $guard = qr/^$question_prefix($number_re*?\s+|)($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?\s+|)($currency_qr)?(?:s)?\??$/i;
 my $generic_triggers = qr/^(?:((?:crypto\s?(currency)?)\s?(?:calc(?:ulator)?|conver(?:sion|ter)|exchanges?)?)|(?:coin exchanges?))$/;
 
-triggers query_lc => qr/$generic_triggers|$currency_qr|$crypto_triggers/;
+triggers query_lc => qr/$generic_triggers/;
+triggers query_lc => qr/$currency_qr/;
+triggers query_lc => qr/$crypto_triggers/;
 
 spice from => '([^/]+)/([^/]+)/([^/]*)';
 spice to => 'https://api.cryptonator.com/api/full/$2-$3';
@@ -161,11 +161,7 @@ sub checkCurrencyCode {
         # Return early if both currencies are in the excluded list uncless a generic trigger
         # which will not trigger the currency spice
         # Allows searches like "ftc to aud" but excludes searches like "aud to usd"
-        if(!$generic) {
-            if (exists($excludedCurrencies{$from}) && exists($excludedCurrencies{$to})) {
-                return;
-            }
-        }
+        return if !$generic && (exists($excludedCurrencies{$from}) && exists($excludedCurrencies{$to}));
         $endpoint = 'ticker';
         $query = $from . '-' . $to;
         $query2 = $normalized_number;
