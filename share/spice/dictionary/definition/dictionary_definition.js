@@ -102,7 +102,7 @@ var ddg_spice_dictionary = {
     definition: function(api_result) {
         "use strict";
 
-        api_result = api_result.filter(function(result) { return result.text; })
+        api_result = api_result && api_result.length && api_result.filter(function(result) { return result.text; })
         if (!api_result || !api_result.length) { return Spice.failed('dictionary_definition'); }
 
         // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
