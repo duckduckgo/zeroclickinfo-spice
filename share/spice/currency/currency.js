@@ -352,7 +352,9 @@
             meta: {
                 sourceUrl: "http://www.xe.com",
                 sourceName: "xe.com",
-                itemType: "Conversions"
+                itemType: "Conversions",
+                sourceIcon: false,
+                sourceIconUrl: icon
             },
             normalize: function(item) {
 
@@ -360,8 +362,7 @@
                     subtitle: "Mid-Market Rates: " + xeDate + " at " + xeTime + " UTC",
                     fromCurrencySymbol: item.to,
                     toCurrencySymbol: item.from[0].quotecurrency,
-                    amount: item.amount,
-                    // moreAtIcon: icon
+                    amount: item.amount
                 };
             },
             templates: {
