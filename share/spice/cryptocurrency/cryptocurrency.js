@@ -217,62 +217,28 @@
                         $more_link = $currency.find("#zci__more-at a");
                         $change_rate = $currency.find(".js-change-rate");
 
+                        var primaryText = "name";
+                        var secondaryText = "symbol";
+
+                        if (DDG.device.isMobile || DDG.device.isMobileDevice){
+                            primaryText = "symbol";
+                            secondaryText = "name";
+                        }
+
                         // apends all the currency names to the selects
-                        if(!DDG.device.isMobile || !DDG.device.isMobileDevice) { 
-                            for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
-                                $crypto_group.append(
-                                    "<option value="
-                                    + crypto_currencies[i].symbol
-                                    + ">"
-                                    + crypto_currencies[i].name
-                                    + " ("
-                                    + crypto_currencies[i].symbol
-                                    + ")"
-                                    + "</option>"
-                                );
-                            }
-                        } else {
-                            for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
-                                $crypto_group.append(
-                                    "<option value="
-                                    + crypto_currencies[i].symbol
-                                    + ">"
-                                    + crypto_currencies[i].symbol
-                                    + " ("
-                                    + crypto_currencies[i].name
-                                    + ")"
-                                    + "</option>"
-                                );
-                            }
+                        for( var i = 0 ; i < crypto_currencies.length ; i ++ ) {
+                            $('<option>', {
+                                value: crypto_currencies[i].symbol,
+                                text: crypto_currencies[i][primaryText] + " (" + crypto_currencies[i][secondaryText] + ")"
+                            }).appendTo($crypto_group);
                         }
 
                         // add fiat currencies to the dropdown as well for convenience
-                        if(!DDG.device.isMobile || !DDG.device.isMobileDevice) { 
-                            for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
-                                $fiat_group.append(
-                                    "<option value="
-                                    + fiat_currencies[i].symbol
-                                    + ">"
-                                    + fiat_currencies[i].name
-                                    + " ("
-                                    + fiat_currencies[i].symbol
-                                    + ")"
-                                    + "</option>"
-                                );
-                            }
-                        } else {
-                            for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
-                                $fiat_group.append(
-                                    "<option value="
-                                    + fiat_currencies[i].symbol
-                                    + ">"
-                                    + fiat_currencies[i].symbol
-                                    + " ("
-                                    + fiat_currencies[i].name
-                                    + ")"
-                                    + "</option>"
-                                );
-                            }
+                        for( var i = 0 ; i < fiat_currencies.length ; i ++ ) {
+                            $('<option>', {
+                                value: fiat_currencies[i].symbol,
+                                text: fiat_currencies[i][primaryText] + " (" + fiat_currencies[i][secondaryText] + ")"
+                            }).appendTo($fiat_group);
                         }
 
                         // Set up the converter object
