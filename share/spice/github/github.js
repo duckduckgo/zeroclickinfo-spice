@@ -85,9 +85,9 @@
                         var lastUpdate = moment(item.pushed_at).fromNow();
                         var infoboxData = [
                             {label: "Clone URL", value: item.clone_url},
-                            {label: "SSH URL", value: item.ssh_url},
-                            {label: "Last Update", value: lastUpdate},
                             {label: "Stars", value:  item.stargazers_count},
+                            {label: "Last Update", value: lastUpdate},
+                            {label: "SSH URL", value: item.ssh_url},
                             {label: "Forks", value: item.forks }, 
                             {label: "Open Issues", value: item.open_issues},
                             {label: "Default Branch", value: item.default_branch} 
