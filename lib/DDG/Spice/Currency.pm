@@ -9,6 +9,17 @@ use YAML::XS qw(LoadFile);
 
 use Data::Dumper;
 
+my @topCurrencies = (
+    "usd",
+    "gbp",
+    "eur",
+    "jpy",
+    "chf",
+    "aud",
+    "sek",
+    "nok", 
+);
+
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;
@@ -170,9 +181,14 @@ handle query_lc => sub {
             $to = $currencyCodes->{ord($toSymbol)};
         }
 
-        # if only a currency symbol is present without "currency" keyword, then bail.
-        return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
-        
+        # if only a currency symbol is present without "currency" keyword, then bail unless a top currency
+        return if (
+            $amount eq '' && $to eq '' 
+            && $currencyKeyword eq '' 
+            && exists($currHash{$from}) 
+            && !grep(/^$from$/, @topCurrencies)
+        );
+
         # for edge cases that we don't want to trigger on
         return if $req->query_lc eq 'mop tops' 
                or $req->query_lc eq 'mop top'
