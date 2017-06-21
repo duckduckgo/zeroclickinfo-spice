@@ -9,19 +9,13 @@ use YAML::XS qw(LoadFile);
 
 # Get all the valid currencies from a text file.
 my @currTriggers;
+my @cryptoTriggers;
 my @currencies = share('cryptocurrencylist.txt')->slurp;
 my %currHash = ();
 my $currDisplayName = '';
 
 # link country codes to a currency symbol
 my $currencyPerCountry = LoadFile share("currencyPerCountry.yml");
-
-foreach my $currency (@currencies){
-    chomp($currency);
-    my @currency = split(/,/,$currency);
-    push(@currTriggers, @currency);
-    $currHash{$currency[0]} = \@currency;
-}
 
 # Used when a single currency is given in the query.
 # These currencies should be handled by DDG::Spice::Currency or DDG::Spice::Bitcoin.
@@ -33,6 +27,13 @@ my @excludedCurrencies = (
     'rur',
     'usd',
     'uah',
+);
+
+# Handles ambiguities in the symbol names
+my @nonTriggeringSymbols = (
+    'ftc',
+    'ppc',
+    'nmc',
 );
 
 # Used to filter on queries of the form '1 <cryptocurrency>'
@@ -54,8 +55,19 @@ my @availableLocalCurrencies = (
     'eur',
     'jpy',
     'rur',
+    'rub',
     'uah'
 );
+
+foreach my $currency (@currencies){
+    chomp($currency);
+    my @currency = split(/,/,$currency);
+
+    push(@cryptoTriggers, @currency) unless(grep(/^$currency[0]$/, @availableLocalCurrencies) || grep(/^$currency[0]$/, @excludedCurrencies));
+
+    push(@currTriggers, @currency);
+    $currHash{$currency[0]} = \@currency;
+}
 
 my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
 my %topCurrencies = map { $_ => 1 } @topCurrencies;
@@ -63,15 +75,20 @@ my %availableLocalCurrencies = map {$_ => 1} @availableLocalCurrencies;
 
 #Define regexes
 my $currency_qr = join('|', @currTriggers);
-my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
-my $rate_qr = qr/\s(?:rate|exchange|exchange rate|conversion|price)/i;
+my $crypto_qr = join('|', @cryptoTriggers);
+my $question_prefix = qr/(?:convert|current value (?:of)?|what (?:is|are|does)|(?:conversion|exchange|fx) rate\s?(?:for)?|how (?:much|many) (?:is|are))?\s?/;
+my $rate_qr = qr/\s(?:rate|exchange|(?:exchange|fx) rate|conver(?:sion|ter)|calc(?:ulator)?|price)/i;
 my $into_qr = qr/\s(?:en|in|to|in ?to|to|from)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
 
+my $crypto_triggers = qr/^(?:$crypto_qr)(?:\s$rate_qr)?$/i;
 my $guard = qr/^$question_prefix($number_re*?\s+|)($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?\s+|)($currency_qr)?(?:s)?\??$/i;
+my $generic_triggers = qr/^(?:((?:crypto\s?(currency)?)\s?(?:calc(?:ulator)?|conver(?:sion|ter)|exchanges?)?)|(?:coin exchanges?))$/;
 
+triggers query_lc => qr/$generic_triggers/;
 triggers query_lc => qr/$currency_qr/;
+triggers query_lc => qr/$crypto_triggers/;
 
 spice from => '([^/]+)/([^/]+)/([^/]*)';
 spice to => 'https://api.cryptonator.com/api/full/$2-$3';
@@ -99,7 +116,7 @@ sub getCode {
 
 # This function is responsible for processing the input.
 sub checkCurrencyCode {
-    my($amount, $from, $to) = @_;
+    my($amount, $from, $to, $generic) = @_;
     my $endpoint = '';
     my $query = '';
     my $query2 = '';
@@ -116,10 +133,9 @@ sub checkCurrencyCode {
     # Avoids triggering on common queries like '1 gig' or '1 electron'
     # If the cryptocurrency is not in the top currencies list, the query does not include a 'to' currency,
     # and the query doesn't include 'coin' then don't trigger
-    if ($normalized_number == 1 && $to eq '' && !exists($topCurrencies{getCode($from)}) && index($from, 'coin') == -1) {
+    if ($normalized_number == 1 && $to eq '' && exists($availableLocalCurrencies{getCode($from)}) ) {
         return;
     }
-
     # There are cases where people type in "2016 bitcoin", so we don't want to trigger on those queries.
     # The first cryptocoins appeared in 2008, so dates before that could be valid amounts.
     if($normalized_number >= 2008 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
@@ -142,11 +158,10 @@ sub checkCurrencyCode {
 
     # If both currencies are available, use the ticker endpoint
     if (length($from) && length($to)) {
-        # Return early if both currencies are in the excluded list
+        # Return early if both currencies are in the excluded list uncless a generic trigger
+        # which will not trigger the currency spice
         # Allows searches like "ftc to aud" but excludes searches like "aud to usd"
-        if (exists($excludedCurrencies{$from}) && exists($excludedCurrencies{$to})) {
-            return;
-        }
+        return if !$generic && (exists($excludedCurrencies{$from}) && exists($excludedCurrencies{$to}));
         $endpoint = 'ticker';
         $query = $from . '-' . $to;
         $query2 = $normalized_number;
@@ -195,6 +210,16 @@ sub getLocalCurrency {
 }
 
 handle query_lc => sub {
+
+    # generic type queries
+    # ie. 'crypto currency', 'crypto exchange'
+    if ($_ =~ qr/$generic_triggers/) {
+        my $local_currency = getLocalCurrency();
+        return checkCurrencyCode(1, 'btc', $local_currency, 1);
+    }
+
+    # all other queries
+    # ie. 'ltc', 'feather coin calculator', 'eth to usd'
     if (/$guard/) {
         my ($amount, $from, $alt_amount, $to) = ($1, $2, $3, $4 || '');
 
@@ -207,15 +232,13 @@ handle query_lc => sub {
         elsif (defined $availableLocalCurrencies{$from} && defined $availableLocalCurrencies{$to}) {
             return;
         }
-        # Case where only ticker symbol is give.
-        # Most cryptocurrency ticker symbols are already common acronyms that we don't want to trigger on them.
-        # Done before standardizing currency value: "42coin?" and "100 ftc" will trigger spice, "42" and "ftc" will not.
-        elsif (exists($currHash{$from}) && !length($to) && !length($amount)) {
-            return;
-        }
         # Case where the first amount is available.
         elsif(length($amount)) {
             return checkCurrencyCode($amount, $from, $to);
+        }
+        # Ignore if no amount and a non triggering symbol
+        elsif (grep(/^$from$/, @nonTriggeringSymbols)) {
+            return;
         }
         # Case where the second amount is available.
         elsif(length($alt_amount)) {
