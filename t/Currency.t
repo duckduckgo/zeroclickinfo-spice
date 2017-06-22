@@ -450,6 +450,56 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    'xe currency converter' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'xe gbp to usd' => test_spice(
+        '/js/spice/currency/1/gbp/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'currency exchange' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'forex' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'xe currency' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'currency' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'fiat currency' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'foreign exchange' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+
     # generic lang queries with location detection
     DDG::Request->new(
         query_raw => "currency converter",
@@ -794,6 +844,32 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+
+    # single unambigious symbols that should trigger
+    'usd' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'gbp' => test_spice(
+        '/js/spice/currency/1/gbp/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'EUR' => test_spice(
+        '/js/spice/currency/1/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'jpy' => test_spice(
+        '/js/spice/currency/1/jpy/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
@@ -813,11 +889,8 @@ ddg_spice_test(
     'b aud' => undef,
     't aud' => undef,
 
-    # standalone symbols
+    # standalone symbols that shouldn't trigger
     'Irl' => undef,
-    'usd' => undef,
-    'gbp' => undef,
-    'EUR' => undef,
     'CaD' => undef,
 
     # Things that should probably work but it doesn't at the moment.

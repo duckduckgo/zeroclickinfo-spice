@@ -9,6 +9,17 @@ use YAML::XS qw(LoadFile);
 
 use Data::Dumper;
 
+my @topCurrencies = (
+    "usd",
+    "gbp",
+    "eur",
+    "jpy",
+    "chf",
+    "aud",
+    "sek",
+    "nok", 
+);
+
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;
@@ -31,17 +42,16 @@ my $currency_qr = join('|', @currTriggers);
 my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to|convert (?:in)?to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s?\.?\s/i;
 my $joins_qr = qr/\s(?:and|equals)\.?\s/i;
-my $question_prefix = qr/(?:convert|calculate|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
+my $question_prefix = qr/xe|(?:convert|calculate|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
 my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)).' ';
 my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/;
 my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
 
-my $keyword_qr = qr/(?:(?<currencyKeyword>(?:((currency|value|price)( (conver(sion|ter)|calculator))?)|(conver(sion|ter)\s?(calc(ulator)?)?|calc(ulator)?)|valuation|(exchange|conversion|valuation)? rates?)|(?:exchanges?)|(value|price) of) ?)/i;
+my $keyword_qr = qr/(?:(?<currencyKeyword>(?:((currency|value|price|worth)( (conver(sion|ter)|calculator))?)|(conver(sion|ter)\s?(calc(ulator)?)?|calc(ulator)?)|valuation|(exchange|conversion|valuation)? rates?)|(?:exchanges?)|(value|price) of) ?)/i;
 my $guard = qr/^$question_prefix\s?$keyword_qr?(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$joins_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?\s?$keyword_qr?\??$/i;
 
-my $lang_qr = qr/^(?:convert (?:currency|money)|(?:(?:currency|money|foreign) exchange rates?)|(exchange|fx) rates? (calculators?|converters?|today)|(?:currency|money) conver(?:ter|sions?)|currency calculator|(?:exchange|fx) rates?)$/i;
-
+my $lang_qr = qr/^(xe\s)?(?:convert (?:currency|money)|(?:currency365)|(?:(?:currency|money|foreign) exchange rates?)|(?:(?:currency converter)?\s?exchange|fx) rates? (calculators?|converters?|today)|(?:(?:foreign|money) exchange)|(?:fiat\s)?(?:currency|money|xe(?:.com)?)(?:\sconver(?:ters?|sions?|t))?|currency (?:calculator|exchange)|forex|(?:exchange|fx) rates?)$/i;
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
 triggers query_lc => $lang_qr;
@@ -171,9 +181,14 @@ handle query_lc => sub {
             $to = $currencyCodes->{ord($toSymbol)};
         }
 
-        # if only a currency symbol is present without "currency" keyword, then bail.
-        return if ($amount eq '' && $to eq '' && $currencyKeyword eq '' && exists($currHash{$from}));
-        
+        # if only a currency symbol is present without "currency" keyword, then bail unless a top currency
+        return if (
+            $amount eq '' && $to eq '' 
+            && $currencyKeyword eq '' 
+            && exists($currHash{$from}) 
+            && !grep(/^$from$/, @topCurrencies)
+        );
+
         # for edge cases that we don't want to trigger on
         return if $req->query_lc eq 'mop tops' 
                or $req->query_lc eq 'mop top'
