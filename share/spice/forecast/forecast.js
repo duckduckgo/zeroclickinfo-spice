@@ -20,7 +20,8 @@
           'uk': {speed: 'mph', temperature: 'C'},
           'uk2': {speed: 'mph', temperature: 'C'}
         },
-        units = api_result.flags && api_result.flags.units;
+        units = api_result.flags && api_result.flags.units,
+        hasShown = false;
 
     // Check if the unit that we got is actually in the hash.
     // If the API changes the api_result.flags or api_result.flags.units, it will break everything.
@@ -251,123 +252,131 @@
           templates: {
               item: Spice.forecast.forecast_item,
               detail_mobile: Spice.forecast.forecast_detail_mobile
+          },
+          onShow: function() {
+
+              if (hasShown) {
+                return;
+              } else {
+                hasShown = true;
+              }
+
+              //convert temperature to specified unit
+              var convertTemp = function(unit, d){
+                  if (unit === 'C') {
+                      return (d-32)*(5/9);
+                  } else if (unit === 'F') {
+                      return d*(9/5) + 32;
+                  }
+              };
+
+              var convertSpeed = function(from, to, val){
+                  // http://en.wikipedia.org/wiki/Miles_per_hour#Conversions
+                  var conversionFactors = {
+                      'mph-m/s': 0.4471,
+                      'm/s-mph': 2.237,
+                      'mph-km/h': 1.609,
+                      'km/h-mph': 0.6214
+                  };
+                  return val * conversionFactors[from + '-' + to];
+              };
+
+              //update the style of the F/C (make one bold and the other grayed out)
+              var updateTempSwitch = function(new_unit){
+                  if (new_unit === "F"){
+                      $('#fe_fahrenheit').removeClass('tx-clr--lt3').addClass('is-active');
+                      $('#fe_celsius').removeClass('is-active').addClass('tx-clr--lt3');
+                  } else {
+                      $('#fe_celsius').removeClass('tx-clr--lt3').addClass('is-active');
+                      $('#fe_fahrenheit').removeClass('is-active').addClass('tx-clr--lt3');
+                  }
+              };
+
+              var updateUnitOfMeasure = function() {
+                  //initialize the temperatures with the API data
+                  var temps = {
+                      current: api_result.currently.temperature,
+                      feelslike: api_result.currently.apparentTemperature,
+                      daily: $.map(api_result.daily.data, function(e){
+                          return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
+                      }),
+                      wind: api_result.currently.windSpeed
+                  };
+
+                  //if they want the units that aren't given by the API, calculate the new temps
+                  if (uom !== unit_labels[units].temperature) {
+                      temps.current = convertTemp(uom, temps.current);
+                      temps.feelslike = convertTemp(uom, temps.feelslike);
+                      temps.daily = $.map(temps.daily, function(e){
+                          var tempMin = convertTemp(uom, e.tempMin),
+                          tempMax = convertTemp(uom, e.tempMax);
+                          return {'tempMin': tempMin, 'tempMax': tempMax};
+                      });
+                  }
+
+                  //decide which wind speed unit they want
+                  var given_wind_uom = unit_labels[units].speed,
+                  wind_uom;
+
+                  if (uom === 'F'){
+                      wind_uom = 'mph';
+                  } else if (given_wind_uom === 'mph'){
+                      //when the user switches from a given F -> C, we assume they want m/s
+                      //TODO: make this smarter somehow
+                      wind_uom = 'm/s';
+                  } else {
+                      wind_uom = given_wind_uom;
+                  }
+
+                  if (wind_uom !== given_wind_uom){
+                      temps.wind = convertSpeed(given_wind_uom, wind_uom, temps.wind);
+                  }
+
+                  //insert the new temps in the html
+                  var day_class = is_mobile ? '.fe_day--bar' : '.fe_day';
+
+                  $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+                  $(day_class).each(function(i){
+                      var day = temps.daily[i],
+                      $this = $(this);
+                      $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+                      $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+                  });
+                  $('.fe_currently').find('.fe_wind').html('Wind: ' + Math.round(temps.wind) + ' ' + wind_uom +
+                  ' ('+wind_bearing_to_str(api_result.currently.windBearing)+')');
+
+                  updateTempSwitch(uom);
+              };
+
+              // If there is celsius or fahrenheit mentioned in the query, do use that
+              // unit of measurement. If the metric setting is enabled or the user's
+              // region is not USA and the API returned temps in F, switch to 'C':
+              var uom_in_query = DDG.get_query().match(/\b(celsius|fahrenheit)\b/);
+              if (uom_in_query) {
+                  uom = (uom_in_query[1] === 'celsius') ? 'C' : 'F';
+                  updateUnitOfMeasure();
+              } else if (!DDG.settings.isDefault('kaj')) {
+                  uom = DDG.settings.get('kaj') === 'm' ? 'C' : 'F';
+                  updateUnitOfMeasure();
+              } else if (!DDG.settings.isDefault('kl')) {
+                  uom = DDG.settings.get('kl') !== 'us-en' ? 'C' : 'F';
+                  updateUnitOfMeasure();
+              } else {
+                  updateTempSwitch(uom);
+              }
+
+              //when we press the small button, switch the temperature units
+              $('#fe_temp_switch').click( function() {
+                  uom = uom === 'F' ? 'C' : 'F';
+
+                  updateUnitOfMeasure()
+
+                  // update the setting so we remember this choice going forward:
+                  DDG.settings.set('kaj', uom === 'C' ? 'm' : 'u', { saveToCloud: true });
+              });
           }
-      });
-
-    //convert temperature to specified unit
-    var convertTemp = function(unit, d){
-      if (unit === 'C') {
-        return (d-32)*(5/9);
-      } else if (unit === 'F') {
-        return d*(9/5) + 32;
-      }
-    };
-
-    var convertSpeed = function(from, to, val){
-      // http://en.wikipedia.org/wiki/Miles_per_hour#Conversions
-      var conversionFactors = {
-        'mph-m/s': 0.4471,
-        'm/s-mph': 2.237,
-        'mph-km/h': 1.609,
-        'km/h-mph': 0.6214
-      };
-      return val * conversionFactors[from + '-' + to];
-    };
-
-    //update the style of the F/C (make one bold and the other grayed out)
-    var updateTempSwitch = function(new_unit){
-      if (new_unit === "F"){
-        $('#fe_fahrenheit').removeClass('tx-clr--lt3').addClass('is-active');
-        $('#fe_celsius').removeClass('is-active').addClass('tx-clr--lt3');
-      } else {
-        $('#fe_celsius').removeClass('tx-clr--lt3').addClass('is-active');
-        $('#fe_fahrenheit').removeClass('is-active').addClass('tx-clr--lt3');
-      }
-    };
-
-    var updateUnitOfMeasure = function() {
-      //initialize the temperatures with the API data
-      var temps = {
-        current: api_result.currently.temperature,
-        feelslike: api_result.currently.apparentTemperature,
-        daily: $.map(api_result.daily.data, function(e){
-          return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
-        }),
-        wind: api_result.currently.windSpeed
-      };
-
-      //if they want the units that aren't given by the API, calculate the new temps
-      if (uom !== unit_labels[units].temperature) {
-        temps.current = convertTemp(uom, temps.current);
-        temps.feelslike = convertTemp(uom, temps.feelslike);
-        temps.daily = $.map(temps.daily, function(e){
-          var tempMin = convertTemp(uom, e.tempMin),
-              tempMax = convertTemp(uom, e.tempMax);
-          return {'tempMin': tempMin, 'tempMax': tempMax};
         });
-      }
-
-      //decide which wind speed unit they want
-      var given_wind_uom = unit_labels[units].speed,
-          wind_uom;
-
-      if (uom === 'F'){
-        wind_uom = 'mph';
-      } else if (given_wind_uom === 'mph'){
-        //when the user switches from a given F -> C, we assume they want m/s
-        //TODO: make this smarter somehow
-        wind_uom = 'm/s';
-      } else {
-        wind_uom = given_wind_uom;
-      }
-
-      if (wind_uom !== given_wind_uom){
-        temps.wind = convertSpeed(given_wind_uom, wind_uom, temps.wind);
-      }
-
-      //insert the new temps in the html
-      var day_class = is_mobile ? '.fe_day--bar' : '.fe_day';
-
-      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
-      $(day_class).each(function(i){
-        var day = temps.daily[i],
-            $this = $(this);
-        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
-        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
       });
-      $('.fe_currently').find('.fe_wind').html('Wind: ' + Math.round(temps.wind) + ' ' + wind_uom +
-        ' ('+wind_bearing_to_str(api_result.currently.windBearing)+')');
-
-      updateTempSwitch(uom);
-    };
-
-    // If there is celsius or fahrenheit mentioned in the query, do use that
-    // unit of measurement. If the metric setting is enabled or the user's
-    // region is not USA and the API returned temps in F, switch to 'C':
-    var uom_in_query = DDG.get_query().match(/\b(celsius|fahrenheit)\b/);
-    if (uom_in_query) {
-        uom = (uom_in_query[1] === 'celsius') ? 'C' : 'F';
-        updateUnitOfMeasure();
-    } else if (!DDG.settings.isDefault('kaj')) {
-        uom = DDG.settings.get('kaj') === 'm' ? 'C' : 'F';
-        updateUnitOfMeasure();
-    } else if (!DDG.settings.isDefault('kl')) {
-        uom = DDG.settings.get('kl') !== 'us-en' ? 'C' : 'F';
-        updateUnitOfMeasure();
-    } else {
-        updateTempSwitch(uom);
-    }
-
-    //when we press the small button, switch the temperature units
-    $('#fe_temp_switch').click( function() {
-        uom = uom === 'F' ? 'C' : 'F';
-
-        updateUnitOfMeasure()
-
-        // update the setting so we remember this choice going forward:
-        DDG.settings.set('kaj', uom === 'C' ? 'm' : 'u', { saveToCloud: true });
-    });
-  });
   };
 
 }(this));
