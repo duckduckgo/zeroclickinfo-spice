@@ -208,7 +208,7 @@
 
                 // if a go package, we'll trim the github url from the package name
                 if(package_manager === "Go") {
-                    name = item.name.replace(/github.com\//, '');
+                    name = item.name.replace("github.com/", '');
                 } else {
                     name = item.name;
                 }
