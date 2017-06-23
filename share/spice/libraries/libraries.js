@@ -165,7 +165,7 @@
             sort_default: 'rank',
             normalize: function(item) {
 
-                var url;
+                var name, url;
                 var package_manager = item.platform;
                 var infoboxData = [
                     { heading: 'Package information:' },
@@ -206,8 +206,15 @@
                     });
                 }
 
+                // if a go package, we'll trim the github url from the package name
+                if(package_manager === "Go") {
+                    name = item.name.replace(/github.com\//, '');
+                } else {
+                    name = item.name;
+                }
+
                 return {
-                    title: item.name,
+                    title: name,
                     subtitle: item.platform + " Package",
                     description: item.description,
                     install: getInstallScript(item.platform, item.name, item.latest_release_number),
