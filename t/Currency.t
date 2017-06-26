@@ -844,6 +844,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '33.90 USD - NOK' => test_spice(
+        '/js/spice/currency/33.90/usd/nok',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'USD - EUR' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # single unambigious symbols that should trigger
     'usd' => test_spice(

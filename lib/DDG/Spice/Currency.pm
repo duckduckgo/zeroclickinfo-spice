@@ -40,7 +40,7 @@ foreach my $currency (@currencies){
 # Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
 my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to|convert (?:in)?to)\s/i;
-my $vs_qr = qr/\sv(?:ersu|)s?\.?\s/i;
+my $vs_qr = qr/\sv(?:ersu|)s?\.?\s|\s?-\s?/i;
 my $joins_qr = qr/\s(?:and|equals)\.?\s/i;
 my $question_prefix = qr/xe|(?:convert|calculate|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
@@ -179,6 +179,11 @@ handle query_lc => sub {
 
         if ($to eq '' && $toSymbol) {
             $to = $currencyCodes->{ord($toSymbol)};
+        }
+
+        # work around for captured `-` from the number style regex
+        if ($amount =~ m/-/) {
+            $amount = 1;
         }
 
         # if only a currency symbol is present without "currency" keyword, then bail unless a top currency
