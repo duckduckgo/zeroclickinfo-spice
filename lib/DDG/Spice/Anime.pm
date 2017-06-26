@@ -7,7 +7,7 @@ spice proxy_cache_valid => "200 30d";
 spice to => 'http://kitsu.io/api/edge/anime?filter[text]=$1&page[limit]=20&fields[anime]=slug,synopsis,canonicalTitle,averageRating,posterImage,episodeCount,episodeLength';
 
 spice headers => { Accept => 'application/vnd.api+json',
-                   Content-Type => 'application/vnd.api+json'
+                   'Content-Type' => 'application/vnd.api+json'
                  };
 
 triggers startend => 'anime', 'kitsu';
