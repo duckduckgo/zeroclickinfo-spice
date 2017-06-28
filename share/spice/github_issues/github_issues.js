@@ -12,40 +12,26 @@
             source = $(script).attr("src"),
             query = source.match(/github_issues\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query);
-        
-        if (/language:".*?"/.test(unescape(query))) {
-            var itemType = "Github Issues (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
+
+        var match = unescape(query).match(/language:"(.*?)"/)[1];
+        if (match.length) {
+            var itemType = "Github Issues (" + match +")";
         } else {
             var itemType = "Github Issues";
         }
-        
-        var templateObj = {};
-        var metaObj = { 
-            sourceName: 'GitHub',
-            searchTerm: decodedQuery,
-            itemType: itemType,
-            rerender: [ 'description', 'image' ],
-            sourceUrl: "https://github.com/search?type=Issues&q=" + encodeURIComponent(query)
-        };
-        
-        templateObj = { 
-            group: 'text',
-            detail: false,
-            item_detail: false,
-            options : {
-                footer: Spice.github_issues.footer
-            },
-            variants: {
-                tile: 'basic4',
-            }
-        };
-        
+
         DDG.require("moment.js", function() {
             Spice.add({
                 id: 'github_issues',
                 name: 'Github Issues',
                 data: results,
-                meta: metaObj,
+                meta: { 
+                    sourceName: 'GitHub',
+                    searchTerm: decodedQuery,
+                    itemType: itemType,
+                    rerender: [ 'description', 'image' ],
+                    sourceUrl: "https://github.com/search?type=Issues&q=" + encodeURIComponent(query)
+                },
                 normalize: function(item) {
                     var lastUpdate = moment(item.updated_at).fromNow();
                     var subtitle = item.repository_url.replace('https://api.github.com/repos/', '');
@@ -66,7 +52,17 @@
                         subtitle: subtitle
                     }
                 },
-                templates: templateObj
+                templates: { 
+                    group: 'text',
+                    detail: false,
+                    item_detail: false,
+                    options : {
+                        footer: Spice.github_issues.footer
+                    },
+                    variants: {
+                        tile: 'basic4',
+                    }
+                }
             });
         });
     };
