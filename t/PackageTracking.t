@@ -41,6 +41,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
+		
 
     # Fedex
     'fedex 9241990100130206401644' => test_spice(
@@ -168,6 +169,14 @@ ddg_spice_test(
     ),
     'LL 12345678' => test_spice(
         "/js/spice/package_tracking/LL12345678",
+        call_type => 'include',
+        caller => 'DDG::Spice::PackageTracking'
+
+    ),
+		
+    # OnTrac
+    'C11422907783469' => test_spice(
+        "/js/spice/package_tracking/C11422907783469",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 

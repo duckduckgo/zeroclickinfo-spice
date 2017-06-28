@@ -113,6 +113,13 @@ triggers query_nowhitespace_nodash => qr/^
                                     l[a-z]\d{8}
                                 )
                                 $/xi;
+## OnTrac
+triggers query_nowhitespace_nodash => qr/^
+                                (?:
+                                    c\d{14}
+                                )
+                                $/xi;
+
 
 handle query => sub {
 
