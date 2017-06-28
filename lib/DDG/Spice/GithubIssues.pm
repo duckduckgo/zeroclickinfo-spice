@@ -14,31 +14,28 @@ spice wrap_jsonp_callback => 0;
 spice to => 'https://api.github.com/search/issues?q=$1&callback={{callback}}';
 
 my @languages = share("languages.txt")->slurp;
+@languages = sort { length($b) <=> length($a) } @languages;
+
 chomp(@languages);
 my $langs = join("|", map(quotemeta, @languages));
 
 triggers startend => 'github issue';
 
 # Handle statement
-handle query_lc => sub {
-    s/github issue//;
-    
-    if ($_ eq "") {
-        return;
-    }
-    
+handle remainder_lc => sub {
+    return unless (($_) or $_ ne "");
+
     my $query = $_;
-    $query =~ s/ ($langs) |^($langs) | ($langs)$//;
+    $query =~ s/\b($langs)\b//;
     trim($query);
-    
+
     my $lang;
 
-    if (/ ($langs) / or /^($langs) / or / ($langs)$/) {
+    if (/\b($langs)\b/) {
         $lang = $1;
-        s/\s+/ /g; # Remove extra spaces
         return unless length $_;
 
-        return "${query} language:\"${lang}\"";
+        return qq($query language:"$lang");
     } else {
         return $query;
     }
