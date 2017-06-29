@@ -101,12 +101,28 @@
                 Converter.fromCurrency = from;
             }
 
-            var endpoint = "https://api.cryptonator.com/api/full/" + from + "-" + to;
+            var endpoint = "/js/spice/cryptocurrency/1/" + from + "/" + to;
             $.get(endpoint, function(payload) {
-                Converter.rate = parseFloat(payload.ticker.price);
+                console.log()
+
+            });
+
+            // gets the conversion rate
+            $.ajax({
+                url: "/js/spice/cryptocurrency/1/" + from + "/" + to,
+                beforeSend: function( xhr ) {
+                    xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+                },
+                error: function(request, status, error) {
+                    Spice.failed('cryptocurrency');
+                }
+            }).done(function(payload) {
+                var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
+
+                Converter.rate = parseFloat(response.ticker.price);
                 Converter.calculateRate();
                 Converter.updateMoreAtLink(to, from);
-                Converter.updateChangeRate(payload.ticker.change);
+                Converter.updateChangeRate(response.ticker.change);
             });
         },
 
