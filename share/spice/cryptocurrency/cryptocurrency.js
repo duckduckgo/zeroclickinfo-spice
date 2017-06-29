@@ -101,22 +101,9 @@
                 Converter.fromCurrency = from;
             }
 
-            var endpoint = "/js/spice/cryptocurrency/1/" + from + "/" + to;
-            $.get(endpoint, function(payload) {
-                console.log()
+            var endpoint = "/js/spice/cryptocurrency/cryptonator/" + from + "/" + to;
 
-            });
-
-            // gets the conversion rate
-            $.ajax({
-                url: "/js/spice/cryptocurrency/1/" + from + "/" + to,
-                beforeSend: function( xhr ) {
-                    xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
-                },
-                error: function(request, status, error) {
-                    Spice.failed('cryptocurrency');
-                }
-            }).done(function(payload) {
+            $.getScript(endpoint, function(payload) {
                 var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
 
                 Converter.rate = parseFloat(response.ticker.price);
