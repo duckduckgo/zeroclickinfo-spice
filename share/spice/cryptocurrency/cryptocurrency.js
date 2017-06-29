@@ -101,11 +101,10 @@
                 Converter.fromCurrency = from;
             }
 
-            var endpoint = "/js/spice/cryptocurrency/cryptonator/" + from + "/" + to;
+            var endpoint = "/js/spice/cryptonator/" + from + "/" + to;
 
-            $.getScript(endpoint, function(payload) {
-                var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
-
+            $.getJSON(endpoint, function(payload) {
+                var response = payload;
                 Converter.rate = parseFloat(response.ticker.price);
                 Converter.calculateRate();
                 Converter.updateMoreAtLink(to, from);

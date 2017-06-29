@@ -98,7 +98,8 @@ spice proxy_cache_valid => "200 1m";
 
 spice alt_to => {
     cryptonator  => {
-        to => 'https://api.cryptonator.com/api/full/$2-$3',
+        from => '([^/]+)/([^/]*)',
+        to => 'https://api.cryptonator.com/api/full/$1-$2',
         wrap_jsonp_callback => 0,
     }
 };
