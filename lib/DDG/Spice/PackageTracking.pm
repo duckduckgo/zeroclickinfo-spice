@@ -116,7 +116,7 @@ triggers query_nowhitespace_nodash => qr/^
 ## OnTrac
 triggers query_nowhitespace_nodash => qr/^
                                 (?:
-                                    c\d{14}
+                                    [cd]\d{14}
                                 )
                                 $/xi;
 
