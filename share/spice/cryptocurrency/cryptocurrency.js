@@ -101,12 +101,14 @@
                 Converter.fromCurrency = from;
             }
 
-            var endpoint = "https://api.cryptonator.com/api/full/" + from + "-" + to;
-            $.get(endpoint, function(payload) {
-                Converter.rate = parseFloat(payload.ticker.price);
+            var endpoint = "/js/spice/cryptonator/" + from + "/" + to;
+
+            $.getJSON(endpoint, function(payload) {
+                var response = payload;
+                Converter.rate = parseFloat(response.ticker.price);
                 Converter.calculateRate();
                 Converter.updateMoreAtLink(to, from);
-                Converter.updateChangeRate(payload.ticker.change);
+                Converter.updateChangeRate(response.ticker.change);
             });
         },
 

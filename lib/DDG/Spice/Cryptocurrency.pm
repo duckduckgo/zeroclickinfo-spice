@@ -96,6 +96,14 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 spice proxy_cache_valid => "200 1m";
 
+spice alt_to => {
+    cryptonator  => {
+        from => '([^/]+)/([^/]*)',
+        to => 'https://api.cryptonator.com/api/full/$1-$2',
+        wrap_jsonp_callback => 0,
+    }
+};
+
 # This function converts things like "us dollars" to the standard "usd".
 sub getCode {
     my $input = shift;
