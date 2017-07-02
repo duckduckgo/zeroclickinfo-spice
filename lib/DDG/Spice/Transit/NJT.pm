@@ -4,7 +4,7 @@ package DDG::Spice::Transit::NJT;
 use strict;
 use DDG::Spice;
 
-spice to => 'http://njt-api.appspot.com/njt/times/$1';
+spice to => 'http://njt-api1.appspot.com/njt/times/$1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
