@@ -2,8 +2,49 @@
     "use strict";
     env.ddg_spice_package_tracking = function(api_result){
 
-        if (!api_result || !api_result.c || api_result.error) {
+        if (!api_result || api_result.error) {
             return Spice.failed('package_tracking');
+        }
+
+        // Fallback to list of courier links when no API results
+        if (!api_result.c) {
+            var script = $('[src*="/js/spice/package_tracking/"]')[0],
+                source = $(script).attr("src"),
+                callParameters = source.match('/js/spice/package_tracking/[^/]+/(.+)');
+
+            if (callParameters.length){
+                var suggestedCarriers = decodeURIComponent(callParameters[1]).split(',');
+                var list_data = {};
+                $.each(suggestedCarriers, function(index, name) {
+                    if (carriers[name] && carriers[name].url) {
+                        list_data[name] = carriers[name];
+                        list_data[name].url = list_data[name].url.replace("{{code}}", encodeURIComponent(api_result.n));
+                    }
+                });
+
+                Spice.add({
+                    id: "package_tracking",
+                    name: "Answer",
+                    meta: {
+                        sourceName: "Packagetrackr",
+                        sourceUrl: "https://www.packagetrackr.com/track/" + encodeURIComponent(api_result.n),
+                    },
+                    data: {
+                        title: "Track a package",
+                        subtitle: "Package Number: " + api_result.n,
+                        list: list_data
+                    },
+                    templates: {
+                        group: 'list',
+                        options: {
+                            list_content: Spice.package_tracking.list_content
+                        }
+                    }
+                });
+                return;
+            } else {
+                return Spice.failed('package_tracking');
+            }
         }
 
         var logo = api_result.c;
