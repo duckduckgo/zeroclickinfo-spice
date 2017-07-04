@@ -7,7 +7,7 @@ use warnings;
 use Text::Trim;
 
 spice is_cached => 1;
-spice proxy_cache_valid => '200 1d';
+spice proxy_cache_valid => '200 1h';
 
 spice wrap_jsonp_callback => 0;
 
