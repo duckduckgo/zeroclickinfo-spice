@@ -28,6 +28,11 @@ ddg_spice_test(
     'emacs rocks' => undef,
     'julia roberts' => undef,
     'wordpress themes' => undef,
+    'golang latest version' => undef,
+    'crystal hot springs' => undef,
+    'atom remote execute' => undef,
+    'nimble loans australia' => undef,
+    'pub near belfast' => undef,
 );
 
 done_testing;

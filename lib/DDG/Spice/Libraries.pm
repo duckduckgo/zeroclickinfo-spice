@@ -4,7 +4,7 @@ package DDG::Spice::Libraries;
 use strict;
 use DDG::Spice;
 
-my @blocked_triggers = ('go', 'wordpress', 'emacs', 'julia');
+my @blocked_triggers = ('go', 'nimble', 'pub', 'atom', 'wordpress', 'emacs', 'julia');
 my @triggers_from_file = share('triggers.txt')->slurp;
 my @trigger_aliases;
 my %alias_hash = ();
