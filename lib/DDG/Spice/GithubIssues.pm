@@ -23,7 +23,7 @@ triggers startend => 'github issue';
 
 # Handle statement
 handle remainder_lc => sub {
-    return unless (($_) or $_ ne "");
+    return unless $_;
 
     my $query = $_;
     $query =~ s/\b($langs)\b//;
