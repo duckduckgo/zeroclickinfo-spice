@@ -146,6 +146,7 @@ handle query => sub {
     return if m/^\d{5} \d{7}$/;
     return if m/^\d{4} \d{3} \d{3}$/;
 
+
     # ignore address lookup
     return if m/^#\d+ [A-Z\s]+$/i;
 
@@ -156,6 +157,7 @@ handle query => sub {
     # ignore pattern: "word number word"
     # e.g. ups building 2 worldport
     return if m/\b[A-Z]+ \d{1,8} [A-Z]+\b/i;
+
 
     # ignore numbers that start with 0
     return if m/^0.+/i;
@@ -169,9 +171,11 @@ handle query => sub {
         return unless is_valid_ups($_);
     }
     # Validate DHL tracking numbers
-    elsif (m/$courier_regex{dhl}/) {
+    # Ensure \d{10} doesn't overlap with UPS code
+    elsif (m/$courier_regex{dhl}/ && not m/82\d{8}/) {
         return unless is_valid_dhl($_);
     }
+
 
     # ignore repeated strings of single digit (e.g. 0000 0000 0000)
     return if m/^(\d)\1+$/;
@@ -181,6 +185,7 @@ handle query => sub {
 
     # ignore if isbn is present
     return if m/isbn/i;
+
 
     my @possible_couriers;
     while (my($courier, $regex) = each %courier_regex) {
