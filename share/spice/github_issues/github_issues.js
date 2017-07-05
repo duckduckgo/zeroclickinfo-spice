@@ -13,9 +13,9 @@
             query = source.match(/github_issues\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query);
 
-        var match = unescape(query).match(/language:"(.*?)"/)[1];
-        if (match.length) {
-            var itemType = "Github Issues (" + match +")";
+        var match = unescape(query).match(/language:"(.*?)"/);
+        if (match !== null) {
+            var itemType = "Github Issues (" + match[1] +")";
         } else {
             var itemType = "Github Issues";
         }
