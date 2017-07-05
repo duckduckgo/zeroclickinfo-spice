@@ -12,149 +12,149 @@ ddg_spice_test(
 
     # Generic
     'shipping status C11422907783469' => test_spice(
-        '/js/spice/package_tracking/C11422907783469',
+        '/js/spice/package_tracking/C11422907783469/ontrac',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'package C11422907783469' => test_spice(
-        '/js/spice/package_tracking/C11422907783469',
+        '/js/spice/package_tracking/C11422907783469/ontrac',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'C11422907783469 tracking number' => test_spice(
-        '/js/spice/package_tracking/C11422907783469',
+        '/js/spice/package_tracking/C11422907783469/ontrac',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'ontrac C11422907783469' => test_spice(
-        '/js/spice/package_tracking/C11422907783469',
+        '/js/spice/package_tracking/C11422907783469/ontrac',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'ontrac package C11422907783469' => test_spice(
-        '/js/spice/package_tracking/C11422907783469',
+        '/js/spice/package_tracking/C11422907783469/ontrac',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'C11422907783469 ontrac package' => test_spice(
-        '/js/spice/package_tracking/C11422907783469',
+        '/js/spice/package_tracking/C11422907783469/ontrac',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
-		
+
 
     # Fedex
     'fedex 9241990100130206401644' => test_spice(
-        '/js/spice/package_tracking/9241990100130206401644',
+        '/js/spice/package_tracking/9241990100130206401644/fedex',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '178440515632684' => test_spice(
-        '/js/spice/package_tracking/178440515632684',
+        '/js/spice/package_tracking/178440515632684/fedex',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '9612804882227378545377' => test_spice(
-        '/js/spice/package_tracking/9612804882227378545377',
+        '/js/spice/package_tracking/9612804882227378545377/fedex',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # UPS
     'ups 1Z0884XV0399906189' => test_spice(
-        '/js/spice/package_tracking/1Z0884XV0399906189',
+        '/js/spice/package_tracking/1Z0884XV0399906189/ups',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '1Z0884XV0399906189' => test_spice(
-        '/js/spice/package_tracking/1Z0884XV0399906189',
+        '/js/spice/package_tracking/1Z0884XV0399906189/ups',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # USPS
     'EA 000 000 000 US' => test_spice(
-        '/js/spice/package_tracking/EA000000000US',
+        '/js/spice/package_tracking/EA000000000US/usps%2Cparcelforce',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
-    'usps 7000 0000 0000 0000 0000' => test_spice(
-        '/js/spice/package_tracking/70000000000000000000',
+    'usps 9400 1000 0000 0000 0000 00' => test_spice(
+        '/js/spice/package_tracking/9400100000000000000000/fedex%2Cusps',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
-    'usps 37346365253153' => test_spice(
-        '/js/spice/package_tracking/37346365253153',
+    'usps 82 000 000 00' => test_spice(
+        '/js/spice/package_tracking/8200000000/usps%2Cdhl',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # Parcelforce / Royal Mail
     'parcelforce track PBTM8041434001' => test_spice(
-        '/js/spice/package_tracking/PBTM8041434001',
+        '/js/spice/package_tracking/PBTM8041434001/parcelforce',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'royal mail track parcel QE001331410GB' => test_spice(
-        '/js/spice/package_tracking/QE001331410GB',
+        '/js/spice/package_tracking/QE001331410GB/parcelforce',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'PBTM8237263001' => test_spice(
-        '/js/spice/package_tracking/PBTM8237263001',
+        '/js/spice/package_tracking/PBTM8237263001/parcelforce',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # CanadaPost
     '7316971234436767' => test_spice(
-        "/js/spice/package_tracking/7316971234436767",
+        "/js/spice/package_tracking/7316971234436767/fedex%2Ccanadapost",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '2005706113805288' => test_spice(
-        "/js/spice/package_tracking/2005706113805288",
+        "/js/spice/package_tracking/2005706113805288/fedex%2Ccanadapost",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '4007693052785226' => test_spice(
-        "/js/spice/package_tracking/4007693052785226",
+        "/js/spice/package_tracking/4007693052785226/fedex%2Ccanadapost",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '3129144101026356' => test_spice(
-        "/js/spice/package_tracking/3129144101026356",
+        "/js/spice/package_tracking/3129144101026356/fedex%2Ccanadapost",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # HKDK
     'CU123456789DK' => test_spice(
-        "/js/spice/package_tracking/CU123456789DK",
+        "/js/spice/package_tracking/CU123456789DK/parcelforce%2Chkdk",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'EE123456789HK' => test_spice(
-        "/js/spice/package_tracking/EE123456789HK",
+        "/js/spice/package_tracking/EE123456789HK/parcelforce%2Chkdk",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # IPS
     'EM999999999IN' => test_spice(
-        "/js/spice/package_tracking/EM999999999IN",
+        "/js/spice/package_tracking/EM999999999IN/parcelforce%2Cips",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
     ),
     'em123456789hr' => test_spice(
-        "/js/spice/package_tracking/em123456789hr",
+        "/js/spice/package_tracking/em123456789hr/parcelforce%2Cips",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
     ),
     'EM 999 999 999 IN' => test_spice(
-        "/js/spice/package_tracking/EM999999999IN",
+        "/js/spice/package_tracking/EM999999999IN/parcelforce%2Cips",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
@@ -162,21 +162,21 @@ ddg_spice_test(
 
     # LaserShip
     'LL12345678' => test_spice(
-        "/js/spice/package_tracking/LL12345678",
+        "/js/spice/package_tracking/LL12345678/lasership",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
     ),
     'LL 12345678' => test_spice(
-        "/js/spice/package_tracking/LL12345678",
+        "/js/spice/package_tracking/LL12345678/lasership",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
     ),
-		
+
     # OnTrac
     'C11422907783469' => test_spice(
-        "/js/spice/package_tracking/C11422907783469",
+        "/js/spice/package_tracking/C11422907783469/ontrac",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
