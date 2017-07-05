@@ -138,6 +138,10 @@ handle query => sub {
     # remainder should be numeric or alphanumeric, not alpha
     return if m/^[A-Z\-\s]+$/i;
 
+    # ignore searches for courier holiday dates
+    # e.g. "ups holidays 2017"
+    return if m/\bholidays?\b/i;
+
     # ignore remainder with 2+ words
     return if m/\b[A-Z]+\s+[A-Z]+\b/i;
 
