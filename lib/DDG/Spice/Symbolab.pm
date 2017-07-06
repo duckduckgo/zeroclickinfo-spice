@@ -70,10 +70,13 @@ my %legalWords = (
     "inf" => 1
 );
 
-sub isLegal{
-	$_ = shift;
-	
-	my $legalFunctionsFound = false;
+spice is_cached => 1;
+spice to => 'https://www.symbolab.com/ddg?query=$1';
+spice wrap_jsonp_callback => 1;
+
+triggers startend => keys %legalWords, keys %legalFunctions;
+handle query_lc => sub {
+    my $legalFunctionsFound = false;
 	
 	#for cases like c++, j++
 	if ($_ =~ /\+\+/){  
@@ -85,13 +88,13 @@ sub isLegal{
 	for my $word (@words){
 		
 		# i.e x^sinhx
-		if ($word =~ /[^\w](arc)?(cos|tan|sin|cot|sec|csc)(h)?(\d)?[xtu]/){
+		if ($word =~ /[^\w](arc)?(cos|tan|sin|cot|sec|csc)h?\d?[xtu]/){
 			$minWeight -= 3;
 			next;
 		}
 		
 		# i.e sinhx
-		if ($word =~ /^(arc)?(cos|tan|sin|cot|sec|csc)(h)?(\d)?[xtu]/){
+		if ($word =~ /^(arc)?(cos|tan|sin|cot|sec|csc)h?\d?[xtu]/){
 			$minWeight -= 3;
 			next;
 		}
@@ -114,25 +117,25 @@ sub isLegal{
 			next;
 		}
 		
-		# i.e x^2, x^{2}
-		if ($word =~ /[xtu]\^(\{)?[xtu\d+](\})?/){
+		# i.e x^2, x^{2}, 2^{x}
+		if ($word =~ /([xtu]\d+)\^\{?([xtu]|\d+)\}?/){
 			$minWeight -= 3;
 			next;
 		}
 		
 		# i.e 5i
-		if ($word =~ /[\d]i/){
+		if ($word =~ /\di/){
 			$minWeight -= 3;
 			next;
 		}
 		
 		# i.e 'i'
-		if ($word eq 'i'){
+		else if ($word eq 'i'){
 			$minWeight -= 1;
 			next;
 		}
 		
-		if ($word !~ /\w\w\w\w/ and ($word =~ /[\^\*\=\+\/\\\|]/ or $word =~ /^\d+x$/)){
+		if ($word !~ /\w{4}/ and ($word =~ /[^*=+/\|]/ or $word =~ /^\d+x$/)){
 			$minWeight -= 2;
 			next;
 		}
@@ -165,15 +168,6 @@ sub isLegal{
 	else{
 		return ;
 	}
-}
-
-spice is_cached => 1;
-spice to => 'https://www.symbolab.com/ddg?query=$1';
-spice wrap_jsonp_callback => 1;
-
-triggers startend => keys %legalWords, keys %legalFunctions;
-handle query_lc => sub {
-    return isLegal($_);
 };
 
 1;
