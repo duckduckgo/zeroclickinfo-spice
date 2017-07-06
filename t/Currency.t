@@ -856,6 +856,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    'USD - ZMW' => test_spice(
+        '/js/spice/currency/1/usd/zmw',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 USD to ZMK' => test_spice(
+        '/js/spice/currency/500/usd/zmw',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # single unambigious symbols that should trigger
     'usd' => test_spice(
