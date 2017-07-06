@@ -130,12 +130,12 @@ handle query_lc => sub {
 		}
 		
 		# i.e 'i'
-		else if ($word eq 'i'){
+		elsif ($word eq 'i'){
 			$minWeight -= 1;
 			next;
 		}
 		
-		if ($word !~ /\w{4}/ and ($word =~ /[^*=+/\|]/ or $word =~ /^\d+x$/)){
+		if ($word !~ /\w{4}/ and ($word =~ /[*^=+|\/\\]/ or $word =~ /^\d+x$/)){
 			$minWeight -= 2;
 			next;
 		}
