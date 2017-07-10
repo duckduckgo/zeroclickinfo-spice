@@ -19,6 +19,11 @@
     display: block;
 }
 
+.zci--people_in_space .title{
+    font-size: 10px;
+    display: block;
+}
+
 .zci--people_in_space .info {
     text-align: center;
     position: inherit;
