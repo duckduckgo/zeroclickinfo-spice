@@ -162,10 +162,22 @@
         "ceva": { name: "CEVA" },
         "china-ems": { name: "China EMS" },
         "china-post": { name: "China Post" },
-        "dhl": { name: "DHL" },
-        "dhl-express": { name: "DHL Express" },
-        "dhl-ecommerce-us": { name: "DHL eCommerce US" },
-        "dhl-deutsche-post": { name: "Deutsche Post DHL" },
+        "dhl": {
+            name: "DHL",
+            url: "http://www.dhl.com/en/express/tracking.html?AWB={{code}}&brand=DHL"
+        },
+        "dhl-express": {
+            name: "DHL Express",
+            url: "http://www.dhl.com/en/express/tracking.html?AWB={{code}}&brand=DHL"
+        },
+        "dhl-ecommerce-us": {
+            name: "DHL eCommerce US",
+            url: "http://www.dhl.com/en/express/tracking.html?AWB={{code}}&brand=DHL"
+        },
+        "dhl-deutsche-post": {
+            name: "Deutsche Post DHL",
+            url: "http://www.dhl.com/en/express/tracking.html?AWB={{code}}&brand=DHL"
+        },
         "dpd-de": { name: "DPD Germany" },
         "dynamex": { name: "Dynamex" },
         "ensenda": { name: "Ensenda" },
@@ -189,9 +201,15 @@
         "hongkong-post": { name: "Hongkong Post" },
         "india-post": { name: "India Post" },
         "japan-post": { name: "Japan Post" },
-        "lasership": { name: "LaserShip" },
+        "lasership": {
+            name: "LaserShip",
+            url: "http://www.lasership.com/track/{{code}}"
+        },
         "prestige": { name: "Prestige" },
-        "ontrac": { name: "OnTrac" },
+        "ontrac": {
+            name: "OnTrac",
+            url: "http://www.ontrac.com/trackingres.asp?tracking_number={{code}}"
+        },
         "osm": { name: "OSM" },
         "parcelforce": {
             name: "Parcelforce",
@@ -200,7 +218,10 @@
         "post-danmark": { name: "Post Danmark" },
         "posten-norge": { name: "Posten Norge" },
         "postnord-sverige": { name: "PostNord Sverige" },
-        "purolator": { name: "Purolator" },
+        "purolator": {
+            name: "Purolator",
+            url: "https://www.purolator.com/purolator/ship-track/tracking-summary.page?sc={{code}}"
+        },
         "royal-mail": { name: "Royal Mail" },
         "spee-dee": { name: "Spee Dee Delivery" },
         "thailand-post": { name: "Thailand Post" },
