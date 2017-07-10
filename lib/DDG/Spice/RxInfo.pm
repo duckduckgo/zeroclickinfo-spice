@@ -6,15 +6,15 @@ use DDG::Spice;
 
 triggers startend => 'pill', 'rxinfo', 'capsule', 'softgel', 'caplets';
 
-spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=300&includeIngredients=true&parse=$1';
-spice from => '(.*?)/(\d)';
+spice to => 'https://rximage.nlm.nih.gov/api/rximage/1/rxnav?resolution=300&includeIngredients=true&parse=$1';
+
 spice wrap_jsonp_callback => 1;
 
-my $triggerWords = join "|", share('triggerWords.txt')->slurp(chomp => 1);
-
 handle remainder => sub {
-    return unless $_;
-    return $_, (/$triggerWords/) ? "0" : "1"; # return 0 if match in triggerWords file found
+    # Remove logical operators from query since they're disregarded by the API.
+    s/\b(and|or|not)\b//ig;
+
+    return $_ if $_;
     return;
 };
 1;

@@ -19,52 +19,59 @@
         return concatted;
     }
 
+    // Use matchedTerms object to build secondaryText string
+    function buildSecondaryText(matchedTerms) {
+        var secondaryText = "";
+
+        // Loop through matchedTerms object for terms and values
+        for (var key in matchedTerms) {
+           if (matchedTerms.hasOwnProperty(key)) {
+              secondaryText += key + "=" + matchedTerms[key] + ", ";
+           }
+        }
+
+        // If terms were found, make secondaryText human readable
+        if (secondaryText.length > 0) {
+            secondaryText = "Matched: " + secondaryText.substr(0, secondaryText.length - 2) + ".";
+        }
+
+        return secondaryText;
+    }
+
     env.ddg_spice_rx_info = function(api_result){
 
         if (!api_result || api_result.error || !api_result.replyStatus || !api_result.replyStatus.totalImageCount || api_result.replyStatus.totalImageCount < 1) {
             return Spice.failed('rx_info');
         }
-        
+
+        // Get original query.
         var script = $('[src*="/js/spice/rx_info/"]')[0],
             source = $(script).attr("src"),
-            query = decodeURIComponent(source.match(/rx_info\/([^\/]+)/)[1]),
-            triggerWordMatch = parseInt(source.match(/rx_info\/[^\/]+\/(\d)/)[1]),
-            relCheck;
-        
+            query = decodeURIComponent(source.match(/rx_info\/([^\/]+)/)[1]);
 
-        // meta information
-        var sourceName = "More at DailyMed",
-            sourceUrl  = "http://dailymed.nlm.nih.gov/",
-            skip_words = ['pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets'];
-        
-        // perform relevancy checking if triggerWordMatch true
-        if(triggerWordMatch) {
-            relCheck = {
-                skip_words : skip_words,
-                primary: [
-                    { key: 'name' }, { key: 'ndc11' }
-                ]
-            };
-        }
-      
+        // Meta information.
+        var sourceName = "PharmakonAlpha",
+            sourceUrl = "http://www.pharmakonalpha.com/results?parse=" + query,
+            itemType = "pills",
+            secondaryText = buildSecondaryText(api_result.replyStatus.matchedTerms);
+
         Spice.add({
             id: "rx_info",
             name: "RxInfo",
             data: api_result.nlmRxImages,
             meta: {
-                searchTerm: query,
+                itemType: itemType,
                 sourceName: sourceName,
-                sourceUrl:  sourceUrl
+                sourceUrl:  sourceUrl,
+                secondaryText: secondaryText
             },
             templates: {
-                group: 'products_simple',
-                item_detail: 'base_item_detail',
+                group: 'media',
+                detail: false,
+                item_detail: false,
                 options: {
-                    content: Spice.rx_info.rx_info,
-                    description_content: Spice.rx_info.rx_info_description,
-                    brand: false,
-                    rating: false
-                }
+                    footer: Spice.rx_info.footer
+                },
             },
             normalize: function(item) {
                 var heading  = item.ndc11,
@@ -79,19 +86,12 @@
                 }
 
                 return {
-                    image: item.imageUrl,
-                    imageAlt: "Image for NDC: " + item.ndc11,
-                    abstract: item.ndc11,
-                    heading: heading,
                     title: heading,
-                    subtitle: item.labeler,
-                    ratingText: item.ndc11,
-                    active: active,
-                    inactive: inactive,
-                    url: item.splSetId ? 'https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=' + item.splSetId : ''
+                    altSubtitle: item.name ? item.ndc11 : '',
+                    image: item.imageUrl,
+                    url: item.id ? "http://www.pharmakonalpha.com/monograph/" + item.id + "?parse=" + query : ''
                 }
-            },
-            relevancy: relCheck,
+            }
         });
     };
 }(this));
