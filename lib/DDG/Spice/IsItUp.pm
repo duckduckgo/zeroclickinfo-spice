@@ -15,20 +15,22 @@ spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
-my $query_start_regex = qr/(?:is|isitup|isitdown|is it up|is it down|status of|)/;
+my $query_start_regex = qr/(?:is\s|isitup|isitdown|is it up|is it down|status of|)/;
 my $query_end_regex   = qr/(?:up|down|working|online|status|up right now|)/;
 my $url_regex         = qr/(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)/;
 
 my $query_regex = qr/^($query_start_regex)\s?$url_regex\s?($query_end_regex)\?*$/i;
 
-handle query_lc => sub {
+handle remainder => sub {
+
+    return unless $_;
 
     my ($domain, $ascii, $root_url);
     my $publicSuffix = Domain::PublicSuffix->new();
 
-    my $query = $_;
+    my $query = $req->query_lc;
 
-    $query =~ $query_regex;
+    return unless $query =~ $query_regex;
 
     $root_url = $2;
 

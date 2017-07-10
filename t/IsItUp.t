@@ -33,11 +33,15 @@ ddg_spice_test(
     'is it down duckduckgo.com'               => build_test('duckduckgo.com'),
     'is duckduckgo.com up right now'          => build_test('duckduckgo.com'),
     'status of duckduckgo.com'                => build_test('duckduckgo.com'),
+    'isitup t-online.de'                      => build_test('t-online.de'),
     'schema.org update time' => undef,
     'is it up?'              => undef,
     'is it down'             => undef,
     'is site up'             => undef,
     'is site down?'          => undef,
+    't-online.de'            => undef,
+    'isitdown'               => undef,
+    'isitup'                 => undef
 );
 done_testing;
 
