@@ -3,6 +3,7 @@ package DDG::Spice::PackageTracking;
 use strict;
 use DDG::Spice;
 use Text::Trim;
+use List::Util qw(uniq);
 use YAML::XS 'LoadFile';
 
 spice is_cached => 1;
@@ -202,6 +203,8 @@ handle query => sub {
             push(@possible_carriers, $carrier);
         }
     }
+
+    @possible_carriers = uniq @possible_carriers;
 
     return $_, (join ',', @possible_carriers);
 };

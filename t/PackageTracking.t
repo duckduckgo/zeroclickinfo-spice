@@ -79,7 +79,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::PackageTracking'
     ),
     'usps 9400 1000 0000 0000 0000 00' => test_spice(
-        '/js/spice/package_tracking/9400100000000000000000/fedex%2Cusps',
+        '/js/spice/package_tracking/9400100000000000000000/usps%2Cfedex',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
@@ -96,7 +96,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::PackageTracking'
     ),
     'royal mail track parcel QE001331410GB' => test_spice(
-        '/js/spice/package_tracking/QE001331410GB/parcelforce',
+        '/js/spice/package_tracking/QE001331410GB/royal%20mail%2Cparcelforce',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
