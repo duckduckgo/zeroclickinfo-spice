@@ -42,9 +42,7 @@
         var results = api_result.results;
 
         // Get the original query
-        var script = $('[src*="/js/spice/hackage/"]')[0];
-        var source = $(script).attr("src");
-        var query = source.match(/hackage\/([^\/]*)/)[1];
+        var query = DDG.get_query().replace(/\s*(hoogle|haskell|hackage)\s*/gi, '');
         Spice.add({
             id: "hackage",
             name: "Software",
@@ -52,7 +50,7 @@
             meta: {
                 searchTerm: query,
                 sourceName: "Hoogle",
-                sourceUrl: "https://www.haskell.org/hoogle/?hoogle=" + query,
+                sourceUrl: "https://www.haskell.org/hoogle/?hoogle=" + encodeURIComponent(query),
                 snippetChars: 170
             },
             templates: {
