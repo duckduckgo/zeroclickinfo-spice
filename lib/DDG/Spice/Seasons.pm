@@ -9,8 +9,8 @@ my $seasons_qr = join "|", @seasons;
 
 triggers any => @seasons;
 
-spice from => "(.+)/(.+)/.*";
-spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&callback={{callback}}&country=$2&year=$1&types=seasons&version=1';
+spice from => "(.+)/(.+)/.+/.*";
+spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&callback={{callback}}&country=$2&year=$1&types=seasons';
 
 spice proxy_cache_valid => "200 30d";
 spice is_cached => 1;
@@ -48,6 +48,10 @@ handle query_lc => sub {
         $country = lc $loc->country_code;
     }
 
+    # Get hemisphere
+    my $hemisphere = ($loc->latitude > 0) ? 'north' : 'south';
+
+
     # Detect year
     my $current_year = (localtime(time))[5] + 1900;
     my $year = $+{year} // $current_year;
@@ -66,7 +70,7 @@ handle query_lc => sub {
     }
 
     # Season is not required for the API call, but used in the frontend
-    return $year, $country, $season, {is_cached => $caching};
+    return $year, $country, $season, $hemisphere, {is_cached => $caching};
 
 };
 
