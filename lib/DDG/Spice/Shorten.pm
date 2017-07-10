@@ -11,6 +11,7 @@ triggers any => 'shorten', 'shorten url', 'short url', 'url shorten';
 my %connector_words = map { $_ => 1 } qw(for of);
 
 handle remainder => sub {
+    return unless ($_ =~ /^((https?|ftp):\/\/)|(w{3}\.)[^\s\/$.?#].[^\s]*$/i);
     my @query_words =  grep { !$connector_words{$_} } split /\s+/;
     my $q           = shift @query_words;
     return if (@query_words);    # We should only work for a single 'word' in the query.
