@@ -136,35 +136,35 @@ handle query => sub {
     return unless $_;
 
     # remainder should be numeric or alphanumeric, not alpha
-    return if m/^[A-Z\-\s]+$/i;
+    return if /^[A-Z\-\s]+$/i;
 
     # ignore searches for courier holiday dates
     # e.g. "ups holidays 2017"
-    return if m/\bholidays?\b/i;
+    return if /\bholidays?\b/i;
 
     # ignore remainder with 2+ words
-    return if m/\b[A-Z]+\s+[A-Z]+\b/i;
+    return if /\b[A-Z]+\s+[A-Z]+\b/i;
 
     # ignore phone numbers
-    return if m/^(\d(-|\s))?\d{3}(-|\s)\d{3}(-|\s)\d{4}$/;
-    return if m/^\d{5} \d{7}$/;
-    return if m/^\d{4} \d{3} \d{3}$/;
+    return if /^(\d(-|\s))?\d{3}(-|\s)\d{3}(-|\s)\d{4}$/;
+    return if /^\d{5} \d{7}$/;
+    return if /^\d{4} \d{3} \d{3}$/;
 
 
     # ignore address lookup
-    return if m/^#\d+ [A-Z\s]+$/i;
+    return if /^#\d+ [A-Z\s]+$/i;
 
     # ignore Microsoft knowledge base codes and Luhn Check queries
     # e.g. KB2553549
-    return if m/^(kb|luhn)\s?\d+/i;
+    return if /^(kb|luhn)\s?\d+/i;
 
     # ignore pattern: "word number word"
     # e.g. ups building 2 worldport
-    return if m/\b[A-Z]+ \d{1,8} [A-Z]+\b/i;
+    return if /\b[A-Z]+ \d{1,8} [A-Z]+\b/i;
 
 
     # ignore numbers that start with 0
-    return if m/^0.+/i;
+    return if /^0.+/i;
 
     # remove spaces/dashes
     s/(\s|-)//g;
@@ -182,13 +182,13 @@ handle query => sub {
 
 
     # ignore repeated strings of single digit (e.g. 0000 0000 0000)
-    return if m/^(\d)\1+$/;
+    return if /^(\d)\1+$/;
 
     # remainder should be 6-30 characters long
-    return unless m/^[A-Z0-9]{6,30}$/i;
+    return unless /^[A-Z0-9]{6,30}$/i;
 
     # ignore if isbn is present
-    return if m/isbn/i;
+    return if /isbn/i;
 
 
     my @possible_couriers;
