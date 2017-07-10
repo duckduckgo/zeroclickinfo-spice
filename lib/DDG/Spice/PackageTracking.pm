@@ -31,7 +31,7 @@ triggers query_lc => qr/\b(?:$carriers_re)\b/i;
 triggers query_lc => qr/^$triggers_re .+|.+ $triggers_re$/i;
 
 ### Regex triggers for queries only containing a tracking number
-my %courier_regex = (
+my %patterns_re = (
 
     ## UPS
     # Soure: https://www.ups.com/content/ca/en/tracking/help/tracking/tnh.html
@@ -124,7 +124,7 @@ my %courier_regex = (
         $/xi
 );
 
-foreach my $regex (values %courier_regex){
+foreach my $regex (values %patterns_re){
     triggers query_nowhitespace_nodash => $regex;
 }
 
@@ -138,7 +138,7 @@ handle query => sub {
     # remainder should be numeric or alphanumeric, not alpha
     return if /^[A-Z\-\s]+$/i;
 
-    # ignore searches for courier holiday dates
+    # ignore searches for carrier holiday dates
     # e.g. "ups holidays 2017"
     return if /\bholidays?\b/i;
 
@@ -169,18 +169,6 @@ handle query => sub {
     # remove spaces/dashes
     s/(\s|-)//g;
 
-    # Validate likely UPS tracking numbers
-    # Skipping \d{12} because that matches several other carriers as well
-    if (m/$courier_regex{ups}/ && not m/\d{12}/) {
-        return unless is_valid_ups($_);
-    }
-    # Validate DHL tracking numbers
-    # Ensure \d{10} doesn't overlap with UPS code
-    elsif (m/$courier_regex{dhl}/ && not m/82\d{8}/) {
-        return unless is_valid_dhl($_);
-    }
-
-
     # ignore repeated strings of single digit (e.g. 0000 0000 0000)
     return if /^(\d)\1+$/;
 
@@ -190,15 +178,32 @@ handle query => sub {
     # ignore if isbn is present
     return if /isbn/i;
 
-
-    my @possible_couriers;
-    while (my($courier, $regex) = each %courier_regex) {
-        if ($_ =~ m/$regex/) {
-            push(@possible_couriers, $courier);
+    # let query through if a carrier is mentioned
+    # this allows the fallback prompt in cases where an invalid code is given
+    my @possible_carriers;
+    if ($req->{query_lc} =~ /\b($carriers_re)\b/) {
+        push @possible_carriers, $1;
+    }
+    else {
+        # Validate likely UPS tracking numbers
+        # Skipping \d{12} because that matches several other carriers as well
+        if (/$patterns_re{ups}/ && !/\d{12}/) {
+            return unless is_valid_ups($_);
+        }
+        # Validate DHL tracking numbers
+        # Ensure \d{10} doesn't overlap with UPS code
+        elsif (/$patterns_re{dhl}/ && !/82\d{8}/) {
+            return unless is_valid_dhl($_)
         }
     }
 
-    return $_, (join ',', @possible_couriers);
+    while (my($carrier, $regex) = each %patterns_re) {
+        if ($_ =~ /$regex/) {
+            push(@possible_carriers, $carrier);
+        }
+    }
+
+    return $_, (join ',', @possible_carriers);
 };
 
 
