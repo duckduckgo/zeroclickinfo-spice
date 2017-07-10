@@ -170,7 +170,7 @@
         { symbol: "XPT", name: "Platinum Ounce"},
         { symbol: "YER", name: "Yemeni Rial"},
         { symbol: "ZAR", name: "South African Rand"},
-        { symbol: "ZMK", name: "Zambian Kwacha"},
+        { symbol: "ZMW", name: "Zambian Kwacha"},
         { symbol: "ZWD", name: "Zimbabwean Dollar"},
     ]
 
