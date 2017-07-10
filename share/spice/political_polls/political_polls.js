@@ -36,7 +36,7 @@
                     for(var k = 0; (k < item.estimates.length && k < 3); k++){ //show max 3
                         var estimate = item.estimates[k];
                         itemDescription += estimate.choice;
-                        if(estimate.party !== null){
+                        if(estimate.party !== "N/A" && estimate.party !== null){
                             itemDescription += (" (" + estimate.party.toUpperCase() + ")");
                         }
                         itemDescription += (" at " + estimate.value + "%");

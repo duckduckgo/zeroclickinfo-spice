@@ -9,7 +9,8 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'http://elections.huffingtonpost.com/pollster/api/charts.json?state=US';
 
-triggers startend => "poll", "polls";
+# Triggers - https://duck.co/duckduckhack/spice_triggers
+triggers startend => "election poll", "election polls";
 
 handle remainder => sub {
     return $_;
