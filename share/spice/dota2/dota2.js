@@ -181,7 +181,7 @@
         }
 
         var searchTarget = DDG.get_query().toLowerCase().replace(/dota\s?2/, "").trim();
-        var keyTarget = searchTarget.split(' ').join('_');
+        var keyTarget = searchTarget.replace(' ', '_');
         var returnData;
         var item = getItemFromData(api_result.itemdata, keyTarget);
         var sourceUrl;
