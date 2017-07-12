@@ -3,6 +3,7 @@ package DDG::Spice::PackageTracking;
 use strict;
 use DDG::Spice;
 use Text::Trim;
+use List::Util qw(uniq);
 use YAML::XS 'LoadFile';
 
 spice is_cached => 1;
@@ -10,6 +11,7 @@ spice proxy_cache_valid => "200 1m";
 
 spice wrap_jsonp_callback => 1;
 
+spice from => '([^/]+)/?.+?$';
 spice to => 'https://api.packagetrackr.com/ddg/v1/track/simple?n=$1&api_key={{ENV{DDG_SPICE_PACKAGETRACKR_API_KEY}}}';
 
 my @carriers = sort { length $b <=> length $a } @{LoadFile(share('carriers.yml'))};
@@ -30,96 +32,102 @@ triggers query_lc => qr/\b(?:$carriers_re)\b/i;
 triggers query_lc => qr/^$triggers_re .+|.+ $triggers_re$/i;
 
 ### Regex triggers for queries only containing a tracking number
+my %patterns_re = (
 
-## UPS
-# Soure: https://www.ups.com/content/ca/en/tracking/help/tracking/tnh.html
-# To Do: Some additional formats exist
-triggers query_nowhitespace => qr/^
-                                (?:
-                                    1Z[0-9A-Z]{16} |
-                                    \d{9} |
-                                    \d{12} |
-                                    T\d{10}
-                                )
-                                $/xi;
+    ## UPS
+    # Soure: https://www.ups.com/content/ca/en/tracking/help/tracking/tnh.html
+    # To Do: Some additional formats exist
+    ups => qr/^
+        (?:
+            1Z[0-9A-Z]{16} |
+            \d{9} |
+            \d{12} |
+            T\d{10}
+        )
+        $/xi,
 
-## Fedex
-# Source: https://www.trackingex.com/fedex-tracking.html
-#         https://www.trackingex.com/fedexuk-tracking.html
-#         https://www.trackingex.com/fedex-poland-domestic-tracking.html
-triggers query_nowhitespace => qr/^
-                                \d{12,22}
-                                $/xi;
+    ## Fedex
+    # Source: https://www.trackingex.com/fedex-tracking.html
+    #         https://www.trackingex.com/fedexuk-tracking.html
+    #         https://www.trackingex.com/fedex-poland-domestic-tracking.html
+    fedex => qr/^
+        \d{12,22}
+        $/xi,
 
-## USPS
-# Source: https://tools.usps.com/go/TrackConfirmAction!input.action
-triggers query_nowhitespace => qr/^
-                                (?:
-                                    (94001|92055|94073|93033|92701|92088|92021)\d{17} |
-                                    82\d{8} |
-                                    [A-Z]{2}\d{9}US
-                                )
-                                $/xi;
+    ## USPS
+    # Source: https://tools.usps.com/go/TrackConfirmAction!input.action
+    usps => qr/^
+        (?:
+            (94001|92055|94073|93033|92701|92088|92021)\d{17} |
+            82\d{8} |
+            [A-Z]{2}\d{9}US
+        )
+        $/xi,
 
-## Parcelforce
-# Source: http://www.parcelforce.com/help-and-advice/sending-worldwide/tracking-number-formats
-# Note:   May need to restrict pattern #3 if overtriggering
-#         https://github.com/duckduckgo/zeroclickinfo-goodies/issues/3900
-triggers query_nowhitespace => qr/^
-                                (?:
-                                    [A-Z]{2}\d{7} |
-                                    [A-Z]{4}\d{10} |
-                                    [A-Z]{2}\d{9}[A-Z]{2} |
-                                    \d{12}
-                                )
-                                $/xi;
+    ## Parcelforce
+    # Source: http://www.parcelforce.com/help-and-advice/sending-worldwide/tracking-number-formats
+    # Note:   May need to restrict pattern #3 if overtriggering
+    #         https://github.com/duckduckgo/zeroclickinfo-goodies/issues/3900
+    parcelforce => qr/^
+        (?:
+            [A-Z]{2}\d{7} |
+            [A-Z]{4}\d{10} |
+            [A-Z]{2}\d{9}[A-Z]{2} |
+            \d{12}
+        )
+        $/xi,
 
-## CanadaPost
-# Source: https://www.canadapost.ca/web/en/kb/details.page?article=learn_about_tracking&cattype=kb&cat=receiving&subcat=tracking
-triggers query_nowhitespace_nodash => qr/^
-                                (?:
-                                    [\d]{12} |
-                                    [\d]{16} |
-                                    [A-Z]{2}\d{9}CA
-                                )
-                                $/xi;
+    ## CanadaPost
+    # Source: https://www.canadapost.ca/web/en/kb/details.page?article=learn_about_tracking&cattype=kb&cat=receiving&subcat=tracking
+    canadapost => qr/^
+        (?:
+            [\d]{12} |
+            [\d]{16} |
+            [A-Z]{2}\d{9}CA
+        )
+        $/xi,
 
-## DHL
-triggers query_nowhitespace_nodash => qr/^
-                                (?:
-                                    \d{10} |
-                                    \[a-zA-Z]{5}\d{10} |
-                                    \[a-zA-Z]{3}\d{20}
-                                )
-                                $/xi;
+    ## DHL
+    dhl => qr/^
+        (?:
+            \d{10} |
+            \[a-zA-Z]{5}\d{10} |
+            \[a-zA-Z]{3}\d{20}
+        )
+        $/xi,
 
-##HKDK
-triggers query_nowhitespace_nodash => qr/^
-                                (?:
-                                    [a-z]{2}\d{9}(?:hk|dk)
-                                )
-                                $/xi;
+    ##HKDK
+    hkdk => qr/^
+        (?:
+            [a-z]{2}\d{9}(?:hk|dk)
+        )
+        $/xi,
 
-## IPS
-triggers query_nowhitespace_nodash => qr/^
-                                (?:
-                                    E[MA]\d{9}(?:IN|HR)
-                                )
-                                $/xi;
+    ## IPS
+    ips => qr/^
+        (?:
+            E[MA]\d{9}(?:IN|HR)
+        )
+        $/xi,
 
-## LaserShip
-triggers query_nowhitespace_nodash => qr/^
-                                (?:
-                                    l[a-z]\d{8}
-                                )
-                                $/xi;
-## OnTrac
-triggers query_nowhitespace_nodash => qr/^
-                                (?:
-                                    [cd]\d{14}
-                                )
-                                $/xi;
+    ## LaserShip
+    lasership => qr/^
+        (?:
+            l[a-z]\d{8}
+        )
+        $/xi,
 
+    ## OnTrac
+    ontrac => qr/^
+        (?:
+            [cd]\d{14}
+        )
+        $/xi
+);
+
+foreach my $regex (values %patterns_re){
+    triggers query_nowhitespace_nodash => $regex;
+}
 
 handle query => sub {
 
@@ -129,50 +137,76 @@ handle query => sub {
     return unless $_;
 
     # remainder should be numeric or alphanumeric, not alpha
-    return if m/^[A-Z\-\s]+$/i;
+    return if /^[A-Z\-\s]+$/i;
+
+    # ignore searches for carrier holiday dates
+    # e.g. "ups holidays 2017"
+    return if /\bholidays?\b/i;
 
     # ignore remainder with 2+ words
-    return if m/\b[A-Z]+\s+[A-Z]+\b/i;
+    return if /\b[A-Z]+\s+[A-Z]+\b/i;
 
     # ignore phone numbers
-    return if m/^(\d(-|\s))?\d{3}(-|\s)\d{3}(-|\s)\d{4}$/;
-    return if m/^\d{5} \d{7}$/;
-    return if m/^\d{4} \d{3} \d{3}$/;
+    return if /^(\d(-|\s))?\d{3}(-|\s)\d{3}(-|\s)\d{4}$/;
+    return if /^\d{5} \d{7}$/;
+    return if /^\d{4} \d{3} \d{3}$/;
+
 
     # ignore address lookup
-    return if m/^#\d+ [A-Z\s]+$/i;
+    return if /^#\d+ [A-Z\s]+$/i;
 
     # ignore Microsoft knowledge base codes and Luhn Check queries
     # e.g. KB2553549
-    return if m/^(kb|luhn)\s?\d+/i;
+    return if /^(kb|luhn)\s?\d+/i;
 
     # ignore pattern: "word number word"
     # e.g. ups building 2 worldport
-    return if m/\b[A-Z]+ \d{1,8} [A-Z]+\b/i;
+    return if /\b[A-Z]+ \d{1,8} [A-Z]+\b/i;
+
+
+    # ignore numbers that start with 0
+    return if /^0.+/i;
 
     # remove spaces/dashes
     s/(\s|-)//g;
 
-    # Validate likely UPS tracking numbers
-    # Skipping \d{12} because that matches other carriers as well
-    if (m/^(\d{9}|T\d{10})$/) {
-        return unless is_valid_ups($_);
-    }
-    # Validate DHL tracking numbers
-    elsif (m/^\d{10}$/) {
-        return unless is_valid_dhl($_);
-    }
-
     # ignore repeated strings of single digit (e.g. 0000 0000 0000)
-    return if m/^(\d)\1+$/;
+    return if /^(\d)\1+$/;
 
     # remainder should be 6-30 characters long
-    return unless m/^[A-Z0-9]{6,30}$/i;
+    return unless /^[A-Z0-9]{6,30}$/i;
 
     # ignore if isbn is present
-    return if m/isbn/i;
+    return if /isbn/i;
 
-    return $_;
+    # let query through if a carrier is mentioned
+    # this allows the fallback prompt in cases where an invalid code is given
+    my @possible_carriers;
+    if ($req->{query_lc} =~ /\b($carriers_re)\b/) {
+        push @possible_carriers, $1;
+    }
+    else {
+        # Validate likely UPS tracking numbers
+        # Skipping \d{12} because that matches several other carriers as well
+        if (/$patterns_re{ups}/ && !/\d{12}/) {
+            return unless is_valid_ups($_);
+        }
+        # Validate DHL tracking numbers
+        # Ensure \d{10} doesn't overlap with UPS code
+        elsif (/$patterns_re{dhl}/ && !/82\d{8}/) {
+            return unless is_valid_dhl($_)
+        }
+    }
+
+    while (my($carrier, $regex) = each %patterns_re) {
+        if ($_ =~ /$regex/) {
+            push(@possible_carriers, $carrier);
+        }
+    }
+
+    @possible_carriers = uniq @possible_carriers;
+
+    return $_, (join ',', @possible_carriers);
 };
 
 
