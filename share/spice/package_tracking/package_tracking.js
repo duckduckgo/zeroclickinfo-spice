@@ -23,6 +23,7 @@
                 Spice.add({
                     id: "package_tracking",
                     name: "Answer",
+                    signal: "low", // lower signal, so that it isn't forced open unless we absolutely have to.
                     meta: {
                         sourceName: "Packagetrackr",
                         sourceUrl: "https://www.packagetrackr.com/track/" + encodeURIComponent(trackingNumber),
