@@ -2,23 +2,21 @@
     "use strict";
     env.ddg_spice_package_tracking = function(api_result){
 
-        if (!api_result || api_result.error) {
-            return Spice.failed('package_tracking');
-        }
-
         // Fallback to list of courier links when no API results
-        if (!api_result.c) {
+        if (!api_result || api_result.error || !api_result.c) {
             var script = $('[src*="/js/spice/package_tracking/"]')[0],
                 source = $(script).attr("src"),
-                callParameters = source.match('/js/spice/package_tracking/[^/]+/(.+)');
+                callParameters = source.match('/js/spice/package_tracking/(.+)');
 
             if (callParameters.length){
-                var suggestedCarriers = decodeURIComponent(callParameters[1]).split(',');
+                var splitParams = callParameters[1].split('/');
+                var trackingNumber = splitParams[0];
+                var suggestedCarriers = decodeURIComponent(splitParams[1]).split(',');
                 var list_data = {};
                 $.each(suggestedCarriers, function(index, name) {
                     if (carriers[name] && carriers[name].url) {
                         list_data[name] = carriers[name];
-                        list_data[name].url = list_data[name].url.replace("{{code}}", encodeURIComponent(api_result.n));
+                        list_data[name].url = list_data[name].url.replace("{{code}}", encodeURIComponent(trackingNumber));
                     }
                 });
 
@@ -27,11 +25,11 @@
                     name: "Answer",
                     meta: {
                         sourceName: "Packagetrackr",
-                        sourceUrl: "https://www.packagetrackr.com/track/" + encodeURIComponent(api_result.n),
+                        sourceUrl: "https://www.packagetrackr.com/track/" + encodeURIComponent(trackingNumber),
                     },
                     data: {
                         title: "Track a package",
-                        subtitle: "Package Number: " + api_result.n,
+                        subtitle: "Package Number: " + trackingNumber,
                         list: list_data
                     },
                     templates: {
