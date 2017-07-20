@@ -868,6 +868,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '500 can to gbp' => test_spice(
+        '/js/spice/currency/500/cad/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # single unambigious symbols that should trigger
     'usd' => test_spice(
