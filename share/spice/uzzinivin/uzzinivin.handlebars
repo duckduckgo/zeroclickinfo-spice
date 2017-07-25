@@ -1,0 +1,15 @@
+<h3 class="c-base__title text--primary">
+  {{#if this.found}}
+    <a href="https://uzzinivin.lv/v/{{this.vin}}">{{this.vin}}</a>
+  {{else}}
+    <span style="color:#de5833;">VIN not found. Try again later.</span>
+  {{/if}}
+</h3>
+<h4 class="c-base__sub">
+  {{#if this.rn}}
+  <p><b>Reģistrācijas numurs:</b> {{this.rn}}</p>
+  {{/if}}
+  {{#if this.marka}}
+  <p><b>Marka:</b> {{this.marka}}</p>
+  {{/if}}
+</h4>
