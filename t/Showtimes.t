@@ -12,8 +12,8 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/showtimes/query',
+    'movies in belfast' => test_spice(
+        '/js/spice/showtimes/belfast',
         call_type => 'include',
         caller => 'DDG::Spice::Showtimes'
     ),

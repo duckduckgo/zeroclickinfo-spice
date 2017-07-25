@@ -55,9 +55,17 @@
 
 
             for(var j = 0; j < showtimes_obj[showtime_keys[i]].length; j++) {
+
                 var cinema_id = showtimes_obj[showtime_keys[i]][j].cinema_id;
                 var cinema_name = cinemas[cinema_id].name;
+                var cinema_website = cinemas[cinema_id].website;
+                var cinema_lon = cinemas[cinema_id].location.lon;
+                var cinema_lat = cinemas[cinema_id].location.lat;
+                
                 showtimes_obj[showtime_keys[i]][j]["cinema_name"] = cinema_name;
+                showtimes_obj[showtime_keys[i]][j]["cinema_website"] = cinema_website;
+                showtimes_obj[showtime_keys[i]][j]["cinema_lon"] = cinema_lon;
+                showtimes_obj[showtime_keys[i]][j]["cinema_lat"] = cinema_lat;
 
                 var date = moment(showtimes_obj[showtime_keys[i]][j].start_at).format("DD/MMM/YYYY");
                 showtimes_obj[showtime_keys[i]][j]["date"] = date;

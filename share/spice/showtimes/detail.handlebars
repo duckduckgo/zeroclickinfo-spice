@@ -1,11 +1,10 @@
 <div class="detail__showtimes">
-    <h5>Showtimes for {{ title }}</h5>
+    <h4>Showtimes for {{ title }}</h4>
 
     {{#each showtimes}}
         <hr>
         <div>
-            <p id="{{cinema_id}}">{{cinema_name}}</p>
-            <p>{{is_3d}}</p>
+            <a href="{{cinema_website}}" id="{{cinema_id}}"><h5 class="movie--title">{{cinema_name}}</h5></a> - <span><a href="https://duckduckgo.com/?q=map+{{cinema_lon}}%2C+{{cinema_lat}}&atb=v1&ia=maps">Map</a></span>
             <p>{{date}} - {{time}}</p>
         </div>
     {{/each}}

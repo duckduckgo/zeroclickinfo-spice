@@ -2,6 +2,15 @@
 
 }
 
+.zci--showtimes .tile {
+    width: 140px;
+    height: 260px;
+}
+
+.zci--showtimes h5.movie--title {
+    display: inline-block;
+}
+
 .zci--showtimes img {
     height: 180px;
     width: 120px;
