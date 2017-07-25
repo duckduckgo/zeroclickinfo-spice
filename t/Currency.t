@@ -941,6 +941,8 @@ ddg_spice_test(
     
     # edge cases that we don't want to trigger
     'mop tops' => undef,
+    'gold cup' => undef,
+    'can' => undef,
 );
 
 done_testing;

@@ -49,7 +49,7 @@ my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/
 my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
 
 my $keyword_qr = qr/(?:(?<currencyKeyword>(?:((currency|value|price|worth)( (conver(sion|ter)|calculator))?)|(conver(sion|ter)\s?(calc(ulator)?)?|calc(ulator)?)|valuation|(exchange|conversion|valuation)? rates?)|(?:exchanges?)|(value|price) of) ?)/i;
-my $guard = qr/^$question_prefix\s?$keyword_qr?(?:$from_qr\s?$amount_qr|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$joins_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?\s?$keyword_qr?\??$/i;
+my $guard = qr/^$question_prefix\s?$keyword_qr?(?:$from_qr\s?$amount_qr(?:k|thousand|m(?:illion)?|b(?:illion)?)?|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$joins_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?\s?$keyword_qr?\??$/i;
 
 my $lang_qr = qr/^(xe\s)?(?:convert (?:currency|money)|(?:currency365)|(?:(?:currency|money|foreign) exchange rates?)|(?:(?:currency converter)?\s?exchange|fx) rates? (calculators?|converters?|today)|(?:(?:foreign|money) exchange)|(?:fiat\s)?(?:currency|money|xe(?:.com)?)(?:\sconver(?:ters?|sions?|t))?|currency (?:calculator|exchange)|forex|(?:exchange|fx) rates?)$/i;
 
@@ -65,6 +65,7 @@ spice proxy_cache_valid => "200 5m";
 # This function converts things like "us dollars" to the standard "usd".
 sub getCode {
     my $input = shift;
+
     foreach my $key (keys %currHash) {
         if(exists $currHash{$key}) {
             my @currValues = @{$currHash{$key}};
@@ -150,7 +151,7 @@ sub getLocalCurrency {
 handle query_lc => sub {
 
     # returns for plain language queries such as 'currency converter'
-    if(m/$lang_qr/) {
+    if(/$lang_qr/) {
         my $from = getLocalCurrency();
         my $to = 'usd';
 
@@ -163,8 +164,7 @@ handle query_lc => sub {
     
     # if the query matches one of the lang queries, we will default to
     # 100 usd to eur
-    if (m/$guard/) {
-
+    if (/$guard/) {
         my $fromSymbol = $+{fromSymbol} || '';
         my $amount = $+{amount};
         my $from = $+{from} || '';
@@ -195,9 +195,10 @@ handle query_lc => sub {
         );
 
         # for edge cases that we don't want to trigger on
-        return if $req->query_lc eq 'mop tops' 
-               or $req->query_lc eq 'mop top'
+        return if $req->query_lc =~ /mop\stops?/ 
                or $req->query_lc =~ m/tops?\s+?\d+/;
+        return if $req->query_lc =~ /gold\scups?/;
+        return if $req->query_lc =~ /^can$/;
          
         my $styler = number_style_for($amount);
         return unless $styler;
