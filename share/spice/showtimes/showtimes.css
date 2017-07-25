@@ -2,3 +2,11 @@
 
 }
 
+.zci--showtimes img {
+    height: 180px;
+    width: 120px;
+}
+
+.detail__showtimes {
+    line-height: 0;
+}

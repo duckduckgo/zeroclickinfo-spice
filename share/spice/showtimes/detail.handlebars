@@ -1,5 +1,12 @@
-<h3>Showtimes for {{ title }}</h3>
+<div class="detail__showtimes">
+    <h5>Showtimes for {{ title }}</h5>
 
-<ul>
-    <li>{{start_at}}</li>  
-</ul>
+    {{#each showtimes}}
+        <hr>
+        <div>
+            <p id="{{cinema_id}}">{{cinema_name}}</p>
+            <p>{{is_3d}}</p>
+            <p>{{date}} - {{time}}</p>
+        </div>
+    {{/each}}
+</div>
