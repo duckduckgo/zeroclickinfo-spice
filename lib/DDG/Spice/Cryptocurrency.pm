@@ -40,6 +40,7 @@ my @nonTriggeringSymbols = (
 # Top currencies from coinmarketcap.com/currencies/
 my @topCurrencies = (
     'btc',
+    'bcc',
     'ltc',
     'eth',
     'dsh',

@@ -1,4 +1,5 @@
 btc,bitcoin,bit coin,
+bcc,bitcash,bitcoin cash,
 ftc,feathercoin,feather coin,
 ltc,litecoin,lite coin,
 blk,blackcoin,black coin,

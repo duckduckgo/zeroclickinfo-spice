@@ -16,6 +16,7 @@
     // Cryptocurrencies (For Selects)
     var crypto_currencies = [
 
+        { symbol: "BCC", name: "Bitcoin Cash" },
         { symbol: "BTC", name: "Bitcoin" },
         { symbol: "LTC", name: "Litecoin" },
         { symbol: "FTC", name: "Feathercoin" },

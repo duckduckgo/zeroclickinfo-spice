@@ -75,6 +75,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
+    'bitcoin cash to bitcoin' => test_spice(
+        '/js/spice/cryptocurrency/ticker/bcc-btc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    'bitcoin cash' => test_spice(
+        '/js/spice/cryptocurrency/ticker/bcc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
 
     # location dependant tests
     DDG::Request->new(
