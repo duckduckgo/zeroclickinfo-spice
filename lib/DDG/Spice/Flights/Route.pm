@@ -36,7 +36,7 @@ foreach my $line (share('cities.csv')->slurp) {
     # map city names to their airport codes; if this city name
     # already exists, append the new airport code to the end
     if (exists $citiesByName{$cityName}) {
-        push($citiesByName{$cityName}, $airportCode);
+        push(@{$citiesByName{$cityName}}, $airportCode);
     } else {
         $citiesByName{$cityName} = [$airportCode];
     }
@@ -54,7 +54,7 @@ foreach my $line (share('cities.csv')->slurp) {
 
     if ($strippedAirportName ne $cityName) {
         if (exists $citiesByName{$strippedAirportName}) {
-            push($citiesByName{$strippedAirportName}, $airportCode);
+            push(@{$citiesByName{$strippedAirportName}}, $airportCode);
         } else {
             $citiesByName{$strippedAirportName} = [$airportCode];
         }
