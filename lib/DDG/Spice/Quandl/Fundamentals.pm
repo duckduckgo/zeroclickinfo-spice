@@ -9,7 +9,7 @@ use YAML::XS 'LoadFile';
 my $trigger_hash = LoadFile(share('fundamentals_triggers.yml'));
 
 # triggers sorted by length so more specific is used first
-my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
+my @trigger_keys = sort { length $b <=> length $a } keys(%$trigger_hash);
 my $trigger_qr = join "|", @trigger_keys;
 
 # load our list of tickers
