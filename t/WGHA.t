@@ -19,14 +19,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::WGHA',
     ),
     DDG::Request->new(
-        query_raw => "party in frankfurt",
-        location => test_location("de")
-    ) => test_spice(
-        '/js/spice/wgha/party%20in%20frankfurt%20M%C3%B6nchengladbach',
-        call_type => 'include',
-        caller => 'DDG::Spice::WGHA',
-    ),
-    DDG::Request->new(
         query_raw => "ausgehen in berlin",
         location => test_location("de")
     ) => test_spice(
@@ -46,14 +38,26 @@ ddg_spice_test(
         query_raw => "was geht",
         location => test_location("de")
     )  => undef,
-      DDG::Request->new(
+    DDG::Request->new(
         query_raw => "was geht in berlin",
         location => test_location("us")
     )  => undef,
-       DDG::Request->new(
+    DDG::Request->new(
         query_raw => "was geht in potsdam",
         location => test_location("us")
-    )  => undef
+    )  => undef,
+    DDG::Request->new(
+        query_raw => "party in frankfurt",
+        location => test_location("de")
+    )  => undef,
+    DDG::Request->new(
+        query_raw => "world party",
+        location => test_location("de")
+    )  => undef,
+    DDG::Request->new(
+        query_raw => "party disco berlin",
+        location => test_location("de")
+    )  => undef,
 );
 
 done_testing;
