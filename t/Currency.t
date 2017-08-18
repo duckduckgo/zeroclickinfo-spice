@@ -950,6 +950,11 @@ ddg_spice_test(
     'mop tops' => undef,
     'gold cup' => undef,
     'can' => undef,
+
+    # unrelated edge cases
+    'CVE-2017-12426' => undef,
+    'usd 88-321-321-33' => undef,
+    '88-99 gbp to usd' => undef,
 );
 
 done_testing;

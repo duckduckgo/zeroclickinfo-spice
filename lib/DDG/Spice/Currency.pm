@@ -199,6 +199,9 @@ handle query_lc => sub {
                or $req->query_lc =~ m/tops?\s+?\d+/;
         return if $req->query_lc =~ /gold\scups?/;
         return if $req->query_lc =~ /^can$/;
+
+        # shouldn't be a hypen between two numbers
+        return if $_ =~ /\d+-\d+/;
          
         my $styler = number_style_for($amount);
         return unless $styler;
