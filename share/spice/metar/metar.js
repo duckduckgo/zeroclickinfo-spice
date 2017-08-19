@@ -2,9 +2,9 @@
     "use strict";
     env.ddg_spice_metar = function(api_result) {
         
-        if (!api_result || api_result.Error) {
+        if (!api_result || api_result.Error || "Error" in api_result) {
             return Spice.failed('metar');
-        }    
+        }
 
         Spice.add({
             id: "metar",
