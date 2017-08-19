@@ -22,9 +22,6 @@
             },
             templates: {
                 group: 'info'
-//                 options: {
-//                     content: Spice.terms_of_service.content
-//                 }
             }
         });
     };
