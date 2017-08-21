@@ -881,6 +881,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '100 zt to gbp' => test_spice(
+        '/js/spice/currency/100/pln/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '100 eur to zt' => test_spice(
+        '/js/spice/currency/100/eur/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # single unambigious symbols that should trigger
     'usd' => test_spice(
