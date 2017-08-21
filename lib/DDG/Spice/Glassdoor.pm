@@ -13,11 +13,6 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p={{ENV{DDG_SPICE_GLASSDOOR_PARTNERID}}}&t.k={{ENV{DDG_SPICE_GLASSDOOR_APIKEY}}}&action=employers&q=$1&userip=0.0.0.0&useragent=Mozilla/%2F4.0';
 
-# Helps reduce fallbacks
-spice upstream_timeouts => +{ connect => '100ms',
-                              send => '100ms',
-                              read => '500ms' };
-
 triggers startend => "glassdoor";
 
 handle remainder => sub {

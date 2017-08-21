@@ -26,6 +26,7 @@
                  
             },
             normalize: function(item) {
+                if (!item.featuredReview) { return false; }
                 return {
                     title: item.name,
                     url: item.featuredReview.attributionURL,
