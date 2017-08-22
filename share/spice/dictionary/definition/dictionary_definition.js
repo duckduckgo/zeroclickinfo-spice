@@ -164,7 +164,7 @@ var ddg_spice_dictionary = {
         "use strict";
 
         if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
-            this.$el && this.$el.find(".zci__def__pronunciation").html(api_result[0].raw);
+            Spice.getDOM(this.id).find(".zci__def__pronunciation").html(api_result[0].raw);
         }
     },
 
@@ -187,7 +187,7 @@ var ddg_spice_dictionary = {
 
         this.playBtn = new DDG.Views.PlayButton({
             url: url,
-            after: this.$el.find('.zci__def__pronunciation')
+            after: Spice.getDOM(this.id).find('.zci__def__pronunciation')
         });
     }
 }
