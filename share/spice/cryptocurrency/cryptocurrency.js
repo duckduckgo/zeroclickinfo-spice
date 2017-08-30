@@ -97,10 +97,10 @@
                 to = Converter.fromCurrency;
                 $right_select.val(to);
                 $left_select.val(from);
-            } else {
-                Converter.toCurrency = to;
-                Converter.fromCurrency = from;
             }
+            
+            Converter.toCurrency = to;
+            Converter.fromCurrency = from;
 
             var endpoint = "/js/spice/cryptonator/" + from + "/" + to;
 

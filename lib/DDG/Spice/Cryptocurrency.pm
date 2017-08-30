@@ -84,7 +84,7 @@ my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
 
 my $crypto_triggers = qr/^(?:$crypto_qr)(?:\s$rate_qr)?$/i;
-my $guard = qr/^$question_prefix($number_re*?\s+|)($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?\s+|)($currency_qr)?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix($number_re*?\s*|)($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?\s*|)($currency_qr)?(?:s)?\??$/i;
 my $generic_triggers = qr/^(?:((?:crypto\s?(currency)?)\s?(?:calc(?:ulator)?|conver(?:sion|ter)|exchanges?)?)|(?:coin exchanges?))$/;
 
 triggers query_lc => qr/$generic_triggers/;
@@ -215,6 +215,7 @@ sub getLocalCurrency {
         }
     }
 
+    print $local_currency;
     return $local_currency;
 }
 
