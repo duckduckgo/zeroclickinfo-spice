@@ -3,7 +3,7 @@
 
     env.ddg_spice_bitcoin = function(api_result) {
 
-        if (!api_result || api_result.status !== 200) {
+        if (!api_result || api_result.code !== 200) {
             return Spice.failed('bitcoin');
         }
 
@@ -15,7 +15,15 @@
         api_result = api_result.data;
 
         var formatBtc = function(amount) {
-            return (amount / 100000000.0) + " BTC";
+            return parseFloat(amount).toFixed(8) + " BTC";
+        };
+        
+        var Btcsum = function(txs) {
+            var ret = 0;
+            for(var i in txs) {
+                ret += parseFloat(txs[i].amount);
+            }
+            return ret;
         };
 
         DDG.require('moment.js', function(){
@@ -24,7 +32,7 @@
                 name: "Answer",
                 data: api_result,
                 meta: {
-                    sourceName: "Biteasy"
+                    sourceName: "blockr"
                 },
                 templates: {
                     options:{
@@ -34,64 +42,72 @@
             };
 
             switch (query) {
-                case "addresses":
+                case "address":
                     spice.templates.group = "info";
                     spice.data = {
                         "record_data": {
-                            "Current Balance": formatBtc(api_result.balance),
-                            "Total Received": formatBtc(api_result.total_received),
-                            "Total Sent": formatBtc(api_result.total_sent),
-                            "Hash160": api_result.hash160
+                            "Balance": formatBtc(api_result.balance),
+                            "Total Received": formatBtc(api_result.totalreceived),
+                            "Transactions": api_result.nb_txs
                         }
                     };
                     spice.normalize = function(item) {
                         return {
-                            image: 'https://www.biteasy.com/blockchain/addresses/' + api_result.address + '/qrcode.jpeg',
-                            img_m: 'https://www.biteasy.com/blockchain/addresses/' + api_result.address + '/qrcode.jpeg'
+                            title: "BTC Address: " + api_result.address,
+                            image: 'https://blockr.io/api/v1/address/Qr/' + api_result.address,
+                            img_m: 'https://blockr.io/api/v1/address/Qr/' + api_result.address
                         };
                     };
-                    spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/addresses/" + api_result.address;
+                    spice.meta.sourceUrl = "https://blockr.io/address/info/" + api_result.address;
                     break;
 
-                case "transactions":
+                case "tx":
                     spice.templates.group = "list";
                     spice.data = {
                         "record_data": {
-                            "Hash": api_result.hash,
-                            "Date Time": moment(api_result.created_at).format('MMM DD YYYY, h:mm:ss a'),
-                            "Confirmations": api_result.confirmations,
-                            "Size": (api_result.size / 1024.0).toFixed(2) + " KB",
-                            "Total Input": formatBtc(api_result.inputs_value),
-                            "Total Output": formatBtc(api_result.outputs_value),
-                            "Coinbase": api_result.is_coinbase ? 'Yes' : 'No',
+                            "Hash": api_result.tx,
+                            "Block": api_result.block,
+                            "Date Time": moment(api_result.time_utc).format('MMM DD YYYY, h:mm:ss a'),
+                            "Sum of outgoing transactions": formatBtc(Btcsum(api_result.vouts)),
+                            "Traded": formatBtc(Btcsum(api_result.trade.vouts)),
                             "Fee": formatBtc(api_result.fee),
-                            "BTC Transacted": formatBtc(api_result.transacted_value)
+                            "Confirmations": api_result.confirmations,
+                            "Coinbase": (api_result.is_coinbased ===  48 ? 'No' : 'Yes')
                         }
                     };
-
-                    spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/transactions/" + api_result.hash;
+                    spice.normalize = function(item) {
+                        return {
+                            title: "BTC Transaction: " + api_result.tx
+                        };
+                    };
+                    spice.meta.sourceUrl = "https://blockr.io/tx/info/" + api_result.hash;
                     break;
 
-                case "blocks":
+                case "block":
                     spice.templates.group = "list";
-                    var genesisHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
                     spice.data = {
                         "record_data": {
-                            "Height": api_result.height.toString(),
-                            "Solved At": moment(api_result.solved_at).format('MMM DD YYYY, h:mm:ss a'),
+                            "Height": api_result.nb.toString(),
+                            "Solved At": moment(api_result.time_utc).format('MMM DD YYYY, h:mm:ss a'),
+                            "Trades sum": formatBtc(api_result.vout_sum),
                             "Hash": api_result.hash,
-                            "Previous Block": (genesisHash === api_result.hash ? 'N/A' : api_result.previous_block),
-                            "Merkle root": api_result.merkle_root,
+                            "Previous Block": api_result.prev_block_hash ? api_result.prev_block_hash : 'N/A',
+                            "Next Block": api_result.next_block_hash ? api_result.next_block_hash : 'N/A',
+                            "Merkle root": api_result.merkleroot,
                             "Version": api_result.version,
                             "Size": (api_result.size/1024.0).toFixed(2)+" KB",
-                            "Nonce": api_result.nonce,
                             "Difficulty": api_result.difficulty,
-                            "Transactions": api_result.num_transactions,
-                            "Total Fees": formatBtc(api_result.total_fees),
-                            "Block Reward": formatBtc(api_result.inflation)
+                            "Confirmations": api_result.confirmations,
+                            "Transactions": api_result.nb_txs,
+                            "Total Fees": formatBtc(api_result.fee)
                         }
                     };
-                    spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/blocks/" + api_result.hash;
+                    spice.normalize = function(item) {
+                        return {
+                            title: "BTC Block: " + api_result.nb
+                        };
+                    };
+                    spice.meta.sourceUrl = "https://blockr.io/block/info/" + api_result.nb;
                     break;
             }
             Spice.add(spice);
