@@ -215,7 +215,6 @@ sub getLocalCurrency {
         }
     }
 
-    print $local_currency;
     return $local_currency;
 }
 
