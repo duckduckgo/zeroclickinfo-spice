@@ -444,6 +444,8 @@ ddg_spice_test(
     'cad to php' => undef,
     'eur to eur' => undef,
     'cad to usd' => undef,
+    'what is 79.95 cad in us dollars' => undef,
+    'canadian dollars to us dollars' => undef,
 
     # crypto edge cases
     'ftc' => undef,
