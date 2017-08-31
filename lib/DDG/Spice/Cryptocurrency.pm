@@ -10,7 +10,7 @@ use YAML::XS qw(LoadFile);
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @cryptoTriggers;
-my @crypto_currencies = share('CryptocurrencyList.txt')->slurp;
+my @crypto_currencies = share('cryptocurrencylist.txt')->slurp;
 my @fiat_currencies = share('FiatCurrencyList.txt')->slurp;
 my @currencies = (@crypto_currencies, @fiat_currencies);
 my %currHash = ();
