@@ -1,15 +1,13 @@
-(function (env) {
+(function(env) {
     "use strict";
-    env.ddg_spice_terms_of_service = function(api_result){
-        
-        if (!api_result || api_result.error) {
+    env.ddg_spice_terms_of_service = function(api_result) {
+        if(!api_result || api_result.error) {
             return Spice.failed('terms_of_service');
         }
         var script = $('[src*="/js/spice/terms_of_service/"]')[0],
-        source = $(script).attr("src"),
-        query = source.match(/terms_of_service\/([^\/]+)/)[1],
-        decodedQuery = decodeURIComponent(query);
-        
+            source = $(script).attr("src"),
+            query = source.match(/terms_of_service\/([^\/]+)/)[1],
+            decodedQuery = decodeURIComponent(query);
         Spice.add({
             id: "terms_of_service",
             name: "Terms of Service",
@@ -20,17 +18,34 @@
             },
             normalize: function(item) {
                 var tldrresult = (item.pointsData[item.points[0]].tosdr.tldr);
-                if (item.class == false) {
+                var rating;
+                switch(item.class) {
+                    case "A":
+                        rating = "Very good";
+                        break;
+                    case "B":
+                        rating = "Good";
+                        break;
+                    case "C":
+                        rating = "Fair";
+                        break;
+                    case "D":
+                        rating = "Poor";
+                        break;
+                    case "E":
+                        rating = "Very poor";
+                        break;
+                }
+                if(item.class == false) {
                     return {
                         title: "No classification yet",
                         description: tldrresult
                     }
-                }
-                else {
-                return {
-                    title: "Class " + item.class,
-                    description: tldrresult
-                };
+                } else {
+                    return {
+                        title: "Class " + item.class + " (" + rating + ")",
+                        description: tldrresult
+                    };
                 }
             },
             templates: {
