@@ -46,7 +46,6 @@
         { symbol: "COP", name: "Colombian Peso"},
         { symbol: "CRC", name: "Costa Rican Colon"},
         { symbol: "CUC", name: "Cuban Convertible"},
-        { symbol: "CUP", name: "Cuban Peso"},
         { symbol: "CVE", name: "Cape Verdean Escudo"},
         { symbol: "CZK", name: "Czech Koruna"},
         { symbol: "DJF", name: "Djiboutian Franc"},
@@ -78,7 +77,6 @@
         { symbol: "IMP", name: "Isle of Man Pound"},
         { symbol: "INR", name: "Indian Rupee"},
         { symbol: "IQD", name: "Iraqi Dinar"},
-        { symbol: "IRR", name: "Iranian Rial"},
         { symbol: "ISK", name: "Icelandic Krona"},
         { symbol: "JEP", name: "Jersey Pound"},
         { symbol: "JMD", name: "Jamaican Dollar"},
@@ -88,7 +86,6 @@
         { symbol: "KGS", name: "Kyrgyzstani Som"},
         { symbol: "KHR", name: "Cambodian Riel"},
         { symbol: "KMF", name: "Comoran Franc"},
-        { symbol: "KPW", name: "North Korean Won"},
         { symbol: "KRW", name: "South Korean Won"},
         { symbol: "KWD", name: "Kuwaiti Dinar"},
         { symbol: "KYD", name: "Caymanian Dollar"},
@@ -137,17 +134,14 @@
         { symbol: "SAR", name: "Saudi Arabian Riyal"},
         { symbol: "SBD", name: "Solomon Islander Dollar"},
         { symbol: "SCR", name: "Seychellois Rupee"},
-        { symbol: "SDG", name: "Sudanese Pound"},
         { symbol: "SEK", name: "Swedish Krona"},
         { symbol: "SGD", name: "Singapore Dollar"},
         { symbol: "SHP", name: "Saint Helenian Pound"},
         { symbol: "SLL", name: "Leonean Leone"},
         { symbol: "SOS", name: "Somali Shilling"},
-        { symbol: "SPL", name: "Seborgan Luigino"},
         { symbol: "SRD", name: "Surinamese Dollar"},
         { symbol: "STD", name: "Sao Tomean Dobra"},
         { symbol: "SVC", name: "Salvadoran Colon"},
-        { symbol: "SYP", name: "Syrian Pound"},
         { symbol: "SZL", name: "Swazi Lilangeni"},
         { symbol: "THB", name: "Thai Baht"},
         { symbol: "TJS", name: "Tajikistani Somoni"},
@@ -156,7 +150,6 @@
         { symbol: "TOP", name: "Tongan Pa'anga"},
         { symbol: "TRY", name: "Turkish Lira"},
         { symbol: "TTD", name: "Trinidadian Dollar"},
-        { symbol: "TVD", name: "Tuvaluan Dollar"},
         { symbol: "TWD", name: "Taiwan New Dollar"},
         { symbol: "TZS", name: "Tanzanian Shilling"},
         { symbol: "UAH", name: "Ukrainian Hryvnia"},
@@ -164,7 +157,6 @@
         { symbol: "USD", name: "US Dollar"},
         { symbol: "UYU", name: "Uruguayan Peso"},
         { symbol: "UZS", name: "Uzbekistani Som"},
-        { symbol: "VEB", name: "Venezuelan Bolivar"},
         { symbol: "VEF", name: "Venezuelan Bolivar"},
         { symbol: "VND", name: "Vietnamese Dong"},
         { symbol: "VUV", name: "Ni-Vanuatu Vatu"},
@@ -176,7 +168,6 @@
         { symbol: "YER", name: "Yemeni Rial"},
         { symbol: "ZAR", name: "South African Rand"},
         { symbol: "ZMW", name: "Zambian Kwacha"},
-        { symbol: "ZWD", name: "Zimbabwean Dollar"},
     ]
 
     //
@@ -332,9 +323,14 @@
                 };
             },
             templates: {
-                detail: Spice.currency.detail,
+                group: "base",
                 options: {
-                    moreAt: true
+                    content: Spice.currency.detail,
+                    moreAt: true,
+                    moreText: {
+                        href: "https://www.coinbase.com",
+                        text: "Based on current market rates"
+                    },
                 },
             },
             onShow: function() {

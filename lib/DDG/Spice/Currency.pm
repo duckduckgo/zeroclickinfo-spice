@@ -62,6 +62,12 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 spice proxy_cache_valid => "200 5m";
 
+spice alt_to => {
+    coinbase => {
+        to => 'https://api.coinbase.com/v2/exchange-rates?currency=$2'
+    }
+};
+
 # This function converts things like "us dollars" to the standard "usd".
 sub getCode {
     my $input = shift;
