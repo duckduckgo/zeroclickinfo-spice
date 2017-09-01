@@ -361,10 +361,78 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
-
-    # should trigger on anything bitcoin specific
-    'btc' => undef,
-    'bitcoin' => undef,
+    DDG::Request->new(
+        query_raw => "btc",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-eur/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "btc",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "btc to eth",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-eth/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "btc to eth",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-eth/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "btc to usd",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "pounds to btc",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/gbp-btc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "6 btc",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-usd/6',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "10 XBT to EUR",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-eur/10',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
 
     # Malformed queries
     'ltc to ltc' => undef,
@@ -394,11 +462,8 @@ ddg_spice_test(
 
     # Handled by the Currency Spice.
     'usd to cad' => undef,
-    'btc' => undef,
-    '500 btc in usd' => undef,
     'canada dollar' => undef,
     '400 euro' => undef,
-    '499 us dollar to btc' => undef,
     '25 php to gbp' => undef,
     'convert 1021 gbp to cny'  => undef,
     '1 usd' => undef,
