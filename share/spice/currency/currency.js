@@ -34,7 +34,6 @@
         { symbol: "BOB", name: "Bolivian Bolíviano"},
         { symbol: "BRL", name: "Brazilian Real"},
         { symbol: "BSD", name: "Bahamian Dollar"},
-        { symbol: "BTC", name: "Bitcoin"},
         { symbol: "BTN", name: "Bhutanese Ngultrum"},
         { symbol: "BWP", name: "Botswana Pula"},
         { symbol: "BYR", name: "Belarusian Ruble"},
@@ -201,11 +200,6 @@
         // appropriate significate figures. For example HUF -> EUR = 0.0032. However,
         // once the conversion to is high enough (1) we will fall back to 2 sig figs.
         getSignificantFigures: function(rate, value, curr) {
-
-            // if Bitcoin, keep it at 8
-            if(curr === "BTC") {
-                return 8;
-            }
 
             // else we'll set the decimals based on heuristics
             if(rate <= 0.001 && value < 1) {
