@@ -11,7 +11,7 @@ If this is a bug fix:
 {IA Name}: {Description of change}
 
 If this is a New Instant Answer:
-New {IA Name} Goodie
+New {IA Name} Spice
 
 If this is something else:
 {Tests/Docs/Other}: {Short Description}
