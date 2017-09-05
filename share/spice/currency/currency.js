@@ -1,6 +1,12 @@
 (function(env) {
     "use strict";
 
+    /////////////////////////////////////////////////////////////
+    //
+    // COINBASE CURRENCY CONVERTER
+    //
+    /////////////////////////////////////////////////////////////
+
     var initialized = false;
 
     // We hardcode the currency symbols here for 2 reasons rather than read it in
@@ -40,7 +46,6 @@
         { symbol: "COP", name: "Colombian Peso"},
         { symbol: "CRC", name: "Costa Rican Colon"},
         { symbol: "CUC", name: "Cuban Convertible"},
-        { symbol: "CUP", name: "Cuban Peso"},
         { symbol: "CVE", name: "Cape Verdean Escudo"},
         { symbol: "CZK", name: "Czech Koruna"},
         { symbol: "DJF", name: "Djiboutian Franc"},
@@ -72,7 +77,6 @@
         { symbol: "IMP", name: "Isle of Man Pound"},
         { symbol: "INR", name: "Indian Rupee"},
         { symbol: "IQD", name: "Iraqi Dinar"},
-        { symbol: "IRR", name: "Iranian Rial"},
         { symbol: "ISK", name: "Icelandic Krona"},
         { symbol: "JEP", name: "Jersey Pound"},
         { symbol: "JMD", name: "Jamaican Dollar"},
@@ -82,7 +86,6 @@
         { symbol: "KGS", name: "Kyrgyzstani Som"},
         { symbol: "KHR", name: "Cambodian Riel"},
         { symbol: "KMF", name: "Comoran Franc"},
-        { symbol: "KPW", name: "North Korean Won"},
         { symbol: "KRW", name: "South Korean Won"},
         { symbol: "KWD", name: "Kuwaiti Dinar"},
         { symbol: "KYD", name: "Caymanian Dollar"},
@@ -131,17 +134,14 @@
         { symbol: "SAR", name: "Saudi Arabian Riyal"},
         { symbol: "SBD", name: "Solomon Islander Dollar"},
         { symbol: "SCR", name: "Seychellois Rupee"},
-        { symbol: "SDG", name: "Sudanese Pound"},
         { symbol: "SEK", name: "Swedish Krona"},
         { symbol: "SGD", name: "Singapore Dollar"},
         { symbol: "SHP", name: "Saint Helenian Pound"},
         { symbol: "SLL", name: "Leonean Leone"},
         { symbol: "SOS", name: "Somali Shilling"},
-        { symbol: "SPL", name: "Seborgan Luigino"},
         { symbol: "SRD", name: "Surinamese Dollar"},
         { symbol: "STD", name: "Sao Tomean Dobra"},
         { symbol: "SVC", name: "Salvadoran Colon"},
-        { symbol: "SYP", name: "Syrian Pound"},
         { symbol: "SZL", name: "Swazi Lilangeni"},
         { symbol: "THB", name: "Thai Baht"},
         { symbol: "TJS", name: "Tajikistani Somoni"},
@@ -150,7 +150,6 @@
         { symbol: "TOP", name: "Tongan Pa'anga"},
         { symbol: "TRY", name: "Turkish Lira"},
         { symbol: "TTD", name: "Trinidadian Dollar"},
-        { symbol: "TVD", name: "Tuvaluan Dollar"},
         { symbol: "TWD", name: "Taiwan New Dollar"},
         { symbol: "TZS", name: "Tanzanian Shilling"},
         { symbol: "UAH", name: "Ukrainian Hryvnia"},
@@ -158,12 +157,10 @@
         { symbol: "USD", name: "US Dollar"},
         { symbol: "UYU", name: "Uruguayan Peso"},
         { symbol: "UZS", name: "Uzbekistani Som"},
-        { symbol: "VEB", name: "Venezuelan Bolivar"},
         { symbol: "VEF", name: "Venezuelan Bolivar"},
         { symbol: "VND", name: "Vietnamese Dong"},
         { symbol: "VUV", name: "Ni-Vanuatu Vatu"},
         { symbol: "WST", name: "Samoan Tala"},
-        { symbol: "XBT", name: "Bitcoin"},
         { symbol: "XAG", name: "Silver Ounce"},
         { symbol: "XAU", name: "Gold Ounce"},
         { symbol: "XPD", name: "Palladium Ounce"},
@@ -171,7 +168,6 @@
         { symbol: "YER", name: "Yemeni Rial"},
         { symbol: "ZAR", name: "South African Rand"},
         { symbol: "ZMW", name: "Zambian Kwacha"},
-        { symbol: "ZWD", name: "Zimbabwean Dollar"},
     ]
 
     //
@@ -181,9 +177,7 @@
         $currency_input_right,
         $left_select,
         $right_select,
-        $selects,
-        $more_at_link_normal,
-        $more_at_link_charts;
+        $selects;
     
     // Currency Converter
     var Converter = {
@@ -193,43 +187,10 @@
         rate: undefined,
         inverseRate: undefined,
 
-        //
-        // Retrieves conversion info from JSONP payload
-        //
-
-        getConversionRate: function(payload) {
-            return +$(payload["conversion-rate"].split(" ")).get(-2);
-        },
-
-        getInverseConversionRate: function(payload) {
-            return +$(payload["conversion-inverse"].split(" ")).get(-2);
-        },
-
-        getFromCurrencyName: function(payload) {
-            return payload["from-currency-symbol"];
-        },
-
-        getToCurrencyName: function(payload) {
-            return payload["to-currency-symbol"];
-        },
-
-        getConversionLabel: function(payload) {
-            return payload["conversion-rate"];
-        },
-
-        getInverseConversionLabel: function(payload) {
-            return payload["conversion-inverse"]
-        },
-
         // If there is really small exchange rates, then we need to display the
         // appropriate significate figures. For example HUF -> EUR = 0.0032. However,
         // once the conversion to is high enough (1) we will fall back to 2 sig figs.
         getSignificantFigures: function(rate, value, curr) {
-
-            // if Bitcoin, keep it at 8
-            if(curr === "XBT") {
-                return 8;
-            }
 
             // else we'll set the decimals based on heuristics
             if(rate <= 0.001 && value < 1) {
@@ -286,14 +247,23 @@
                 $left_select.val(from);
             }
 
-            var endpoint = "/js/spice/currency/1/" + from + "/" + to;
-            $.get(endpoint, function(payload) {
-
-                // jsonp is returned from the API so we have to alter the contents
+            // gets the conversion rate
+            $.ajax({
+                url: "/js/spice/currency/1/" + from + "/" + to,
+                beforeSend: function( xhr ) {
+                    xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+                },
+                error: function(request, status, error) {
+                    Spice.failed('currency');
+                }
+            }).done(function(payload) {
                 var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
-                response = response.conversion;
-                Converter.resetConverter(response);
 
+                Converter.to_currency = to;
+                Converter.rate = response.data.rates[to];
+                Converter.from_currency = from;
+                Converter.inverseRate = 1/response.data.rates[to];
+                Converter.calculateRate();
             });
         },
 
@@ -313,114 +283,66 @@
             Converter.calculateRate();
             Converter.setMoreAtLinks();
         },
-
-        //
-        // Sets Link / Information Labels
-        //
-
-        setMoreAtLinks: function() {
-            // the url strings
-            var more_at_url = "http://www.xe.com/currencyconverter/convert/?Amount=1&From=" + Converter.from_currency + "&To=" + Converter.to_currency;
-            var chart_url = "http://www.xe.com/currencycharts/?from=" + Converter.from_currency + "&to=" + Converter.to_currency;
-            $more_at_link_normal.attr("href", more_at_url);
-            $more_at_link_charts.attr("href", chart_url);
-        },
-
     } // Converter
 
     env.ddg_spice_currency = function(api_result) {
 
         // Check if there are any errors in the response.
-        if(!api_result || !api_result.conversion || !api_result.topConversions || 
-           !api_result.conversion || Object.keys(api_result.conversion).length === 0 || 
-           !api_result.topConversions.length || api_result.topConversions.length === 0) {
+        if(!api_result || !api_result.data || !api_result.data.rates) {
             return Spice.failed('currency');
         }
 
-        var results = [];
-        var mainConv = api_result.conversion;
-        var topCovs = api_result.topConversions;
-        var templates = {};
+        // Construct the original api call
+        var script = $('[src*="/js/spice/currency/"]')[0],
+        source = $(script).attr("src"),
+        query = source.match(/currency\/([^\/]+)/)[1];
 
-        // caches the retrieved information in the UI
-        Converter.rate = Converter.getConversionRate(mainConv)
-        Converter.inverseRate = Converter.getInverseConversionRate(mainConv);
+        // we'll build out what we need
+        var split_query = source.split("/");
+        var amount = split_query[split_query.length-3];
+        Converter.from_currency = split_query[split_query.length-2].toUpperCase();       
+        Converter.to_currency = split_query[split_query.length-1].toUpperCase();
         
-        if(mainConv["from-currency-symbol"] !== mainConv["to-currency-symbol"]) {
-            // Flag the input to get different output
-            // if is pair get paris tile layout
-            results = [mainConv];
-        } else {
-            // Mark which item is the first one.
-            // Since HandlebarsJS (with the way we use them) is unaware of the current index.
-            mainConv.initial = true;
-            results.push(mainConv);
-            
-            for(var i = 0; i < topCovs.length; i++) {
-                results.push(topCovs[i]);
-            }
-        }
-        
-        // Format the time and date.
-        var timestr = mainConv["rate-utc-timestamp"].split(/\s+/);
-        var xeDate = timestr[0];
-        var xeTime = timestr[1].match(/\d{2}\:\d{2}\b/);
-        var liveUrl = 'http://www.xe.com/currencyconverter/convert/?Amount=1&From=' + mainConv["from-currency-symbol"] + '&To=' + mainConv["to-currency-symbol"];
+        Converter.rate = api_result.data.rates[Converter.to_currency];
+        Converter.inverseRate = 1/api_result.data.rates[Converter.to_currency];
+        var toAmount = amount * Converter.rate;
 
-        var templateObj = {
-            detail: Spice.currency.detail,
-            item_detail: false
-        };
-        
-        // Set favicon
-        var icon = ((DDG.is3x || DDG.is2x) ? DDG.get_asset_path('currency',"assets/xe.png") : "http://www.xe.com/favicon.ico");
-        
         Spice.add({
             id: 'currency',
             name: 'Currency',
-            data: results,
+            data: api_result,
             signal: 'high',
             meta: {
-                sourceUrl: "http://www.xe.com",
-                sourceName: "xe.com",
-                itemType: "Conversions"
+                sourceUrl: "https://www.coinbase.com/",
+                sourceName: "Coinbase"
             },
             normalize: function(item) {
-                // Return null if the results aren't numbers.
-                if(!DDG.isNumber(+item["from-amount"]) || !DDG.isNumber(+item["converted-amount"])) {
-                    return null;
-                }
-
-                Converter.from_currency = item["from-currency-symbol"];
-                Converter.to_currency = item["to-currency-symbol"];
-                
                 return {
-                    fromCurrencySymbol: item["from-currency-symbol"],
-                    toCurrencySymbol: item["to-currency-symbol"],
-                    amount: +item["from-amount"],
-                    convertedAmount: +item["converted-amount"],
-                    rate: item["conversion-rate"],
-                    inverseRate: item["conversion-inverse"],
-                    xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
-                    currencyName: item["to-currency-name"],
-                    liveUrl: liveUrl,
-                    xeTime: xeTime,
-                    xeDate: xeDate,
-                    moreAtIcon: icon
+                    amount: amount,
+                    toamount: toAmount,
                 };
             },
-            templates: templateObj,
+            templates: {
+                group: "base",
+                options: {
+                    content: Spice.currency.detail,
+                    moreAt: true,
+                    moreText: {
+                        href: "https://www.coinbase.com",
+                        text: "Based on current market rates"
+                    },
+                },
+            },
             onShow: function() {
 
                 if(!initialized) {
+
                     var $currency = $("#zci-currency");
                     $currency_input_left = $currency.find("#zci--currency-amount-left");
                     $currency_input_right = $currency.find("#zci--currency-amount-right");
                     $left_select = $currency.find("#zci--currency-symbol-left");
                     $right_select = $currency.find("#zci--currency-symbol-right");
                     $selects = $currency.find("select.zci--currency-symbol");
-                    $more_at_link_normal = $currency.find(".zci__more-at");
-                    $more_at_link_charts = $currency.find(".zci__more-at--info");
 
                     // apends all the currency names to the selects
                     for( var i = 0 ; i < currencies.length ; i ++ ) {

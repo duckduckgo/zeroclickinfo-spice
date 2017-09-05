@@ -1,37 +1,19 @@
-<div class="zci__main  zci__main--detail c-base">
-    <div class="zci__body">
-
-        <!-- DATE LABEL -->
-        <div class="text--secondary" id="subtitle">Mid-Market Rates: {{xeDate}} at {{xeTime}} UTC</div>
-
-        <!-- LEFT INPUT SECTION -->
-        <div class="frm clearfix">
-            <div class="input__wrap input__wrap--left shadow">
-                <input class="frm__input frm__input--left" id="zci--currency-amount-left" data-original="{{from-amount}}" data-processed="{{amount}}" value="{{amount}}" type="number">
-                <div class="frm__select">
-                    <select class="frm__select--left zci--currency-symbol" id="zci--currency-symbol-left"></select>
-                </div>
-            </div>
-
-            <div class="equals-sign tx-clr--slate">=</div>
-
-            <!-- RIGHT INPUT SECTION -->
-            <div class="input__wrap input__wrap--right shadow">
-                <input class="frm__input frm__input--right" id="zci--currency-amount-right" type="number">
-                <div class="frm__select">
-                    <select class="frm__select--right zci--currency-symbol" id="zci--currency-symbol-right"></select>
-                </div>
-            </div>
+<!-- LEFT INPUT SECTION -->
+<div class="frm clearfix">
+    <div class="input__wrap input__wrap--left shadow">
+        <input class="frm__input frm__input--left" id="zci--currency-amount-left" data-processed="{{amount}}" value="{{amount}}" type="number">
+        <div class="frm__select">
+            <select class="frm__select--left zci--currency-symbol" id="zci--currency-symbol-left"></select>
         </div>
+    </div>
 
-        <!-- MORE AT LABELS -->
-        <div id="zci__more-at">
-            <a href="http://www.xe.com/currencyconverter/convert/?Amount={{from-amount}}&From={{fromCurrencySymbol}}&To={{toCurrencySymbol}}" class="zci__more-at"><img class="zci__more-at__icon" src="{{ imageProxy moreAtIcon }}">More at xe.com</a>
-            <a href="https://www.xe.com/currencycharts/?from={{fromCurrencySymbol}}&to={{toCurrencySymbol}}" class="zci__more-at--info">
-                <span class="zcm__sep"></span>
-                View Chart
-            </a>
+    <div class="equals-sign tx-clr--slate">=</div>
+
+    <!-- RIGHT INPUT SECTION -->
+    <div class="input__wrap input__wrap--right shadow">
+        <input class="frm__input frm__input--right" id="zci--currency-amount-right" data-processed="{{toamount}}" value="{{toamount}}" type="number">
+        <div class="frm__select">
+            <select class="frm__select--right zci--currency-symbol" id="zci--currency-symbol-right"></select>
         </div>
-
     </div>
 </div>
