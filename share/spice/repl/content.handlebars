@@ -1,0 +1,31 @@
+<div class="gw">
+    <div class="g half">
+        <div class="frm frm--vrt">
+
+            <label class="frm__label">Code</label>
+            <div id="repl__editor"></div>
+
+            <div class="frm__field">
+                <label class="frm__label">Programming Language</label>
+                <div class="frm__select">
+                    <select id="repl__language">
+                        {{#each langs}}
+                        <option value="{{val}}" {{is_selected val ../selected}}>{{text}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div id="repl__samples__container" class="frm__select hide">
+                    <select id="repl__samples"></select>
+                </div>
+                <button id="repl__submit" type="button" class="btn btn--primary pull-right">Execute Code</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="g half">
+        <div class="frm frm--vrt">
+            <label class="frm__label">Result</label>
+            <textarea id="repl__result" class="frm__text repl__code tx--15" name="repl__result" rows="8" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
