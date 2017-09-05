@@ -20,9 +20,7 @@ my $currDisplayName = '';
 my $currencyPerCountry = LoadFile share("currencyPerCountry.yml");
 
 # Used when a single currency is given in the query.
-# These currencies should be handled by DDG::Spice::Currency or DDG::Spice::Bitcoin.
 my @excludedCurrencies = (
-    'btc',
     'eur',
     'gbp',
     'jpy',
