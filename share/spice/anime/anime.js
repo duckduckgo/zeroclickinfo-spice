@@ -18,8 +18,7 @@
             data: api_result.data,
             meta: {
                 sourceName: 'Kitsu',
-                sourceUrl: "https://kitsu.io/anime?text=" + query,
-                sourceIconUrl: DDG.get_asset_path('anime','kitsu.png')
+                sourceUrl: "https://kitsu.io/anime?text=" + query
             },
             relevancy: {
                 skip_words: ['anime', 'kitsu'],
