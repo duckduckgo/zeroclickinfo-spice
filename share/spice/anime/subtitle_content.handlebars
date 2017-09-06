@@ -1,8 +1,10 @@
 <span class="anime--runtime">
-{{#if episode_count}}
-    <span>Episode: {{episode_count}}</span>
+{{#if attributes.episodeCount}}
+    <span>Episodes: {{attributes.episodeCount}}</span>
     <span class="detail__separator"> | </span>
 {{/if}}
-    <span>Duration: {{episode_length}} minutes</span>
+{{#if attributes.episodeLength}}
+    <span>Duration: {{attributes.episodeLength}} minutes</span>
+{{/if}}
 </span>
 
