@@ -1,0 +1,82 @@
+.zci--cricket .card {
+    background: #FFFFFF;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.zci--cricket-content .mtype {
+    position: relative;
+    width: 60px;
+    left: 0px;
+    border-top: 1px solid #F7F7F7;
+    border-right: 1px solid #F7F7F7;
+    height: 123px;
+    line-height: 123px;
+    text-align: center;
+    float: left;
+}
+
+.zci--cricket .teams-wrapper {
+    overflow: hidden;
+}
+
+.zci--cricket-team {
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+    border-top: 1px solid #F7F7F7;
+    border-right: 1px solid #F7F7F7;
+    display: table;
+    width: 100%;
+}
+
+.zci--cricket-team .match-details {
+    display: table-cell;
+    width: 150px;
+    border-left: 1px solid #F7F7F7;
+}
+
+.zci--cricket-team .score {
+    width: 57%;
+    margin: 0 auto;
+    font: normal normal normal 14px/1 FontAwesome;
+    text-align: center;
+}
+
+.zci--cricket-team .score.winner:after {
+    content: "\f091";
+}
+
+.zci--cricket-team .winner {
+    font-weight: bold;
+}
+
+.zci--cricket-score-head {
+    padding: 20px 20px 40px 20px;
+}
+
+.zci--cricket-team-logo {
+    vertical-align: middle;
+    max-height: 40px;
+    width: 40px;
+}
+
+.zci--cricket .team-name-wrapper {
+    display: table-cell;
+    min-width: 200px;
+}
+
+.zci--cricket .team-name {
+    display: inline-block;
+}
+
+.zci--cricket .status {
+    position: absolute;
+    right: 0;
+}
+
+.zci--cricket .logo-wrapper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

@@ -1,0 +1,24 @@
+<div class="card" id="{{matchid}}">
+    {{{include 'DDH.cricket.score_head'}}}
+    <div class="zci--cricket-content tx-clr--grey-dark {{matchid}}">
+        <div class="pull-left mtype">{{mtype}}</div>
+        <div class="teams-wrapper">
+            {{#each teams}}
+                <div class="zci--cricket-team">
+                    {{{include 'DDH.cricket.team_name'}}}
+                    {{#if ../hasEnded}}
+                        {{{include 'DDH.cricket.match_details'}}}
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="c-score__foot">
+        <div class="c-score__foot__main">
+            <div class="">@ {{venue}}
+                <span class="c-score__venue__name"> - {{startTime}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<span class="status live-status-{{matchid}} c-score__foot-icon"></span>
