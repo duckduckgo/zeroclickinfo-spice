@@ -37,30 +37,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Twitter',
     ),
     
-    'nibnalin\'s account on twitter' => test_spice(
-        '/js/spice/twitter/nibnalin',
-        call_type => 'include',
-        caller => 'DDG::Spice::Twitter',
-    ),
-    
     '@nibnalin\'s twitter id' => test_spice(
         '/js/spice/twitter/nibnalin',
         call_type => 'include',
         caller => 'DDG::Spice::Twitter',
     ),
     
-    'duckduckgo id at twitter' => test_spice(
-        '/js/spice/twitter/duckduckgo',
-        call_type => 'include',
-        caller => 'DDG::Spice::Twitter',
-    ),
-    
-    'duckduckgo twitter account' => test_spice(
-        '/js/spice/twitter/duckduckgo',
-        call_type => 'include',
-        caller => 'DDG::Spice::Twitter',
-    ),
-
     'what is twitter' => undef,
     'twitter analytics' => undef,
     'twitter company' => undef,
