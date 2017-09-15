@@ -101,12 +101,7 @@
             }
 
             var temp_str = '<span class="fe_temp_str">' + Math.round(f.currently.temperature) + '&deg;</span>'
-            /*
-            if(temp_direction > 0)
-              temp_str += ' <span class="fe_dir">and rising</span>'
-            else if(temp_direction < 0)
-              temp_str += ' <span class="fe_dir">and falling</span>'
-            */
+            
             if (f.currently.apparentTemperature) {
                 feel_str = 'Feels like ' + Math.round(f.currently.apparentTemperature) + '&deg;'
             }
@@ -264,7 +259,6 @@
                     sourceName: 'Dark Sky',
                     primaryText: weatherData.header,
                     secondaryText: altMeta,
-
                     itemsWidthVaries: true
                 },
 
@@ -377,8 +371,12 @@
                     // unit of measurement. If the metric setting is enabled or the user's
                     // region is not USA and the API returned temps in F, switch to 'C':
                     var uom_in_query = DDG.get_query().match(/\b(celsius|fahrenheit)\b/);
+                    var response_timezone = api_result.timezone;
                     if (uom_in_query) {
                         uom = (uom_in_query[1] === 'celsius') ? 'C' : 'F';
+                        updateUnitOfMeasure();
+                    } else if(!response_timezone.match(/America/i)) {
+                        uom = 'C';
                         updateUnitOfMeasure();
                     } else if (!DDG.settings.isDefault('kaj')) {
                         uom = DDG.settings.get('kaj') === 'm' ? 'C' : 'F';
