@@ -5,7 +5,6 @@ use strict;
 use DDG::Spice;
 
 spice to => 'https://duckduckgo.com/tw.js?user=$1&callback={{callback}}&current=1';
-spice proxy_cache_valid => '200 1h';
 
 my $grammar = qr/on|at/;
 my $other = qr/user|account|id/;
