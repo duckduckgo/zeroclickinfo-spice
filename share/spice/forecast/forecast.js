@@ -1,5 +1,38 @@
 (function(env) {
     "use strict";
+
+    var usTZ = {
+        "America/New_York" : 1,
+        "America/Detroit" : 1,
+        "America/Kentucky/Louisville" : 1,
+        "America/Kentucky/Monticello" : 1,
+        "America/Indiana/Indianapolis" : 1,
+        "America/Indiana/Vincennes" : 1,
+        "America/Indiana/Winamac" : 1,
+        "America/Indiana/Marengo" : 1,
+        "America/Indiana/Petersburg" : 1,
+        "America/Indiana/Vevay" : 1,
+        "America/Chicago" : 1,
+        "America/Indiana/Tell_City" : 1,
+        "America/Indiana/Knox" : 1,
+        "America/Menominee" : 1,
+        "America/North_Dakota/Center" : 1,
+        "America/North_Dakota/New_Salem" : 1,
+        "America/North_Dakota/Beulah" : 1,
+        "America/Denver" : 1,
+        "America/Boise" : 1,
+        "America/Phoenix" : 1,
+        "America/Los_Angeles" : 1,
+        "America/Anchorage" : 1,
+        "America/Juneau" : 1,
+        "America/Sitka" : 1,
+        "America/Yakutat" : 1,
+        "America/Nome" : 1,
+        "America/Adak" : 1,
+        "America/Metlakatla" : 1,
+        "Pacific/Honolulu" : 1
+    };
+
     env.ddg_spice_forecast = function(api_result) {
 
         // Exit if we've got a bad forecast
@@ -101,7 +134,7 @@
             }
 
             var temp_str = '<span class="fe_temp_str">' + Math.round(f.currently.temperature) + '&deg;</span>'
-            
+
             if (f.currently.apparentTemperature) {
                 feel_str = 'Feels like ' + Math.round(f.currently.apparentTemperature) + '&deg;'
             }
@@ -375,7 +408,7 @@
                     if (uom_in_query) {
                         uom = (uom_in_query[1] === 'celsius') ? 'C' : 'F';
                         updateUnitOfMeasure();
-                    } else if(!response_timezone.match(/America/i)) {
+                    } else if(!usTZ[response_timezone])) {
                         uom = 'C';
                         updateUnitOfMeasure();
                     } else if (!DDG.settings.isDefault('kaj')) {
