@@ -353,6 +353,15 @@ ddg_spice_test(
         is_cached => 0
     ),
     DDG::Request->new(
+        query_raw => "eth",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
         query_raw => "1ltc",
         location => test_location("us")
     ) => test_spice(
@@ -366,10 +375,6 @@ ddg_spice_test(
         location => test_location("us")
     ) => test_spice(
         '/js/spice/cryptocurrency/ticker/btc-eth/1',
-        query_raw => "eth",
-        location => test_location("us")
-    ) => test_spice(
-        '/js/spice/cryptocurrency/ticker/eth-usd/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
