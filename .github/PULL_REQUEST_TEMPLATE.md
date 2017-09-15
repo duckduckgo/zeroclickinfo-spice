@@ -1,4 +1,11 @@
-<!-- Use the appropriate format for your Pull Request title above ^^^^^:
+<!-- 
+
+***
+DuckDuckHack is currently in Maintenance mode
+Please read before submitting: https://duckduckhack.com
+***
+
+Use the appropriate format for your Pull Request title above ^^^^^:
 
 If this is a bug fix:
 {IA Name}: {Description of change}
@@ -11,7 +18,6 @@ If this is something else:
 
 -->
 
-
 ## Description of new Instant Answer, or changes
 <!-- What does this new Instant Answer do? What changes does this PR introduce? -->
 
@@ -23,6 +29,7 @@ If this is something else:
 
 ## People to notify
 <!-- Please @mention any relevant people/organizations here: -->
+
 
 <!-- DO NOT REMOVE -->
 ---

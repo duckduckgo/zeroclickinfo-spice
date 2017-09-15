@@ -366,6 +366,10 @@ ddg_spice_test(
         location => test_location("us")
     ) => test_spice(
         '/js/spice/cryptocurrency/ticker/btc-eth/1',
+        query_raw => "eth",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-usd/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
@@ -453,6 +457,8 @@ ddg_spice_test(
     'cad to php' => undef,
     'eur to eur' => undef,
     'cad to usd' => undef,
+    'what is 79.95 cad in us dollars' => undef,
+    'canadian dollars to us dollars' => undef,
 
     # crypto edge cases
     'ftc' => undef,

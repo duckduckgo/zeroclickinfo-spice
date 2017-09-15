@@ -183,6 +183,7 @@
             Spice.add({
                 id: "cryptocurrency",
                 name: "Cryptocurrency",
+                signal: "high",
                 data: api_result,
                 meta: {
                     sourceUrl: 'https://www.cryptonator.com',

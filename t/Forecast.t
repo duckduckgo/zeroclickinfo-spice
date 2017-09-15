@@ -63,20 +63,6 @@ ddg_spice_test(
     'temperature conversion chart' => undef,
     'temperature pork done'        => undef,
     'temperature iron melts'       => undef,
-
-# Disabling since I made the trigger a startend. (caine)
-#    'Philadelphia weather this week' => test_spice(
-#        '/js/spice/forecast/philadelphia',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::Forecast',
-#        is_cached => 1
-#    ),
-#    'what is the weather in new york' => test_spice(
-#        '/js/spice/forecast/new%20york',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::Forecast',
-#        is_cached => 1
-#    ),
 );
 
 done_testing;

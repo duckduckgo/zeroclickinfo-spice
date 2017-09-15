@@ -10,7 +10,9 @@ use YAML::XS qw(LoadFile);
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @cryptoTriggers;
-my @currencies = share('cryptocurrencylist.txt')->slurp;
+my @crypto_currencies = share('cryptocurrencylist.txt')->slurp;
+my @fiat_currencies = share('FiatCurrencyList.txt')->slurp;
+my @currencies = (@crypto_currencies, @fiat_currencies);
 my %currHash = ();
 my $currDisplayName = '';
 
@@ -105,24 +107,6 @@ spice alt_to => {
     }
 };
 
-# This function converts things like "us dollars" to the standard "usd".
-sub getCode {
-    my $input = shift;
-    foreach my $key (keys %currHash) {
-        if(exists $currHash{$key}) {
-            my @currValues = @{$currHash{$key}};
-            foreach my $value (@currValues) {
-                if($input eq $value) {
-                    # Set the display name of the currency
-                    $currDisplayName = $currValues[1];
-                    return $key;
-                }
-            }
-        }
-    }
-}
-
-
 # This function is responsible for processing the input.
 sub checkCurrencyCode {
     my($amount, $from, $to, $generic) = @_;
@@ -139,12 +123,12 @@ sub checkCurrencyCode {
     my $normalized_number = $styler->for_computation($amount);
 
     # Handles queries of the form '1 <cryptocurrency>'
-    # Avoids triggering on common queries like '1 gig' or '1 electron'
     # If the cryptocurrency is not in the top currencies list, the query does not include a 'to' currency,
     # and the query doesn't include 'coin' then don't trigger
     if ($normalized_number == 1 && $to eq '' && exists($availableLocalCurrencies{getCode($from)}) ) {
         return;
     }
+    
     # There are cases where people type in "2016 bitcoin", so we don't want to trigger on those queries.
     # The first cryptocoins appeared in 2008, so dates before that could be valid amounts.
     if($normalized_number >= 2008 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
@@ -200,7 +184,23 @@ sub checkCurrencyCode {
     return $endpoint, $query, $query2;
 }
 
-# get the local currency where the user is
+# Reduces triggers to their respective symbol. "us dollars" --> "usd".
+sub getCode {
+    my $input = shift;
+
+    foreach my $key (keys %currHash) {
+        if(exists $currHash{$key}) {
+            my @currValues = @{$currHash{$key}};
+            foreach my $value (@currValues) {
+                if($input eq $value) {
+                    return $key;
+                }
+            }
+        }
+    }
+}
+
+# retrieve the users local currency (if possible ~ default to USD)
 sub getLocalCurrency {
     my $local_currency = '';
 
@@ -231,6 +231,8 @@ handle query_lc => sub {
     # ie. 'ltc', 'feather coin calculator', 'eth to usd'
     if (/$guard/) {
         my ($amount, $from, $alt_amount, $to) = ($1, $2, $3, $4 || '');
+        my $from_code = getCode($from);
+        my $to_code = getCode($to);
 
         # Exit early if two amounts are given
         if(length($amount) && length($alt_amount)) {
@@ -238,7 +240,7 @@ handle query_lc => sub {
         }
         # ignore queries that don't involve a cryptocurrency
         # these are handled by the Currency Spice
-        elsif (defined $availableLocalCurrencies{$from} && defined $availableLocalCurrencies{$to}) {
+        elsif (defined $availableLocalCurrencies{$from_code} && defined $availableLocalCurrencies{$to_code}) {
             return;
         }
         # Case where the first amount is available.

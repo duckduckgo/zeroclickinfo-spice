@@ -3,6 +3,7 @@
 
     function getItemFromData(itemdata, itemName) {
         var item;
+
         if (itemdata[itemName]) {
             item = itemdata[itemName];
         } else {
@@ -83,6 +84,7 @@
 
     function getHeroFromData(herodata, heroName) {
         var hero;
+
         if (herodata[heroName]) {
             hero = herodata[heroName];
             hero.heroKey = heroName;
@@ -179,10 +181,12 @@
         }
 
         var searchTarget = DDG.get_query().toLowerCase().replace(/dota\s?2/, "").trim();
+        var keyTarget = searchTarget.replace(' ', '_');
         var returnData;
-        var item = getItemFromData(api_result.itemdata, searchTarget);
+        var item = getItemFromData(api_result.itemdata, keyTarget);
         var sourceUrl;
         var template;
+
         if (typeof item !== 'undefined') {
             returnData = createItemReturnObject(item, api_result);
             sourceUrl = 'https://www.dota2.com/items/';
@@ -193,7 +197,7 @@
                 }
             };
         } else {
-            var hero = getHeroFromData(api_result.herodata, searchTarget);
+            var hero = getHeroFromData(api_result.herodata, keyTarget);
             if (!hero) { return Spice.failed('dota2'); }
 
             returnData = createHeroReturnObject(hero, api_result);

@@ -14,7 +14,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Anime'
     ),
-    'naruto hummingbird' => test_spice(
+    'naruto kitsu' => test_spice(
         '/js/spice/anime/naruto',
         call_type => 'include',
         caller => 'DDG::Spice::Anime'
