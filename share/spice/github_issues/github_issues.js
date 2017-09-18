@@ -11,13 +11,12 @@
             script = $('[src*="/js/spice/github_issues/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/github_issues\/([^\/]+)/)[1],
-            decodedQuery = decodeURIComponent(query);
+            decodedQuery = decodeURIComponent(query),
+            itemType = "Github Issues";
 
         var match = unescape(query).match(/language:"(.*?)"/);
         if (match !== null) {
-            var itemType = "Github Issues (" + match[1] +")";
-        } else {
-            var itemType = "Github Issues";
+            itemType += " (" + match[1] +")";
         }
 
         DDG.require("moment.js", function() {
