@@ -2,37 +2,27 @@
     "use strict";
 
     env.ddg_spice_code_search = function (api_result) {
-
-        if (!api_result || api_result.results.length === 0) {
+        if (!api_result || api_result.Defs.length === 0) {
             return Spice.failed('code_search');
         }
 
-        var query = encodeURIComponent(api_result.query);
+        var query = api_result.Defs[0].Repo;
 
         Spice.add({
             id: 'code_search',
             name: "Software",
-            data: api_result.results[0],
-            normalize: function(item) {
-                var lines = [];
-
-                $.each(api_result.results[0].lines, function(k, v){
-                    lines.push(v);
-                });
-
+            data: api_result.Defs,
+            normalize: function (item) {
                 return {
-                    lines: lines.join('\n'),
-                    title: item.filename,
-                    subtitle: item.language + ' Example from ' + item.name,
-                    url: item.url,
-                    file_location: [item.location, item.filename].join('/'),
-                    repo_url: item.repo
+                    type: item.Data.Type,
+                    name: item.Data.Name,
+                    info: item.DocHTML.__html
                 };
             },
             meta: {
-                sourceUrl: 'https://searchcode.com/?q=' + query + '&cs=true',
-                sourceIconUrl: 'https://searchcode.com/static/favicon.ico',
-                sourceName: 'searchcode'
+                sourceUrl: 'https://' + query,
+                sourceIconUrl: 'https://assets-cdn.github.com/favicon.ico',
+                sourceName: 'GitHub'
             },
             templates: {
                 group: 'text',

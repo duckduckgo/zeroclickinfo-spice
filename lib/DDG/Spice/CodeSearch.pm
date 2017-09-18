@@ -6,7 +6,8 @@ use DDG::Spice;
 
 triggers startend => "code", "example";
 
-spice to => 'https://searchcode.com/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
+spice to => 'https://sourcegraph.com/.api/global-search?Query=$1&Limit=1&Fast=0';
+spice wrap_jsonp_callback => 1;
 
 my $languages = join "|", share('languages.txt')->slurp;
 
@@ -19,7 +20,7 @@ handle remainder => sub {
 
         s/\s*$match\s*//i;
 
-        return "lang:".$match." ".$_;
+        return $match." ".$_;
     }
     return;
 };
