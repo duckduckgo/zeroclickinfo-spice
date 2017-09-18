@@ -29,7 +29,6 @@
                     sourceName: 'GitHub',
                     searchTerm: decodedQuery,
                     itemType: itemType,
-                    rerender: [ 'description', 'image' ],
                     sourceUrl: "https://github.com/search?type=Issues&q=" + encodeURIComponent(query)
                 },
                 normalize: function(item) {
