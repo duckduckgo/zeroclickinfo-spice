@@ -24,7 +24,7 @@
                 id: 'github_issues',
                 name: 'Github Issues',
                 data: results,
-                meta: { 
+                meta: {
                     sourceName: 'GitHub',
                     searchTerm: decodedQuery,
                     itemType: itemType,
@@ -33,13 +33,7 @@
                 normalize: function(item) {
                     var lastUpdate = moment(item.updated_at).fromNow();
                     var subtitle = item.repository_url.replace('https://api.github.com/repos/', '');
-                    var comments;
-
-                    if (item.comments < 2) {
-                        comments = item.comments.toString() + ' comment';
-                    } else {
-                        comments = item.comments.toString() + ' comments';
-                    }
+                    var comments = item.comments;
 
                     return {
                         title: item.title.trim(),
@@ -50,7 +44,7 @@
                         subtitle: subtitle
                     }
                 },
-                templates: { 
+                templates: {
                     group: 'text',
                     detail: false,
                     item_detail: false,
@@ -60,6 +54,12 @@
                     variants: {
                         tile: 'basic4',
                     }
+                },
+                relevancy: {
+                    primary: [
+                        { required: 'body' },
+                        { required: 'title' },
+                    ]
                 }
             });
         });
