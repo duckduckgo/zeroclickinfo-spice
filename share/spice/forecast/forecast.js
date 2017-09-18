@@ -408,7 +408,7 @@
                     if (uom_in_query) {
                         uom = (uom_in_query[1] === 'celsius') ? 'C' : 'F';
                         updateUnitOfMeasure();
-                    } else if(!usTZ[response_timezone])) {
+                    } else if(!usTZ[response_timezone]) {
                         uom = 'C';
                         updateUnitOfMeasure();
                     } else if (!DDG.settings.isDefault('kaj')) {
