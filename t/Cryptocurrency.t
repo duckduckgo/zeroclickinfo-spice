@@ -361,6 +361,24 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency',
         is_cached => 0
     ),
+    DDG::Request->new(
+        query_raw => "1ltc",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/ltc-usd/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "1btc to eth",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/cryptocurrency/ticker/btc-eth/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+        is_cached => 0
+    ),
 
     # should trigger on anything bitcoin specific
     'btc' => undef,
