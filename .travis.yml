@@ -17,7 +17,7 @@ install:
   - npm install -g uglify-js handlebars
   - cpanm --quiet --notest Dist::Zilla
   - dzil authordeps | grep -ve '^\W' | cpanm --quiet --notest --mirror http://www.cpan.org/ --mirror http://duckpan.org --mirror-only
-- dzil listdeps | grep -ve '^\W' | cpanm --quiet --notest --mirror http://www.cpan.org --mirror http://duckpan.org --mirror-onlylanguage: perl
+  - dzil listdeps | grep -ve '^\W' | cpanm --quiet --notest --mirror http://www.cpan.org --mirror http://duckpan.org --mirror-onlylanguage: perl
 perl:
   - 5.16
 script:
