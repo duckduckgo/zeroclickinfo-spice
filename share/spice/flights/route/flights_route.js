@@ -159,8 +159,6 @@
                             DDG.getProperty(opTime, "scheduledGateDeparture.dateUtc") ||
                             DDG.getProperty(opTime, "flightPlanPlannedDeparture.dateUtc");
 
-                        console.log(moment(departureDate));
-
                         var arrivalDate =
                             DDG.getProperty(opTime, 'actualGateArrival.dateUtc') ||
                             DDG.getProperty(opTime, 'estimatedGateArrival.dateUtc') ||
