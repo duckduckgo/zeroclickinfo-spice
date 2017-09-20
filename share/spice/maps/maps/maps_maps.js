@@ -7,10 +7,9 @@ DDG.require('maps',function(){
             data: response.results,
             id: 'maps_maps',
             name: 'maps',
-            model: 'Place',
+            answerType: 'Maps',
             allowMultipleCalls: true
         });
-        }
 
     };
 });
