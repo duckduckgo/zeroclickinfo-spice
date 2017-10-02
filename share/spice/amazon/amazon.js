@@ -2,6 +2,14 @@
     "use strict";
     env.ddg_spice_amazon = function(api_result) {
 
+        var dropDown = true;
+
+        if (DDG && DDG.page && DDG.page.ads) {
+            if (DDG.page.ads.adxExperiment === 'prod_ndd') {
+                dropDown = false;
+            }
+        }
+
         if (!api_result || !api_result.results || !api_result.results.length) {
             return Spice.failed('products');
         }
@@ -19,7 +27,8 @@
                 next: api_result.next
             },
             templates: {
-                group: 'products',
+                item: 'products_item',
+                // group: 'products',
                 options: {
                     buy: 'products_amazon_buy',
                     badge: 'products_amazon_badge',
