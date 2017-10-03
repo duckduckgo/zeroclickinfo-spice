@@ -6,6 +6,27 @@
             return Spice.failed('products');
         }
 
+        var templates = {
+            group: 'products',
+            options: {
+                buy: 'products_amazon_buy',
+                badge: 'products_amazon_badge',
+                rating: false
+            }
+        };
+
+        if (DDG && DDG.page && DDG.page.ads && 
+                DDG.page.ads.adxExperiment === 'prod_ndd' && api_result.results.length > 1) {
+            templates = {
+                item: 'products_item',
+                options: {
+                    buy: 'products_amazon_buy',
+                    badge: 'products_amazon_badge',
+                    rating: false
+                }
+            };
+        }
+
         Spice.add({
             id: 'products',
             name: 'Products',
@@ -18,14 +39,7 @@
                 sourceIcon: true,
                 next: api_result.next
             },
-            templates: {
-                group: 'products',
-                options: {
-                    buy: 'products_amazon_buy',
-                    badge: 'products_amazon_badge',
-                    rating: false
-                }
-            },
+            templates: templates,
             relevancy: {
                 dup: ['ASIN','img_m','img']
             },
