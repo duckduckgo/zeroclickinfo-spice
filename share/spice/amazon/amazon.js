@@ -2,13 +2,28 @@
     "use strict";
     env.ddg_spice_amazon = function(api_result) {
 
-        var dropDown = true;
+        var templates = {
+            group: 'products',
+            options: {
+                buy: 'products_amazon_buy',
+                badge: 'products_amazon_badge',
+                rating: false
+            }
+        };
 
         if (DDG && DDG.page && DDG.page.ads) {
             if (DDG.page.ads.adxExperiment === 'prod_ndd') {
-                dropDown = false;
+                templates = {
+                    item: 'products_item',
+                    options: {
+                        buy: 'products_amazon_buy',
+                        badge: 'products_amazon_badge',
+                        rating: false
+                    }
+                };
             }
         }
+
 
         if (!api_result || !api_result.results || !api_result.results.length) {
             return Spice.failed('products');
@@ -26,15 +41,7 @@
                 sourceIcon: true,
                 next: api_result.next
             },
-            templates: {
-                item: 'products_item',
-                // group: 'products',
-                options: {
-                    buy: 'products_amazon_buy',
-                    badge: 'products_amazon_badge',
-                    rating: false
-                }
-            },
+            templates: templates,
             relevancy: {
                 dup: ['ASIN','img_m','img']
             },
