@@ -2,6 +2,10 @@
     "use strict";
     env.ddg_spice_amazon = function(api_result) {
 
+        if (!api_result || !api_result.results || !api_result.results.length) {
+            return Spice.failed('products');
+        }
+
         var templates = {
             group: 'products',
             options: {
@@ -11,22 +15,16 @@
             }
         };
 
-        if (DDG && DDG.page && DDG.page.ads) {
-            if (DDG.page.ads.adxExperiment === 'prod_ndd') {
-                templates = {
-                    item: 'products_item',
-                    options: {
-                        buy: 'products_amazon_buy',
-                        badge: 'products_amazon_badge',
-                        rating: false
-                    }
-                };
-            }
-        }
-
-
-        if (!api_result || !api_result.results || !api_result.results.length) {
-            return Spice.failed('products');
+        if (DDG && DDG.page && DDG.page.ads && 
+                DDG.page.ads.adxExperiment === 'prod_ndd' && api_result.results.length > 1) {
+            templates = {
+                item: 'products_item',
+                options: {
+                    buy: 'products_amazon_buy',
+                    badge: 'products_amazon_badge',
+                    rating: false
+                }
+            };
         }
 
         Spice.add({
