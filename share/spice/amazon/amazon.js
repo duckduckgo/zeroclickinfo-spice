@@ -15,8 +15,7 @@
             }
         };
 
-        if (DDG && DDG.page && DDG.page.ads && 
-                DDG.page.ads.adxExperiment === 'prod_ndd' && api_result.results.length > 1) {
+        if (api_result.results.length > 1) {
             templates = {
                 item: 'products_item',
                 options: {
