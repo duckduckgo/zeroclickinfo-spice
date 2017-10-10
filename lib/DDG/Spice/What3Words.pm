@@ -21,7 +21,7 @@ my $coord_re = qr/[+-]?[0-9]+(?:\.\d{1,6})?/;
 
 # Handles queries like:
 # what3words | w3w | what three words word.word.word
-triggers query_lc => qr/^(?:$w3w_re)(\p{L}{4,}+\.\p{L}{4,}+\.\p{L}{1,}+)$/i;
+triggers query_lc => qr!^(?:$w3w_re|///\s*)(\p{L}{4,}+\.\p{L}{4,}+\.\p{L}{1,}+)$!i;
 
 # Handles queries like:
 # what3words | w3w | what three words +/-##.####, +/-###.#####
