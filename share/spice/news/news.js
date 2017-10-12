@@ -93,6 +93,7 @@
             name: 'News',
             data: goodStories,
             ads: api_result.ads,
+            answerType: 'News',
             meta: {
                 idField: 'url',
                 count: goodStories.length,
