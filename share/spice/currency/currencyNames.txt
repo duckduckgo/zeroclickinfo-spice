@@ -44,7 +44,7 @@ etb,ethiopian birr,ethiopia birr,
 eur,euro,euros,
 fjd,fijian dollar,fiji dollar,
 fkp,falkland island pound,
-gbp,british pound,united kingdom pound,uk pound,uk pounds,pound,sterling,pound sterling
+gbp,british pound,united kingdom pound,uk pound,uk pounds,pound,sterling,pound sterling, pounds sterling
 gel,georgian lari,georgia lari,
 ggp,guernsey pound,guernsey pound,
 ghs,ghanaian cedi,ghana cedi,

@@ -379,6 +379,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '71.42 pounds sterling to usd' => test_spice(
+        '/js/spice/currency/71.42/gbp/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 		# testing addition of rur alias
     '600 usd in rur' => test_spice(
         '/js/spice/currency/600/usd/rub',
