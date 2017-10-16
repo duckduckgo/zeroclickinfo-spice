@@ -14,6 +14,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::What3Words'
     ),
+    '/// veal.notion.loses' => test_spice(
+        '/js/spice/what3words/forward/addr/veal.notion.loses',
+        call_type => 'include',
+        caller => 'DDG::Spice::What3Words'
+    ),
     'what three words veal.notion.loses' => test_spice(
         '/js/spice/what3words/forward/addr/veal.notion.loses',
         call_type => 'include',
