@@ -1,4 +1,4 @@
-!function(env) {
+(function(env) {
     "use strict";
 
     ddg_spice_maps_maps = function(res) {
@@ -18,5 +18,5 @@
             allowMultipleCalls: true
         });
 
-    };
-};
+    }
+}(this));
