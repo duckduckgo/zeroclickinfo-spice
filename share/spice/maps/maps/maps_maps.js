@@ -1,4 +1,6 @@
-DDG.require('maps',function(){
+(function(env) {
+    "use strict";
+
     ddg_spice_maps_maps = function(res) {
         if (!res) { return DDG.duckbar.failed('maps_maps'); }
 
@@ -16,5 +18,5 @@ DDG.require('maps',function(){
             allowMultipleCalls: true
         });
 
-    };
-});
+    }
+}(this));
