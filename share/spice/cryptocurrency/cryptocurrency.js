@@ -196,7 +196,7 @@
                         amount: queryAmount,
                         convertedAmount: Number((queryAmount * price).toFixed(Converter.getSignificanDigits(target))).toString(),
                         cryptoTime: moment(item.ticker.timestamp).format("HH:mm"),
-                        cryptoDate: moment(item.ticker.timestamp).format("YYYY-DD-MM")
+                        cryptoDate: moment(item.ticker.timestamp).format("YYYY-MM-DD")
                     };
                 },
                 templates: {
