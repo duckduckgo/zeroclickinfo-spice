@@ -74,17 +74,17 @@ ddg_spice_test(
 
     # USPS
     'EA 000 000 000 US' => test_spice(
-        '/js/spice/package_tracking/EA000000000US/usps%2Cparcelforce',
+        '/js/spice/package_tracking/EA000000000US/parcelforce%2Cusps',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'usps 9400 1000 0000 0000 0000 00' => test_spice(
-        '/js/spice/package_tracking/9400100000000000000000/usps%2Cfedex',
+        '/js/spice/package_tracking/9400100000000000000000/fedex%2Cusps',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'usps 82 000 000 00' => test_spice(
-        '/js/spice/package_tracking/8200000000/usps%2Cdhl',
+        '/js/spice/package_tracking/8200000000/dhl%2Cusps',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
@@ -96,7 +96,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::PackageTracking'
     ),
     'royal mail track parcel QE001331410GB' => test_spice(
-        '/js/spice/package_tracking/QE001331410GB/royal%20mail%2Cparcelforce',
+        '/js/spice/package_tracking/QE001331410GB/parcelforce%2Croyal%20mail',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
@@ -108,53 +108,53 @@ ddg_spice_test(
 
     # CanadaPost
     '7316971234436767' => test_spice(
-        "/js/spice/package_tracking/7316971234436767/fedex%2Ccanadapost",
+        "/js/spice/package_tracking/7316971234436767/canadapost%2Cfedex",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '2005706113805288' => test_spice(
-        "/js/spice/package_tracking/2005706113805288/fedex%2Ccanadapost",
+        "/js/spice/package_tracking/2005706113805288/canadapost%2Cfedex",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '4007693052785226' => test_spice(
-        "/js/spice/package_tracking/4007693052785226/fedex%2Ccanadapost",
+        "/js/spice/package_tracking/4007693052785226/canadapost%2Cfedex",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     '3129144101026356' => test_spice(
-        "/js/spice/package_tracking/3129144101026356/fedex%2Ccanadapost",
+        "/js/spice/package_tracking/3129144101026356/canadapost%2Cfedex",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # HKDK
     'CU123456789DK' => test_spice(
-        "/js/spice/package_tracking/CU123456789DK/parcelforce%2Chkdk",
+        "/js/spice/package_tracking/CU123456789DK/hkdk%2Cparcelforce",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
     'EE123456789HK' => test_spice(
-        "/js/spice/package_tracking/EE123456789HK/parcelforce%2Chkdk",
+        "/js/spice/package_tracking/EE123456789HK/hkdk%2Cparcelforce",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
 
     # IPS
     'EM999999999IN' => test_spice(
-        "/js/spice/package_tracking/EM999999999IN/parcelforce%2Cips",
+        "/js/spice/package_tracking/EM999999999IN/ips%2Cparcelforce",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
     ),
     'em123456789hr' => test_spice(
-        "/js/spice/package_tracking/em123456789hr/parcelforce%2Cips",
+        "/js/spice/package_tracking/em123456789hr/ips%2Cparcelforce",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 
     ),
     'EM 999 999 999 IN' => test_spice(
-        "/js/spice/package_tracking/EM999999999IN/parcelforce%2Cips",
+        "/js/spice/package_tracking/EM999999999IN/ips%2Cparcelforce",
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
 

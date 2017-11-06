@@ -208,7 +208,7 @@ handle query => sub {
         }
     }
 
-    @possible_carriers = uniq @possible_carriers;
+    @possible_carriers = uniq sort @possible_carriers;
 
     return $_, (join ',', @possible_carriers);
 };
