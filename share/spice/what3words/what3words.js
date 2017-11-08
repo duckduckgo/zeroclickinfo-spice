@@ -43,9 +43,9 @@
                         url: api_result.map
                     },
                     id: 'maps_maps',
-                    // name: 'maps',
-                    // answerType: 'Maps',
-                    // allowMultipleCalls: true
+                    name: 'maps',
+                    answerType: 'Maps',
+                    allowMultipleCalls: true
                 });
             });
         });
