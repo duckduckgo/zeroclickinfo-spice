@@ -33,28 +33,19 @@
                 }
 
                 Spice.add({
-                    id: "what3words",
-                    name: "Map",
                     data: {
-                        showDirections: true,
+                        lat: api_result.geometry.lat,
+                        lon: api_result.geometry.lng,
                         name: api_result.words,
-                        latLng: [ api_result.geometry.lat, api_result.geometry.lng ],
+                        addressLines: [address_string],
                         displayLatLon: api_result.geometry.lat + ", " + api_result.geometry.lng,
-                        address: address_string
+                        source: "What3Words",
+                        url: api_result.map
                     },
-                    model: 'Place',
-                    view: 'Map',
-                    meta: {
-                        zoomLevel: 15,
-                        sourceName: "What3Words",
-                        sourceUrl: api_result.map
-                    },
-                    templates: {
-                        group: 'map',
-                        options: {
-                            moreAt: true
-                        }
-                    }
+                    id: 'maps_maps',
+                    // name: 'maps',
+                    // answerType: 'Maps',
+                    // allowMultipleCalls: true
                 });
             });
         });
