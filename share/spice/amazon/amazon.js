@@ -30,6 +30,7 @@
             id: 'products',
             name: 'Products',
             data: api_result.results,
+            answerType: 'Products',
             allowMultipleCalls: true,
             meta: {
                 itemType: 'Amazon ' + l('Results'),
