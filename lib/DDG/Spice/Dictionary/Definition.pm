@@ -15,11 +15,11 @@ spice alt_to => {
 		content_type_javascript => 1,
 	},
 	hyphenation => {
-		to => 'http://api.wordnik.com/v4/word.json/$1/hyphenation?includeRelated=true&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}&useCanonical=true'
+		to => 'http://api.wordnik.com/v4/word.json/$1/hyphenation?includeRelated=true&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}&useCanonical=true',
 		content_type_javascript => 1,
 	},
 	pronunciation => {
-		to => 'http://api.wordnik.com/v4/word.json/$1/pronunciations?limit=1&useCanonical=true&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}'
+		to => 'http://api.wordnik.com/v4/word.json/$1/pronunciations?limit=1&useCanonical=true&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}',
 		content_type_javascript => 1,
 	},
 	reference => {
@@ -51,7 +51,7 @@ handle remainder => sub {
         # Remove quotes from the string since Wordnik does not have
         # any words that start or end with quotes.
         $_ =~ tr/"//d;
-        
+
         # Make sure to transform the string to lowercase as well.
         return lc($_);
     }
