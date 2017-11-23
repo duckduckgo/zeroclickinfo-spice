@@ -12,6 +12,7 @@ spice wrap_jsonp_callback => 0;
 
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
+spice content_type_javascript => 1;
 
 # TODO:
 # Build this array from share()
