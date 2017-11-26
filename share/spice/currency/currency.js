@@ -30,7 +30,7 @@
         { symbol: "BSD", name: "Bahamian Dollar"},
         { symbol: "BTN", name: "Bhutanese Ngultrum"},
         { symbol: "BWP", name: "Botswana Pula"},
-        { symbol: "BYR", name: "Belarusian Ruble"},
+        { symbol: "BYN", name: "Belarusian Ruble"},
         { symbol: "BZD", name: "Belizean Dollar"},
         { symbol: "CAD", name: "Canadian Dollar"},
         { symbol: "CDF", name: "Congolese Franc"},
