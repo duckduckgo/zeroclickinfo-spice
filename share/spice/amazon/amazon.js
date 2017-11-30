@@ -17,7 +17,7 @@
 
         if (api_result.results.length > 1) {
             templates = {
-                item: 'products_item',
+                item: Spice.amazon.branded_products_item,
                 options: {
                     buy: 'products_amazon_buy',
                     badge: 'products_amazon_badge',

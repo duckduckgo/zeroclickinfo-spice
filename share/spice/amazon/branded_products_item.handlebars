@@ -1,0 +1,27 @@
+<div class="tile  tile--pr tile--c has-detail  tile--{{parentId}} opt--t-xxs" data-link="{{url}}">
+    <div class="tile__media  tile__media--pr">
+        <img src="" data-src="{{{imageProxy img}}}" alt="{{title}}" class="tile__media__img  js-lazyload" />
+        {{#and showBadge meta.options.badge}}{{{include meta.options.badge}}}{{/and}}
+    </div>
+    <div class="tile__body  tile__body--pr">
+        {{#if brand}}
+            {{{formatTitle brand el="h5" className="tile__title--brand" classNameSec="tile__title--pr" href="url" optSub=true ellipsis=100}}}
+        {{/if}}
+        {{#if url}}
+            {{{formatTitle heading el="h6" className="tile__title" classNameSec="tile__title--pr" href="url" optSub=true ellipsis=100}}}
+        {{else}}
+            {{{formatTitle heading el="h6" className="tile__title" classNameSec="tile__title--pr" optSub=true ellipsis=100}}}
+        {{/if}}
+    <div class="tile__tx  tile--pr__sub  one-line">
+        {{#and meta.options.price price}}
+            <span class="tile--pr__price  price">{{price}}</span>
+        {{/and}}
+    </div>
+        {{#if meta.options.rating}}
+        <div class="tile__tx  tile__rating  one-line">
+            {{{starsAndReviews rating reviewCount url_review true}}}
+        </div>
+        {{/if}}
+    </div>
+</div>
+
