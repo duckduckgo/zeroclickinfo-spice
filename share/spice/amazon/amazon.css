@@ -1,9 +1,16 @@
-.zci--products tile__title--brand {
-    color: #3A7fb4;
+.zci--products .tile__title--brand {
     text-transform: uppercase;
     font-weight: 600;
     margin-bottom: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.zci--products .tile__title--brand a {
+    color: #084999;
+}
+
+.zci--products .tile__title--brand a:visited {
+    color: #6c00a2;
 }
