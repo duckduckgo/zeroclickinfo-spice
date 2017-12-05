@@ -4,9 +4,9 @@
         {{#and showBadge meta.options.badge}}{{{include meta.options.badge}}}{{/and}}
     </div>
     <div class="tile__body  tile__body--pr">
-        {{#if brand}}
-            {{{formatTitle brand el="h5" className="tile__title--brand" classNameSec="tile__title--pr" href="url" optSub=true ellipsis=100}}}
-        {{/if}}
+        {{#and brand brand_query}}
+            {{{formatTitle brand el="h5" className="tile__title--brand" classNameSec="tile__title--pr" href="brand_query" optSub=true ellipsis=100}}}
+        {{/and}}
         {{#if url}}
             {{{formatTitle heading el="h6" className="tile__title" classNameSec="tile__title--pr" href="url" optSub=true ellipsis=100}}}
         {{else}}
