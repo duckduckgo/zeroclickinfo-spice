@@ -6,10 +6,9 @@ use DDG::Spice;
 
 spice is_cached => 1;
 spice proxy_cache_valid => "200 1d";
-
 spice wrap_jsonp_callback => 1;
+spice content_type_javascript => 1;
 
-# for testing, run: DDG_SPICE_WORDNIK_APIKEY=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5 duckpan server
 spice to => 'http://api.wordnik.com/v4/words.json/wordOfTheDay?api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}';
 
 triggers start =>
@@ -19,9 +18,7 @@ triggers start =>
     'what is the word of the day';
 
 handle remainder => sub {
-    
     return unless $_ eq '';
-    
     return $_;
 };
 
