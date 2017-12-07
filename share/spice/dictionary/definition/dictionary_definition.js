@@ -58,7 +58,7 @@ var ddg_spice_dictionary = {
 
             meta: {
                 sourceName: "Wordnik",
-                sourceUrl : "http://www.wordnik.com/words/" + word,
+                sourceUrl : "https://www.wordnik.com/words/" + word,
                 attributionText: definitions[0].attributionText
             },
 
