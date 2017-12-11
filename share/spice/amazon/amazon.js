@@ -16,8 +16,9 @@
         };
 
         if (api_result.results.length > 1) {
+            var isBrandExp = DDG.page.ads && DDG.page.ads.adxExperiment === 'prod_brand_v1';
             templates = {
-                item: 'products_item',
+                item: isBrandExp ? Spice.amazon.branded_products_item : 'products_item',
                 options: {
                     buy: 'products_amazon_buy',
                     badge: 'products_amazon_badge',

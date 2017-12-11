@@ -1,0 +1,21 @@
+.zci--products .tile__title--brand {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.zci--products .tile__title--brand a {
+    color: #084999;
+}
+
+.zci--products .tile__title--brand a:visited {
+    color: #6c00a2;
+}
+
+.dark-bg .zci--products .tile__title--brand a,
+.dark-bg .zci--products .tile__title--brand a:visited {
+    color: #e6e6e6;
+}
