@@ -23,6 +23,7 @@
 .zci--products .tile__button {
     display: block;
     height: 22px;
+    line-height: 22px;
     width: 40%;
     margin: 0 auto 1em;
     font-size: 12px;
