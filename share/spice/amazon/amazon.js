@@ -31,8 +31,7 @@
                 item: itemTemplate,
                 options: {
                     buy: 'products_amazon_buy',
-                    badge: 'products_amazon_badge',
-                    rating: false
+                    badge: 'products_amazon_badge'
                 }
             };
         }
@@ -48,6 +47,9 @@
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
+                rerender: [
+                    'reviewCount'
+                ],
                 next: api_result.next
             },
             templates: templates,
@@ -58,6 +60,26 @@
                 item.showBadge = item.is_prime;
 
                 return item;
+            },
+            onItemShown: function(item) {
+                var arg = item.rating,
+                    url = '/m.js?r=';
+
+                if (item.loadedReviews) { return; }
+
+                arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
+                arg = arg.replace('http://www.amazon/reviews/iframe?', '');
+
+                $.getJSON(url + encodeURIComponent(arg), function(r) {
+                    if (!r) { return; }
+
+                    if (r.stars && r.stars.match(/stars-(\d)-(\d)/)) {
+                        item.set({ rating:  RegExp.$1 + "." + RegExp.$2 });
+                    }
+                    item.set({ reviewCount:  r.reviews });
+                });
+
+                item.loadedReviews = 1;
             }
         });
     }
