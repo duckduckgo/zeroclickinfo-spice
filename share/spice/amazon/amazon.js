@@ -16,13 +16,11 @@
         };
 
         if (api_result.results.length > 1) {
-            var itemTemplate = 'products_item';
+            // var itemTemplate = 'products_item';
+            var itemTemplate = Spice.amazon.branded_products_item;
             switch (DDG.page.ads && DDG.page.ads.adxExperiment) {
                 case 'prod_brand_v1':
                     itemTemplate = Spice.amazon.branded_products_item;
-                    break;
-                case 'prod_shop_v1':
-                    itemTemplate = Spice.amazon.button_products_item;
                     break;
                 default:
                     break;
