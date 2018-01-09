@@ -63,7 +63,7 @@
             },
             onItemShown: function(item) {
                 var arg = item.rating,
-                    url = '/m.js?r=';
+                    url = '/m.js?t=rating&r=';
 
                 if (item.loadedReviews) { return; }
 
