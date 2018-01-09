@@ -31,7 +31,8 @@
                 item: itemTemplate,
                 options: {
                     buy: 'products_amazon_buy',
-                    badge: 'products_amazon_badge'
+                    badge: 'products_amazon_badge',
+                    rating: DDG.page.ads && DDG.page.ads.adxExperiment === 'prod_rr_v1'
                 }
             };
         }
@@ -62,27 +63,30 @@
                 return item;
             },
             onItemShown: function(item) {
-                var arg = item.rating,
-                    url = '/m.js?t=rating&r=';
 
-                if (item.loadedReviews) { return; }
+                if (DDG.page.ads && DDG.page.ads.adxExperiment === 'prod_rr_v1') {
+                    var arg = item.rating,
+                        url = '/m.js?t=rating&r=';
 
-                // arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
-                // arg = arg.replace('http://www.amazon/reviews/iframe?', '');
+                    if (item.loadedReviews) { return; }
 
-                $.getJSON(url + encodeURIComponent(arg), function(r) {
-                    if (!r) { return; }
+                    // arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
+                    // arg = arg.replace('http://www.amazon/reviews/iframe?', '');
 
-                    if (r.stars) {
-                        item.set({ rating:  r.stars });
-                    }
+                    $.getJSON(url + encodeURIComponent(arg), function(r) {
+                        if (!r) { return; }
 
-                    if (r.reviews) {
-                        item.set({ reviewCount:  r.reviews });
-                    }
-                });
+                        if (r.stars) {
+                            item.set({ rating:  r.stars });
+                        }
 
-                item.loadedReviews = 1;
+                        if (r.reviews) {
+                            item.set({ reviewCount:  r.reviews });
+                        }
+                    });
+
+                    item.loadedReviews = 1;
+                }
             }
         });
     }
