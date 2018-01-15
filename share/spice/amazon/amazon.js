@@ -45,6 +45,7 @@
             allowMultipleCalls: true,
             meta: {
                 itemType: source + ' ' + l('Results'),
+                sourceNoTransform: true,
                 sourceName: source,
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
