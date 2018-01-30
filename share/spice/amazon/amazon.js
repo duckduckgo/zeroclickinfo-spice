@@ -35,6 +35,8 @@
             };
         }
 
+        var source = api_result.source;
+
         Spice.add({
             id: 'products',
             name: 'Products',
@@ -42,8 +44,9 @@
             answerType: 'Products',
             allowMultipleCalls: true,
             meta: {
-                itemType: 'Amazon ' + l('Results'),
-                sourceName: 'Amazon',
+                itemType: source + ' ' + l('Results'),
+                sourceNoTransform: true,
+                sourceName: source,
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
                 rerender: [
