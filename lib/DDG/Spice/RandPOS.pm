@@ -7,6 +7,7 @@ use Text::Trim;
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.wordnik.com/v4/words.json/randomWords?includePartOfSpeech=$1&minCorpusCount=10000&limit=$2&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
 spice proxy_cache_valid => '418 1d';
+spice content_type_javascript => 1;
 
 # List of all trigger words
 my @triggerWords = map { ($_, $_."s") } qw(noun verb adjective pronoun preposition conjunction adverb);
