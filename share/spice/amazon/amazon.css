@@ -20,6 +20,7 @@
 .zci--products .tile__title {
     /* 3 x 1.25em line-height */
     height: 3.75em;
+    -webkit-line-clamp: 3;
 }
 
 .zci--products .tile--has-brand .tile__title {
