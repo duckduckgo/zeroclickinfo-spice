@@ -8,6 +8,8 @@
 
 .zci--products .tile__body--pr {
     padding: 12px;
+    height: 95px;
+    position: relative;
 }
 
 .zci--products .tile__title--pr {
@@ -15,7 +17,17 @@
     margin-bottom: 6px;
 }
 
-.zci--products .tile__title--brand {
+.zci--products .tile__title {
+    /* 3 x 1.25em line-height */
+    height: 3.75em;
+}
+
+.zci--products .tile--has-brand .tile__title {
+    /* 2 x 1.25em line-height */
+    height: 2.5em;
+}
+
+.zci--products .tile__title.tile__title--brand {
     height: auto;
     padding: 0;
     font-size: 12px;
@@ -27,8 +39,23 @@
     text-overflow: ellipsis;
 }
 
+/* brand + subtitle is too tall */
+.zci--products .tile--has-brand .tile__title__sub {
+    display: none;
+}
+
 .zci--products .tile--pr__sub {
+    position: absolute;
+    bottom: 12px;
     color: #333;
     font-size: 12px;
     margin-bottom: 0;
+    height: 14px;
+}
+
+.zci--products  .tile__rating {
+    line-height: 1;
+    height: 14px;
+    margin: 0;
+    margin-right: 6px;
 }
