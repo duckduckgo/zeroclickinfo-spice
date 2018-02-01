@@ -9,7 +9,6 @@
 .zci--products .tile__body--pr {
     padding: 12px;
     height: 95px;
-    position: relative;
 }
 
 .zci--products .tile__title--pr {
@@ -46,13 +45,6 @@
 }
 
 .zci--products .tile--pr__sub {
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0 12px 0;
-    margin: 0 0 12px;
     color: #333;
     font-size: 12px;
     height: 14px;
@@ -66,9 +58,12 @@
 .zci--products  .tile__rating {
     font-size: 12px;
     margin: 0;
-    margin-right: 6px;
 }
 
 .zci--products .tile__rating .stars {
     top: 0;
+}
+
+.zci--products .tile__rating .review-count {
+    margin-left: 6px;
 }
