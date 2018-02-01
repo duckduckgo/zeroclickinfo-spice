@@ -53,6 +53,7 @@
             },
             normalize: function(item) {
                 item.showBadge = item.is_prime;
+                item.showBrand = item.brand && item.brand_query;
 
                 return item;
             },
