@@ -14,14 +14,13 @@
         {{/if}}
     <div class="tile__tx  tile--pr__sub  one-line">
         {{#and meta.options.price price}}
-            <span class="tile--pr__price  price">{{price}}</span>
+            <span class="tile--pr__price  price pull-left">{{price}}</span>
         {{/and}}
-    </div>
         {{#if meta.options.rating}}
-        <div class="tile__tx  tile__rating  one-line">
-            {{{starsAndReviews rating reviewCount url_review true}}}
-        </div>
+            <span class="tile__tx  tile__rating pull-right">
+                {{{starsAndReviews rating reviewCount url_review true}}}
+            </span>
         {{/if}}
     </div>
+    </div>
 </div>
-
