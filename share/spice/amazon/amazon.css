@@ -16,6 +16,10 @@
     margin-bottom: 6px;
 }
 
+.is-mobile .zci--products .tile__title {
+    margin-bottom: 6px;
+}
+
 .zci--products .tile__title {
     /* 3 x 1.25em line-height */
     height: 3.75em;
@@ -48,6 +52,7 @@
     color: #333;
     font-size: 12px;
     height: 14px;
+    margin-bottom: 0;
 }
 
 .zci--products  .tile__rating,
