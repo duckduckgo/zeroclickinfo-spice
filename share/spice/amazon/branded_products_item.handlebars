@@ -12,12 +12,12 @@
         {{else}}
             {{{formatTitle heading el="h6" className="tile__title" classNameSec="tile__title--pr" optSub=true   ellipsis=100}}}
         {{/if}}
-    <div class="tile__tx  tile--pr__sub  one-line">
+    <div class="tile--pr__sub  one-line">
         {{#and meta.options.price price}}
-            <span class="tile--pr__price  price pull-left">{{price}}</span>
+            <span class="tile--pr__price  price  pull-left">{{price}}</span>
         {{/and}}
         {{#if meta.options.rating}}
-            <span class="tile__tx  tile__rating pull-right">
+            <span class="tile__rating  pull-right">
                 {{{starsAndReviews rating reviewCount url_review true}}}
             </span>
         {{/if}}
