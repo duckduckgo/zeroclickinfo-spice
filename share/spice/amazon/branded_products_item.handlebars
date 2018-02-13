@@ -1,27 +1,26 @@
-<div class="tile  tile--pr tile--c has-detail  tile--{{parentId}} opt--t-xxs" data-link="{{url}}">
+<div class="tile  tile--pr tile--c has-detail  tile--{{parentId}} {{#if showBrand}}tile--has-brand{{/if}}" data-link="{{url}}">
     <div class="tile__media  tile__media--pr">
         <img src="" data-src="{{{imageProxy img}}}" alt="{{title}}" class="tile__media__img  js-lazyload" />
         {{#and showBadge meta.options.badge}}{{{include meta.options.badge}}}{{/and}}
     </div>
     <div class="tile__body  tile__body--pr">
-        {{#and brand brand_query}}
-            {{{formatTitle brand el="h5" className="tile__title--brand" classNameSec="tile__title--pr" href="brand_query" optSub=true ellipsis=100}}}
-        {{/and}}
+        {{#if showBrand}}
+            {{{formatTitle brand el="h5" className="tile__title tile__title--brand" classNameSec="tile__title--pr" href="brand_query" optSub=true ellipsis=100}}}
+        {{/if}}
         {{#if url}}
             {{{formatTitle heading el="h6" className="tile__title" classNameSec="tile__title--pr" href="url" optSub=true ellipsis=100}}}
         {{else}}
-            {{{formatTitle heading el="h6" className="tile__title" classNameSec="tile__title--pr" optSub=true ellipsis=100}}}
+            {{{formatTitle heading el="h6" className="tile__title" classNameSec="tile__title--pr" optSub=true   ellipsis=100}}}
         {{/if}}
-    <div class="tile__tx  tile--pr__sub  one-line">
+    <div class="tile--pr__sub  one-line">
         {{#and meta.options.price price}}
-            <span class="tile--pr__price  price">{{price}}</span>
+            <span class="tile--pr__price  price  pull-left">{{price}}</span>
         {{/and}}
-    </div>
         {{#if meta.options.rating}}
-        <div class="tile__tx  tile__rating  one-line">
-            {{{starsAndReviews rating reviewCount url_review true}}}
-        </div>
+            <span class="tile--pr__rating  tile__rating  pull-right">
+                {{{starsAndReviews rating reviewCount url_review true}}}
+            </span>
         {{/if}}
+    </div>
     </div>
 </div>
-
