@@ -289,9 +289,8 @@
             var endpoint = "/js/spice/currency/1/" + from + "/" + to;
             $.ajax({ 
                 url: endpoint,
-                dataType: 'text',
+                dataType: 'json',
                 success: function(payload) {
-                    // jsonp is returned from the API so we have to alter the contents
                     var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
                     response = response.conversion;
                     Converter.resetConverter(response);
