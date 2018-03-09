@@ -287,13 +287,14 @@
             }
 
             var endpoint = "/js/spice/currency/1/" + from + "/" + to;
-            $.get(endpoint, function(payload) {
-
-                // jsonp is returned from the API so we have to alter the contents
-                var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
-                response = response.conversion;
-                Converter.resetConverter(response);
-
+            $.ajax({ 
+                url: endpoint,
+                dataType: 'json',
+                success: function(payload) {
+                    var response = JSON.parse(payload.trim().replace(/^[^\(]*\(/, '').replace(/\);$/, ''));
+                    response = response.conversion;
+                    Converter.resetConverter(response);
+                }
             });
         },
 
