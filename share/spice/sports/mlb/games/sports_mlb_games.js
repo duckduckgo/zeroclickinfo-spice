@@ -1,12 +1,12 @@
 (function (env) {
     "use strict";
-    
+
     env.ddg_spice_sports_mlb_games = function(apiResult) {
 
         if (!apiResult || !apiResult.data || !apiResult.data.games || !apiResult.data.games.length) {
             return Spice.failed('mlb_games');
         }
-        
+
         DDG.require(['moment.js', 'sports'], function() {
             var games = env.ddg_spice_sports_games,
                 data = games.transformGameData(apiResult.data);
@@ -37,16 +37,16 @@
                     if (!attrs.has_started) {
                         return attrs;
                     }
-                    
+
                     // Game Finished/In-Progress
                     var inning = attrs.score.away.innings.length-1 || -1,
                         placeholderStr = '&nbsp;';
-                        
+
                     if (attrs.has_ended) {
                         placeholderStr = games.PLACEHOLDER;
                         attrs.textGameOver = l("Game ended");
                     }
-                    
+
                     // pitch_count contains the current game status
                     if (attrs.score.pitch_count) {
                         attrs.score.current = attrs.score.pitch_count.inning;
@@ -72,12 +72,25 @@
                             attrs.score.away.innings[inning].current = true;
                         }
                     }
-                    
+
+                    // Since the API no longer sends the same number of innings
+                    // for both teams (with home team having smaller number of
+                    // innings), this makes sure that the IA properly shows the
+                    // innings of both teams
+                    if (attrs.score.home.innings.length < attrs.score.away.innings.length) {
+                        attrs.score.home.innings[inning] = {
+                            runs: 'X',
+                            sequence: inning + 1,
+                            number: inning + 1,
+                            type: 'inning'
+                        }
+                    }
+
                     if (inning > -1 && attrs.score.home.innings[inning].runs === 'X') {
                         // replace un-played inning 'X' with something more stylish
                         attrs.score.home.innings[inning].runs = placeholderStr;
                     }
-                    
+
                     return attrs;
                 }
             });
