@@ -45,7 +45,7 @@
                 node.bandwidth = prettifyBitrate(node.advertised_bandwidth);
             }
 
-            node.url = "https://atlas.torproject.org/#details/" + node.ref;
+            node.url = "https://metrics.torproject.org/rs.html#details/" + node.ref;
         }
 
         var spice = {
@@ -53,8 +53,8 @@
             name: "Tor Node",
             nodes: nodes,
             meta: {
-                sourceName: "Tor Atlas",
-                sourceUrl: "https://atlas.torproject.org/#search/" + query,
+                sourceName: "Tor Metrics Relay Search",
+                sourceUrl: "https://metrics.torproject.org/rs.html#search/" + query,
                 itemType: "Nodes"
             },
             templates: {
