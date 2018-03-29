@@ -2,6 +2,7 @@ package DDG::Spice::Forecast;
 # ABSTRACT: Weather forecasts
 
 use strict;
+use utf8;
 use DDG::Spice;
 use Text::Trim;
 
