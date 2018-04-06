@@ -57,7 +57,7 @@ triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
 triggers query_lc => $lang_qr;
 
 spice from => '([^/]+)/([^/]+)/([^/]+)';
-spice to => 'http://www.xe.com/tmi/xe-output.php?amount=$1&from=$2&to=$3&appid={{ENV{DDG_SPICE_CURRENCY_APIKEY}}}';
+spice to => 'https://www.xe.com/tmi/xe-output.php?amount=$1&from=$2&to=$3&appid={{ENV{DDG_SPICE_CURRENCY_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 spice proxy_cache_valid => "200 5m";
