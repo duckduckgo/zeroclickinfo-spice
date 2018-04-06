@@ -45,7 +45,12 @@
                 rerender: [
                     'reviewCount'
                 ],
-                next: api_result.next
+                next: api_result.next,
+                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Affiliate') + '</a>',
+                alwaysShowSecondaryText: true,
+                alwaysShowMetabar: true,
+                hideAttribution: true,
+                iconOnlyMobile: true
             },
             templates: templates,
             relevancy: {
