@@ -28,7 +28,19 @@
             };
         }
 
-        var source = api_result.source;
+        var source = api_result.source,
+            expFlags = {};
+        
+        if (DDG.page.ads.adxExperiment === 'prod_affiliate_v1') {
+            expFlags = {
+                itemType: null,
+                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Affiliate') + '</a>',
+                alwaysShowSecondaryText: true,
+                alwaysShowMetabar: true,
+                hideAttribution: true,
+                iconOnlyMobile: true
+            };
+        }
 
         Spice.add({
             id: 'products',
@@ -36,7 +48,8 @@
             data: api_result.results,
             answerType: 'Products',
             allowMultipleCalls: true,
-            meta: {
+            meta: $.extend({
+                itemType: source + ' ' + l('Results'),
                 sourceNoTransform: true,
                 sourceName: source,
                 sourceUrl: api_result.more_at,
@@ -44,13 +57,8 @@
                 rerender: [
                     'reviewCount'
                 ],
-                next: api_result.next,
-                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Affiliate') + '</a>',
-                alwaysShowSecondaryText: true,
-                alwaysShowMetabar: true,
-                hideAttribution: true,
-                iconOnlyMobile: true
-            },
+                next: api_result.next
+            }, expFlags),
             templates: templates,
             relevancy: {
                 dup: ['ASIN','img_m','img']
