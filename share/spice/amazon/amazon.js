@@ -33,7 +33,7 @@
         
         if (DDG.page.ads.adxExperiment === 'prod_affiliate_v1') {
             expFlags = {
-                itemType: null,
+                itemType: l('Results'),
                 secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Affiliate') + '</a>',
                 alwaysShowSecondaryText: true,
                 alwaysShowMetabar: true,
