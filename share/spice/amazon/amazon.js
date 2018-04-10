@@ -34,7 +34,7 @@
         if (DDG.page.ads.adxExperiment === 'prod_affiliate_v1') {
             expFlags = {
                 itemType: l('Results'),
-                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Affiliate') + '</a>',
+                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">Affiliate</a>',
                 alwaysShowSecondaryText: true,
                 alwaysShowMetabar: true,
                 hideAttribution: true,
@@ -44,7 +44,7 @@
         } else if (DDG.page.ads.adxExperiment === 'prod_affiliate_v2') {
             expFlags = {
                 itemType: l('Results'),
-                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Affiliate Ad') + '</a>',
+                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">Affiliate Ad</a>',
                 alwaysShowSecondaryText: true,
                 alwaysShowMetabar: true,
                 hideAttribution: true,
@@ -54,7 +54,7 @@
         } else if (DDG.page.ads.adxExperiment === 'prod_affiliate_v3') {
             expFlags = {
                 itemType: l('Results'),
-                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Ad') + '</a>',
+                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">Ad</a>',
                 alwaysShowSecondaryText: true,
                 alwaysShowMetabar: true,
                 hideAttribution: true,
