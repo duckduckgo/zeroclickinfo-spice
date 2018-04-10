@@ -40,7 +40,17 @@
                 hideAttribution: true,
                 iconOnlyMobile: true
             };
-        }
+
+        } else if (DDG.page.ads.adxExperiment === 'prod_affiliate_v2') {
+            expFlags = {
+                itemType: l('Results'),
+                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Affiliate Ads') + '</a>',
+                alwaysShowSecondaryText: true,
+                alwaysShowMetabar: true,
+                hideAttribution: true,
+                iconOnlyMobile: true
+            };
+        } 
 
         Spice.add({
             id: 'products',
