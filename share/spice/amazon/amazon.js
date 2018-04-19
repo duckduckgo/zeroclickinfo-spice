@@ -39,7 +39,7 @@
             meta: {
                 itemType: l('Results'),
                 
-                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">Ad</a>',
+                secondaryText: '<a class="tx-clr--grey-dark" href="https://duck.co/help/company/advertising-and-affiliates">' + l('Ad') + '</a>',
                 alwaysShowSecondaryText: true,
                 alwaysShowMetabar: true,
                 hideAttribution: true,
