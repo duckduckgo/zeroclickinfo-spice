@@ -42,7 +42,7 @@
                 alwaysShowMetabar: true,
                 hideAttribution: true,
                 iconOnlyMobile: true,
-
+                hideModeSwitch: DDG.device.isMobile,
                 sourceNoTransform: true,
                 sourceName: source,
                 sourceUrl: api_result.more_at,
