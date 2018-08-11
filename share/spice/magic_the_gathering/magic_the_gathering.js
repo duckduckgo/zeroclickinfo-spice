@@ -31,7 +31,8 @@
             meta: {
                 itemType: "Cards",
                 sourceName: "Scryfall",
-                sourceUrl: "https://scryfall.com/search?q=" + encodeURI(getSearchTerm()),
+                sourceUrl: "https://scryfall.com/search?q="
+                    + encodeURIComponent(getSearchTerm()),
                 searchTerm: getSearchTerm(),
                 count: api_result.data.length,
                 snippetChars: 150
