@@ -10,8 +10,9 @@ spice to => 'https://duckduckgo.com/local.js?q=$1&cb={{callback}}';
 spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
 
+my $chains_re = share('chains_re')->slurp;
 my $places_re = qr/(local|near|near me|around|around me|here|locally|nearby|close|closest|nearest|locations?|restaurants?)/;
-triggers query_lc => qr/(^$places_re|$places_re$)/s;
+triggers query_lc => qr/(^$chains_re$|^$places_re|$places_re$)/s;
 
 my %skip_remainders = map {$_ => 0} ('current', 'time');
 
