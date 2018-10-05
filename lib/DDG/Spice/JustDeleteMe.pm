@@ -5,7 +5,7 @@ package DDG::Spice::JustDeleteMe;
 use DDG::Spice;
 spice is_cached => 1;
 spice wrap_jsonp_callback => 1;
-spice to => 'https://raw.githubusercontent.com/rmlewisuk/justdelete.me/master/sites.json';
+spice to => 'https://raw.githubusercontent.com/jdm-contrib/jdm/master/_data/sites.json';
 
 my $MIN_QUERY_LENGTH = 4;
 my @tr = qw (delete cancel remove);

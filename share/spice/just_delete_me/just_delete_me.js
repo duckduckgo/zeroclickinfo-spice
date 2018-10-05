@@ -44,14 +44,14 @@
             name: "Answer",
             meta: {
                 sourceName: 'Just Delete Me',
-                sourceUrl: "http://justdelete.me/#" + decodedQuery
+                sourceUrl: "http://justdeleteme.xyz/#" + decodedQuery
             },
             data: api_result,
             normalize: function(item) {
                 return {
                     delete_url: item.url,
                     title: item.name,
-                    url: "http://justdelete.me/#" + item.name,
+                    url: "http://justdeleteme.xyz/#" + item.name,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
                     description: item.notes  ? item.notes :
                                  item.email  ? "Send an email to the provided address to delete your account." :
