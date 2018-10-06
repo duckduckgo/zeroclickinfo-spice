@@ -1,5 +1,5 @@
 august bank holiday
-christmas day
+christmas
 christmas day observed
 christmas eve
 december solstice
@@ -9,10 +9,10 @@ good friday
 june bank holiday
 june solstice
 march equinox
-may day
-new years day
+may
+new years
 new years eve
 october bank holiday
 september equinox
-st patricks day
-st stephens day
+st patricks
+st stephens

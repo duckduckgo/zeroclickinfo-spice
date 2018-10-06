@@ -14,24 +14,24 @@ deepavali
 diwali
 dolyatra
 dussehra
-easter day
+easter
 eid ul adha
 eid ul fitar
-fathers day
+fathers
 first day of hanukkah
 first day of passover
-friendship day
+friendship
 ganesh chaturthi
 good friday
 govardhan puja
 guru govind singh jayanti
 guru ravidas jayanti
-guru tegh bahadurs martyrdom day
+guru tegh bahadurs martyrdom
 halloween
 hazarat alis birthday
 holika dahana
 id e milad
-independence day
+independence
 jamat ul vida
 janmashtami
 june solstice
@@ -46,13 +46,13 @@ mahavir jayanti
 makar sankranti
 march equinox
 maundy thursday
-may day
+may
 mesadi
 milad un nabi
-mothers day
+mothers
 muharram
 naraka chaturdasi
-new years day
+new years
 new years eve
 onam
 parsi new year
@@ -63,15 +63,15 @@ raksha bandhan
 rama navami
 ramzan id
 rath yatra
-republic day
+republic
 september equinox
 shivaji jayanti
 shivaratri
 surya sashthi
-thanksgiving day
+thanksgiving
 vaisakhadi
 vaisakhi
-valentines day
+valentines
 vasant panchami
 vesak
 vinayaka chaturthi

@@ -1,26 +1,26 @@
-capital city day
-constitution day
+capital city
+constitution
 daylight saving time ends
 daylight saving time starts
 december solstice
-elders day
-family day
-health day
-human rights day
-independence day
-intellectual property day
-international womens day
+elders
+family
+health
+human rights
+independence
+intellectual property
+international womens
 june solstice
 march equinox
 naadam holiday
-national day
+national
 new year
-patriots day
-political flag day
-repression victims day
-republics day
+patriots
+political flag
+repression victims
+republics
 september equinox
-soldiers day
+soldiers
 tsagaan sar
-valentines day
-youths day
+valentines
+youths

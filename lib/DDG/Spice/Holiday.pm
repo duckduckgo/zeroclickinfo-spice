@@ -68,6 +68,10 @@ handle query_lc => sub {
     $query =~ s/[^\w\s\-]//;
     $query =~ s/-/ /;
 
+    # Sanitize the query by replacing "day", eg:
+    #   "st patricks day" -> "st patricks"
+    $query =~ s/[[:space:]]day$//;
+
     # Extract holiday from query
     $query =~ s/(?<holiday>$triggers_re)//;
     $chosen_holiday = $+{holiday};

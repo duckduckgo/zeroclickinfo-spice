@@ -1,7 +1,7 @@
-albanian alphabet day
+albanian alphabet
 albanian community
-all saints day
-christmas day
+all saints
+christmas
 christmas eve
 daylight saving time ends
 daylight saving time starts
@@ -14,7 +14,7 @@ easter sunday
 eid al adha
 eid al fitr
 epiphany
-fathers day
+fathers
 feast of sacrifice
 feast of the assumption of mary
 first day of yom kippur
@@ -23,25 +23,25 @@ for romani community
 for vlach community
 good friday
 halloween
-independence day
-international bosniaks day
-international romani day
-international womens day
+independence
+international bosniaks
+international romani
+international womens
 jewish community
 june solstice
-labour day
+labour
 march equinox
-mothers day
-new years day
+mothers
+new years
 new years eve
 orthodox
-orthodox christmas day
-republic day
-saint kliment ohridskis day
-saints cyril and methodius day
+orthodox christmas
+republic
+saint kliment ohridskis
+saints cyril and methodius
 september equinox
-st savas day
+st savas
 turkish community
-turkish language day
-valentines day
-vlach’s national day
+turkish language
+valentines
+vlach’s national

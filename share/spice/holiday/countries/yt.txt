@@ -1,7 +1,7 @@
 all saints eve
-ascension day
+ascension
 assumption of mary
-christmas day
+christmas
 december solstice
 easter monday
 eid al adha
@@ -9,7 +9,7 @@ eid al fitr
 end of the second world war
 french day of the republic
 june solstice
-labour day
+labour
 march equinox
 miraj
 new year

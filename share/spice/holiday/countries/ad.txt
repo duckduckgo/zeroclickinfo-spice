@@ -1,12 +1,12 @@
-all saints day
-ascension day
+all saints
+ascension
 assumption of mary
 bank holiday
-boxing day
+boxing
 carnival
-christmas day
+christmas
 christmas eve
-constitution day
+constitution
 daylight saving time ends
 daylight saving time starts
 day of st charles borromeu
@@ -18,13 +18,13 @@ feast of the immaculate conception
 good friday
 holy saturday
 june solstice
-labour day
+labour
 march equinox
 maundy thursday
-may day
-midsummer day
-national day
-new years day
+may
+midsummer
+national
+new years
 new years eve
 september equinox
 whit monday

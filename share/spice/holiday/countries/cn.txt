@@ -1,27 +1,27 @@
-arbor day
-army day
-childrens day
+arbor
+army
+childrens
 chinese new year
-christmas day
-cpc founding day
+christmas
+cpc founding
 december solstice
 double ninth festival
 double seven festival
 dragon boat festival
 dragon boat festival holiday
-international womens day
-journalists day
+international womens
+journalists
 june solstice
-labour day
+labour
 labour day holiday
 lantern festival
 march equinox
-maritime day
+maritime
 mid autumn festival
 mid autumn festival holiday
-national day
+national
 national day golden week holiday
-new years day
+new years
 new years weekend
 qing ming jie
 qing ming jie holiday
@@ -29,6 +29,6 @@ september equinox
 spirit festival
 spring festival eve
 spring festival golden week holiday
-teachers day
-youth day
+teachers
+youth
 zhonghe festival

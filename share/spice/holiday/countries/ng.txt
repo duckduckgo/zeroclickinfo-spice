@@ -1,11 +1,11 @@
 al hijra
-boxing day
-childrens day
-christmas day
+boxing
+childrens
+christmas
 christmas eve
 december solstice
-democracy day
-easter day
+democracy
+easter
 easter monday
 good friday
 holy saturday
@@ -18,10 +18,10 @@ islamic new year
 june 12 commemoration
 june solstice
 march equinox
-national day
-new years day
+national
+new years
 new years eve
 september equinox
-womens day
-workers day
+womens
+workers
 workers day holiday
