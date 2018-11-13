@@ -1,23 +1,9 @@
 (function (env) {
     "use strict";
 
-    /**
-     * Get the search term from the DDG query that triggered this IA.
-     *
-     * @return {String} The unencoded search term without the IA trigger words.
-     */
-    function getSearchTerm() {
-        var query = DDG.get_query();
-        var triggers = [
-            'magic card',
-            'mtg',
-            'magic: the gathering',
-            'magic the gathering'
-        ];
-        return query.replace(new RegExp(triggers.join('|')), '').trim();
-var query = DDG.get_query(),
-    triggerRe = /mtg|magic:? (card|the gathering)/ig,
-    searchTerm = query.replace(triggerRe, '').trim();
+    var query = DDG.get_query(),
+        triggerRe = /mtg|magic:? (card|the gathering)/ig,
+        searchTerm = query.replace(triggerRe, '').trim();
 
     env.ddg_spice_magic_the_gathering = function(api_result){
         // Validate the response (customize for your Spice)
@@ -34,13 +20,13 @@ var query = DDG.get_query(),
                 itemType: "Cards",
                 sourceName: "Scryfall",
                 sourceUrl: "https://scryfall.com/search?q="
-                    + encodeURIComponent(getSearchTerm()),
-                searchTerm: getSearchTerm(),
+                    + encodeURIComponent(searchTerm),
+                searchTerm: searchTerm,
                 count: api_result.data.length,
                 snippetChars: 150
             },
             normalize: function(item) {
-                if (item.name === DDG.get_query()){
+                if (item.name === query){
                     item.exactMatch = true;
 
                 }
