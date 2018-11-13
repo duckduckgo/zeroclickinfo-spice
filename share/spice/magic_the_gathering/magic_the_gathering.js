@@ -15,7 +15,9 @@
             'magic the gathering'
         ];
         return query.replace(new RegExp(triggers.join('|')), '').trim();
-    }
+var query = DDG.get_query(),
+    triggerRe = /mtg|magic:? (card|the gathering)/ig,
+    searchTerm = query.replace(triggerRe, '').trim();
 
     env.ddg_spice_magic_the_gathering = function(api_result){
         // Validate the response (customize for your Spice)
