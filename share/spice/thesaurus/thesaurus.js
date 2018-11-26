@@ -66,7 +66,7 @@
             
             meta: {
                 sourceName: 'Big Huge Thesaurus',
-                sourceUrl:  'http://words.bighugelabs.com/' + query,
+                sourceUrl:  'https://words.bighugelabs.com/' + query,
             },
             
             normalize: function(words) {

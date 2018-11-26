@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}';
+spice to => 'https://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}';
 
 triggers startend => "synonyms", "synonym", "antonyms", "antonym", "thesaurus";
 
