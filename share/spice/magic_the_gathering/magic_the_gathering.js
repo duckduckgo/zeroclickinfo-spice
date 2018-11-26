@@ -1,8 +1,13 @@
 (function (env) {
     "use strict";
+
+    var query = DDG.get_query(),
+        triggerRe = /mtg|magic:? (card|the gathering)/ig,
+        searchTerm = query.replace(triggerRe, '').trim();
+
     env.ddg_spice_magic_the_gathering = function(api_result){
         // Validate the response (customize for your Spice)
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || api_result.object === 'error') {
             return Spice.failed('magic_the_gathering');
         }
 
@@ -10,36 +15,49 @@
         Spice.add({
             id: "magic_the_gathering",
             name: "Games",
-            data: api_result,
+            data: api_result.data,
             meta: {
                 itemType: "Cards",
-                sourceName: "Deckbrew.com",
-                sourceUrl: "http://deckbrew.com/api/",
-                count: api_result.length,
-                snippetChars: 120
+                sourceName: "Scryfall",
+                sourceUrl: "https://scryfall.com/search?q="
+                    + encodeURIComponent(searchTerm),
+                searchTerm: searchTerm,
+                count: api_result.data.length,
+                snippetChars: 150
             },
             normalize: function(item) {
-                if (item.name === DDG.get_query()){
+                if (item.name === query){
                     item.exactMatch = true;
 
                 }
-                var card_image = DDG.toHTTP(item.editions[0].image_url);
+
+                // the template calls a .set() function on the item, so change
+                // the 'set' field in the item so an error isn't thrown
+                item['set_label'] = item.set;
+                delete item.set;
+                var card_image = item.image_uris
+                            ? DDG.toHTTPS(item.image_uris.png)
+                            : "";
+                var classify = item.type_line.split('—');
+                var type = classify[0] ? classify[0].trim() : ' ';
+                var subtype = classify[1] ? classify[1].trim() : ' ';
                 var infoboxData = [
                     { heading: "Card Details" },
-                    { label: "Types", value: item.types },
-                    { label: "Subtypes", value: item.subtypes },
+                    { label: "Types", value: type },
+                    { label: "Subtypes", value: subtype },
                     { label: "Colors", value: item.colors },
                     { label: "CMC", value: item.cmc },
-                    { label: "Cost", value: item.cost },
+                    { label: "Cost", value: item.mana_cost },
                     { label: "Power", value: item.power },
                     { label: "Toughness", value: item.toughness }
                 ];
                 return {
                     title: item.name,
-                    description: item.text ? item.text : "No description",
-                    types: item.types,
-                    altSubtitle: item.subtypes ? item.subtypes : " ",
-                    url: item.editions[0].store_url,
+                    description: item.oracle_text ? item.oracle_text : "No description",
+                    artist: 'Illus. ' + item.artist,
+                    subtitle: subtype,
+                    altSubtitle: type,
+                    url: DDG.toHTTPS(item.scryfall_uri),
                     rarity: item.power ? item.power + "/" + item.toughness : null,
                     image: card_image,
                     infoboxData: infoboxData
