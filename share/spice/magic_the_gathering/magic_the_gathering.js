@@ -36,7 +36,7 @@
                 item['set_label'] = item.set;
                 delete item.set;
                 var card_image = item.image_uris
-                            ? DDG.toHTTPS(item.image_uris.png)
+                            ? DDG.toHTTPS(item.image_uris.normal)
                             : "";
                 var classify = item.type_line.split('—');
                 var type = classify[0] ? classify[0].trim() : ' ';
