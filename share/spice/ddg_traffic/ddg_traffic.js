@@ -97,6 +97,10 @@
             Spice.add({
                 id: 'ddg_traffic',
                 name: 'Answer',
+                meta: {
+                    sourceName: 'DuckDuckGo Traffic',
+                    sourceUrl: 'https://duckduckgo.com/traffic'
+                },
                 data: api_result,
                 normalize: function () {
 
