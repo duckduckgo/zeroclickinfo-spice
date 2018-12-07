@@ -11,10 +11,14 @@
                 bot: []
             };
 
-        var size = 365; // rolling avg for X days
-        while (days.length > 0) {
-            var group = days.splice(0, size);
-            var endDate = moment(group[group.length - 1].date).format('MMM DD, YYYY');
+        var distance = 30,
+            start = 0,
+            size = 365; // rolling avg for X days
+
+        // calculate 365 day rolling average, for every 30 days
+        while (start < days.length) {
+            var group = days.slice(start, start + 365);
+            var startDate = moment(group[0].date).format('MMM DD, YYYY');
 
             var sum = {
                 query: 0,
@@ -36,10 +40,12 @@
                 bot: Math.round(sum.bot / group.length),
             };
 
-            labels.push(endDate);
+            labels.push(startDate);
             data.direct.push(avg.query);
             data.api.push(avg.api);
             data.bot.push(avg.bot);
+
+            start += distance;
         }
 
         return {
@@ -48,33 +54,33 @@
                 {
                     label: 'Direct',
                     backgroundColor: 'rgba(227,113,81,0.2)', //red
-                    borderColor: 'rgba(227,113,81,1)',
-                    pointBackgroundColor: 'rgba(227,113,81,1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(227,113,81,1)',
+                    borderColor: 'rgb(227,113,81)',
+                    pointRadius: 0,
+                    pointHoverRadius: 8,
+                    pointHoverBackgroundColor: 'rgb(227,113,81)',
+                    pointHoverBorderColor: 'rgb(227,113,81)',
                     data: data.direct
                 },
                 {
                     label: 'API',
                     hidden: true,
                     backgroundColor: 'rgba(96,165,218,0.2)', //blue
-                    borderColor: 'rgba(96,165,218,1)',
-                    pointBackgroundColor: 'rgba(96,165,218,1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(96,165,218,1)',
+                    borderColor: 'rgb(96,165,218)',
+                    pointRadius: 0,
+                    pointHoverRadius: 8,
+                    pointHoverBackgroundColor: 'rgb(96,165,218)',
+                    pointHoverBorderColor: 'rgb(96,165,218)',
                     data: data.api
                 },
                 {
                     label: 'Bot',
                     hidden: true,
                     backgroundColor: 'rgba(102,102,102,0.2)', //grey
-                    borderColor: 'rgba(102,102,102,1)',
-                    pointBackgroundColor: 'rgba(102,102,102,1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(102,102,102,1)',
+                    borderColor: 'rgb(102,102,102)',
+                    pointRadius: 0,
+                    pointHoverRadius: 8,
+                    pointHoverBackgroundColor: 'rgb(102,102,102)',
+                    pointHoverBorderColor: 'rgb(102,102,102)',
                     data: data.bot
                 }
             ]
@@ -131,6 +137,13 @@
                     Chart.defaults.global.defaultFontFamily = "DDG_ProximaNova, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
                     var ctx = $('#ddgTraffic').get(0).getContext('2d'),
                         options = {
+                            animation: {
+                                duration: 0
+                            },
+                            hover: {
+                                animationDuration: 0
+                            },
+                            responsiveAnimationDuration: 0,
                             title: {
                                 display: true,
                                 text: '365 Day Rolling Average'
@@ -145,7 +158,7 @@
                             tooltips: {
                                 mode: 'index',
                                 intersect: false,
-                                position: 'average',
+                                // position: 'average',
                                 callbacks: {
                                     label: function (tooltipItem) {
                                         var name = data.datasets[tooltipItem.datasetIndex].label;
