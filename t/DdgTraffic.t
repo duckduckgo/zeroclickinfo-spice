@@ -9,17 +9,11 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::DdgTraffic)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/ddg_traffic/query',
+    'ddg traffic' => test_spice(
+        '/js/spice/ddg_traffic/1',
         call_type => 'include',
         caller => 'DDG::Spice::DdgTraffic'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
 );
 
 done_testing;

@@ -15,7 +15,7 @@ triggers start => 'duckduckgo traffic', 'ddg traffic';
 
 handle remainder => sub {
     return if $_; #query should only be trigger!
-    return " ";
+    return 1;
 };
 
 1;
