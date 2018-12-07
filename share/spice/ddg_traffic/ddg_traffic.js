@@ -127,6 +127,7 @@
                     Chart.defaults.global.defaultFontFamily = "DDG_ProximaNova, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
                     var ctx = $('#ddgTraffic').get(0).getContext('2d'),
                         options = {
+
                             title: {
                                 display: true,
                                 text: '60 Day Rolling Average'
@@ -134,10 +135,14 @@
                             legend: {
                                 position: 'bottom'
                             },
+                            hover: {
+                                mode: 'index',
+                                intersect: false
+                            },
                             tooltips: {
-                                mode: 'point',
+                                mode: 'index',
                                 intersect: false,
-                                position: 'nearest',
+                                position: 'average',
                                 callbacks: {
                                     label: function (tooltipItem) {
                                         var name = data.datasets[tooltipItem.datasetIndex].label;
