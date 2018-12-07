@@ -123,7 +123,7 @@
                         title: 'DuckDuckGo Traffic',
                         subtitle: [
                             sprintf('Latest: %s queries on %s', lastQuery, lastDate),
-                            sprintf('Biggest Day: %s queries on %s', biggestQuery, biggestDate)
+                            sprintf('Highest: %s queries on %s', biggestQuery, biggestDate)
                         ]
                     };
                 },
