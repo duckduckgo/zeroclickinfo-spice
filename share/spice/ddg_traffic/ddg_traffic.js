@@ -1,8 +1,6 @@
 (function (env) {
     'use strict';
-
     function setupData(input) {
-
         var now = moment(),
             limit = moment().subtract(1, 'year'),
             labels = [],
@@ -13,7 +11,7 @@
                 bot: []
             };
 
-        var size = 60; // rolling avg for X days
+        var size = 365; // rolling avg for X days
         while (days.length > 0) {
             var group = days.splice(0, size);
             var endDate = moment(group[group.length - 1].date).format('MMM DD, YYYY');
@@ -59,6 +57,7 @@
                 },
                 {
                     label: 'API',
+                    hidden: true,
                     backgroundColor: 'rgba(96,165,218,0.2)', //blue
                     borderColor: 'rgba(96,165,218,1)',
                     pointBackgroundColor: 'rgba(96,165,218,1)',
@@ -69,6 +68,7 @@
                 },
                 {
                     label: 'Bot',
+                    hidden: true,
                     backgroundColor: 'rgba(102,102,102,0.2)', //grey
                     borderColor: 'rgba(102,102,102,1)',
                     pointBackgroundColor: 'rgba(102,102,102,1)',
@@ -131,10 +131,9 @@
                     Chart.defaults.global.defaultFontFamily = "DDG_ProximaNova, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
                     var ctx = $('#ddgTraffic').get(0).getContext('2d'),
                         options = {
-
                             title: {
                                 display: true,
-                                text: '60 Day Rolling Average'
+                                text: '365 Day Rolling Average'
                             },
                             legend: {
                                 position: 'bottom'
@@ -158,15 +157,19 @@
                                 xAxes: [{
                                     type: 'time',
                                     time: {
+                                        unit: 'year',
                                         displayFormats: {
-                                            quarter: 'MMM YYYY'
+                                            year: 'MMM YYYY'
                                         }
                                     },
                                     gridLines: {
-                                        color: 'rgba(0, 0, 0, 0.1)'
+                                        display: false
                                     }
                                 }],
                                 yAxes: [{
+                                    gridLines: {
+                                        display: false
+                                    },
                                     ticks: {
                                         callback: function (value) {
                                             return DDG.abbrevNumber(value)
