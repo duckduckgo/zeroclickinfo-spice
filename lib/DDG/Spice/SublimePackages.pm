@@ -22,6 +22,8 @@ handle remainder => sub {
     s/v?(ersion )?3/:st3/g;
     # Do not trigger IA if query matches any words in skipwords.txt file
     return if  m/$skip/i;
+    # Do not trigger IA if query matches alternative/s 
+    return if  m/ ?alternatives? .*/i;
     s/\b(for)\s+?\b//g; #skip common words
     return $_;
 };

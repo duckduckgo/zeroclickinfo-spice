@@ -10,15 +10,22 @@ spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{
 spice alt_to => {
 	movie_image => {
 		to => 'https://api.themoviedb.org/3/find/$1?api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&external_source=imdb_id',
-		# Uses $loc so needs to not cache back end.
-		is_cached => 0,
+		proxy_cache_valid => "200 30d"
+	},
+
+	cast_image => {
+		to => 'https://api.themoviedb.org/3/search/person?query=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}',
 		proxy_cache_valid => "200 30d"
 	}
 };
 
 # This spice will usually be triggered by deep triggers,
 # with a few extra triggers that deep might miss.
-my @triggers = ( 'rotten tomatoes', 'rotten');
+my @triggers = ( 'rotten tomatoes', 'rotten', 'cast', 'casts', 'actor', 'actors', 'actress', 'actresses');
+my @triggers_start = ( 'cast of', 'casts of', 'who stars in', 'who starred in', 'actor in', 'actors in', 'actress in', 'actresses in' );
+my @triggers_end =( 'movie cast', 'movie casts');
+triggers start => @triggers_start;
+triggers end => @triggers_end;
 triggers startend => @triggers;
 
 handle remainder => sub {

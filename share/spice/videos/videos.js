@@ -12,10 +12,6 @@
             allowMultipleCalls: true,
             data: apiResult.results,
             model: 'Video',
-            meta: {
-                next: apiResult.next,
-                searchTerm: apiResult.query
-            },
             templates: {
                 group: 'videos'
             },

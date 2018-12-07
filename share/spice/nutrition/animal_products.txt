@@ -1,0 +1,9 @@
+ayran
+butter
+buttermilk
+cheese
+cream
+egg
+milk
+quark
+yogurt

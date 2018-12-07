@@ -4,7 +4,7 @@ use DDG::Spice;
 use YAML::XS 'LoadFile';
 use Text::Trim;
 
-spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&query=$1&time=1&tz=1&verbosetime=1&sun=1';
+spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&query=$1&time=1&tz=1&verbosetime=1&sun=1&version=1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "12h";
 
@@ -28,15 +28,12 @@ my $capitals = LoadFile(share('capitals.yml'));
 handle remainder_lc => sub {
     my $q = $_;
 
-    if ($q ne '') {
-        $q =~ s/\b(what|is|today|time|in|at)+\b//g;
-        $q =~ s/(\,\s)+/ /g;
-        $q = trim $q;
-        $q = ($q eq '') ? lc $loc->city : $q;
-    } else {
-        $q = lc $loc->city;
-    }
-
+    $q =~ s/\b(what|is|today|time|in|at)+\b//g;
+    $q =~ s/(\,\s)+/ /g;
+    $q = trim $q;
+    
+    return unless $q;
+    
     if (my $caps = $capitals->{$q}) {
         # These are internally sorted by population,
         # so assume they want the big one for now.

@@ -1,21 +1,22 @@
-DDG.require('maps',function(){
-    ddg_spice_maps_maps = function(response) {
+(function(env) {
+    "use strict";
 
-        if (!response || !response.features || !response.features.length) { return Spice.failed('maps_maps'); }
+    ddg_spice_maps_maps = function(res) {
+        if (!res) { return DDG.duckbar.failed('maps_maps'); }
 
-        // Mapbox sends back a bunch of places, just want the first one for now
-        response = response.features[0];
+        var response = DDG.localAPI.getMapsResponse(res);
 
-        if (response.relevance < 0.9) {
-            return Spice.failed('maps_maps');
+        if (!response || !response.results || !response.results.length) {
+            return DDG.duckbar.failed('maps_maps');
         }
-
-        Spice.add({
-            data: response,
-            id: "maps_maps",
-            name: "maps",
-            model: "Place"
+        
+        return Spice.add({
+            data: response.results,
+            id: 'maps_maps',
+            name: 'maps',
+            answerType: 'Maps',
+            allowMultipleCalls: true
         });
 
-    };
-});
+    }
+}(this));

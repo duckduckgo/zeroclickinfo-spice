@@ -1,5 +1,5 @@
+{{#if isCurrent}}
 <div class="tile tile--s" data-link="{{meta.sourceUrl}}">
-    {{#if isCurrent}}
     <div class="fe_currently  text--secondary{{#if alerts}}  alert{{/if}}">
 		<h5 class="fe_label  text--primary"><a href="{{{meta.sourceUrl}}}">Right Now:</a></h5>
 		<div class="fe_current-wrap">
@@ -12,16 +12,20 @@
 			<div class="fe_current__bottom">
 				{{#if summary}}<h6 class="fe_topline"><span class="fe_summary {{summaryClass}}">{{{summary}}}</span></h6>{{/if}}
 				{{#if wind}}<h6 class="fe_wind">{{{wind}}}</h6>{{/if}}
+				{{#if humidity}}<h6 class="fe_humidity">{{{humidity}}}</h6>{{/if}}
+				{{#if precipitation}}<h6 class="fe_precipitation">{{{precipitation}}}</h6>{{/if}}
 			</div>
 		</div>
     </div>
-    {{else}}
+</div>
+{{else}}
+<div class="tile tile--s" data-link="{{daysourceUrl}}">
         <div class="fe_day  text--secondary">
               <span class="fe_icon-wrap fe_icon-wrap--daily">
                   {{{forecast_icon icon}}}
               </span>
               <div class="media__body">
-                <h5 class="fe_label  text--primary"><a href="{{{meta.sourceUrl}}}">{{{day}}}:</a></h5>
+                <h5 class="fe_label  text--primary"><a href="{{{daysourceUrl}}}">{{{day}}}:</a></h5>
                 <h6 class="fe_date  tx-clr--lt2">{{{date}}}</h6>
               </div>
               <div class="fe_summary"><h6>{{{ellipsis summary 65}}}</h6></div>

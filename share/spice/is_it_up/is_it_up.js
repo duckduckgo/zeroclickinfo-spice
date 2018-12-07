@@ -13,13 +13,12 @@
             signal: 'high',
             meta: {
                 sourceUrl: 'http://isitup.org/' + api_result['domain'],
-                sourceName: 'Is it up?',
-                sourceIcon: true
+                sourceName: 'Is it up?'
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.is_it_up.detail,
+                    title_content: Spice.is_it_up.title_content,
                     moreAt: true
                 }
             }

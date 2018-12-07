@@ -7,6 +7,19 @@ with 'DDG::SpiceRole::NumberStyler';
 use Text::Trim;
 use YAML::XS qw(LoadFile);
 
+use Data::Dumper;
+
+my @topCurrencies = (
+    "usd",
+    "gbp",
+    "eur",
+    "jpy",
+    "chf",
+    "aud",
+    "sek",
+    "nok", 
+);
+
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;
@@ -14,6 +27,8 @@ my %currHash = ();
 
 # load decimal => unicode currency codes
 my $currencyCodes = LoadFile share("currencySymbols.yml");
+# country code => currency code
+my $currencyPerCountry = LoadFile share("currencyPerCountry.yml");
 
 foreach my $currency (@currencies){
     chomp($currency);
@@ -24,18 +39,25 @@ foreach my $currency (@currencies){
 
 # Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
-my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
-my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
-my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
+my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to|convert (?:in)?to)\s/i;
+my $vs_qr = qr/\sv(?:ersu|)s?\.?\s|\s?-\s?/i;
+my $joins_qr = qr/\s(?:and|equals)\.?\s/i;
+my $question_prefix = qr/xe|(?:convert|calculate|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
-my $cardinal_re = join('|', qw(hundred thousand k million m billion b trillion));
+my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)).' ';
+my $from_qr = qr/(?<fromSymbol>\p{Currency_Symbol})|(?:(?<from>$currency_qr)s?)/;
+my $amount_qr = qr/(?<amount>$number_re*)\s?(?<cardinal>$cardinal_re)?/;
 
-my $guard = qr/^$question_prefix(\p{Currency_Symbol})?\s?($number_re*)\s?(\p{Currency_Symbol})?\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\/|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
+my $keyword_qr = qr/(?:(?<currencyKeyword>(?:((currency|value|price|worth)( (conver(sion|ter)|calculator))?)|(conver(sion|ter)\s?(calc(ulator)?)?|calc(ulator)?)|valuation|(exchange|conversion|valuation)? rates?)|(?:exchanges?)|(value|price) of) ?)/i;
+my $guard = qr/^$question_prefix\s?$keyword_qr?(?:$from_qr\s?$amount_qr(?:k|thousand|m(?:illion)?|b(?:illion)?)?|$amount_qr\s?$from_qr)\s?$keyword_qr?(?:$into_qr|$joins_qr|$vs_qr|\/|\s)?(?<to>$currency_qr)?(?<toSymbol>\p{Currency_Symbol})?s?\s?$keyword_qr?\??$/i;
+
+my $lang_qr = qr/^(xe\s)?(?:convert (?:currency|money)|(?:currency365)|(?:(?:currency|money|foreign) exchange rates?)|(?:(?:currency converter)?\s?exchange|fx) rates? (calculators?|converters?|today)|(?:(?:foreign|money) exchange)|(?:fiat\s)?(?:currency|money|xe(?:.com)?)(?:\sconver(?:ters?|sions?|t))?|currency (?:calculator|exchange)|forex|(?:exchange|fx) rates?)$/i;
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
+triggers query_lc => $lang_qr;
 
 spice from => '([^/]+)/([^/]+)/([^/]+)';
-spice to => 'http://www.xe.com/tmi/xe-output.php?amount=$1&from=$2&to=$3&appid={{ENV{DDG_SPICE_CURRENCY_APIKEY}}}';
+spice to => 'https://www.xe.com/tmi/xe-output.php?amount=$1&from=$2&to=$3&appid={{ENV{DDG_SPICE_CURRENCY_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 spice proxy_cache_valid => "200 5m";
@@ -43,6 +65,7 @@ spice proxy_cache_valid => "200 5m";
 # This function converts things like "us dollars" to the standard "usd".
 sub getCode {
     my $input = shift;
+
     foreach my $key (keys %currHash) {
         if(exists $currHash{$key}) {
             my @currValues = @{$currHash{$key}};
@@ -91,15 +114,15 @@ sub checkCurrencyCode {
         return;
     }
 
-    # If we don't get a currency to convert to, e.g., the user types in "usd"
-    # we set them to be the same thing. This will trigger our tile view.
+    # If we don't get a currency to convert to, e.g., the user types in "400 usd"
+    # we set them to be the same thing.
     if($to eq '') {
-        if($normalized_number == 1) {
-            $to = $from;
-        } else {
-            # This should probably depend on the user's location.
-            # For example, if I was in the Philippines, I would expect "10 usd" to mean "10 usd to php"
-            # But this would mean mapping currencies to countries.
+        my $local_currency = getLocalCurrency();
+
+        if($from ne $local_currency) {
+            $to = $local_currency;
+        }
+        else {
             $to = $from eq 'usd' ? 'eur' : 'usd';
         }
     }
@@ -107,47 +130,98 @@ sub checkCurrencyCode {
     return $normalized_number, $from, $to;
 }
 
+# get the local currency where the user is
+sub getLocalCurrency {
+    my $local_currency = '';
+
+    if ($loc && $loc->{country_code}) {
+        my $country_code = lc $loc->{country_code};
+
+        $local_currency = $currencyPerCountry->{$country_code} // '';
+
+        # make sure we've got the currency in our list
+        unless (exists $currHash{$local_currency}) {
+            $local_currency = '';
+        }
+    }
+
+    return $local_currency;
+}
+
 handle query_lc => sub {
 
-    if(/$guard/) {
-               
-        my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || $3 || '', $2, $4 || '', $5 || '', $6 || '' , $7 || '', $8 || '');               
-        
-        
+    # returns for plain language queries such as 'currency converter'
+    if(/$lang_qr/) {
+        my $from = getLocalCurrency();
+        my $to = 'usd';
+
+        if($from eq $to) {
+            $to = 'eur';
+        }
+
+        return checkCurrencyCode(1, $from, $to);
+    }
+    
+    # if the query matches one of the lang queries, we will default to
+    # 100 usd to eur
+    if (/$guard/) {
+        my $fromSymbol = $+{fromSymbol} || '';
+        my $amount = $+{amount};
+        my $from = $+{from} || '';
+        my $cardinal = $+{cardinal} || '';
+        my $to = $+{to} || '';
+        my $toSymbol = $+{toSymbol} || '';
+        my $currencyKeyword = $+{currencyKeyword} || '';
+
         if ($from eq '' && $fromSymbol) {
             $from = $currencyCodes->{ord($fromSymbol)};
         }
-        
-        if ($to eq '' && $toSymbol) { 
+
+        if ($to eq '' && $toSymbol) {
             $to = $currencyCodes->{ord($toSymbol)};
         }
 
+        # work around for captured `-` from the number style regex
+        if ($amount =~ m/-/) {
+            $amount = 1;
+        }
+
+        # if only a currency symbol is present without "currency" keyword, then bail unless a top currency
+        return if (
+            $amount eq '' && $to eq '' 
+            && $currencyKeyword eq '' 
+            && exists($currHash{$from}) 
+            && !grep(/^$from$/, @topCurrencies)
+        );
+
+        # for edge cases that we don't want to trigger on
+        return if $req->query_lc =~ /mop\stops?/ 
+               or $req->query_lc =~ m/tops?\s+?\d+/;
+        return if $req->query_lc =~ /gold\scups?/;
+        return if $req->query_lc =~ /^can$/;
+
+        # shouldn't be a hypen between two numbers
+        return if $_ =~ /\d+-\d+/;
+         
         my $styler = number_style_for($amount);
         return unless $styler;
 
-        if ($cardinal ne '') {
+        # only convert $amount if exists
+        if ($cardinal ne '' && $amount ne '') {
             $amount = $styler->for_computation($amount);
 
-            if ($cardinal eq 'hundred')  { $amount *= 100 }
-            elsif ($cardinal =~ /(thousand|k)/i) { $amount *= 1000 }
-            elsif ($cardinal =~ /(million|m)/i)  { $amount *= 1000000 }
-            elsif ($cardinal =~ /(billion|b)/i)  { $amount *= 1000000000 }
-            elsif ($cardinal =~ /(trillion|t)/i) { $amount *= 1000000000000 }
+            if ($cardinal =~ /(hundred )/i)  { $amount *= 100 }
+            elsif ($cardinal =~ /(thousand |k )/i) { $amount *= 1_000 }
+            elsif ($cardinal =~ /(million |m )/i)  { $amount *= 1_000_000 }
+            elsif ($cardinal =~ /(billion |b )/i)  { $amount *= 1_000_000_000 }
+            elsif ($cardinal =~ /(trillion |t )/i) { $amount *= 1_000_000_000_000 }
+        } elsif($cardinal && $amount eq '') {
+            return; # if cardinal provided but no amount return
         }
 
-        # If two amounts are available, exit early. It's ambiguous.
-        # We use the length function to check if it's an empty string or not.
-        if(length($amount) && length($alt_amount)) {
-            return;
-        }
         # Case where the first amount is available.
-        elsif(length($amount)) {
+        if(length($amount)) {
             return checkCurrencyCode($amount, $from, $to);
-        }
-        # Case where the second amount is available.
-        # We switch the $from and $to here.
-        elsif(length($alt_amount)) {
-            return checkCurrencyCode($alt_amount, $to, $from);
         }
         # Case where neither of them are available.
         else {

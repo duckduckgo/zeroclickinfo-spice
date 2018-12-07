@@ -1,10 +1,12 @@
 <div class="tih__year">
-    <div class="tih__year--text text--primary">{{{year}}}</div>
+    <div class="tih__year--text text--primary tx--19">{{{year}}}</div>
 </div>
 
-{{#if canExpand}}
+<div class="tx-clr--grey tx--14">
+    {{#if canExpand}}
     <div class="js-ellipsis text tih__text--can-expand">{{{text}}}</div>
     <div class="text tih__text--full">{{{text}}}</div>
-{{else}}
+    {{else}}
     <div class="text tih__text">{{{text}}}</div>
-{{/if}}
+    {{/if}}
+</div>

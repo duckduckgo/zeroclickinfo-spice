@@ -1,0 +1,17 @@
+{
+    "jquery":       { "url": "1/jquery&ia=about" },
+    "react":        { "url": "?q=react+javascript+library&ia=about" },
+    "opencv":       { "url": "1/opencv&ia=about" },
+    "bootstrap":    { "url": "?q=bootstrap+front-end+framework&ia=about" },
+    "angular.js":   { "url": "1/angular_js&ia=about" },
+    "angular":      { "url": "1/angular_js&ia=about" },
+    "Font-Awesome":  { "url": "1/font_awesome&ia=about" },
+    "linux":        { "url": "1/linux&ia=about" },
+    "docker":       { "url": "1/Docker_(software)" },
+    "meteor":       { "url": "?q=meteor+framework&ia=about" },
+    "swift":        { "url": "1/swift_(programming language)"},
+    "rails":        { "url": "1/ruby_on_rails" },
+    "ruby":        { "url": "1/ruby_(programming language)" },
+    "atom":         { "url": "1/atom_(text editor)" },
+    "moment":       { "url": "1/moment.js" }
+}

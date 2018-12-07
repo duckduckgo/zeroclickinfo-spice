@@ -1,0 +1,13 @@
+{{#if_value status_code 1}}
+    <h3 class="c-base__title text--primary">
+        <a href='http://{{this.domain}}'>{{this.domain}}</a> seems up
+    </h3>
+    <h4 class="c-base__sub">
+        It took us {{response_time}} seconds to get a <a href='/?q=http+{{response_code}}'>{{response_code}}</a> response from <a href='http://{{response_ip}}'>{{response_ip}}</a>
+    </h4>
+{{else}}
+    <h3 class="c-base__title text--primary">
+        <a href='http://{{this.domain}}'>{{this.domain}}</a> seems down
+    </h3>
+    <h4 class="c-base__sub"> We did not get a response from it</h4>
+{{/if_value}}

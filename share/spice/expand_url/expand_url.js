@@ -1,33 +1,35 @@
-(function(env){    
-    env.ddg_spice_expand_url = function(api_response) {
-        "use strict";
+(function(env){
+    "use strict";
 
-	// Get original query.
+    env.ddg_spice_expand_url = function(api_result) {
+
+	    // Get original query.
         var script = $('[src*="/js/spice/expand_url/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/expand_url\/([^\/]+)/)[1];
 
         // Check if there are any errors.
-        if (!api_response || !api_response["long-url"] || api_response["long-url"] === query) {
+        if (!api_result.success) {
             return Spice.failed('expand_url');
         }
+
+        api_result.subtitle = "Expanded URL for: " + decodeURIComponent(query);
 
         // Display the plug-in.
         Spice.add({
             id: "expand_url",
             name: "Answer",
-            data: api_response,
+            data: api_result,
             meta: {
-                sourceUrl: "http://longurl.org/expand?url=" + query,
-                sourceName: "LongURL"
+                sourceUrl: "https://unshorten.me?url=" + decodeURIComponent(query),
+                sourceName: "unshorten.me"
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.expand_url.content,
-		    moreAt: true
+                    title_content: Spice.expand_url.title_content
                 }
             }
         });
-    }
+    };
 }(this));

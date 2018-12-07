@@ -2,42 +2,65 @@
     env.ddg_spice_meta_cpan = function(api_result) {
         "use strict";
 
-        if (!(api_result && api_result.author && api_result.version)) {
-            return Spice.failed('meta_cpan');
-        }
-        var script = $('[src*="/js/spice/meta_cpan/"]')[0],
-            source = $(script).attr("src"),
-            query = decodeURIComponent(source.match(/meta_cpan\/([^\/]+)/)[1]),
-            link = "search?q=" + encodeURIComponent(query),
-            module_name = api_result.name;
-
-        if (api_result.module && api_result.module.length > 0) {
-            module_name = api_result.module[0].name;
-            if (api_result.module[0].associated_pod) {
-                link = "module/" + api_result.module[0].associated_pod;
-            }
+        if ( !api_result || api_result.hits.hits.length < 1 ) {
+            return DDH.failed('meta_cpan');
         }
 
-        Spice.add({
-            id: "meta_cpan",
-            name: "Software",
-            data: {
-                title: module_name,
-                subtitle: api_result.abstract,
-                record_data: api_result,
-                record_keys: ['author','version','description']
-            },
-            meta: {
-                sourceName: "MetaCPAN",
-                sourceUrl: 'https://metacpan.org/' + link
-            },
-            templates: {
-                group: 'list',
-                options: {
-                    content: 'record',
-                    moreAt: true
+
+        var script = $('[src*="/js/spice/meta_cpan/"]')[0];
+        var source = $(script).attr("src");
+        var query = source.match(/meta_cpan\/([^\/]*)/)[1];
+
+        // if query still has both items from handle remainder, remove $clean version
+        if (query.indexOf('/' !== -1)) {
+            query = query.split('/')[0];
+        }
+
+
+        DDG.require('moment.js', function() {
+            Spice.add({
+                id: "meta_cpan",
+                name: "Software",
+                data: api_result.hits.hits,
+                meta: {
+                    itemType: 'Software',
+                    sourceName: 'MetaCPAN',
+                    sourceUrl: 'https://metacpan.org/search?size=50&search_type=modules&q=' + query
+                },
+                normalize: function(item) {
+                    if ( !item._source.module || !item._source.module[0] ||
+                         ( !item.fields.description && !item.fields["abstract.analyzed"] )
+                    ) {
+                        return null;
+                    }
+
+                    var description = item.fields.description || item.fields["abstract.analyzed"];
+                    var version = item._source.module[0].version;
+                    var date = ( item.fields.date && item.fields.date )
+                        ? moment(item.fields.date).format("DD MMM YYYY")
+                        : "";
+
+                    return {
+                        title: item._source.module[0].name,
+                        url: 'https://metacpan.org/pod/' + item._source.module[0].name,
+                        description: description,
+                        author: item.fields.author,
+                        version: version,
+                        date: date
+                    };
+                },
+                templates: {
+                    group: 'text',
+                    detail: false,
+                    item_detail: false,
+                    options: {
+                        footer: Spice.meta_cpan.footer
+                    },
+                    variants: {
+                        tile: 'basic4'
+                    }
                 }
-            }
+            })
         });
     };
 }(this));

@@ -3,42 +3,65 @@ package DDG::Spice::IsItUp;
 
 use strict;
 use DDG::Spice;
-use DDG::Util::SpiceConstants;
+use Domain::PublicSuffix;
+use Net::IDN::Encode qw(domain_to_ascii domain_to_unicode);
+use Net::Domain::TLD qw(tld_exists);
+use Data::Validate::IP qw(is_ipv4);
 
-triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working|online|status)\?*$/i;
+triggers start => 'isitup', 'isitdown', 'is it up', 'is it down', 'status of';
+triggers end => 'up', 'down', 'working', 'online', 'status', 'up right now';
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
-my $regex_domain = qr/\.(@{[ DDG::Util::SpiceConstants::TLD_REGEX  ]})$/;
-my $regex_ipv4 = qr/^(?:\d{1,3}\.){3}\d{1,3}$/;
+my $query_start_regex = qr/(?:is\s|isitup|isitdown|is it up|is it down|status of|)/;
+my $query_end_regex   = qr/(?:up|down|working|online|status|up right now|)/;
+my $url_regex         = qr/(?:https?:\/\/)?([\p{Alnum}\-]+(?:\.[\p{Alnum}\-]+)*?)(?:(\.\pL{2,})|)/;
 
-handle matches => sub {
-    if ($_[2]) {
-        my $root_url = $_[1];
-        my $domain = $_[2];
-        # return the domain and the root url if the domain is valid
-        if ($domain =~ $regex_domain){
-            return $root_url.$domain;
+my $query_regex = qr/^($query_start_regex)\s?$url_regex\s?($query_end_regex)\?*$/i;
+
+handle remainder => sub {
+
+    return unless $_;
+
+    my ($domain, $ascii, $root_url);
+    my $publicSuffix = Domain::PublicSuffix->new();
+
+    my $query = $req->query_lc;
+
+    return unless $query =~ $query_regex;
+
+    $root_url = $2;
+
+    if ($3) {
+        my $tld = $3;
+        $ascii = domain_to_ascii($root_url.$tld);
+        $domain = $publicSuffix->get_root_domain($ascii);
+
+        if(!$domain) {  #if $domain was undefined, the input url may be incorrect as a whole or only the TLD was not found
+            $domain = $root_url.$tld if tld_exists(substr $tld, 1);
         }
+        return unless $domain;
+        return domain_to_unicode($domain);
     }
     else {
-        return $_[1] if $_[1] =~ $regex_ipv4;
+        return $root_url if is_ipv4($root_url);
+
         # append .com only if "is" is in the query and there's no other domain given
-        if ($_[0]) {
-            return $_[1] . '.com';
+        if ($1) {
+            return if length($root_url) < 5;
+            return $root_url . '.com';
         }
         # otherwise just return without '.com' -- stops false positives from showing zci
         else {
             # check for domain name in the end
-            if ($_[1] =~ $regex_domain) {
-                return $2;
-            }
+            $domain = $publicSuffix->get_root_domain($root_url);
+            return if !$domain;
+            return domain_to_unicode($domain);
         }
     }
     return;
 };
 
 1;
-

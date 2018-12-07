@@ -65,6 +65,11 @@
                     // fill boxscore with placeholder data
                     attrs.score = games.fillBoxscore(attrs.score, ops);
 
+                    // finish here if there is no possession data
+                    if (!attrs.score || !attrs.score.possession) {
+                        return attrs;
+                    }
+
                     // set possession on the relevant team object
                     if (!attrs.is_halftime) {
                         if (attrs.score.possession.team === attrs.home_team.api_id) {

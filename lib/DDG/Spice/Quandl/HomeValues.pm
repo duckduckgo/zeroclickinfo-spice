@@ -12,15 +12,15 @@ use YAML::XS 'LoadFile';
 my $trigger_hash = LoadFile(share('home_values_triggers.yml'));
 
 # triggers sorted by length so more specific is used first
-my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
+my @trigger_keys = sort { length $b <=> length $a } keys(%$trigger_hash);
 my $trigger_qr = join "|", @trigger_keys;
 
 # states and metro code mappings
 my $state_hash = LoadFile(share('states.yml'));
-my @state_keys = sort { length $b <=> length $a } keys($state_hash);
+my @state_keys = sort { length $b <=> length $a } keys(%$state_hash);
 my $state_qr = join "|", @state_keys;
 my $metro_hash = LoadFile(share('metro.yml'));
-my @metro_keys = sort { length $b <=> length $a } keys($metro_hash);
+my @metro_keys = sort { length $b <=> length $a } keys(%$metro_hash);
 my $metro_qr = join "|", @metro_keys;
 
 # defining our triggers

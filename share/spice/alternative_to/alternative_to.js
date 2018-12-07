@@ -20,7 +20,7 @@
             },
             normalize: function(item) {
                 return {
-                    description: DDG.strip_html(item.ShortDescription),
+                    description: DDG.unescape(DDG.strip_html(item.ShortDescription)),
                     url: item.Url,
                     icon: item.IconUrl,
                     title: item.Name,

@@ -4,7 +4,7 @@
     env.ddg_spice_fedora_project_package_db = function (api_result) {
 
         // validate the response
-        if (api_result.error || api_result.output == 'notok' || !api_result.packages || !api_result.packages.length) {
+        if (!api_result || api_result.error || api_result.output == 'notok' || !api_result.packages || !api_result.packages.length) {
             return Spice.failed('fedora_project_package_db');
         }
 

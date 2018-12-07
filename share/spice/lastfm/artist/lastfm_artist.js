@@ -2,7 +2,7 @@
     "use strict";
 
     env.ddg_spice_lastfm_artist_all = function(api_result) {
-        if (!api_result || !api_result.artist || !api_result.artist.url) { return; }
+        if (!api_result || !api_result.artist || !api_result.artist.url || api_result.artist.bio.content == '') { return; }
 
         Spice.add({
             id: 'lastfm_artist',

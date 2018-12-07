@@ -1,38 +1,37 @@
-<div class="zci__main">
+<div class="zci__main  zci__main--detail c-base">
     <div class="zci__body">
-        <div class="text--secondary">Mid-Market Rates: {{xeDate}} at {{xeTime}} UTC</div>
 
-        <div class="zci--currency-container">
-            <div class="zci--currency-result" data-link="{{xeUrl}}">
-                <div class="zci--currency-group">
-                    <section class="zci--currency-first-part">
-                        <img src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
-                        <span class="zci--currency-amount text--primary" data-original="{{from-amount}}" data-processed="{{amount}}">{{amount}}</span>
-                        <span class="zci--currency-symbol">{{fromCurrencySymbol}}</span>
-                    </section>
+        <!-- DATE LABEL -->
+        <div class="text--secondary" id="subtitle">Mid-Market Rates: {{xeDate}} at {{xeTime}} UTC</div>
 
-                    <span class="zci--currency-equal">=</span>
+        <!-- LEFT INPUT SECTION -->
+        <div class="frm clearfix">
+            <div class="input__wrap input__wrap--left shadow">
+                <input class="frm__input frm__input--left" id="zci--currency-amount-left" data-original="{{from-amount}}" data-processed="{{amount}}" value="{{amount}}" type="number" step="any">
+                <div class="frm__select">
+                    <select class="frm__select--left zci--currency-symbol" id="zci--currency-symbol-left"></select>
                 </div>
-
-                <section class="zci--currency-second-part">
-                    <img src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
-                    <span class="zci--currency-amount text--primary" data-original="{{converted-amount}}" data-processed="{{convertedAmount}}">{{convertedAmount}}</span>
-                    <span class="zci--currency-symbol">{{toCurrencySymbol}}</span>
-                </section>
             </div>
-                
 
-            <div class="zci--currency-ratesinfo">
-                <div>{{rate}}</div>
-                <div>{{inverseRate}}</div> 
+            <div class="equals-sign tx-clr--slate">=</div>
+
+            <!-- RIGHT INPUT SECTION -->
+            <div class="input__wrap input__wrap--right shadow">
+                <input class="frm__input frm__input--right" id="zci--currency-amount-right" type="number" step="any">
+                <div class="frm__select">
+                    <select class="frm__select--right zci--currency-symbol" id="zci--currency-symbol-right"></select>
+                </div>
             </div>
         </div>
 
-        <div class="clear"></div>
-        <a href="http://www.xe.com/currencyconverter/convert/?Amount={{from-amount}}&From={{fromCurrencySymbol}}&To={{toCurrencySymbol}}" class="zci__more-at"><img class="zci__more-at__icon" src="{{ imageProxy moreAtIcon }}">More at xe.com</a>
-        <a href="http://www.xe.com/currencycharts/?from={{fromCurrencySymbol}}&to={{toCurrencySymbol}}" class="zci__more-at--info">
-            <span class="zcm__sep"></span>  
-            View Chart
-        </a>
+        <!-- MORE AT LABELS -->
+        <div id="zci__more-at">
+            <a href="http://www.xe.com/currencyconverter/convert/?Amount={{from-amount}}&From={{fromCurrencySymbol}}&To={{toCurrencySymbol}}" class="zci__more-at"><img class="zci__more-at__icon" src="{{ imageProxy moreAtIcon }}">More at xe.com</a>
+            <a href="https://www.xe.com/currencycharts/?from={{fromCurrencySymbol}}&to={{toCurrencySymbol}}" class="zci__more-at--info">
+                <span class="zcm__sep"></span>
+                View Chart
+            </a>
+        </div>
+
     </div>
 </div>

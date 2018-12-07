@@ -1,0 +1,11 @@
+<div>Created {{created_at}}<span class="sep"></span>by <a href="https://github.com/{{user}}">{{user}}</a><span class="sep"></span>Last updated {{pushed_at}}<br></div><br>
+<div class="text--secondary">
+   <p>{{ia_meta.description}}</p><br>
+   IA Page: <a href="http://duck.co/ia/view/{{ia_meta.id}}">/ia/view/{{ia_meta.id}}</a><br>
+   Example Query: <a href="{{url}}">{{ia_meta.example_query}}</a><br>
+   Install Status: <span class="{{install_class}}">{{install_status}}</span><br><br>
+   <a class="btn btn--secondary" href="http://github.com/duckduckgo/zeroclickinfo-{{ia_meta.repo}}/pull/{{pr}}"><i class="fa fa-github"></i> #{{pr}}</a> 
+   <a class="btn btn--primary" href="{{url}}"><i class="fa fa-search"></i> Try It Out</a><br> 
+</div>
+
+

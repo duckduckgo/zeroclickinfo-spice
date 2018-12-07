@@ -52,7 +52,7 @@
 	</div>
 	<div class="c-score__foot">
 		<div class="c-score__foot__main">
-			<div class="c-score__venue">@ {{venue.market}}<span class="c-score__venue__name"> - {{venue.name}}</span></div>
+			<div class="c-score__venue">@ {{#if venue.market}}{{venue.market}}{{else}}{{venue.city}}{{/if}} <span class="c-score__venue__name"> - {{venue.name}}</span></div>
 			<div class="c-score__foot__more  c-score__opt">
 			{{#if has_ended}}
 				{{#if pitchers}}

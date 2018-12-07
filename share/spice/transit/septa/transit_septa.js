@@ -7,7 +7,7 @@
                 !api_result[0].orig_line ||
                 !api_result[0].orig_departure_time ||
                 !api_result[0].orig_delay) {
-            return Spice.failed('septa');
+            return Spice.failed('transit_septa');
         }
 
         var script = $("[src*='js/spice/transit/septa/']")[0],
@@ -18,7 +18,7 @@
             now = timeInMins(new Date().toTimeString());
 
         Spice.add({
-            id: 'septa',
+            id: 'transit_septa',
             name: 'SEPTA',
             data: api_result,
             signal: 'high',
@@ -30,8 +30,8 @@
             },
             normalize: function(item) {
                 var classes = {
-                        "Suspended": "septa__cancelled",
-                        "Delayed": "septa__delayed"
+                        "Suspended": "transit_septa__cancelled",
+                        "Delayed": "transit_septa__delayed"
                     };
 
                 return {
@@ -40,7 +40,7 @@
                     line: item.orig_line.replace(' Line', '') + ' Line',
                     url: 'http://www.septa.org/schedules/rail/index.html',
                     status:  actualStatus(item),
-                    status_class: delayedMins(item.orig_delay) > 0 ? 'septa__delayed' : classes[item.orig_delay],
+                    status_class: delayedMins(item.orig_delay) > 0 ? 'transit_septa__delayed' : classes[item.orig_delay],
                     cancelled: (status === "Suspended")
                 };
             },

@@ -5,6 +5,7 @@ use warnings;
 use Test::More;
 use URI::Escape;
 use DDG::Test::Location;
+use DDG::Test::Language;
 use DDG::Test::Spice;
 use DDG::Request;
 
@@ -14,8 +15,9 @@ ddg_spice_test(
     DDG::Request->new(
         query_raw => 'weather',
         location => test_location('de'),
+        language => test_language('de'),
     ) => test_spice(
-        "/js/spice/forecast/M%C3%B6nchengladbach%20Nordrhein-Westfalen%20Germany/current",
+        "/js/spice/forecast/M%C3%B6nchengladbach%20Nordrhein-Westfalen%20Germany/de",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -25,7 +27,7 @@ ddg_spice_test(
         query_raw => 'weather',
         location => test_location('us'),
     ) => test_spice(
-        "/js/spice/forecast/Phoenixville%20Pennsylvania%20United%20States/current",
+        "/js/spice/forecast/Phoenixville%20Pennsylvania%20United%20States/en",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -35,7 +37,7 @@ ddg_spice_test(
         query_raw => 'weather',
         location => test_location('my'),
     ) => test_spice(
-        "/js/spice/forecast/Kuala%20Lumpur%20Kuala%20Lumpur%20Malaysia/current",
+        "/js/spice/forecast/Kuala%20Lumpur%20Kuala%20Lumpur%20Malaysia/en",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -61,20 +63,6 @@ ddg_spice_test(
     'temperature conversion chart' => undef,
     'temperature pork done'        => undef,
     'temperature iron melts'       => undef,
-
-# Disabling since I made the trigger a startend. (caine)
-#    'Philadelphia weather this week' => test_spice(
-#        '/js/spice/forecast/philadelphia',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::Forecast',
-#        is_cached => 1
-#    ),
-#    'what is the weather in new york' => test_spice(
-#        '/js/spice/forecast/new%20york',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::Forecast',
-#        is_cached => 1
-#    ),
 );
 
 done_testing;

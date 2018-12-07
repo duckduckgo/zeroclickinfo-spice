@@ -1,0 +1,12 @@
+<h3 class="gbstatus--header tx--21 text--primary">
+    {{! Check if the status is either good, minor or major }}
+    {{#GitbookStatus_indicator status "none"}}
+        The status of GitBook is <span class="gbstatus--good">good</span>
+    {{else}}
+        {{#GitbookStatus_indicator status "minor"}}
+            GitBook status is <span class="gbstatus--minor">{{status}}</span>
+        {{else}}
+            GitBook status is <span class="gbstatus--major">{{status}}</span>
+        {{/GitbookStatus_indicator}}
+    {{/GitbookStatus_indicator}}
+</h3>

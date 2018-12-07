@@ -1,0 +1,13 @@
+/* Fixes issue with legacy user avatars:
+ * hides 20px white border on 100x100px thumnails
+ */
+.zci--coderwall .c-icon__img {
+  max-height: 122%;
+  max-width: 122%;
+  margin: -11%;
+}
+.zci--coderwall .c-icon__img-wrap {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}

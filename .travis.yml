@@ -6,7 +6,7 @@ cache:
   directories:
     - $HOME/.cpanm
     - $HOME/.nvm
-    - $HOME/perl5/perlbrew/perls/5.16/lib
+    - $HOME/perl5/perlbrew/perls/5.26/lib
     - /var/tmp
 before_install:
   - export HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
@@ -15,10 +15,10 @@ before_install:
 install:
   - npm install -g uglify-js handlebars
   - cpanm --quiet --notest Dist::Zilla
-  - dzil authordeps | grep -ve '^\W' | xargs -n 5 -P 10 cpanm --notest --quiet --mirror http://www.cpan.org/ --mirror http://duckpan.org
-  - dzil listdeps | grep -ve '^\W' | cpanm --notest --quiet --mirror http://www.cpan.org/ --mirror http://duckpan.org
+  - dzil authordeps | grep -ve '^\W' | cpanm --quiet --notest --mirror http://www.cpan.org/ --mirror http://duckpan.org --mirror-only
+  - dzil listdeps | grep -ve '^\W' | cpanm --quiet --notest --mirror http://www.cpan.org --mirror http://duckpan.org --mirror-only
 language: perl
 perl:
-  - '5.16'
+  - 5.26
 script:
-  - dzil smoke --release --author
+  - prove -lr -j1 t

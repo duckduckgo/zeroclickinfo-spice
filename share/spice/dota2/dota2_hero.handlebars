@@ -1,0 +1,71 @@
+<div class="gw">
+    <div class="g third hero-image">
+        <img class="whole--screen-s" src="{{image}}" title="{{name}}" />
+    </div>
+    <div class="g twothirds hero-info">
+        <h1 class="zci__header tx--18 row row-first">{{name}}</h1>
+        <div class="row">
+            <span class="quarter text--secondary thirty--screen-s">Category</span>
+            <span class="threequarters text--primary seventy--screen-s">{{primaryAttribute}}</span>
+            <span class="quarter text--secondary thirty--screen-s">Attack</span>
+            <span class="threequarters text--primary seventy--screen-s">{{attackType}}</span>
+            <span class="quarter text--secondary thirty--screen-s">Roles</span>
+            <span class="threequarters text--primary seventy--screen-s">{{roles}}</span>
+        </div>
+        <div class="row">
+            <span class="quarter text--secondary thirty--screen-s">Stats</span>
+            <table class="threequarters seventy--screen-s">
+                <tr>
+                    <td class="hero-stats-icon">
+                        <img src="{{assets.stats.intelligence.image}}" title="{{assets.stats.intelligence.title}}" />
+                    </td>
+                    <td class="hero-stats">
+                        {{int}}
+                    </td>
+                    <td class="hero-stats-icon">
+                        <img src="{{assets.stats.attack.image}}" title="{{assets.stats.attack.title}}" />
+                    </td>
+                    <td class="hero-stats">
+                        {{attack}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="hero-stats-icon">
+                        <img src="{{assets.stats.agility.image}}" title="{{assets.stats.agility.title}}" />
+                    </td>
+                    <td class="hero-stats">
+                        {{agi}}
+                    </td>
+                    <td class="hero-stats-icon">
+                        <img src="{{assets.stats.speed.image}}" title="{{assets.stats.speed.title}}" />
+                    </td>
+                    <td class="hero-stats">
+                        {{speed}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="hero-stats-icon">
+                        <img src="{{assets.stats.strength.image}}" title="{{assets.stats.strength.title}}" />
+                    </td>
+                    <td class="hero-stats">
+                        {{str}}
+                    </td>
+                    <td class="hero-stats-icon">
+                        <img src="{{assets.stats.defense.image}}" title="{{assets.stats.defense.title}}" />
+                    </td>
+                    <td class="hero-stats">
+                        {{defense}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row row-last">
+            <span class="quarter text--secondary thirty--screen-s">Abilities</span>
+            <div class="threequarters seventy--screen-s">
+                {{#each abilities}}
+                    <img src="{{image}}" title="{{name}}" class="hero-ability-icon" />
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

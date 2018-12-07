@@ -1,52 +1,82 @@
-function ddg_spice_search_code(api_response) {
+(function(env) {
     "use strict";
 
-    var query = api_response.query;
-    var data = api_response.results;
-
-    if(!data.length || data.length === 0) {
-        return Spice.failed('search_code');
-    }
-
-    var result;
-    for (var i = 0; i < data.length; i++) {
-        var checkRelevancy = [data[i].name, data[i].displayname, data[i].namespace].join(" ");
-        if (DDG.isRelevant(checkRelevancy, [], 2)) {
-            result = data[i];
-            break;
+    function formatTitle(result) {
+        var formatted_title = result.name;
+        if (result.displayname && result.displayname !== '') {
+            formatted_title += ' (' + result.displayname + ')';
         }
+        return formatted_title;
     }
 
-    if (!result) {
-        return Spice.failed('search_code');
-    }
-
-    function formatName(result) {
-        var formatted_name = result.name;
-
-        if (result.displayname !== '' || result.namespace !== '') {
-            formatted_name += ' (';
-            if (result.displayname !== '') {
-                formatted_name += result.displayname;
-            }
-            if (result.namespace !== '') {
-                formatted_name += (result.displayname ? ', ' : '') + result.namespace;
-            }
-            formatted_name += ')';
+    function formatSubtitle(result) {
+        var formatted_subtitle = null;
+        if (result.namespace && result.namespace !== '') {
+            formatted_subtitle = result.namespace;
         }
-
-        return formatted_name;
+        return formatted_subtitle;
     }
 
-    Spice.add({
-        data             : result,
-        header1          : formatName(result),
-        sourceUrl       : 'https://searchcode.com/?q=' + query,
-        sourceName      : 'search[code]',
-        templates: {
-            item: Spice.search_code.search_code,
-            detail: Spice.search_code.search_code
-        },
+    env.ddg_spice_search_code = function(api_result) {
         
-    });
-}
+        if(!api_result) {
+            return Spice.failed('search_code');
+        }
+
+        var query = api_result.query;
+        var data = api_result.results;
+
+        if(!data.length || data.length === 0) {
+            return Spice.failed('search_code');
+        }
+
+        var result;
+        for (var i = 0; i < data.length; i++) {
+            var checkRelevancy = [data[i].name, data[i].displayname, data[i].namespace].join(" ");
+            if (DDG.isRelevant(checkRelevancy, [], 2)) {
+                result = data[i];
+                break;
+            }
+        }
+
+        if (!result) {
+            return Spice.failed('search_code');
+        }
+
+        result.title = formatTitle(result);
+        result.subtitle = formatSubtitle(result);
+
+        Spice.add({
+            id: 'search_code',
+            name: 'Answer',
+            data: result,
+            meta: {
+                sourceUrl: 'https://searchcode.com/?q=' + query,
+                sourceName: 'searchcode',
+            },
+            normalize: function(item) {
+                var subtitleArray = [];
+                if (item.subtitle) {
+                    subtitleArray.push(item.subtitle);
+                }
+                if (item.url && item.url !== '') {
+                    subtitleArray.push({
+                        href: item.url,
+                        text: "Reference"
+                    });
+                }
+                return {
+                    title: item.title,
+                    subtitle: subtitleArray
+                };
+            },
+            templates: {
+                group: 'text',
+                options: {
+                    content: Spice.search_code.content,
+                    moreAt: true
+                }
+            }
+        });
+    }
+}(this));

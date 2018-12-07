@@ -1,0 +1,14 @@
+/* CSS for Libraries.io */
+
+.zci--libraries #zci__more-at {
+    margin-top: 1.3em;
+}
+
+.zci--libraries #meta-info {
+    display: inline-block;
+}
+
+.zci--libraries .star.starIcon {
+    margin-top: -5px;
+    font-size: 1.4em;
+}

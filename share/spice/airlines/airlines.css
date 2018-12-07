@@ -1,61 +1,56 @@
 .tile--airlines  {
-    width: 37em;
+    padding: 1.44em;
 }
 
-.zci--airlines .tile__schedule {
-    color: #878787;
-    font-size: 12px;
+.zci--airlines .text--primary {
+    line-height: 1.3em;
 }
 
-.zci--airlines .tile__time {
-    font-size: 2em;
+.zci--airlines .text--secondary {
+    line-height: 1.3em;
 }
 
-.zci--airlines .tile__heading {
-    margin-bottom: 1em;
+.zci--airlines td {
+	padding: 0px 1em 0px 0px;
+    vertical-align: top;
 }
 
-.zci--airlines .tile__flightID {
-    font-size: 2em;
-    padding-bottom: 0;
-    padding-top: 0;
+.zci--airlines td:first-child {
+    padding-left: 0px;
 }
 
-.zci--airlines .tile__airports {
-    font-size: 1.5em;
-    padding-bottom: 0;
-    padding-top: 0;
-    margin-top: -0.2em;
+.zci--airlines td:last-child {
+    padding-right: 0px;
 }
 
-.zci--airlines .tile__ok {
-    color: #60AB5D;
+.zci--airlines .divider {
+    height: 1px;
+    border: 0;
+    margin: 1.2em 0;
 }
 
-.zci--airlines .tile__not {
-    color: #C14316;
+.zci--airlines .dot {
+	border-radius: 50%;
+	width: 4px;
+	height: 4px;
+	border: solid 2px;
+	display: inline-block;
+	position: relative;
+	top: -9px;
+}
+
+.zci--airlines .progress__bar {
+	width: 100%;
+	height: 2px;
+	margin: 1em 0px 1em 0px;
+}
+
+.zci--airlines .progress__complete {
+	height: 2px;
 }
 
 .zci--airlines .tile__date {
-    color: #B3B3B3;
     float: right;
-    text-align: center;
-    font-weight: 600;
-}
-
-.zci--airlines .tile__week {
-    font-size: 12px;
-}
-
-.zci--airlines .tile__day {
-    line-height: 12px;
-    font-size: 1.5em;
-}
-
-.zci--airlines .na {
-    color: #999;
-}
-
-.is-mobile .tile--airlines {
-    width: 100%;
+    text-align: right;
+    padding-top: 3px;
 }

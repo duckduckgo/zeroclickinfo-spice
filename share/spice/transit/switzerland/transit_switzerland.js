@@ -3,14 +3,14 @@
     env.ddg_spice_transit_switzerland = function(api_result) {
 
         if (!api_result || api_result.error || !api_result.to || !api_result.from || !api_result.connections) {
-            return Spice.failed('switzerland');
+            return Spice.failed('transit_switzerland');
         }
         
         var to = api_result.to.name || '',
             from = api_result.from.name || '';
         
         Spice.add({
-            id: "switzerland",
+            id: "transit_switzerland",
             name: "Swiss Trains",
             data: api_result.connections,
             meta: {
@@ -34,7 +34,7 @@
                     name: item.sections[0].journey.name,
                     platform: item.from.platform,
                     status: (item.from.delay) ? 'Delayed' : 'On time',
-                    status_class: (item.from.delay) ? 'switzerland__delayed' : '',
+                    status_class: (item.from.delay) ? 'transit_switzerland__delayed' : '',
                     transfers: format_transfers(item.transfers),
                     url: 'http://transport.opendata.ch/examples/connections.php?from=' + from + '&to=' + to
                 }

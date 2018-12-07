@@ -1,0 +1,8 @@
+<p><span class="text--primary">{{releases.0.version}}</span> is the latest of <span class="text--primary">{{releases.length}}</span> releases and it was published <em>{{updated_at}}</em>.</p>
+{{#if numberOfLinks}}
+    <p>You may also be interested in the following {{linkLabel}}:
+    {{#each meta.links}}
+        <a href="{{this}}" title="{{@key}}"">{{@key}}</a>
+    {{/each}}
+    </p>
+{{/if}}

@@ -1,0 +1,33 @@
+(?:(?#
+    keycap sequences:
+    )[#*0-9]\N{U+FE0F}\N{U+20E3}(?#
+)|(?#
+    flag indicators, also bogus ones:
+    )[\N{U+1F1E6}-\N{U+1F1FF}]{1,}(?#
+)|(?#
+    olympic rings:
+    )(?:\N{U+25EF}\N{U+200D}){4}\N{U+25EF}(?#
+)|(?#
+    BMP modified sequences:
+    )(?:[\N{U+261D}\N{U+26D1}\N{U+26F7}\N{U+26F9}\N{U+270A}-\N{U+270D}](?#
+        ? emoji switch )\N{U+FE0F}?(?#
+        ? Fitzpatrick: )[\N{U+1F3FB}-\N{U+1F3FF}]?(?#
+        ? Gender:      )(?:\N{U+200D}[\N{U+2640}\N{U+2642}]\N{U+FE0F})?)(?#
+)|(?#
+    Astral single, modified and ZWJ sequences:
+    )(?#
+    Astral cp: )[\N{U+1F004}\N{U+1F0CF}\N{U+1F170}-\N{U+1F171}\N{U+1F17E}-\N{U+1F17F}\N{U+1F18E}\N{U+1F191}-\N{U+1F19A}\N{U+1F201}-\N{U+1F202}\N{U+1F21A}\N{U+1F22F}\N{U+1F232}-\N{U+1F23A}\N{U+1F250}-\N{U+1F251}\N{U+1F300}-\N{U+1F3FF}\N{U+1F400}-\N{U+1F4FF}\N{U+1F500}-\N{U+1F5FF}\N{U+1F600}-\N{U+1F6FF}\N{U+1F900}-\N{U+1F9FF}](?#
+        ? emoji switch )\N{U+FE0F}?(?#
+        ? Fitzpatrick: )[\N{U+1F3FB}-\N{U+1F3FF}]?(?#
+        ? Gender:      )(?:\N{U+200D}[\N{U+2640}\N{U+2642}]\N{U+FE0F})?(?#
+        Any astral or some BMP emoji attached via ZWJ and modified: )(?:(?#
+            ZWJ: )\N{U+200D}(?#
+            ? Next CP: )[\N{U+20E3}\N{U+2620}\N{U+2695}\N{U+2696}\N{U+2708}\N{U+2764}\N{U+1F004}\N{U+1F0CF}\N{U+1F170}-\N{U+1F171}\N{U+1F17E}-\N{U+1F17F}\N{U+1F18E}\N{U+1F191}-\N{U+1F19A}\N{U+1F201}-\N{U+1F202}\N{U+1F21A}\N{U+1F22F}\N{U+1F232}-\N{U+1F23A}\N{U+1F250}-\N{U+1F251}\N{U+1F300}-\N{U+1F3FF}\N{U+1F400}-\N{U+1F4FF}\N{U+1F500}-\N{U+1F5FF}\N{U+1F600}-\N{U+1F6FF}\N{U+1F900}-\N{U+1F9FF}](?#
+            ? emoji switch )\N{U+FE0F}?(?#
+            ? Fitzpatrick: )[\N{U+1F3FB}-\N{U+1F3FF}]?(?#
+            ? Gender:      )(?:\N{U+200D}[\N{U+2640}\N{U+2642}]\N{U+FE0F})?(?#
+        0 or more times: ))*(?#
+)|(?#
+    Single BMP Emojis:
+    )[\N{U+A9}\N{U+AE}\N{U+203C}\N{U+2049}\N{U+2122}\N{U+2139}\N{U+2194}-\N{U+2199}\N{U+21A9}-\N{U+21AA}\N{U+231A}-\N{U+231B}\N{U+2328}\N{U+23CF}\N{U+23E9}-\N{U+23F3}\N{U+23F8}-\N{U+23FA}\N{U+24C2}\N{U+25AA}-\N{U+25AB}\N{U+25B6}\N{U+25C0}\N{U+25FB}-\N{U+25FE}\N{U+2600}-\N{U+2604}\N{U+260E}\N{U+2611}\N{U+2614}-\N{U+2615}\N{U+2618}\N{U+261D}\N{U+2620}\N{U+2622}-\N{U+2623}\N{U+2626}\N{U+262A}\N{U+262E}-\N{U+262F}\N{U+2638}-\N{U+263A}\N{U+2640}\N{U+2642}\N{U+2648}-\N{U+2653}\N{U+2660}\N{U+2663}\N{U+2665}-\N{U+2666}\N{U+2668}\N{U+267B}\N{U+267F}\N{U+2692}-\N{U+2697}\N{U+2699}\N{U+269B}-\N{U+269C}\N{U+26A0}-\N{U+26A1}\N{U+26AA}-\N{U+26AB}\N{U+26B0}-\N{U+26B1}\N{U+26BD}-\N{U+26BE}\N{U+26C4}-\N{U+26C5}\N{U+26C8}\N{U+26CE}-\N{U+26CF}\N{U+26D1}\N{U+26D3}-\N{U+26D4}\N{U+26E9}-\N{U+26EA}\N{U+26F0}-\N{U+26F5}\N{U+26F7}-\N{U+26FA}\N{U+26FD}\N{U+2702}\N{U+2705}\N{U+2708}-\N{U+270D}\N{U+270F}\N{U+2712}\N{U+2714}\N{U+2716}\N{U+271D}\N{U+2721}\N{U+2728}\N{U+2733}-\N{U+2734}\N{U+2744}\N{U+2747}\N{U+274C}\N{U+274E}\N{U+2753}-\N{U+2755}\N{U+2757}\N{U+2763}-\N{U+2764}\N{U+2795}-\N{U+2797}\N{U+27A1}\N{U+27B0}\N{U+27BF}\N{U+2934}-\N{U+2935}\N{U+2B05}-\N{U+2B07}\N{U+2B1B}-\N{U+2B1C}\N{U+2B50}\N{U+2B55}\N{U+3030}\N{U+303D}\N{U+3297}\N{U+3299}\N{U+E50A}\N{U+FE0F}](?#
+))

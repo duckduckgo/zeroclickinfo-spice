@@ -57,7 +57,7 @@ handle query_lc => sub {
                 
     $month += 1;
     $year += 1900;
-
+    
     # 102 AA
     if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*?)?$/) {
         return checkAirlines($airlines{$2}, $1, $year, $month, $dayOfMonth, $hour);

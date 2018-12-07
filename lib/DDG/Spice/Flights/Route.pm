@@ -3,6 +3,7 @@ package DDG::Spice::Flights::Route;
 
 use strict;
 use DDG::Spice;
+use Text::Trim;
 
 # cache responses for 5 minutes
 spice proxy_cache_valid => "200 304 5m";
@@ -35,7 +36,7 @@ foreach my $line (share('cities.csv')->slurp) {
     # map city names to their airport codes; if this city name
     # already exists, append the new airport code to the end
     if (exists $citiesByName{$cityName}) {
-        push($citiesByName{$cityName}, $airportCode);
+        push(@{$citiesByName{$cityName}}, $airportCode);
     } else {
         $citiesByName{$cityName} = [$airportCode];
     }
@@ -53,7 +54,7 @@ foreach my $line (share('cities.csv')->slurp) {
 
     if ($strippedAirportName ne $cityName) {
         if (exists $citiesByName{$strippedAirportName}) {
-            push($citiesByName{$strippedAirportName}, $airportCode);
+            push(@{$citiesByName{$strippedAirportName}}, $airportCode);
         } else {
             $citiesByName{$strippedAirportName} = [$airportCode];
         }
@@ -102,7 +103,7 @@ triggers startend => @triggers;
 sub identifyCodes {
 
     my ($query, $leftQuery, $otherCity) = @_;
-
+    
     # split query into individual words
     # at least two words are required (1 for the airline and 1 for the city)
     my @query = split(/\s+/, $query);
@@ -132,7 +133,7 @@ sub identifyCodes {
                 and index($airlineName, $groupB) == 0
                 and (exists $citiesByName{$groupA} or exists $citiesByCode{$groupA});
         }
-
+        
         # [airline][city][to][city]
         return (join(",", @airlineCodes), $citiesByName{$groupB}, $citiesByName{$otherCity}, $groupB, $otherCity)
             if @airlineCodes and $leftQuery and exists $citiesByName{$groupB} and exists $citiesByName{$otherCity};
@@ -173,14 +174,19 @@ handle query_lc => sub {
 
     # clean up input; strip periods and common words,
     # replace all other non-letters with a space, strip trailing spaces
-    s/\b(airport|national|international|intl|regional)\b//g;
+    s/\b(airport|national|international|intl|regional)\b//g;    
     s/\.//g;
-    s/[^a-z]+/ /g;
-    s/\s+$//g;
+    s/\b[^a-z]+\b/ /g;
+    trim;
 
     # query must be in the form [airline][city][to][city] or [city][to][city][airline]
     my @query = split(/\s+to\s+/, $_);
     return if scalar(@query) != 2;
+
+    # strip 'fligh(s) from' to allow more flexible queries
+    $query[0] =~ s/\b(flights?|from)\b//g;
+
+    trim($_) foreach @query;
 
     # get the current time, minus six hours
     my ($second, $minute, $hour, $dayOfMonth,
@@ -191,7 +197,7 @@ handle query_lc => sub {
 
     my @flightCodes = ();
 
-    # query format: [airline][city or airline code][to][city or airline code]
+    # query format: [airline][city or airport code][to][city or airport code]
     if (exists $citiesByName{$query[1]} or exists $citiesByCode{$query[1]}) {
         @flightCodes = identifyCodes($query[0], 1, $query[1]);
 

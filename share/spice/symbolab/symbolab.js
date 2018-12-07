@@ -14,13 +14,14 @@
         DDG.require('mathquill', function (){
             Spice.add({
                 id: "symbolab",
-                name: "Calculator",
+                name: "Answer",
                 data: api_result.solution,
                 meta: {
-                    sourceName: "Symbolab.com",
+                    sourceName: "symbolab.com",
                     sourceUrl: api_result.solution.url
                 },
                 normalize: function (data) {
+                	data.solutionLatex = data.solutionLatex.replace(/</g, "\\lt ").replace(/>/g, "\\gt ");
                     return {
                         problem: data.problemLatex,
                         problemHasLatex: containsLatexChars(data.problemLatex),
@@ -35,7 +36,7 @@
                         title_content: Spice.symbolab.title_content,
                         subtitle_content: Spice.symbolab.subtitle_content,
                         moreText: {
-                            text: "Step by step solution",
+                            text: "Show all steps",
                             href: api_result.solution.url
                         }
                     }

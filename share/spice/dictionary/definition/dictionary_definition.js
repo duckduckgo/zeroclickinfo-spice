@@ -58,7 +58,7 @@ var ddg_spice_dictionary = {
 
             meta: {
                 sourceName: "Wordnik",
-                sourceUrl : "http://www.wordnik.com/words/" + word,
+                sourceUrl : "https://www.wordnik.com/words/" + word,
                 attributionText: definitions[0].attributionText
             },
 
@@ -102,6 +102,7 @@ var ddg_spice_dictionary = {
     definition: function(api_result) {
         "use strict";
 
+        api_result = api_result && api_result.length && api_result.filter(function(result) { return result.text; })
         if (!api_result || !api_result.length) { return Spice.failed('dictionary_definition'); }
 
         // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
@@ -156,21 +157,21 @@ var ddg_spice_dictionary = {
         hyphenated_word = hyphenated_word.replace(/^‖/, '');
 
         // Replace the, rather lame, non-hyphenated version of the word.
-        this.$el.find(".zci__def__word").text(hyphenated_word);
+        this.$el && this.$el.find(".zci__def__word").text(hyphenated_word);
     },
 
     pronunciation: function(api_result) {
         "use strict";
 
         if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
-            this.$el.find(".zci__def__pronunciation").html(api_result[0].raw);
+            Spice.getDOM(this.id).find(".zci__def__pronunciation").html(api_result[0].raw);
         }
     },
 
     audio: function(api_result) {
         "use strict";
 
-        if (!api_result || !api_result.length) { return; }
+        if (!api_result || !api_result.length || !this.$el) { return; }
 
         var url = api_result[0].fileUrl; // default to the first audio file
 
@@ -186,7 +187,7 @@ var ddg_spice_dictionary = {
 
         this.playBtn = new DDG.Views.PlayButton({
             url: url,
-            after: this.$el.find('.zci__def__pronunciation')
+            after: Spice.getDOM(this.id).find('.zci__def__pronunciation')
         });
     }
 }

@@ -1,77 +1,24 @@
-# Welcome to DuckDuckHack's Spice Instant Answers Repository
+# In Maintenance [![Build Status](https://travis-ci.org/duckduckgo/zeroclickinfo-spice.svg?branch=master)](https://travis-ci.org/duckduckgo/zeroclickinfo-spice)
 
-[![Build Status](https://travis-ci.org/duckduckgo/zeroclickinfo-spice.png?branch=bttf)](https://travis-ci.org/duckduckgo/zeroclickinfo-spice)
+DuckDuckHack is now in maintenance mode. We are only accepting pull requests for essential bug fixes. For more information see [duckduckhack.com](https://duckduckhack.com). 
 
-![](http://docs.duckduckhack.com/assets/hack search engine.png)
+## What are essential bug fixes?
 
-**Instant Answers are an opportunity for anyone to create their own search results.**
+Any changes necessary to keep existing Instant Answers functioning correctly and as expected. For example:
 
-Instant Answers appear on DuckDuckGo.com above ads and organic links, on [millions of searches](https://duckduckgo.com/traffic.html). Instant Answers are created by an open source community of developers [around the world](http://duckduckgo.meetup.com/) like you. Welcome!
+  - Updating the URL for a Spice Instant Answer when the API changes
+  - Correcting a Perl or JavaScript logic error
+  - Fixing CSS that's causing the display to break
 
-You can find the [full documentation here](http://docs.duckduckhack.com).
+Any other changes will not be accepted. For example:
 
-[![slack](http://docs.duckduckhack.com/assets/slack.png) Talk to us on Slack](mailto:QuackSlack@duckduckgo.com?subject=AddMe) or [email us](mailto:open@duckduckgo.com).
+  - spelling/comment changes
+  - unsolicited improvements, changes, and code refactoring
 
-## Create a New Instant Answer
+## Need to report a bug?
+If you find a bug or relevancy issue, the **best** way to report this is via the Feedback button on the DuckDuckGo.com search results page. These issues are compiled and reviewed daily.
 
-Learn to make an Instant Answer by starting with any of our quick tutorials. All of these are self-contained and will get you up and running. Pick whatever looks most interesting!
+## Have a suggestion or idea?
+The **best** way to report these is also via the Feedback button on the DuckDuckGo.com search results page.
 
-- **[Create a programming syntax cheat sheet](http://docs.duckduckhack.com/walkthroughs/programming-syntax.html)**
-- **[Create a quick online calculation](http://docs.duckduckhack.com/walkthroughs/calculation.html)**
-- **[Build an API-based lookup](http://docs.duckduckhack.com/walkthroughs/forum-lookup.html)**
-
-## Improve a Live Instant Answer
-
-We welcome new contributors to dive in and improve live Instant Answers. It's a great, hands-on way to learn how things work. Start by [setting up your development environment](http://docs.duckduckhack.com/welcome/setup-dev-environment.html).
-
-You can see all "low-hanging fruit" issues neatly organized in one place on our [Live Issues Page](https://duck.co/ia/dev/issues?tag=lowhangingfruit), or get an overview of all [Instant Answers in development](https://duck.co/ia/dev/pipeline).
-
-Have a [favorite Instant Answer](http://duck.co/ia) that you want to make even better? Feel free to dive in and make changes. 
-
-## Inspiration
-
-Instant Answers allow you to create your own search results. Here are some examples of what contributors have created. You can see [all live Instant Answers listed here](https://duck.co/ia).
-
-Instant Answers can be quite dynamic...
-
-![](http://docs.duckduckhack.com/assets/parking_ny.png)
-
-...or simply convenient:
-
-![](http://docs.duckduckhack.com/assets/sales_tax.png)
-
-Some are just cool: 
-
-![](http://docs.duckduckhack.com/assets/heads_tails.png)
-
-Many are absolutely delightful and unexpected:
-
-![](http://docs.duckduckhack.com/assets/bpm_ms.png)
-
-Many are super practical...
-
-![](http://docs.duckduckhack.com/assets/air_quality.png)
-
-...in ways we never imagined:
-
-![](http://docs.duckduckhack.com/assets/blue_pill.png)
-
-Some Instant Answers are built from pure code:
-
-![](http://docs.duckduckhack.com/assets/url_encode.png)
-
-Other Instant Answers channel external sources (API requests):
-
-![App search Instant Answer example](http://docs.duckduckhack.com/assets/app_search_example.png)
-
-The [possibilities are endless](https://duck.co/ia). **Our community's mission is to cover every topic with a community-generated Instant Answer.**
-
-## Discuss with Us
-
-Want help? Need to think out loud? 
-
-[![slack](http://docs.duckduckhack.com/assets/slack.png) Talk to us on Slack](mailto:QuackSlack@duckduckgo.com?subject=AddMe) or [email us](mailto:open@duckduckgo.com).
-
-We're a digital community, but real people - we frequently meet up to hack together. Check out our [global meetups](http://duckduckgo.meetup.com/).
-
-You can find the [full documentation here](http://docs.duckduckhack.com).
+You can also share your thoughts with our community on [Reddit](https://www.reddit.com/r/duckduckgo/).

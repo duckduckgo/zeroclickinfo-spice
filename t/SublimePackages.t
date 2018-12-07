@@ -86,7 +86,12 @@ ddg_spice_test(
     'sublime text download' => undef,
     'sublime text purchase' => undef,
     'sublime text buy' => undef,
-    'sublime text about' => undef
+    'sublime text about' => undef,
+    #Additional tests added
+    'sublime text alternatives to mac' => undef,
+    'sublime text alternatives to windows' => undef,
+    'sublime text alternative to mac' => undef,
+    'sublime text alternative to anything' => undef
 );
 
 done_testing;

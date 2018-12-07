@@ -12,7 +12,7 @@ my %skip_queries = map { $_ => undef } (
 my @triggers = share('triggers.txt')->slurp;
 triggers startend => @triggers;
 
-spice to => 'http://searchco.de/api/jsonp_search_IV/?q=$1&callback={{callback}}';
+spice to => 'https://searchcode.com/api/jsonp_search_IV/?q=$1&callback={{callback}}';
 
 # use list of trigger words to create regex
 # and strip newline characters

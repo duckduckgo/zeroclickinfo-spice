@@ -39,6 +39,9 @@ ddg_spice_test(
     'a' => undef,
     'something random' => undef,
     '😍😍' => undef,
+    '語' => undef,
+    'Ф' => undef,
+    'Σ' => undef,
 );
 
 done_testing;

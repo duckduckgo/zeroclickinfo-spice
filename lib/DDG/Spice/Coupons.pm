@@ -4,18 +4,6 @@ package DDG::Spice::Coupons;
 
 use DDG::Spice;
 
-# Attribution
-name "Coupons";
-source "www.sparheld.de";
-description "Get rebate codes from www.sparheld.de";
-category "special";
-topics "everyday";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Coupons.pm";
-attribution github => ['https://github.com/meingutscheincode/zeroclickinfo-spice','Sparheld International GmbH'];
-primary_example_queries "gutschein zalando";
-secondary_example_queries "gutschein h&m";
-
-
 # Caching - no. the api result is dependent on the locale and the caching is not.
 spice is_cached => 0;
 spice proxy_cache_valid => "200 2h"; # max 2 hours to keep the number of expired coupons as low as possible

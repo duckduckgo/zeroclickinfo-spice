@@ -8,15 +8,15 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [ qw(DDG::Spice::MetaCPAN) ],
-    create_tests('App::DuckPAN'    => '/js/spice/meta_cpan/App%3A%3ADuckPAN'   ),
-    create_tests('App-DuckPAN'     => '/js/spice/meta_cpan/App%3A%3ADuckPAN'   ),
-    create_tests('WWW::DuckDuckGo' => '/js/spice/meta_cpan/WWW%3A%3ADuckDuckGo'),
+    create_tests('App::DuckPAN'    => '/js/spice/meta_cpan/App%3A%3ADuckPAN/App%20DuckPAN'   ),
+    create_tests('App-DuckPAN'     => '/js/spice/meta_cpan/App%3A%3ADuckPAN/App%20DuckPAN'   ),
+    create_tests('WWW::DuckDuckGo' => '/js/spice/meta_cpan/WWW%3A%3ADuckDuckGo/WWW%20DuckDuckGo'),
 );
 
 sub create_tests {
     my $lib      = shift;
     my $call     = shift;
-    my @triggers = ( 'cpan', 'cpanm', 'meta cpan', 'metacpan' );
+    my @triggers = ( 'cpan', 'cpanm', 'meta cpan', 'metacpan', 'mcpan', 'perl dist', 'perl module', 'perl lib', 'perl library', 'perl distribution' );
     my $caller   = 'DDG::Spice::MetaCPAN';
     my @tests;
 

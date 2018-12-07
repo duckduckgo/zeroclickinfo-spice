@@ -2,7 +2,7 @@
     'use strict';
     env.ddg_spice_nutrition = function(api_result) {
 
-        if (!api_result || !api_result.hits || !api_result.hits.length) {
+        if (!api_result || !api_result.hits || !api_result.hits.length || api_result.max_score < 1) {
             return Spice.failed('nutrition');
         }
 
@@ -34,7 +34,14 @@
             stripRegex = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
 
             getMeasurementInfo = function(searchTerm) {
-                var field, fieldInfo, term, i, bestMatch;
+                var field, fieldInfo, term, i;
+                var bestMatch = {
+                    id: 'nf_calories',
+                    label: 'Calories',
+                    term: 'cals',
+                    uom: undefined
+                }
+                         
                 for (field in fieldToTerms) {
                     fieldInfo = fieldToTerms[field];
                     for (i = 0; i < fieldInfo.terms.length; i++) {

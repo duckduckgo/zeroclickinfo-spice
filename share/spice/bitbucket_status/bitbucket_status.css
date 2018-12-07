@@ -1,0 +1,16 @@
+.zci--bitbucket_status .bbstatus--header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.zci--bitbucket_status .bbstatus--good {
+    color: #4b9e4d;
+}
+
+.zci--bitbucket_status .bbstatus--minor {
+    color: #f1a031;
+}
+
+.zci--bitbucket_status .bbstatus--major {
+    color: #de5833;
+}

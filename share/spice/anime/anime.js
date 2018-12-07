@@ -15,36 +15,41 @@
         Spice.add({
             id: 'anime',
             name: 'Anime',
-            data: api_result,
+            data: api_result.data,
             meta: {
-                sourceName: 'Hummingbird',
-                sourceUrl: "https://hummingbird.me/search?query=" + query,
-                sourceIconUrl: DDG.get_asset_path('anime','hummingbird.png')
+                sourceName: 'Kitsu',
+                sourceUrl: "https://kitsu.io/anime?text=" + query
             },
             relevancy: {
-                skip_words: ['anime', 'hummingbird'],
+                skip_words: ['anime', 'kitsu'],
                 primary: [
-                    { required: 'cover_image' },
-                    { key: 'synopsis' },
-                    { key: 'alternate_title' },
-                    { key: 'title' },
+                    { required: 'attributes.posterImage.small' },
+                    { key: 'attributes.synopsis' },
+                    { key: 'attributes.canonicalTitle' }
                 ]
             },
             normalize: function(item) {
-                var cover_image = '';
-                if (item.cover_image) {
-                    cover_image = DDG.toHTTP(item.cover_image);
+                var poster_image = '';
+                var rating = '';
+                var url = "https://kitsu.io/anime/" + item.attributes.slug
+
+                if (item.attributes.posterImage.small) {
+                    poster_image = DDG.toHTTP(item.attributes.posterImage.small);
+                }
+
+                if (item.attributes.averageRating) {
+                    rating = parseFloat((item.attributes.averageRating / 20).toFixed(1));
                 }
 
                 return {
-                    img: cover_image,
-                    image: cover_image,
-                    img_m: cover_image,
-                    heading: item.title,
-                    title: item.title,
-                    abstract: item.synopsis,
-                    rating: item.community_rating,
-                    url: item.url
+                    img: poster_image,
+                    image: poster_image,
+                    img_m: poster_image,
+                    heading: item.attributes.canonicalTitle,
+                    title: item.attributes.canonicalTitle,
+                    abstract: item.attributes.synopsis,
+                    rating: rating,
+                    url: url
                 };
             },
             templates: {

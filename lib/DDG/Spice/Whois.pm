@@ -9,7 +9,8 @@ use Text::Trim;
 triggers any => "whois", "lookup", "domain", "is domain", "available", "is available", "register", "owner", "owner of", "who owns", "buy", "how to buy";
 
 # API call details for Whois API (http://www.whoisxmlapi.com/)
-spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
+spice to => 'https://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&apiKey={{ENV{DDG_SPICE_WHOIS_APIKEY}}}';
+spice content_type_javascript => 1;
 
 handle remainder_lc => sub {
 

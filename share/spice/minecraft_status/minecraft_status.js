@@ -1,15 +1,54 @@
 (function (env) {
     'use strict';
+    
+    function getStatus(data) {
+        var green = [];
+        var yellow = [];
+        var red = [];        
+
+        for (var i = 0; i < data.length; i++) {
+            var service = data[i];
+            var status = Object.keys(service)[1];
+            var name = Object.keys(service)[0];
+
+            switch(status) {
+                case 'green':
+                    green.push(name);
+                    break;
+                case 'yellow':
+                    yellow.push(name);
+                    break;
+                case 'red':
+                    red.push(name);
+                    break;
+            }
+        } 
+
+        var status = 'good';
+
+        if(red.length >= 1) {
+            status = 'major';
+        } else if(yellow.length >= 1) {
+            status = 'minor';
+        }
+
+        return status;
+    }
+    
     env.ddg_spice_minecraft_status = function(api_result) {
         
         if (!api_result) {
             return Spice.failed('minecraft_status');
-        }
+        }    
+        
+        var status = getStatus(api_result);
 
         Spice.add({
             id: 'minecraft_status',
             name: 'Status',
-            data: api_result,
+            data: {
+                status: status
+            },
             meta: {
                 sourceName: 'Mojang Support',
                 sourceUrl: 'https://help.mojang.com/',

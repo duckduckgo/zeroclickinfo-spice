@@ -1,14 +1,14 @@
-<div class="septa__time text--primary">{{departure_time}}</div>
-<div class="septa__details">
+<div class="transit_septa__time text--primary">{{departure_time}}</div>
+<div class="transit_septa__details">
     {{#if cancelled}}N/A{{else}}Arrives {{arrival_time}}{{/if}}<br/>
     {{line}}<br/>
     Train {{orig_train}}
 </div>
-<div class="septa__status-sep">
-    <div class="septa__sep-line"></div>
-    <div class="septa__badge {{status_class}}"></div>
-    <div class="septa__sep-line"></div>
+<div class="transit_septa__status-sep">
+    <div class="transit_septa__sep-line"></div>
+    <div class="transit_septa__badge {{status_class}}"></div>
+    <div class="transit_septa__sep-line"></div>
 </div>
-<div class="septa__status text--secondary">
+<div class="transit_septa__status text--secondary">
     <div class="one-line">{{status}}</div>
 </div>

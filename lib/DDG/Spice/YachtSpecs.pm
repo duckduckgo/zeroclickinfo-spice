@@ -7,7 +7,7 @@ use DDG::Spice;
 spice is_cached => 1; 
 
 #Connection to API
-spice to => 'http://yachtharbour.com/tools/api.php?name=$1';
+spice to => 'https://yachtharbour.com/tools/api.php?name=$1';
 spice wrap_jsonp_callback => 1;
 
 #Triggers

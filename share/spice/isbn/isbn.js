@@ -14,37 +14,17 @@
                 itemType: 'Amazon Results',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
-                sourceIcon: true,
-                rerender: [
-                    'reviewCount'
-                ]
+                sourceIcon: true
             },
             templates: {
                 group: 'products',
                 options: {
-                    buy: 'products_amazon_buy'
+                    buy: 'products_amazon_buy',
+                    rating: false
                 }
             },
             relevancy: {
                 dup: ['ASIN','img_m','img']
-            },
-            onItemShown: function(item) {
-                var arg = item.rating,
-                    url = '/m.js?r=';
-
-                if (item.loadedReviews) { return; }
-
-                arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
-                arg = arg.replace('http://www.amazon/reviews/iframe?', '');
-
-                $.getJSON(url + encodeURIComponent(arg), function(r) {
-                    if (r.stars.match(/stars-(\d)-(\d)/)) {
-                        item.set({ rating: RegExp.$1 + "." + RegExp.$2 });
-                    }
-                    item.set({ reviewCount:  r.reviews });
-                });
-
-                item.loadedReviews = 1;
             }
         });
     };

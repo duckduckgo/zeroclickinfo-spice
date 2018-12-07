@@ -1,29 +1,29 @@
-.zci--switzerland .tile--switzerland {
+.zci--transit_switzerland .tile--transit_switzerland {
     text-align: center;
     width: 13em;
 }
 
 @media screen and (max-device-width: 640px) and (orientation: portrait){
-	.is-mobile .zci--switzerland .tile--switzerland {
+	.is-mobile .zci--transit_switzerland .tile--transit_switzerland {
 	    width: 48%;
 	}
 }
 
-.tile--switzerland .switzerland__time {
+.tile--transit_switzerland .transit_switzerland__time {
     font-size: 2.3em;
     font-weight: 300;
 }
 
-.tile--switzerland .switzerland__details {
+.tile--transit_switzerland .transit_switzerland__details {
     margin-top: 5px;
     margin-bottom: 10px;
 }
 
-.tile--switzerland .switzerland__status-sep {
+.tile--transit_switzerland .transit_switzerland__status-sep {
     height: 12px;
 }
 
-.tile--switzerland .switzerland__sep-line {
+.tile--transit_switzerland .transit_switzerland__sep-line {
     background-color: #e1e1e1;
     height: 1px;
     width: 30px;
@@ -33,12 +33,12 @@
     display: inline-block;
 }
 
-.tile--switzerland .switzerland__status {
+.tile--transit_switzerland .transit_switzerland__status {
     margin-top: 10px;
     margin-bottom: 2px;
 }
 
-.tile--switzerland .switzerland__badge {
+.tile--transit_switzerland .transit_switzerland__badge {
     background-color: #60ae50;
     height: 12px;
     border-radius: 6px;
@@ -46,6 +46,6 @@
     display: inline-block;
 }
 
-.tile--switzerland .switzerland__delayed {
+.tile--transit_switzerland .transit_switzerland__delayed {
     background-color: #eea43e;
 }

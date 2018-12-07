@@ -21,6 +21,10 @@ handle query_lc => sub {
     if(m{watch\ bands?}) {
         return;
     }
+    #Special case for DJs (or artists/bands named DJ)
+    if(m{^(?:djs?)\s+(\S+(?:\s+\S+)*)}) {
+        return "dj $1", 'all';
+    }
     #Queries like "weezer band"
     if(m{(\S+(?:\s+\S+)*)\s+(?:$synonyms)$}) {
         return $1, 'all';

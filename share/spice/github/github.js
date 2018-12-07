@@ -2,76 +2,136 @@
     "use strict";
     env.ddg_spice_github = function(api_result) {
 
-        if (!api_result || !api_result.meta.status === 200) {
+        if (!api_result || !api_result.meta || api_result.meta.status !== 200 || !api_result.data || !api_result.data.items || !api_result.data.items.length) {
           return Spice.failed('github');
         }
 
-        var script = $('[src*="/js/spice/github/"]')[0],
-                    source = $(script).attr("src"),
-                    query = source.match(/github\/([^\/]+)/)[1];
-
+        var results = api_result.data.items,
+            script = $('[src*="/js/spice/github/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/github\/([^\/]+)/)[1],
+            decodedQuery = decodeURIComponent(query);
+        
         if (/language:".*?"/.test(unescape(query))) {
             var itemType = "Git Repos (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
         } else {
-            var itemType = "Git Repos";
+           var itemType = "Git Repos";
         }
 
-        var results = api_result.data.items;
+        // Only accept results within 95% of the top scoring result
+        // this allows for some disambiguation between popular forks
+        var top_score = results[0].stargazers_count;
 
-        if (!results) {
-            return Spice.failed('github');
+        var top_results = [results[0]];
+
+        for (var i = 1; i < results.length; i++){
+            var score = results[i].stargazers_count;
+            
+            if((score/top_score) < 0.70){
+                break;
+            }else{
+                top_results.push(results[i]);
+            }
         }
 
-        // TODO: temp size limit - relevancy block should handle this later
-        if (results.length > 30)
-            results = results.splice(0,30);
+        var templateObj = {};
+        var metaObj = { 
+                sourceName: 'GitHub',
+                searchTerm: decodedQuery,
+                itemType: itemType,
+                rerender: [ 'description', 'image' ]
+            };
 
-        DDG.require("moment.js", function() {
-            Spice.add({
-                id: "github",
-                name: "Software",
-                data: results,
-                meta: {
-                    itemType: itemType,
-                    searchTerm: unescape(query),
-                    sourceUrl: 'https://www.github.com/search?q=' +  encodeURIComponent(query),
-                    sourceName: 'GitHub'
+        if(top_results.length > 1){
+            templateObj = { 
+                group: 'text',
+                detail: false,
+                item_detail: false,
+                options : {
+                    footer: Spice.github.footer
                 },
-                templates: {
-                        group: 'text',
-                        detail: false,
-                        item_detail: false,
-                        options: {
-                            footer: Spice.github.footer
-                        },
-                        variants: {
-                            tile: 'basic4'
-                        }
+                variants: {
+                    tile: 'basic4',
+                }
+            };
+            metaObj.sourceUrl = "https://github.com/search?q=" + encodeURIComponent(query);
+        }
+        else {
+            templateObj = {
+                group: "info",
+            };
+            metaObj.sourceUrl = "https://github.com/" + top_results[0].full_name;
+        }
+
+        $.getJSON(DDG.get_asset_path('github', 'fatheads.json'), function (data) { 
+            
+            var fatheads = data;
+
+            DDG.require("moment.js", function(){
+            
+                Spice.add({
+                    id: "github",
+                    name: "Software",
+                    data: top_results,
+                    meta: metaObj,
+                    templates: templateObj,
+                    relevancy: {
+                        primary: [
+                            { required: 'description' }
+                        ]
                     },
-                normalize: function(item) {
-                    if (item.size === 0) {
-                        return;
+                    normalize: function (item) {
+                        var key = item.full_name.replace(/^.*\//, '');
+                        var lastUpdate = moment(item.pushed_at).fromNow();
+                        var infoboxData = [
+                            {label: "Clone URL", value: item.clone_url},
+                            {label: "Stars", value:  item.stargazers_count},
+                            {label: "Last Update", value: lastUpdate},
+                            {label: "SSH URL", value: item.ssh_url},
+                            {label: "Forks", value: item.forks }, 
+                            {label: "Open Issues", value: item.open_issues},
+                            {label: "Default Branch", value: item.default_branch} 
+                        ];
+
+                        var subtitle;
+                        if(top_results.length > 1){
+                            subtitle = item.full_name;
+                        }
+                        return {
+                            title: key,
+                            url: item.html_url,
+                            imageTile: true,
+                            infoboxData: infoboxData,
+                            lastUpdate: lastUpdate,
+                            subtitle: subtitle
+                        }
+
+                    },
+                    onItemShown: function(item){
+                        var key = item.title;
+                        if(!fatheads[key]){
+                            return;
+                        }
+                        var apiReq = fatheads[key].url + "&o=json";
+                        
+                        // check if abstract is set already to avoid calling
+                        // api again if we switch tabs
+                        if(!fatheads[key].abstract){
+                            $.getJSON(apiReq,
+                                function(data){
+                                    fatheads[key].image = data.Image;
+                                    fatheads[key].abstract = data.Abstract;
+
+                                    if(fatheads[key].abstract){
+                                        item.set({ 
+                                            description : fatheads[key].abstract, 
+                                            image: fatheads[key].image
+                                        });
+                                    }
+                                });
+                        }
                     }
-                    return {
-                        title: item.name,
-                        subtitle: item.owner.login + "/" + item.name,
-                        url: item.html_url,
-                        pushed_at: moment(item.pushed_at).fromNow()
-                    };
-                },
-                relevancy: {
-                    primary: [
-                        { key: 'description', match: /.+/, strict: false } // Reject things without a description.
-                    ]
-                },
-                sort_fields: {
-                    watchers: function(a, b) {
-                        var x = a.watchers;
-                        var y = b.watchers;
-                        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-                    }
-                },
-                sort_default: 'watchers'
+                });
             });
         });
     }

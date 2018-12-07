@@ -23,6 +23,11 @@ ddg_spice_test(
         '/js/spice/dictionary/definition/define',
         call_type => 'include',
         caller => 'DDG::Spice::Dictionary::Definition'
+    ),
+    'define "round robin"' => test_spice(
+        '/js/spice/dictionary/definition/round%20robin',
+        call_type => 'include',
+        caller => 'DDG::Spice::Dictionary::Definition'
     )
 );
 

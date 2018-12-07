@@ -2,13 +2,14 @@ package DDG::Spice::Forecast;
 # ABSTRACT: Weather forecasts
 
 use strict;
+use utf8;
 use DDG::Spice;
 use Text::Trim;
 
-triggers start => "weather";
+triggers start => "weather", "forecast", "weather forecast", "weer", "meteo", "wetter", "clima", "tiempo", "météo", "天気", "天气";
 
 spice from => '([^/]*)/?([^/]*)';
-spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
+spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}&lang=$2';
 
 # cache DDG Rewrite for 24 hours and
 # API responses with return code 200 for 30 minutes
@@ -22,7 +23,14 @@ handle remainder => sub {
     return if $_;
 
     my $loc_str = join " ", map { $loc->{$_} } @locs;
-    return $loc_str, 'current', {is_cached => 0};
+
+    # Default to English
+    my $parsed_lang = 'en';
+    # And try to extract language from locale
+    if ($lang && $lang->locale) {
+        ($parsed_lang) = $lang->locale =~ /^([a-z]{2})_/;
+    }
+    return $loc_str, $parsed_lang, {is_cached => 0};
 };
 
 # 2015.03.17 tommytommytommy:

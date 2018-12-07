@@ -18,12 +18,11 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub {
 
-  return unless $_; # Guard against "no answer"
-  return if grep {$req->query_lc eq $_} @stopwords;
+    return unless $_; # Guard against "no answer"
+    return if grep {$req->query_lc eq $_} @stopwords;
 
-
-  $_ =~ s/\b$ignorewords\b//g; # remove ignorewords
-  return trim($_); # trim spaces and return
+    $_ =~ s/\b$ignorewords\b//g; # remove ignorewords
+    return trim($_); # trim spaces and return
 };
 
 1;

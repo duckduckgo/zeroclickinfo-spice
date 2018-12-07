@@ -9,6 +9,7 @@ triggers any => "alternative","alternatives","alternativeto";
 
 spice from => '([^/]+)/(.*?)/([^/]*)';
 spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=12&callback={{callback}}&key={{ENV{DDG_SPICE_ALTERNATIVETO_APIKEY}}}';
+spice content_type_javascript => 1;
 
 my %alternatives = (
     'google' => 'googlecom',
@@ -19,7 +20,7 @@ my %alternatives = (
 );
 
 handle query_lc => sub {
-    if (/^(?:(free|open\ssource|commercial))?\s*(?:alternative(?:s|)?\s*?(?:to|for)\s*?)(\b(?!for\b).*?\b)(?:\s*?for\s(.*))?$/) {
+    if (/^(?:(free|open\s?source|commercial))?\s*(?:alternative(?:s|)?\s*?(?:to|for)\s*?)(\b(?!for\b).*?\b)(?:\s*?for\s(.*))?$/) {
         my $license = $1 || "";
         my $prog = $2 || "";
         my $platform = $3 || "";

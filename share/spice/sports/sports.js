@@ -13,7 +13,7 @@
             showMoreAt: true,
             sourceIcon: false,
             sourceName: 'Bleacher Report',
-            secondaryText: '<span class="tx-clr--grey-dark">Data from Sportradar</span>',
+            secondaryText: '<span class="tx-clr--grey-dark">Data from <a class="tx-clr--grey-dark" href="https://sportradar.us/">Sportradar</a></span>',
             hideModeSwitch: true,
             scrollToSelectedItem: true,
             itemsHighlight: false,

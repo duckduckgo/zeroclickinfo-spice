@@ -6,47 +6,42 @@ use Test::More;
 use DDG::Test::Spice;
 use utf8;
 
+sub build_test {
+    my ($url) = @_;
+    return test_spice(
+        '/js/spice/is_it_up/'.$url,
+        call_type => 'include',
+        caller => 'DDG::Spice::IsItUp',
+    );
+}
+
 ddg_spice_test(
     [qw( DDG::Spice::IsItUp )],
-    'is duckduckgo.com up' => test_spice(
-        '/js/spice/is_it_up/duckduckgo.com',
-        call_type => 'include',
-        caller => 'DDG::Spice::IsItUp',
-    ),
-    'is http://duckduckgo.com up?' => test_spice(
-        '/js/spice/is_it_up/duckduckgo.com',
-        call_type => 'include',
-        caller => 'DDG::Spice::IsItUp',
-    ),
-    'is http://duckduckgo.com online' => test_spice(
-        '/js/spice/is_it_up/duckduckgo.com',
-        call_type => 'include',
-        caller => 'DDG::Spice::IsItUp',
-    ),
-    'http://duckduckgo.com status???????????' => test_spice(
-        '/js/spice/is_it_up/duckduckgo.com',
-        call_type => 'include',
-        caller => 'DDG::Spice::IsItUp',
-    ),
-    'is http://duckduckgo.com down?' => test_spice(
-        '/js/spice/is_it_up/duckduckgo.com',
-        call_type => 'include',
-        caller => 'DDG::Spice::IsItUp',
-    ),
+    'is duckduckgo.com up'                    => build_test('duckduckgo.com'),
+    'is http://duckduckgo.com up?'            => build_test('duckduckgo.com'),
+    'is http://duckduckgo.com online'         => build_test('duckduckgo.com'),
+    'http://duckduckgo.com status???????????' => build_test('duckduckgo.com'),
+    'is http://duckduckgo.com down?'          => build_test('duckduckgo.com'),
+    'is føtex.dk up?'                         => build_test('f%C3%B8tex.dk'),
+    'is https://føtex.dk up?'                 => build_test('f%C3%B8tex.dk'),
+    'is reddit.com working?'                  => build_test('reddit.com'),
+    'is https://twitch.tv up??'               => build_test('twitch.tv'),
+    'isitup duckduckgo.com'                   => build_test('duckduckgo.com'),
+    'is it up duckduckgo.com'                 => build_test('duckduckgo.com'),
+    'is it up http://duckduckgo.com'          => build_test('duckduckgo.com'),
+    'isitdown duckduckgo.com'                 => build_test('duckduckgo.com'),
+    'is it down duckduckgo.com'               => build_test('duckduckgo.com'),
+    'is duckduckgo.com up right now'          => build_test('duckduckgo.com'),
+    'status of duckduckgo.com'                => build_test('duckduckgo.com'),
+    'isitup t-online.de'                      => build_test('t-online.de'),
     'schema.org update time' => undef,
-    # unfortunately, the isitup.com api does not
-    # currently support unicode or ssl
-    'is føtex.dk up?' => undef,
-    'is https://føtex.dk up?' => undef,
-    'is reddit.com working?' => test_spice(
-        '/js/spice/is_it_up/reddit.com',
-        caller    => 'DDG::Spice::IsItUp',
-    ),
-    'is https://twitch.tv up??' => test_spice(
-        '/js/spice/is_it_up/twitch.tv',
-        caller    => 'DDG::Spice::IsItUp',
-    ),
+    'is it up?'              => undef,
+    'is it down'             => undef,
+    'is site up'             => undef,
+    'is site down?'          => undef,
+    't-online.de'            => undef,
+    'isitdown'               => undef,
+    'isitup'                 => undef
 );
-
 done_testing;
 
