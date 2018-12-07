@@ -13,11 +13,11 @@
 
         var distance = 30,
             start = 0,
-            size = 365; // rolling avg for X days
+            size = 365;
 
         // calculate 365 day rolling average, for every 30 days
         while (start < days.length) {
-            var group = days.slice(start, start + 365);
+            var group = days.slice(start, start + size);
             var startDate = moment(group[0].date).format('MMM DD, YYYY');
 
             var sum = {
@@ -26,18 +26,20 @@
                 bot: 0
             };
 
-            $.each(group, function (index, day) {
+            var len = group.length;
+            for (var i = 0; i < len; i++) {
+                var day = group[i];
                 if (day.query > 0) {
                     sum.query += parseInt(day.query);
                     sum.api += parseInt(day.api);
                     sum.bot += parseInt(day.bot);
                 }
-            });
+            }
 
             var avg = {
-                query: Math.round(sum.query / group.length),
-                api: Math.round(sum.api / group.length),
-                bot: Math.round(sum.bot / group.length),
+                query: Math.round(sum.query / len),
+                api: Math.round(sum.api / len),
+                bot: Math.round(sum.bot / len),
             };
 
             labels.push(startDate);
@@ -137,19 +139,14 @@
                     Chart.defaults.global.defaultFontFamily = "DDG_ProximaNova, 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
                     var ctx = $('#ddgTraffic').get(0).getContext('2d'),
                         options = {
-                            animation: {
-                                duration: 0
-                            },
-                            hover: {
-                                animationDuration: 0
-                            },
+                            // performance
                             responsiveAnimationDuration: 0,
+                            animation: { duration: 0 },
+                            hover: { animationDuration: 0 },
+                            legend: { position: 'bottom' },
                             title: {
                                 display: true,
                                 text: '365 Day Rolling Average'
-                            },
-                            legend: {
-                                position: 'bottom'
                             },
                             hover: {
                                 mode: 'index',
@@ -158,7 +155,6 @@
                             tooltips: {
                                 mode: 'index',
                                 intersect: false,
-                                // position: 'average',
                                 callbacks: {
                                     label: function (tooltipItem) {
                                         var name = data.datasets[tooltipItem.datasetIndex].label;
@@ -168,21 +164,17 @@
                             },
                             scales: {
                                 xAxes: [{
+                                    gridLines: { display: false },
                                     type: 'time',
                                     time: {
                                         unit: 'year',
                                         displayFormats: {
                                             year: 'MMM YYYY'
                                         }
-                                    },
-                                    gridLines: {
-                                        display: false
                                     }
                                 }],
                                 yAxes: [{
-                                    gridLines: {
-                                        display: false
-                                    },
+                                    gridLines: { display: false },
                                     ticks: {
                                         callback: function (value) {
                                             return DDG.abbrevNumber(value)
