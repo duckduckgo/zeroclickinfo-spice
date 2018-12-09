@@ -250,9 +250,15 @@
                 var left_input = $currency_input_left.val();
                 left_input = left_input.replace(/,/g, '');
                 var rightval = parseFloat(left_input) * Converter.rate;
-                var decimals = Converter.getSignificantFigures(Converter.rate, rightval, Converter.to_currency);
+                var numSigFigs = Converter.getSignificantFigures(
+                    Converter.rate, rightval, Converter.to_currency
+                );
+                var rightValInt = Math.floor(rightval);
+                var rightValFrac = rightval % 1;
+
                 $currency_input_right.val(
-                    rightval.toFixed(decimals)
+                    rightValInt.toString() +
+                    rightValFrac.toPrecision(numSigFigs).substring(1)
                 );
             } else {
                 $currency_input_right.val("");
@@ -264,9 +270,15 @@
                 var right_input = $currency_input_right.val()
                 right_input = right_input.replace(/,/g, '');
                 var leftval = parseFloat(right_input) * Converter.inverseRate;
-                var decimals = Converter.getSignificantFigures(Converter.inverseRate, leftval, Converter.from_currency);
+                var numSigFigs = Converter.getSignificantFigures(
+                    Converter.inverseRate, leftval, Converter.from_currency
+                );
+                var leftValInt = Math.floor(leftval);
+                var leftValFrac = leftval % 1;
+
                 $currency_input_left.val(
-                    leftval.toFixed(decimals)
+                    leftValInt.toString() +
+                    leftValFrac.toPrecision(numSigFigs).substring(1)
                 );
             } else {
                 $currency_input_left.val("");
