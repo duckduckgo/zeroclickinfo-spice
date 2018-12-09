@@ -59,9 +59,14 @@
                 var left_input = $currency_input_left.val();
                 left_input = left_input.replace(/,/g, '');
                 var rightval = parseFloat(left_input) * Converter.rate;
-                var decimals = Converter.getSignificanDigits(Converter.toCurrency);
+                var numSigDigs = Converter
+                    .getSignificantDigits(Converter.toCurrency);
+                var rightValInt = Math.floor(rightval);
+                var rightValFrac = rightval % 1;
+
                 $currency_input_right.val(
-                    Number(rightval.toFixed(decimals)).toString()
+                    rightValInt.toString() +
+                    rightValFrac.toPrecision(numSigDigs).substring(1)
                 );
             } else {
                 $currency_input_right.val("");
@@ -74,9 +79,14 @@
                 var right_input = $currency_input_right.val()
                 right_input = right_input.replace(/,/g, '');
                 var leftval = parseFloat(right_input) / Converter.rate;
-                var decimals = Converter.getSignificanDigits(Converter.fromCurrency);
+                var numSigDigs = Converter
+                    .getSignificantDigits(Converter.fromCurrency);
+                var leftValInt = Math.floor(leftval);
+                var leftValFrac = leftval % 1;
+
                 $currency_input_left.val(
-                    Number(leftval.toFixed(decimals)).toString()
+                    leftValInt.toString() +
+                    leftValFrac.toPrecision(numSigDigs).substring(1)
                 );
             } else {
                 $currency_input_left.val("");
@@ -143,7 +153,7 @@
 
         // returns the amount of sig figs we need for a number.
         // crypto = 8, fiat = 2
-        getSignificanDigits: function(currency) {
+        getSignificantDigits: function(currency) {
             if($.inArray(currency, Converter.cryptoList) > -1) {
                 return 8;
             } else {
@@ -192,9 +202,15 @@
                     itemType: "Conversions"
                 },
                 normalize: function(item) {
+                    var val = queryAmount * price;
+                    var numSigDigs = Converter.getSignificantDigits(target);
+                    var valInt = Math.floor(val);
+                    var valFrac = val % 1;
+
                     return {
                         amount: queryAmount,
-                        convertedAmount: Number((queryAmount * price).toFixed(Converter.getSignificanDigits(target))).toString(),
+                        convertedAmount: valInt.toString() +
+                            valFrac.toPrecision(numSigDigs).substring(1),
                         cryptoTime: moment(item.ticker.timestamp).format("HH:mm"),
                         cryptoDate: moment(item.ticker.timestamp).format("YYYY-MM-DD")
                     };
