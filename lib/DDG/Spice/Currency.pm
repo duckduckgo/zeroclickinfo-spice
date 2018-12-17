@@ -39,7 +39,7 @@ foreach my $currency (@currencies){
 
 # Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
-my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to|convert (?:in)?to)\s/i;
+my $into_qr = qr/(?:\s(?:en|in(?:\s*\?\s*)?|in ?to|to|convert (?:in)?to)\s|\s*=\s*\?*\s*)/i;
 my $vs_qr = qr/\sv(?:ersu|)s?\.?\s|\s?-\s?/i;
 my $joins_qr = qr/\s(?:and|equals)\.?\s/i;
 my $question_prefix = qr/xe|(?:convert|calculate|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
