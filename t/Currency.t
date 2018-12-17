@@ -333,6 +333,49 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '500 USD = ?PLN' => test_spice(
+        '/js/spice/currency/500/usd/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 USD =?PLN' => test_spice(
+        '/js/spice/currency/500/usd/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500USD= ? PLN' => test_spice(
+        '/js/spice/currency/500/usd/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500 USD=? PLN' => test_spice(
+        '/js/spice/currency/500/usd/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500USD = ?PLN' => test_spice(
+        '/js/spice/currency/500/usd/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500USD=?PLN' => test_spice(
+        '/js/spice/currency/500/usd/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '500USD=PLN' => test_spice(
+        '/js/spice/currency/500/usd/pln',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
 
     # Requirement for space between unit and currency
     '5m usd to aud' => test_spice(
