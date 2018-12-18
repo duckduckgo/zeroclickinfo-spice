@@ -1,11 +1,9 @@
 package DDG::Spice::DdgTraffic;
 
-# ABSTRACT: Write an abstract here
-
 use DDG::Spice;
 
 spice is_cached => 1;
-spice proxy_cache_valid => "200 1d"; # defaults to this automatically
+spice proxy_cache_valid => "200 1d";
 
 spice wrap_jsonp_callback => 1;
 
@@ -17,7 +15,7 @@ triggers start =>
     'duckduckgo traffic numbers', 'ddg traffic numbers';
 
 handle remainder => sub {
-    return if $_; #query should only be trigger!
+    return if $_;
     return 1;
 };
 
