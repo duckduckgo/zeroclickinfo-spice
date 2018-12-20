@@ -17,8 +17,12 @@ spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
 my @locs = qw (city region_name country_name );
+my @extra_words = sort { length $b <=> length $a } ("local", "near me", "nearby me", "current");
+my $extra_words_qr = join "|", @extra_words;
 
 handle remainder => sub {
+
+    s/\b$extra_words_qr\b//;
 
     return if $_;
 
