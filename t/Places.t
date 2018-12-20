@@ -11,11 +11,11 @@ ddg_spice_test(
         '/js/spice/maps/places/nearest%20primos',
         call_type => 'include',
         caller => 'DDG::Spice::Maps::Places',
-    is_cached => 0,
+        is_cached => 0,
     ),
     'local time' => undef,
     'local weather' => undef,
-    'weather near me' => under
+    'weather near me' => undef
 );
 
 done_testing;
