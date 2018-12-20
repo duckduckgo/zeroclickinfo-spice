@@ -14,6 +14,8 @@ ddg_spice_test(
     is_cached => 0,
     ),
     'local time' => undef,
+    'local weather' => undef,
+    'weather near me' => under
 );
 
 done_testing;

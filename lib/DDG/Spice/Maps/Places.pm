@@ -14,7 +14,7 @@ my $categories_re = share('categories_re')->slurp;
 my $places_re = qr/(local|near|near me|around|around me|here|locally|nearby|close|closest|nearest|locations?|restaurants?)/;
 triggers query_lc => qr/(^$places_re\b|\b$places_re$|^$categories_re\b)/s;
 
-my %skip_remainders = map {$_ => 0} ('current', 'time');
+my %skip_remainders = map {$_ => 0} ('current', 'time', 'weather', 'forecast');
 
 handle query_lc => sub {
     my $query = $_;
