@@ -34,6 +34,26 @@ ddg_spice_test(
     ),
 
     DDG::Request->new(
+        query_raw => 'local weather',
+        location => test_location('us'),
+    ) => test_spice(
+        "/js/spice/forecast/Phoenixville%20Pennsylvania%20United%20States/en",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
+        query_raw => 'weather near me',
+        location => test_location('us'),
+    ) => test_spice(
+        "/js/spice/forecast/Phoenixville%20Pennsylvania%20United%20States/en",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
         query_raw => 'weather',
         location => test_location('my'),
     ) => test_spice(

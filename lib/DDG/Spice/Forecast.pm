@@ -6,7 +6,7 @@ use utf8;
 use DDG::Spice;
 use Text::Trim;
 
-triggers start => "weather", "forecast", "weather forecast", "weer", "meteo", "wetter", "clima", "tiempo", "météo", "天気", "天气";
+triggers startend => "weather", "forecast", "weather forecast", "weer", "meteo", "wetter", "clima", "tiempo", "météo", "天気", "天气";
 
 spice from => '([^/]*)/?([^/]*)';
 spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}&lang=$2';
@@ -17,8 +17,12 @@ spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
 my @locs = qw (city region_name country_name );
+my @extra_words = sort { length $b <=> length $a } ("local", "near me", "nearby me", "current");
+my $extra_words_qr = join "|", @extra_words;
 
 handle remainder => sub {
+
+    s/\b$extra_words_qr\b//;
 
     return if $_;
 
