@@ -17,7 +17,7 @@ my @topCurrencies = (
     "chf",
     "aud",
     "sek",
-    "nok", 
+    "nok",
 );
 
 # Get all the valid currencies from a text file.
@@ -39,7 +39,7 @@ foreach my $currency (@currencies){
 
 # Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
-my $into_qr = qr/\s(?:en|in|=(?:\s*\?\s*)?|to|in ?to|to|convert (?:in)?to)\s/i;
+my $into_qr = qr/(?:\s(?:en|in(?:\s*\?\s*)?|in ?to|to|convert (?:in)?to)\s|\s*=\s*\?*\s*)/i;
 my $vs_qr = qr/\sv(?:ersu|)s?\.?\s|\s?-\s?/i;
 my $joins_qr = qr/\s(?:and|equals)\.?\s/i;
 my $question_prefix = qr/xe|(?:convert|calculate|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
@@ -161,7 +161,7 @@ handle query_lc => sub {
 
         return checkCurrencyCode(1, $from, $to);
     }
-    
+
     # if the query matches one of the lang queries, we will default to
     # 100 usd to eur
     if (/$guard/) {
@@ -188,21 +188,21 @@ handle query_lc => sub {
 
         # if only a currency symbol is present without "currency" keyword, then bail unless a top currency
         return if (
-            $amount eq '' && $to eq '' 
-            && $currencyKeyword eq '' 
-            && exists($currHash{$from}) 
+            $amount eq '' && $to eq ''
+            && $currencyKeyword eq ''
+            && exists($currHash{$from})
             && !grep(/^$from$/, @topCurrencies)
         );
 
         # for edge cases that we don't want to trigger on
-        return if $req->query_lc =~ /mop\stops?/ 
+        return if $req->query_lc =~ /mop\stops?/
                or $req->query_lc =~ m/tops?\s+?\d+/;
         return if $req->query_lc =~ /gold\scups?/;
         return if $req->query_lc =~ /^can$/;
 
         # shouldn't be a hypen between two numbers
         return if $_ =~ /\d+-\d+/;
-         
+
         my $styler = number_style_for($amount);
         return unless $styler;
 
