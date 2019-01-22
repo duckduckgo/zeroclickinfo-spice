@@ -16,6 +16,13 @@ spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
+spice alt_to => {
+    forecast_daily => {
+        to => 'https://api.darksky.net/forecast/{{ENV{DDG_SPICE_FORECAST_DAILY_APIKEY}}}/$1,$2,$3?exclude=currently,flags',
+        from => '([^\/]+)/([^\/]+)/(.+)'
+    }
+};
+
 my @locs = qw (city region_name country_name );
 
 handle remainder => sub {
