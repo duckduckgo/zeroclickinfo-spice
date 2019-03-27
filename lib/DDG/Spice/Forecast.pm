@@ -6,7 +6,7 @@ use utf8;
 use DDG::Spice;
 use Text::Trim;
 
-triggers startend => "weather", "forecast", "weather forecast", "weer", "meteo", "wetter", "clima", "tiempo", "météo", "天気", "天气";
+triggers startend => "weather", "forecast", "weather forecast", "weer", "meteo", "wetter", "clima", "tiempo", "météo", "天気", "天气", "pogoda", "vejr", "vêr", "väder", "tempo", "време", "погода", "райы", "καιρός", "tiempu", "ilm", "eguraldi", "laiks", "եղանակ", "počasie", "sää", "hava durumu";
 
 spice from => '([^/]*)/?([^/]*)';
 spice to => 'https://darksky.net/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}&lang=$2';
