@@ -12,7 +12,7 @@
             data: api_result,
             signal: 'high',
             meta: {
-                sourceUrl: 'http://isitup.org/' + api_result['domain'],
+                sourceUrl: 'https://isitup.org/' + api_result['domain'],
                 sourceName: 'Is it up?'
             },
             templates: {
