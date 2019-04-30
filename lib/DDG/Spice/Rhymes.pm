@@ -6,7 +6,7 @@ use DDG::Spice;
 
 triggers any => "rhyme", "rhymes";
 
-spice to => 'http://rhymebrain.com/talk?function=getRhymes&word=$1&jsonp={{callback}}';
+spice to => 'https://rhymebrain.com/talk?function=getRhymes&word=$1&jsonp={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 
