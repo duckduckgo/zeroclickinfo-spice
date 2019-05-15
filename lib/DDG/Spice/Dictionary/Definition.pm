@@ -6,7 +6,7 @@ use DDG::Spice;
 
 spice to => 'http://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}&useCanonical=true';
 spice proxy_cache_valid => '200 30d';
-spice content_type_javascript => 1;
+spice wrap_jsonp_callback => 1;
 
 spice alt_to => {
 	audio => {
