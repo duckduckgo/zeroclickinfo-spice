@@ -8,6 +8,7 @@ use Text::Trim;
 spice is_cached => 1;
 
 spice to => 'http://muslimsalat.com/$1/weekly.json?key={{ENV{DDG_SPICE_MUSLIMSALAT_APIKEY}}}&callback={{callback}}';
+spice content_type_javascript => 1;
 
 triggers startend => 'islamic prayer times', 'namaz times', 'salat times';
 
