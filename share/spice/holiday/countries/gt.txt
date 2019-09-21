@@ -1,8 +1,8 @@
-all saints day
-army day
-assumption day
-boxing day
-christmas day
+all saints
+army
+assumption
+boxing
+christmas
 christmas eve
 december solstice
 dia de la raza
@@ -10,13 +10,13 @@ easter monday
 easter saturday
 easter sunday
 good friday
-independence day
+independence
 june solstice
-labor day
+labor
 march equinox
 maundy thursday
-may day
-new years day
+may
+new years
 new years eve
 revolution of 1944
 september equinox

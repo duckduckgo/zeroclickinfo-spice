@@ -1,6 +1,6 @@
-all saints day
-ascension day
-christmas day
+all saints
+ascension
+christmas
 daylight saving time ends
 daylight saving time starts
 december solstice
@@ -11,19 +11,19 @@ feast of the annunciation
 feast of the assumption
 first day of ashura
 good friday
-independence day
+independence
 june solstice
-liberation and resistance day
+liberation and resistance
 march equinox
-martyrs day
-mothers day
+martyrs
+mothers
 muharram
 nativity of mary
 new year
-orthodox easter day
+orthodox easter
 orthodox good friday
 september equinox
-st marons day
-teachers day
+st marons
+teachers
 the prophets birthday
-workers day
+workers

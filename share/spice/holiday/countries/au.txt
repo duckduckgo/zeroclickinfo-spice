@@ -1,20 +1,19 @@
 adelaide cup
 afl grand final friday
-all saints day
-all souls day
-anzac day
-arbor day
-ascension day
+all saints
+all souls
+anzac
+arbor
+ascension
 ash wednesday
 assumption of mary
-australia day
-boxing day
+australia
+boxing
 boxing day holiday
-canberra day
+canberra
 carnival
 chinese new year
 christmas
-christmas day
 christmas eve
 corpus christi
 daylight saving time ends
@@ -22,15 +21,15 @@ daylight saving time starts
 december solstice
 deepavali
 diwali
-easter day
+easter
 easter monday
 easter tuesday
 eid al adha
 eid al fitr
-eight hours day
+eight hours
 epiphany
-family & community day
-fathers day
+family & community
+fathers
 feast of st francis of assisi
 feast of the immaculate conception
 first day of hanukkah
@@ -40,30 +39,30 @@ first day of sukkot
 first sunday of advent
 good friday
 halloween
-harmony day
+harmony
 holy saturday
 islamic new year
 isra and miraj
 june solstice
-labour day
+labour
 lag bomer
 last day of passover
 last day of sukkot
 laylat al qadr
 march equinox
 maundy thursday
-may day
-melbourne cup day
-mothers day
+may
+melbourne cup
+mothers
 muharram
-national close the gap day
-national sorry day
+national close the gap
+national sorry
 new south wales bank holiday
-new years day
+new years
 new years eve
 night of destiny
-northern territory picnic day
-orthodox christmas day
+northern territory picnic
+orthodox christmas
 orthodox easter
 orthodox easter monday
 orthodox good friday
@@ -71,14 +70,14 @@ orthodox holy saturday
 orthodox new year
 palm sunday
 pentecost
-proclamation day
+proclamation
 prophets birthday
 purim
 queens birthday
-queensland day
+queensland
 ramadan begins
-recreation day
-remembrance day
+recreation
+remembrance
 rosh hashana
 royal hobart regatta
 royal national agricultural show day queensland
@@ -87,12 +86,12 @@ shavuot
 shmini atzeret
 shrove tuesday
 simchat torah
-st patricks day
+st patricks
 tisha bav
 trinity sunday
 tu bshevat
-valentines day
-western australia day
+valentines
+western australia
 whit monday
 yom haatzmaut
 yom hashoah

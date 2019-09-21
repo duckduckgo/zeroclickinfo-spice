@@ -30,6 +30,9 @@ for country in `find ./countries -iname '*.txt' | xargs`; do
     sed -i 's/^[[:space:]]*//' $country   
     sed -i 's/[[:space:]]*$//' $country
 
+    # remove trailing suffix of "day", eg: "thanksgiving day"
+    sed -i 's/[[:space:]]day$//' $country
+
     # sort and remove duplicate entries
     sort -u -o $country $country
 

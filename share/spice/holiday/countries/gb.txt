@@ -1,16 +1,16 @@
-all saints day
-all souls day
-arbor day
-ascension day
+all saints
+all souls
+arbor
+ascension
 ash wednesday
 assumption of mary
 bank holiday
 battle of the boyne
-boxing day
+boxing
 burns night
 carnival
 chinese new year
-christmas day
+christmas
 christmas eve
 corpus christi
 daylight saving time ends
@@ -24,7 +24,7 @@ easter sunday
 eid al adha
 eid al fitr
 epiphany
-fathers day
+fathers
 feast of st francis of assisi
 feast of the immaculate conception
 first day of hanukkah
@@ -32,7 +32,7 @@ first day of passover
 first day of sukkot
 first sunday of advent
 good friday
-guy fawkes day
+guy fawkes
 halloween
 holy saturday
 islamic new year
@@ -42,15 +42,15 @@ lag bomer
 last day of passover
 last day of sukkot
 laylat al qadr
-liberation day
+liberation
 march equinox
 maundy thursday
 mothering sunday
 muharram
-new years day
+new years
 new years eve
 night of destiny
-orthodox christmas day
+orthodox christmas
 orthodox easter
 orthodox easter monday
 orthodox good friday
@@ -64,21 +64,21 @@ ramadan begins
 remembrance sunday
 rosh hashana
 september equinox
-shakespeare day
+shakespeare
 shavuot
 shmini atzeret
 shrove tuesday
 simchat torah
 spring bank holiday
-st andrews day
-st davids day
-st georges day
-st patricks day
+st andrews
+st davids
+st georges
+st patricks
 summer bank holiday
 tisha bav
 trinity sunday
 tu bshevat
-valentines day
+valentines
 whit monday
 yom haatzmaut
 yom hashoah

@@ -1,9 +1,9 @@
-all saints day
-ascension day
-berchtold day
+all saints
+ascension
+berchtold
 candlemas
 carnival
-christmas day
+christmas
 christmas eve
 corpus christi
 daylight saving time ends
@@ -15,16 +15,16 @@ epiphany
 feast of the immaculate conception
 good friday
 june solstice
-labour day
-liechtenstein national day
+labour
+liechtenstein national
 march equinox
-may day
+may
 nativity of our lady
-new years day
+new years
 new years eve
 september equinox
 shrove tuesday
-st josephs day
-st stephens day
+st josephs
+st stephens
 whit monday
 whit sunday

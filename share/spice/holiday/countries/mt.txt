@@ -1,6 +1,6 @@
 bank holiday
-boxing day
-christmas day
+boxing
+christmas
 christmas eve
 easter monday
 easter sunday
@@ -8,14 +8,14 @@ feast of saint joseph
 feast of saint pauls shipwreck
 feast of saints peter and paul
 feast of the immaculate conception
-freedom day
+freedom
 good friday
-independence day
-labour day
-may day
-new years day
+independence
+labour
+may
+new years
 new years eve
-republic day
+republic
 sette giugno
 the feast of marys assumption
 the feast of our lady of victories

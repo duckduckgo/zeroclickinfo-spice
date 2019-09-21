@@ -1,6 +1,6 @@
-all saints day
+all saints
 carnival
-christmas day
+christmas
 christmas eve
 daylight saving time ends
 daylight saving time starts
@@ -8,22 +8,22 @@ day of dew
 december solstice
 easter monday
 easter sunday
-fathers day
+fathers
 feast of the assumption of mary
 good friday
 halloween
 holy saturday
-independence day
-independence restoration day
+independence
+independence restoration
 june solstice
-king mindaugas’ coronation day
-labour day
+king mindaugas’ coronation
+labour
 march equinox
-mothers day
-national day
-new years day
+mothers
+national
+new years
 new years eve
 second day of christmas
 september equinox
-st johns day
-valentines day
+st johns
+valentines
