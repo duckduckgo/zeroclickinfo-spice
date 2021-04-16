@@ -7,9 +7,9 @@ use Locale::Country;
 
 spice is_cached => 1;
 
-spice to => 'http://www.equaldex.com/api/region?format=json&region=$1&callback={{callback}}';
+spice to => 'https://www.equaldex.com/api/region?format=json&region=$1&callback={{callback}}';
 
-triggers startend => "lgbt", "lesbian", "gay", "bisexual", "transgender";
+triggers startend => "lgbt", "lgbtq", "lesbian", "gay", "bisexual", "transgender";
 my $guardRe = qr/(rights?|laws?) (in)?\s?/;
 
 handle remainder => sub {
